@@ -1,5 +1,5 @@
 import './App.css';
-import { findUser, getMuscleGroups } from './actions/supabase';
+import { findUser, getMuscleGroups, listByBodyPart } from './actions/supabase';
 import { Route, Routes } from 'react-router-dom'
 import { Box } from '@mui/material'
 import Home from "./components/Home"
@@ -21,6 +21,7 @@ function App() {
         GAINZZZ
         <button onClick={findUser}>find user</button>
         <button onClick={getMuscleGroups}>Get Workouts</button>
+        <button onClick={listByBodyPart}>list by body part</button>
       </div>
       <Footer/>
     </Box>
