@@ -1,5 +1,5 @@
 import './App.css';
-import { exerciseByID, findUser, getMuscleGroups, listAllWorkouts, listByBodyPart, listByEquipment, listOfEquipment, listOfTargetMuscles, listWorkoutsByTargetMuscle, setFavoriteWorkouts } from './actions/supabase';
+import { createAccount, exerciseByID, findUser, getMuscleGroups, listAllWorkouts, listByBodyPart, listByEquipment, listOfEquipment, listOfTargetMuscles, listWorkoutsByTargetMuscle, loginFunction, setFavoriteWorkouts, userSignIn, userSignOut, userSignUp } from './actions/supabase';
 import { Route, Routes } from 'react-router-dom'
 import { Box } from '@mui/material'
 import Home from './Components/Home'
@@ -33,6 +33,11 @@ function App() {
         <button onClick={listOfEquipment}>list of equipment </button>
         <button onClick={listByEquipment}>list by equipment </button>
         <button onClick={setFavoriteWorkouts}>Add to Favorites </button>
+        <button onClick={createAccount}>Create an account </button>
+        <button onClick={loginFunction}>Login </button>
+        <button onClick={userSignUp}>sign up (auth) </button>
+        <button onClick={userSignIn}>sign in (auth) </button>
+        <button onClick={userSignOut}>sign out (auth) </button>
       </div>
       <Footer />
     </Box>

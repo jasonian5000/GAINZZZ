@@ -8,6 +8,78 @@ const supabase = createClient(
 );
 
 
+const userSignUp = async (firstName, lastName, email, password, username) => {
+  const { user, session, error } = await supabase.auth.signUp({
+    email: 'rahminshoukoohi@gmail.com',
+    password: 'rahmin12',
+  });
+  if (error) {
+    return error;
+  }
+  let userID = user.id;
+  createAccount(firstName, lastName, userID, email, password, username);
+  return user;
+};
+
+
+
+const userSignIn = async (email, password) =>{
+    const { user, session, error } = await supabase.auth.signIn({
+      email: 'rahminshoukoohi@gmail.com',
+      password: 'rahmin12',
+    });
+    console.log("signed in")
+    if (error) {
+      console.log(error)
+      return error;
+    }
+    return user;
+}
+
+const userSignOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.log(error)
+    return error;
+  }
+  console.log("signed out")
+};
+
+const createAccount = async (firstName, lastName, userID, email, password, username) => {
+  // change hardcoded data to whatever the user inputs
+const { data, error } = await supabase
+  .from('userTable')
+  .insert([{ created_at: new Date(), 
+    updated_at: new Date(), 
+    username: "rahminnoodles", 
+    password: "password", 
+    firstName: "rahmin",
+    lastName: "shoukoohi",
+    email: "rahminshoukoohi@gmail.com"}]);
+    if (data) {
+      console.log(data)
+    } else {
+      console.log(error)
+    }
+}
+
+
+
+
+const loginFunction = async (firstName, lastName, email,) => {
+  const { user, session, error } = await supabase.auth.signIn({
+    email: 'guest@guest.com',
+    password: 'guest',
+  });
+  if (user && session) {
+    console.log("you are signed in!")
+  } else {
+    console.log(error.message)
+  }
+}
+
+
+
 const findUser = async () => {
     const {data} = await supabase
     .from("userTable")
@@ -208,4 +280,9 @@ export {
   listOfEquipment,
   listByEquipment,
   setFavoriteWorkouts,
+  createAccount,
+  loginFunction,
+  userSignUp,
+  userSignIn,
+  userSignOut,
 };
