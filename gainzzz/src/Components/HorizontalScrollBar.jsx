@@ -11,7 +11,7 @@ const HorizontalScrollBar = ({data}) => {
           itemID={item.id || item}
           title={item.id || item}
           m='0 40px'>
-          <BodyPartCard item={item} bodyPart= {bodyPart} setBodyPart={setBodyPart}/>
+          <BodyPartCard item={item}/>
           </Box>
         ))}
     </div>
