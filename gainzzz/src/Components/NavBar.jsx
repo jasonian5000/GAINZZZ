@@ -7,6 +7,8 @@ const NavBar = () => {
     <Stack>
           <Link to="/">Home</Link>
           <Link to="/exercise_details">exercise details</Link>
+          <Link to="/login_page">Login</Link>
+          <Link to="/create_account">Create an Account</Link>
     </Stack>
   )
 }
