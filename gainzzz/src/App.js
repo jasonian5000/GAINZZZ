@@ -2,12 +2,11 @@ import './App.css';
 import { exerciseByID, findUser, getMuscleGroups, listAllWorkouts, listByBodyPart, listByEquipment, listOfEquipment, listOfTargetMuscles, listWorkoutsByTargetMuscle, setFavoriteWorkouts } from './actions/supabase';
 import { Route, Routes } from 'react-router-dom'
 import { Box } from '@mui/material'
-import Home from "./components/Home"
-import NavBar from "./components/NavBar"
-import Footer from "./components/Footer"
-import ExerciseDetail from "./components/ExerciseDetail"
-import { LoginPage } from './components/LoginPage';
-
+import Home from './Components/Home'
+import NavBar from './Components/NavBar'
+import ExerciseDetail from './Components/ExerciseDetail'
+import Footer from './Components/Footer'
+import { LoginPage } from './Components/LoginPage'
 
 
 function App() {
@@ -16,7 +15,7 @@ function App() {
     <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Home/>}></Route>
         <Route path="/exercise_details" element={<ExerciseDetail />}></Route>
         <Route path="/login_page" element={<LoginPage />}></Route>
       </Routes>

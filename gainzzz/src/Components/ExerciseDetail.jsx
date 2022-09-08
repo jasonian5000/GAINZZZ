@@ -39,7 +39,7 @@ const getMuscleGroups = async () => {
   return (
     <div>ExerciseDetail
       <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
-        <HorizontalScrollBar data={bodyParts} body />
+        <HorizontalScrollBar data={bodyParts}/>
       </Box>
     </div>
   )
