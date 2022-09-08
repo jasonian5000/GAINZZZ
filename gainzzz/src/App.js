@@ -7,7 +7,7 @@ import NavBar from './Components/NavBar'
 import ExerciseDetail from './Components/ExerciseDetail'
 import Footer from './Components/Footer'
 import { LoginPage } from './Components/LoginPage'
-
+import SignUpPage from './Components/SignUpPage'
 
 function App() {
   console.log(process.env)
@@ -18,6 +18,7 @@ function App() {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/exercise_details" element={<ExerciseDetail />}></Route>
         <Route path="/login_page" element={<LoginPage />}></Route>
+        <Route path="/sign_up" element={<SignUpPage/>}></Route>
       </Routes>
       <div className="App">
         GAINZZZ
