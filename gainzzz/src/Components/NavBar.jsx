@@ -5,8 +5,8 @@ import { Stack } from '@mui/system'
 const NavBar = () => {
   return (
     <Stack>
-          <Link to="/">
-          </Link>
+          <Link to="/">Home</Link>
+          <Link to="/exercise_details">exercise details</Link>
     </Stack>
   )
 }
