@@ -1,0 +1,15 @@
+.emailLoginInput {
+    border: none;
+    background: transparent;
+}
+
+/* .emailLoginInput::after {
+    border: none;
+    background: transparent;
+} */
+
+.passwordLoginInput {
+    border: none;
+    background: transparent;
+}
+

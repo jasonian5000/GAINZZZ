@@ -15,6 +15,23 @@ const findUser = async () => {
     console.log(data)
 }
 
+const setFavoriteWorkouts = async () => {
+  let userFavoritedWorkouts 
+  const { data, error } = await supabase
+    .from('favoriteWorkouts')
+    .insert([
+      { created_at: new Date() },
+      { updated_at: new Date() },
+      { workoutID: '2407' },
+      { gif: 'http://d205bpvrqc9yn1.cloudfront.net/2407.gif' },
+      { workoutName: 'barbell biceps curl (with arm blaster)' },
+      { targetMuscle: 'biceps' },
+    ]);
+    if (data === true){
+      console.log(data)
+    } else {console.error(error)}
+}
+
 const getMuscleGroups = async () => {
 const options = {
   method: 'GET',
@@ -128,7 +145,6 @@ const listAllWorkouts = async () => {
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
       },
     };
-
     axios
       .request(options)
       .then(function (response) {
@@ -191,4 +207,5 @@ export {
   listAllWorkouts,
   listOfEquipment,
   listByEquipment,
+  setFavoriteWorkouts,
 };
