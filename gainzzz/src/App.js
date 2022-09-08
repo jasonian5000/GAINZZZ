@@ -1,11 +1,11 @@
 import './App.css';
-import { findUser } from './actions/supabase';
+import { findUser, getMuscleGroups } from './actions/supabase';
 import { Route, Routes } from 'react-router-dom'
 import { Box } from '@mui/material'
-import Home from './Components/Home';
-import NavBar from './Components/NavBar';
-import Footer from './Components/Footer';
-import ExerciseDetail from './Components/ExerciseDetail';
+import Home from "./components/Home"
+import NavBar from "./components/NavBar"
+import Footer from "./components/Footer"
+import ExerciseDetail from "./components/ExerciseDetail"
 
 
 
@@ -20,6 +20,7 @@ function App() {
       <div className="App">
         GAINZZZ
         <button onClick={findUser}>find user</button>
+        <button onClick={getMuscleGroups}>Get Workouts</button>
       </div>
       <Footer/>
     </Box>
