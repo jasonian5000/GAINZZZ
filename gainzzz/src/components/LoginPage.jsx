@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import "../css/loginPage.css"
+import { userSignIn } from '../actions/supabase';
+import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
   return (
@@ -16,10 +18,10 @@ export const LoginPage = () => {
         </Password1>
         <Text5>Forgot Password?</Text5>
         <LogIn>
-          <button className="loginButton">Log In</button>
+          <button onClick={userSignIn}>sign in (auth) </button>
         </LogIn>
         <Text7>
-          Dont have an account? <button className='signUpButton'>Sign Up</button>
+          Dont have an account? <Link to="/sign_up" className="btn btn-primary">Sign up</Link>
         </Text7>
       </Workoutlady>
     </LoginRoot>

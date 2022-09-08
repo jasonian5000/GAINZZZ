@@ -8,16 +8,17 @@ const supabase = createClient(
 );
 
 
-const userSignUp = async (firstName, lastName, email, password, username) => {
+const userSignUp = async (firstName, lastName, username, email, password) => {
   const { user, session, error } = await supabase.auth.signUp({
-    email: 'rahminshoukoohi@gmail.com',
-    password: 'rahmin12',
+    email: email,
+    password: password,
   });
   if (error) {
+    console.log(error)
     return error;
   }
   let userID = user.id;
-  createAccount(firstName, lastName, userID, email, password, username);
+  createAccount(firstName, lastName, username, email, password, userID);
   return user;
 };
 
@@ -25,8 +26,8 @@ const userSignUp = async (firstName, lastName, email, password, username) => {
 
 const userSignIn = async (email, password) =>{
     const { user, session, error } = await supabase.auth.signIn({
-      email: 'rahminshoukoohi@gmail.com',
-      password: 'rahmin12',
+      email: email,
+      password: password,
     });
     console.log("signed in")
     if (error) {
@@ -51,11 +52,11 @@ const { data, error } = await supabase
   .from('userTable')
   .insert([{ created_at: new Date(), 
     updated_at: new Date(), 
-    username: "rahminnoodles", 
-    password: "password", 
-    firstName: "rahmin",
-    lastName: "shoukoohi",
-    email: "rahminshoukoohi@gmail.com"}]);
+    username: username, 
+    password: password, 
+    firstName: firstName,
+    lastName: lastName,
+    email: email}]);
     if (data) {
       console.log(data)
     } else {
