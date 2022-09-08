@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
 import ExerciseDetail from "./components/ExerciseDetail"
 import { LoginPage } from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/exercise/:id" element={<ExerciseDetail />}></Route>
         <Route path="/login_page" element={<LoginPage />}></Route>
+        <Route path="/sign_up" element={<SignUpPage/>}></Route>
       </Routes>
       <div className="App">
         GAINZZZ
