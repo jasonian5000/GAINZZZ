@@ -10,6 +10,7 @@ import ExerciseDetail from "./components/ExerciseDetail"
 
 
 function App() {
+  console.log(process.env)
   return (
     <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
       <NavBar />
