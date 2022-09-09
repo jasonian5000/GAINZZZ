@@ -158,10 +158,10 @@ axios
   });
 }
 
-const listByBodyPart = async () => { 
+const listByBodyPart = async (dispatch, item) => { 
 const options = {
   method: 'GET',
-  url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/upper%20arms',
+  url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${item}`,
   // need to add input field or dropdown to choose body part from the above function
   // replace %7BbodyPart%7D with dropdown request (example: upper%20arms)
   // maybe make multiple routes? will discuss. 
@@ -174,7 +174,8 @@ const options = {
 axios
   .request(options)
   .then(function (response) {
-    console.log(response.data);
+    const bodyPartSearch = response.data
+    setSearchResults(dispatch, bodyPartSearch);
   })
   .catch(function (error) {
     console.error(error);

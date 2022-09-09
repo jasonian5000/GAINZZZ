@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import React from 'react'
 import HorizontalScrollBar from './HorizontalScrollBar'
 import { useState, useEffect } from 'react'
@@ -37,14 +37,16 @@ const ExerciseDetail = () => {
   }, []);
 
   return (
-    <div className='ED-Container'>
-      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <SearchBar/>
-        <HorizontalScrollBar setBodyPart={setBodyPart} bodyPart={bodyPart} />
+    <div className="ED-Container">
+      <Box sx={{ mt: { lg: "109px" } }} mt="50px" p="20px">
+        <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
+          <SearchBar bodyPart={bodyPart} />
+          <HorizontalScrollBar setBodyPart={setBodyPart} bodyPart={bodyPart} />
+        </Box>
+        <Stack direction="row" sx={{ gap: { lg: "107px", xs: "50px" } }} flexWrap="wrap" justifyContent="center">
+          <ExerciseCard />
+        </Stack>
       </Box>
-            <Box sx={{ position: "relative", width: "100%", p: "20px" }}></Box>
-      <ExerciseCard />
-      <Box/>
     </div>
   );
 };
