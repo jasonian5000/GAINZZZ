@@ -21,7 +21,7 @@ const captureAccountInformation = (e, trainers) => {
     age: e.target.form[4].value,
     bodyFat: e.target.form[5].value,
     totalBurnedCalories: e.target.form[6].value,
-    personalTrainer: trainers
+    personalTrainer: e.target.form[7].value
   };
   return input
 }

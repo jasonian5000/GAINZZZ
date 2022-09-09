@@ -131,8 +131,8 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, 
       bmi: bmi,
       age: age,
       totalBurnedCalories: totalBurnedCalories,
-      personalTrainer: personalTrainer,
       bodyFat: bodyFat,
+      personalTrainer: personalTrainer
     }
     ]);
     if (data) {
