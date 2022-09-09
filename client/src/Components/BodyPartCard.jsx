@@ -13,7 +13,7 @@ const BodyPartCard = ({ bodyPart, setBodyPart, item }) => {
           height: '280px',
           gap: '47px'}}
     >
-      <img src={require('../images/gym.webp')} style={{ width: '50px', height: '50' }} />
+      <img src={require('../assets/gym.webp')} style={{ width: '50px', height: '50' }} />
       <Typography fontSize='24px' fontWeight="bold" textTransform="capitalize">{item}</Typography>
     </Stack>
   );  

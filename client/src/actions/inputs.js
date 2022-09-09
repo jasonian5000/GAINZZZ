@@ -34,12 +34,6 @@ const setSignIn = (e) => {
   return data;
 }
 
-
-
-
-
-
-
 export {
     captureUserSignUp,
     setSignIn,
