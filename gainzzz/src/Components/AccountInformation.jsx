@@ -51,53 +51,53 @@ const AccountInformation = () => {
 
   console.log(trainers);
 
-  return (
+return (
     <div>
-      <div>
+        <div>
         <h1>Please enter your personal information</h1>
         <div>
-          <form>
+            <form>
             <div>
-              <label htmlFor="height">Height</label>
-              <input
+                <label htmlFor="height">Height</label>
+                <input
                 type="text"
                 name="height"
                 placeholder="Enter your height"
-              />
+                />
             </div>
             <div>
-              <label htmlFor="gender">gender</label>
-              <input
+                <label htmlFor="gender">gender</label>
+                <input
                 type="text"
                 name="gender"
                 placeholder="Enter your gender"
-              />
+                />
             </div>
             <div>
-              <label htmlFor="weight">weight</label>
-              <input
+                <label htmlFor="weight">weight</label>
+                <input
                 type="text"
                 name="weight"
                 placeholder="Enter your weight"
-              />
+                />
             </div>
             <div>
-              <label htmlFor="bmi">
+                <label htmlFor="bmi">
                 bmi. (If you do not know it, leave it blank.)
-              </label>
-              <input type="text" name="bmi" placeholder="Enter your bmi" />
-              <div>
+                </label>
+                <input type="text" name="bmi" placeholder="Enter your bmi" />
+                <div>
                 <label htmlFor="age">age</label>
                 <input type="text" name="age" placeholder="Enter your age" />
-              </div>
-              <div>
+                </div>
+                <div>
                 <label htmlFor="bodyfat">
-                  bodyfat percentage (If you do not know it, leave it blank.)
+                    bodyfat percentage (If you do not know it, leave it blank.)
                 </label>
                 <input
-                  type="text"
-                  name="bodyfat"
-                  placeholder="Enter your bodyfat percent"
+                    type="text"
+                    name="bodyfat"
+                    placeholder="Enter your bodyfat percent"
                 />
               </div>
               <div>
@@ -116,19 +116,19 @@ const AccountInformation = () => {
                   select personal trainer
                   <select value={value} onChange={handleChange}>
                     {trainers.map((trainer) => (
-                      <option key={trainer.id} value={trainer.id}>
-                        {trainer.ptName}
-                      </option>
+                        <option key={trainer.id} value={trainer.id}>
+                            {trainer.ptName}
+                        </option>
                     ))}
-                  </select>
+                    </select>
                 </label>
-              </div>
-              <button onClick={(e) => sendAccountInformation(e)}>Submit</button>
-              <button>Update</button>
+                </div>
+                <button onClick={(e) => sendAccountInformation(e)}>Submit</button>
+                <button>Update</button>
             </div>
-          </form>
+            </form>
         </div>
-      </div>
+        </div>
     </div>
   );
 };
