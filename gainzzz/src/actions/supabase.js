@@ -66,21 +66,6 @@ const { data, error } = await supabase
 
 
 
-
-const loginFunction = async (firstName, lastName, email,) => {
-  const { user, session, error } = await supabase.auth.signIn({
-    email: 'guest@guest.com',
-    password: 'guest',
-  });
-  if (user && session) {
-    console.log("you are signed in!")
-  } else {
-    console.log(error.message)
-  }
-}
-
-
-
 const findUser = async () => {
     const {data} = await supabase
     .from("userTable")
