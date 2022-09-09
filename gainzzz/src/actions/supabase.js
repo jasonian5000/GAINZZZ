@@ -1,12 +1,14 @@
 import { height } from '@mui/system';
 import { createClient } from '@supabase/supabase-js';
 import axios from "axios"
+import {useSelector} from "react-redux"
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabase = createClient(
   supabaseUrl,
   supabaseKey
 );
+// const trainers = useSelector((state) => state.pt.ptNameIdList);
 
 
 const userSignUp = async (firstName, lastName, username, email, password) => {
@@ -128,9 +130,9 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, 
       weight: weight,
       bmi: bmi,
       age: age,
-      bodyFat: bodyFat,
       totalBurnedCalories: totalBurnedCalories,
-      personalTrainer: personalTrainer
+      personalTrainer: personalTrainer,
+      bodyFat: bodyFat,
     }
     ]);
     if (data) {

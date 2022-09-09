@@ -17,7 +17,8 @@ const AccountInformation = () => {
   };
   const sendAccountInformation = async (e) => {
     console.log(e);
-    const input = captureAccountInformation(e);
+    const input = captureAccountInformation(e, trainers);
+    console.log("this is input variable", input)
     if (input.height.length < 1) {
       window.alert("Please provide your height");
     } else if (input.gender.length < 1) {
@@ -31,7 +32,7 @@ const AccountInformation = () => {
         input.weight,
         input.bmi,
         input.age,
-        input?.bodyfat,
+        input?.bodyFat,
         input?.totalBurnedCalories,
         input.personalTrainer
       );
