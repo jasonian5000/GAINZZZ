@@ -83,7 +83,12 @@ const loginFunction = async (firstName, lastName, email,) => {
   }
 }
 
-
+const ptDropDown = async () => {
+  let { data: ptTable, error } = await supabase
+  .from('ptTable')
+  .select('id,ptName')
+  return ptTable
+};
 
 const findUser = async () => {
     const {data} = await supabase
@@ -111,8 +116,8 @@ const setFavoriteWorkouts = async () => {
     } else {console.error(error)}
 }
 
-const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, totalBurnedCalories) => {
-  const { user, data, error } = await supabase
+const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, totalBurnedCalories, personalTrainer) => {
+  const { data, error } = await supabase
     .from('accountInfo')
     .insert([
       {
@@ -125,9 +130,9 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, 
       age: age,
       bodyFat: bodyFat,
       totalBurnedCalories: totalBurnedCalories,
+      personalTrainer: personalTrainer
     }
     ]);
-    console.log(user)
     if (data) {
       console.log("account info: ",data)
     } else console.log(error)
@@ -318,4 +323,5 @@ export {
   userSignIn,
   userSignOut,
   addAccountInformation,
+  ptDropDown
 };
