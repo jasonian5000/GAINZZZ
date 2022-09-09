@@ -6,6 +6,8 @@ import axios from "axios";
 import { useDispatch} from 'react-redux'
 import { addBodyParts } from '../actions/bodyPartAction';
 import '../css/exerciseDetail.css'
+import SearchBar from './SearchBar';
+import ExerciseCard from './ExerciseCard';
 
 const ExerciseDetail = () => {
   const [bodyPart, setBodyPart] = useState("all");
@@ -26,7 +28,6 @@ const ExerciseDetail = () => {
         .then(function (response) {
           const bodyPartData = response.data;
           addBodyParts(dispatch, bodyPartData);
-          console.log(bodyPartData);
         })
         .catch(function (error) {
           console.error(error);
@@ -38,8 +39,12 @@ const ExerciseDetail = () => {
   return (
     <div className='ED-Container'>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
+        <SearchBar/>
         <HorizontalScrollBar setBodyPart={setBodyPart} bodyPart={bodyPart} />
       </Box>
+            <Box sx={{ position: "relative", width: "100%", p: "20px" }}></Box>
+      <ExerciseCard />
+      <Box/>
     </div>
   );
 };

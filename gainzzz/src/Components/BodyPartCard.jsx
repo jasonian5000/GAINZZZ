@@ -3,7 +3,6 @@ import { Stack, Typography } from '@mui/material'
 import '../css/bodyPartCard.css'
 
 const BodyPartCard = ({ bodyPart, setBodyPart, item }) => {
-  const helloRyan = "Hello ryan"
   return (
     <Stack type="button" alignItems="center" justifyContent="center" className="bodyPartCard"
       sx={{
