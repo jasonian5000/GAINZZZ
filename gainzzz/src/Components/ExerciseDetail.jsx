@@ -37,14 +37,14 @@ const ExerciseDetail = () => {
   }, []);
 
   return (
-    <div className='ED-Container'>
+    <div className="ED-Container">
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <SearchBar/>
+        <SearchBar bodyPart={bodyPart} />
         <HorizontalScrollBar setBodyPart={setBodyPart} bodyPart={bodyPart} />
       </Box>
-            <Box sx={{ position: "relative", width: "100%", p: "20px" }}></Box>
+      <Box sx={{ position: "relative", width: "100%", p: "20px" }}></Box>
       <ExerciseCard />
-      <Box/>
+      <Box />
     </div>
   );
 };
