@@ -10,8 +10,7 @@ const captureUserSignUp = (e) => {
   return input;
 };
 
-const captureAccountInformation = (e, trainers) => {
-  // console.log("This is the trainers")
+const captureAccountInformation = (e) => {
   e.preventDefault()
   let input = {
     height: e.target.form[0].value,
