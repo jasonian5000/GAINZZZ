@@ -8,6 +8,7 @@ import ExerciseDetail from './Components/ExerciseDetail'
 import Footer from './Components/Footer'
 import { LoginPage } from './Components/LoginPage'
 import SignUpPage from './Components/SignUpPage'
+import AccountInformation from './Components/AccountInformation';
 
 function App() {
   console.log(process.env)
@@ -19,6 +20,7 @@ function App() {
         <Route path="/exercise_details" element={<ExerciseDetail />}></Route>
         <Route path="/login_page" element={<LoginPage />}></Route>
         <Route path="/sign_up" element={<SignUpPage/>}></Route>
+        <Route path="/account_information" element={<AccountInformation />}></Route>
       </Routes>
       <div className="App">
         GAINZZZ

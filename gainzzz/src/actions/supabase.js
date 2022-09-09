@@ -1,3 +1,4 @@
+import { height } from '@mui/system';
 import { createClient } from '@supabase/supabase-js';
 import axios from "axios"
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -58,7 +59,8 @@ const { data, error } = await supabase
     password: password, 
     firstName: firstName,
     lastName: lastName,
-    email: email}]);
+    email: email
+  }]);
     if (data) {
       console.log(data)
     } else {
@@ -95,17 +97,37 @@ const setFavoriteWorkouts = async () => {
   const { data, error } = await supabase
     .from('favoriteWorkouts')
     .insert([
-      { created_at: new Date() },
-      { updated_at: new Date() },
-      { workoutID: '2407' },
-      { gif: 'http://d205bpvrqc9yn1.cloudfront.net/2407.gif' },
-      { workoutName: 'barbell biceps curl (with arm blaster)' },
-      { targetMuscle: 'biceps' },
+      { 
+      created_at: new Date() ,
+      updated_at: new Date(),
+      workoutID: '2407' ,
+      gif: 'http://d205bpvrqc9yn1.cloudfront.net/2407.gif' ,
+      workoutName: 'barbell biceps curl (with arm blaster)' ,
+      targetMuscle: 'biceps' 
+    },
     ]);
     if (data === true){
       console.log(data)
     } else {console.error(error)}
 }
+
+const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, totalBurnedCalories) => {
+  const { data, error } = await supabase
+    .from('accountInfo')
+    .insert([
+      { 
+      created_at: new Date(),
+      updated_at: new Date(),
+      height: height,
+      gender: gender,
+      weight: weight,
+      bmi: bmi,
+      age: age,
+      bodyfat: bodyfat,
+      totalBurnedCalories: totalBurnedCalories,
+    }
+    ]);
+};
 
 const getMuscleGroups = async () => {
 const options = {
@@ -272,6 +294,9 @@ const listByEquipment = async () => {
 }
 
 
+
+
+
 export {
   findUser,
   getMuscleGroups,
@@ -288,4 +313,5 @@ export {
   userSignUp,
   userSignIn,
   userSignOut,
+  addAccountInformation,
 };

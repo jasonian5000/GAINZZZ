@@ -21,6 +21,7 @@ const NavBar = () => {
         <Link to="/sign_up" style={{ textDecoration: "none", color: "#3a1212" }}>
           sign up
         </Link>
+        <Link to="/account_information"  style={{ textDecoration: "none", color: "#3a1212" }}>Account Information</Link>
       </Stack>
     </Stack>
   );

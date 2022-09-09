@@ -10,6 +10,19 @@ const captureUserSignUp = (e) => {
   return input;
 };
 
+const captureAccountInformation = (e) => {
+  e.preventDefault()
+  let input = {
+    height: e.target.form[0],
+    gender: e.target.form[1],
+    weight: e.target.form[2],
+    bmi: e.target.form[3],
+    age: e.target.form[4],
+    bodyfat: e.target.form[5],
+    totalBurnedCalories: e.target.form[6]
+  }
+  return input
+}
 
 const setSignIn = (e) => {
   e.preventDefault();
@@ -28,5 +41,6 @@ const setSignIn = (e) => {
 
 export {
     captureUserSignUp,
-    setSignIn
+    setSignIn,
+    captureAccountInformation,
 }
