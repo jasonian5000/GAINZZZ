@@ -83,7 +83,12 @@ const loginFunction = async (firstName, lastName, email,) => {
   }
 }
 
-
+const ptDropDown = async () => {
+  let { data: ptTable, error } = await supabase
+  .from('ptTable')
+  .select('id,ptName')
+  return ptTable
+};
 
 const findUser = async () => {
     const {data} = await supabase
@@ -111,7 +116,7 @@ const setFavoriteWorkouts = async () => {
     } else {console.error(error)}
 }
 
-const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, totalBurnedCalories) => {
+const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, totalBurnedCalories, personalTrainer) => {
   const { data, error } = await supabase
     .from('accountInfo')
     .insert([
@@ -125,6 +130,7 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, 
       age: age,
       bodyfat: bodyfat,
       totalBurnedCalories: totalBurnedCalories,
+      personalTrainer: personalTrainer
     }
     ]);
 };
@@ -314,4 +320,5 @@ export {
   userSignIn,
   userSignOut,
   addAccountInformation,
+  ptDropDown
 };
