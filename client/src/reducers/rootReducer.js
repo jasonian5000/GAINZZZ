@@ -1,6 +1,6 @@
 import { combineReducers } from "redux"
 import bodyPartReducer from "./bodyPartReducer";
-import ptReducer from "./ptReducer";
+import trainerReducers from "./trainerReducers";
 import searchResultsReducer from "./searchResults";
 import workoutReducer from "./workoutReducer";
 
@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     searchResults: searchResultsReducer,
     bodyPart: bodyPartReducer,
     workout: workoutReducer,
-    pt: ptReducer
+    trainers: trainerReducers
 });
 
 export default rootReducer

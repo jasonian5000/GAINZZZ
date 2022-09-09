@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { captureAccountInformation } from "../actions/inputs";
-import { addAccountInformation, ptDropDown } from "../actions/supabase";
+import { addAccountInformation } from "../actions/supabase";
+import { getTrainers } from "../actions/accountInformation";
 
 const AccountInformation = () => {
   const dispatch = useDispatch();
-  const trainers = useSelector((state) => state.pt.ptNameIdList);
-  const getTrainers = async () => {
-    const trainerData = await ptDropDown();
-    dispatch({ type: "SET_PT_NAME_ID_LIST", payload: trainerData });
-  };
+  const trainerDropDownList = useSelector((state) => state.trainers.trainerDropDownList);
   const [value, setValue] = useState(1);
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -43,13 +40,11 @@ const AccountInformation = () => {
 
   useEffect(
     () => {
-      getTrainers();
+      getTrainers(dispatch);
     },
     // eslint-disable-next-line
     []
   );
-
-  console.log(trainers);
 
   return (
     <div>
@@ -115,7 +110,7 @@ const AccountInformation = () => {
                 <label htmlFor="personalTrainer">
                   select personal trainer
                   <select value={value} onChange={handleChange}>
-                    {trainers.map((trainer) => (
+                    {trainerDropDownList.map((trainer) => (
                       <option key={trainer.id} value={trainer.id}>
                         {trainer.ptName}
                       </option>
