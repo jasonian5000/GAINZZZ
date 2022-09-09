@@ -23,7 +23,6 @@ const BodyPartCard = ({ bodyPart, setBodyPart, item }) => {
       }}
       onClick={() => {
         setBodyPart(item)
-        console.log(item)
         listByBodyPart(dispatch, item)
       }}>
       <img src={require("../images/gym.webp")} style={{ width: "50px", height: "50" }} />
