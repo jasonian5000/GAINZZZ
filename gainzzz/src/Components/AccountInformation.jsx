@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { captureAccountInformation } from "../actions/inputs";
-import { addAccountInformation, ptDropDown } from "../actions/supabase";
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { captureAccountInformation } from '../actions/inputs';
+import { addAccountInformation, ptDropDown } from '../actions/supabase';
 
 const AccountInformation = () => {
   const dispatch = useDispatch();
   const trainers = useSelector((state) => state.pt.ptNameIdList);
   const getTrainers = async () => {
     const trainerData = await ptDropDown();
-    dispatch({ type: "SET_PT_NAME_ID_LIST", payload: trainerData });
+    dispatch({ type: 'SET_PT_NAME_ID_LIST', payload: trainerData });
   };
-  const [value, setValue] = useState(1);
-  const handleChange = (e) => {
+    const [value, setValue] = useState(1);
+    const handleChange = (e) => {
     setValue(e.target.value);
   };
   const sendAccountInformation = async (e) => {
     console.log(e);
     const input = captureAccountInformation(e);
-    console.log("this is input variable", input)
+    console.log('this is input variable', input);
     if (input.height.length < 1) {
-      window.alert("Please provide your height");
+      window.alert('Please provide your height');
     } else if (input.gender.length < 1) {
-      window.alert("Please provide your gender");
+      window.alert('Please provide your gender');
     } else if (input.weight.length < 1) {
-      window.alert("Please provide your weight");
+      window.alert('Please provide your weight');
     } else {
       let userAccount = await addAccountInformation(
         input?.height,
@@ -35,21 +35,21 @@ const AccountInformation = () => {
         input?.bodyFat,
         input?.totalBurnedCalories,
         input.personalTrainer
-      );
-      console.log(userAccount);
-      window.alert("Information added Succesfully");
+    );
+    console.log(userAccount);
+    window.alert('Information added Succesfully');
     }
-  };
+};
 
-  useEffect(
+useEffect(
     () => {
-      getTrainers();
+    getTrainers();
     },
     // eslint-disable-next-line
     []
-  );
+);
 
-  console.log(trainers);
+console.log(trainers);
 
 return (
     <div>
@@ -99,25 +99,25 @@ return (
                     name="bodyfat"
                     placeholder="Enter your bodyfat percent"
                 />
-              </div>
-              <div>
+                </div>
+                <div>
                 <label htmlFor="totalBurnedCalories">
-                  total burned calories. (If you do not know it, leave it
-                  blank.)
+                    total burned calories. (If you do not know it, leave it
+                    blank.)
                 </label>
                 <input
-                  type="text"
-                  name="totalBurnedCalories"
-                  placeholder="Enter your total burned calories"
+                    type="text"
+                    name="totalBurnedCalories"
+                    placeholder="Enter your total burned calories"
                 />
-              </div>
-              <div>
+                </div>
+                <div>
                 <label htmlFor="personalTrainer">
-                  select personal trainer
-                  <select value={value} onChange={handleChange}>
+                    select personal trainer
+                    <select value={value} onChange={handleChange}>
                     {trainers.map((trainer) => (
                         <option key={trainer.id} value={trainer.id}>
-                            {trainer.ptName}
+                        {trainer.ptName}
                         </option>
                     ))}
                     </select>
@@ -130,7 +130,7 @@ return (
         </div>
         </div>
     </div>
-  );
+    );
 };
 
 export default AccountInformation;
