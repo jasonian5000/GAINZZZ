@@ -29,6 +29,7 @@ const userSignIn = async (email, password) =>{
       email: email,
       password: password,
     });
+    console.log(session)
     console.log("signed in")
     if (error) {
       console.log(error)
@@ -38,11 +39,12 @@ const userSignIn = async (email, password) =>{
 }
 
 const userSignOut = async () => {
-  const { error } = await supabase.auth.signOut();
+  const { error, session } = await supabase.auth.signOut();
   if (error) {
     console.log(error)
     return error;
   }
+  console.log(session)
   console.log("signed out")
 };
 
