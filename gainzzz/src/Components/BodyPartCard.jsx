@@ -1,5 +1,6 @@
 import React from 'react'
-import {Stack, Typography} from '@mui/material'
+import { Stack, Typography } from '@mui/material'
+import '../css/bodyPartCard.css'
 
 const BodyPartCard = ({ bodyPart, setBodyPart, item }) => {
   const helloRyan = "Hello ryan"
@@ -16,7 +17,7 @@ const BodyPartCard = ({ bodyPart, setBodyPart, item }) => {
       <img src={require('../images/gym.webp')} style={{ width: '50px', height: '50' }} />
       <Typography fontSize='24px' fontWeight="bold" textTransform="capitalize">{item}</Typography>
     </Stack>
-  );
+  );  
 }
 
 export default BodyPartCard

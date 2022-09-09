@@ -5,8 +5,10 @@ import { useState, useEffect } from 'react'
 import axios from "axios";
 import { useDispatch} from 'react-redux'
 import { addBodyParts } from '../actions/bodyPartAction';
+import '../css/exerciseDetail.css'
 
-const ExerciseDetail = ({ bodyPart, setBodyPart }) => {
+const ExerciseDetail = () => {
+  const [bodyPart, setBodyPart] = useState("all");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,8 +36,7 @@ const ExerciseDetail = ({ bodyPart, setBodyPart }) => {
   }, []);
 
   return (
-    <div>
-      ExerciseDetail
+    <div className='ED-Container'>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
         <HorizontalScrollBar setBodyPart={setBodyPart} bodyPart={bodyPart} />
       </Box>
