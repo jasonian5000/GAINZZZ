@@ -1,6 +1,8 @@
 import { height } from '@mui/system';
 import { createClient } from '@supabase/supabase-js';
 import axios from "axios"
+import { setSearchResults } from './searchResults';
+
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabase = createClient(
@@ -218,10 +220,10 @@ const listOfTargetMuscles = async () => {
       });
 }
 
-const listWorkoutsByTargetMuscle = async () => {
+const listWorkoutsByTargetMuscle = async (dispatch, Search) => {
     const options = {
       method: 'GET',
-      url: 'https://exercisedb.p.rapidapi.com/exercises/name/biceps',
+      url: `https://exercisedb.p.rapidapi.com/exercises/name/${Search}`,
       // make dropdown menu that allows user to choose target muscle (replace biceps at end of url with dropdown options)
       headers: {
         'X-RapidAPI-Key': '7555c9e913msh92629e7c5507e7cp1b8026jsna98c340ed373',
@@ -232,7 +234,8 @@ const listWorkoutsByTargetMuscle = async () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        const searchData = response.data;
+        setSearchResults(dispatch, searchData)
       })
       .catch(function (error) {
         console.error(error);

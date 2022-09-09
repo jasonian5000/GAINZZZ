@@ -1,5 +1,5 @@
-body{
-    background: whitesmoke;
+body {
+  background: #cbcbcb;
 }
 
 .bodyPartCard {
@@ -24,7 +24,6 @@ body{
   transform: scale(1, 1);
   transition: 0.3s all ease-in-out;
 }
-
 
 .right-arrow:hover,
 .left-arrow:hover {
