@@ -37,7 +37,6 @@ function App() {
         <button onClick={createAccount}>Create an account </button>
         <button onClick={loginFunction}>Login </button>
         <button onClick={userSignUp}>sign up (auth) </button>
-        <button onClick={userSignIn}>sign in (auth) </button>
         <button onClick={userSignOut}>sign out (auth) </button>
       </div>
       <Footer />
