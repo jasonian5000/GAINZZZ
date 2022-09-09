@@ -111,11 +111,11 @@ const setFavoriteWorkouts = async () => {
     } else {console.error(error)}
 }
 
-const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, totalBurnedCalories) => {
-  const { data, error } = await supabase
+const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, totalBurnedCalories) => {
+  const { user, data, error } = await supabase
     .from('accountInfo')
     .insert([
-      { 
+      {
       created_at: new Date(),
       updated_at: new Date(),
       height: height,
@@ -123,10 +123,14 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, 
       weight: weight,
       bmi: bmi,
       age: age,
-      bodyfat: bodyfat,
+      bodyFat: bodyFat,
       totalBurnedCalories: totalBurnedCalories,
     }
     ]);
+    console.log(user)
+    if (data) {
+      console.log("account info: ",data)
+    } else console.log(error)
 };
 
 const getMuscleGroups = async () => {

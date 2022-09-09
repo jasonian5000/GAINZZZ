@@ -21,6 +21,8 @@ const dispatch = useDispatch()
                 input.weight,
                 input.bmi,
                 input.age,
+                input.bodyFat,
+                input.totalBurnedCalories
             )
             console.log(userAccount)
             window.alert("Information added Succesfully")
