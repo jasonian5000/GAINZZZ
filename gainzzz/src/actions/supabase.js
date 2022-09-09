@@ -2,13 +2,13 @@ import { height } from '@mui/system';
 import { createClient } from '@supabase/supabase-js';
 import axios from "axios"
 import { setSearchResults } from './searchResults';
-
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabase = createClient(
   supabaseUrl,
   supabaseKey
 );
+// const trainers = useSelector((state) => state.pt.ptNameIdList);
 
 
 const userSignUp = async (firstName, lastName, username, email, password) => {
@@ -118,11 +118,11 @@ const setFavoriteWorkouts = async () => {
     } else {console.error(error)}
 }
 
-const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, totalBurnedCalories, personalTrainer) => {
+const addAccountInformation = async (height, gender, weight, bmi, age, bodyFat, totalBurnedCalories, personalTrainer) => {
   const { data, error } = await supabase
     .from('accountInfo')
     .insert([
-      { 
+      {
       created_at: new Date(),
       updated_at: new Date(),
       height: height,
@@ -130,11 +130,14 @@ const addAccountInformation = async (height, gender, weight, bmi, age, bodyfat, 
       weight: weight,
       bmi: bmi,
       age: age,
-      bodyfat: bodyfat,
       totalBurnedCalories: totalBurnedCalories,
+      bodyFat: bodyFat,
       personalTrainer: personalTrainer
     }
     ]);
+    if (data) {
+      console.log("account info: ",data)
+    } else console.log(error)
 };
 
 const getMuscleGroups = async () => {

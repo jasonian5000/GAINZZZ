@@ -11,13 +11,14 @@ const AccountInformation = () => {
     const trainerData = await ptDropDown();
     dispatch({ type: "SET_PT_NAME_ID_LIST", payload: trainerData });
   };
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(1);
   const handleChange = (e) => {
     setValue(e.target.value);
   };
   const sendAccountInformation = async (e) => {
     console.log(e);
     const input = captureAccountInformation(e);
+    console.log("this is input variable", input)
     if (input.height.length < 1) {
       window.alert("Please provide your height");
     } else if (input.gender.length < 1) {
@@ -26,12 +27,12 @@ const AccountInformation = () => {
       window.alert("Please provide your weight");
     } else {
       let userAccount = await addAccountInformation(
-        input.height,
-        input.gender,
-        input.weight,
-        input.bmi,
-        input.age,
-        input?.bodyfat,
+        input?.height,
+        input?.gender,
+        input?.weight,
+        input?.bmi,
+        input?.age,
+        input?.bodyFat,
         input?.totalBurnedCalories,
         input.personalTrainer
       );

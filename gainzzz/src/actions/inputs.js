@@ -13,14 +13,15 @@ const captureUserSignUp = (e) => {
 const captureAccountInformation = (e) => {
   e.preventDefault()
   let input = {
-    height: e.target.form[0],
-    gender: e.target.form[1],
-    weight: e.target.form[2],
-    bmi: e.target.form[3],
-    age: e.target.form[4],
-    bodyfat: e.target.form[5],
-    totalBurnedCalories: e.target.form[6]
-  }
+    height: e.target.form[0].value,
+    gender: e.target.form[1].value,
+    weight: e.target.form[2].value,
+    bmi: e.target.form[3].value,
+    age: e.target.form[4].value,
+    bodyFat: e.target.form[5].value,
+    totalBurnedCalories: e.target.form[6].value,
+    personalTrainer: e.target.form[7].value
+  };
   return input
 }
 
