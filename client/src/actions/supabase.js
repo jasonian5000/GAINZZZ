@@ -1,4 +1,3 @@
-import { height } from '@mui/system';
 import { createClient } from '@supabase/supabase-js';
 import axios from "axios"
 import { setSearchResults } from './searchResults';
