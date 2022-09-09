@@ -11,11 +11,22 @@ const captureUserSignUp = (e) => {
 };
 
 
+const setSignIn = (e) => {
+  e.preventDefault();
+  let data = {
+    email: e.target.form[0].value,
+    password: e.target.form[1].value,
+  };
+  return data;
+}
+
+
 
 
 
 
 
 export {
-    captureUserSignUp
+    captureUserSignUp,
+    setSignIn
 }
