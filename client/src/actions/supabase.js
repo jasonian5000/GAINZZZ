@@ -7,11 +7,9 @@ const supabase = createClient(
   supabaseUrl,
   supabaseKey
 );
-// const trainers = useSelector((state) => state.pt.ptNameIdList);
-
 
 const userSignUp = async (firstName, lastName, username, email, password) => {
-  const { user, session, error } = await supabase.auth.signUp({
+  const { user, error } = await supabase.auth.signUp({
     email: email,
     password: password,
   });
@@ -23,8 +21,6 @@ const userSignUp = async (firstName, lastName, username, email, password) => {
   createAccount(firstName, lastName, username, email, password, userID);
   return user;
 };
-
-
 
 const userSignIn = async (email, password) =>{
     const { user, session, error } = await supabase.auth.signIn({
@@ -69,26 +65,15 @@ const { data, error } = await supabase
     }
 }
 
-
-
-
-const loginFunction = async (firstName, lastName, email,) => {
-  const { user, session, error } = await supabase.auth.signIn({
-    email: 'guest@guest.com',
-    password: 'guest',
-  });
-  if (user && session) {
-    console.log("you are signed in!")
-  } else {
-    console.log(error.message)
-  }
-}
-
-const ptDropDown = async () => {
+const trainerDropDown = async () => {
   let { data: ptTable, error } = await supabase
   .from('ptTable')
   .select('id,ptName')
-  return ptTable
+  if (ptTable) {
+    return ptTable
+  } else {
+    console.log(error);
+  }
 };
 
 const findUser = async () => {
@@ -99,7 +84,6 @@ const findUser = async () => {
 }
 
 const setFavoriteWorkouts = async () => {
-  let userFavoritedWorkouts 
   const { data, error } = await supabase
     .from('favoriteWorkouts')
     .insert([
@@ -305,10 +289,6 @@ const listByEquipment = async () => {
       });
 }
 
-
-
-
-
 export {
   findUser,
   getMuscleGroups,
@@ -321,10 +301,9 @@ export {
   listByEquipment,
   setFavoriteWorkouts,
   createAccount,
-  loginFunction,
   userSignUp,
   userSignIn,
   userSignOut,
   addAccountInformation,
-  ptDropDown
+  trainerDropDown
 };

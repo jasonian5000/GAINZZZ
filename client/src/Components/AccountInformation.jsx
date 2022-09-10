@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { captureAccountInformation } from "../actions/inputs";
-import { addAccountInformation } from "../actions/supabase";
-import { getTrainers } from "../actions/accountInformation";
+import { getTrainers, sendAccountInformation } from "../actions/accountInformation";
 
 const AccountInformation = () => {
   const dispatch = useDispatch();
@@ -11,31 +8,6 @@ const AccountInformation = () => {
   const [value, setValue] = useState(1);
   const handleChange = (e) => {
     setValue(e.target.value);
-  };
-  const sendAccountInformation = async (e) => {
-    console.log(e);
-    const input = captureAccountInformation(e);
-    console.log("this is input variable", input)
-    if (input.height.length < 1) {
-      window.alert("Please provide your height");
-    } else if (input.gender.length < 1) {
-      window.alert("Please provide your gender");
-    } else if (input.weight.length < 1) {
-      window.alert("Please provide your weight");
-    } else {
-      let userAccount = await addAccountInformation(
-        input?.height,
-        input?.gender,
-        input?.weight,
-        input?.bmi,
-        input?.age,
-        input?.bodyFat,
-        input?.totalBurnedCalories,
-        input.personalTrainer
-      );
-      console.log(userAccount);
-      window.alert("Information added Succesfully");
-    }
   };
 
   useEffect(
@@ -56,7 +28,7 @@ const AccountInformation = () => {
               <label htmlFor="height">Height</label>
               <input
                 type="text"
-                name="height"
+                className="height"
                 placeholder="Enter your height"
               />
             </div>
@@ -64,7 +36,7 @@ const AccountInformation = () => {
               <label htmlFor="gender">gender</label>
               <input
                 type="text"
-                name="gender"
+                className="gender"
                 placeholder="Enter your gender"
               />
             </div>
@@ -72,7 +44,7 @@ const AccountInformation = () => {
               <label htmlFor="weight">weight</label>
               <input
                 type="text"
-                name="weight"
+                className="weight"
                 placeholder="Enter your weight"
               />
             </div>
@@ -80,10 +52,10 @@ const AccountInformation = () => {
               <label htmlFor="bmi">
                 bmi. (If you do not know it, leave it blank.)
               </label>
-              <input type="text" name="bmi" placeholder="Enter your bmi" />
+              <input type="text" className="bmi" placeholder="Enter your bmi" />
               <div>
                 <label htmlFor="age">age</label>
-                <input type="text" name="age" placeholder="Enter your age" />
+                <input type="text" className="age" placeholder="Enter your age" />
               </div>
               <div>
                 <label htmlFor="bodyfat">
@@ -91,7 +63,7 @@ const AccountInformation = () => {
                 </label>
                 <input
                   type="text"
-                  name="bodyfat"
+                  className="bodyfat"
                   placeholder="Enter your bodyfat percent"
                 />
               </div>
@@ -102,7 +74,7 @@ const AccountInformation = () => {
                 </label>
                 <input
                   type="text"
-                  name="totalBurnedCalories"
+                  className="totalBurnedCalories"
                   placeholder="Enter your total burned calories"
                 />
               </div>

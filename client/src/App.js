@@ -1,5 +1,5 @@
 import './App.css';
-import { createAccount, exerciseByID, findUser, getMuscleGroups, listAllWorkouts, listByBodyPart, listByEquipment, listOfEquipment, listOfTargetMuscles, listWorkoutsByTargetMuscle, loginFunction, setFavoriteWorkouts, userSignIn, userSignOut, userSignUp } from './actions/supabase';
+import { createAccount, exerciseByID, findUser, getMuscleGroups, listAllWorkouts, listByBodyPart, listByEquipment, listOfEquipment, listOfTargetMuscles, listWorkoutsByTargetMuscle,  setFavoriteWorkouts, userSignIn, userSignOut, userSignUp } from './actions/supabase';
 import { Route, Routes } from 'react-router-dom'
 import { Box } from '@mui/material'
 import Home from './Components/Home'
@@ -11,7 +11,6 @@ import SignUpPage from './Components/SignUpPage'
 import AccountInformation from './Components/AccountInformation';
 
 function App() {
-  console.log(process.env)
   return (
     <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
       <NavBar />
@@ -37,7 +36,7 @@ function App() {
         <button onClick={listByEquipment}>list by equipment </button>
         <button onClick={setFavoriteWorkouts}>Add to Favorites </button>
         <button onClick={createAccount}>Create an account </button>
-        <button onClick={loginFunction}>Login </button>
+        <button onClick={userSignIn}>Login </button>
         <button onClick={userSignUp}>sign up (auth) </button>
         <button onClick={userSignOut}>sign out (auth) </button>
       </div>
