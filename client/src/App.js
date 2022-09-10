@@ -7,16 +7,6 @@ import {
   userSignOut,
   userSignUp,
 } from "./actions/supabase";
-import {
-  exerciseByID,
-  getMuscleGroups,
-  listAllWorkouts,
-  listByBodyPart,
-  listByEquipment,
-  listOfEquipment,
-  listOfTargetMuscles,
-  listWorkoutsByTargetMuscle,
-} from "./actions/exercisedb";
 import { Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import Home from "./Components/Home";
@@ -41,16 +31,6 @@ function App() {
       <div className="App">
         GAINZZZ
         <button onClick={findUser}>find user</button>
-        <button onClick={getMuscleGroups}>Get Generic Workouts</button>
-        <button onClick={listByBodyPart}>list by body part</button>
-        <button onClick={exerciseByID}>list exercise by ID</button>
-        <button onClick={listOfTargetMuscles}>list of target muscles</button>
-        <button onClick={listWorkoutsByTargetMuscle}>
-          list workouts by target muscle
-        </button>
-        <button onClick={listAllWorkouts}>list all workouts </button>
-        <button onClick={listOfEquipment}>list of equipment </button>
-        <button onClick={listByEquipment}>list by equipment </button>
         <button onClick={setFavoriteWorkouts}>Add to Favorites </button>
         <button onClick={createAccount}>Create an account </button>
         <button onClick={userSignIn}>Login </button>
