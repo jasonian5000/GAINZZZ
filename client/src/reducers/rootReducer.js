@@ -1,14 +1,10 @@
 import { combineReducers } from "redux"
-import bodyPartReducer from "./bodyPartReducer";
+import searchReducers from "./searchReducers";
 import trainerReducers from "./trainerReducers";
-import searchResultsReducer from "./searchResults";
-import workoutReducer from "./workoutReducer";
 
 
 const rootReducer = combineReducers({
-    searchResults: searchResultsReducer,
-    bodyPart: bodyPartReducer,
-    workout: workoutReducer,
+    search: searchReducers,
     trainers: trainerReducers
 });
 

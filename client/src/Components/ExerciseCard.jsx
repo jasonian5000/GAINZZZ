@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import '../css/exerciseCard.css'
 
 const ExerciseCard = () => {
-  const data = useSelector((state) => state.searchResults.searchResults);
+  const searchResults = useSelector((state) => state.search?.searchResults);
   return (
     <div>
-      {data?.map((exercise) => (
-        <Link key={exercise.id} className="exerciseCard" to={`/exercise/${exercise.id}`}>
+      {searchResults?.map((exercise, index) => (
+        <Link key={index} className="exerciseCard" to={`/exercise/${exercise.id}`}>
           <Typography ml="21px" color="black" fontWeight="bold" mt="11px" pb="10px" textTransform="capitalize">
             {exercise.name}
           </Typography>

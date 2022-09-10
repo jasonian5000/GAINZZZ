@@ -1,8 +1,6 @@
-const initialState = {
-  searchResults: [],
-};
+import initialState from "./initialState";
 
-const searchResultsReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_SEARCH_RESULTS":
       return {
@@ -14,4 +12,4 @@ const searchResultsReducer = (state = initialState, action) => {
   }
 };
 
-export default searchResultsReducer;
+export default searchReducer;
