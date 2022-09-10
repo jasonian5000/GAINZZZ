@@ -7,7 +7,12 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const exercisesList = useSelector((state) => state.search.exercisesList);
   const [SearchInput, setSearchInput] = useState("");
-
+  const handleKeyPress = (e, SearchInput, exercisesList, dispatch) => {
+    if (e.key === "Enter") {
+      searchExercises(SearchInput, exercisesList, dispatch);
+      setSearchInput("");
+    }
+  };
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
       <Typography
@@ -28,6 +33,9 @@ const SearchBar = () => {
           height="76px"
           value={SearchInput}
           onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+          onKeyPress={(e) =>
+            handleKeyPress(e, SearchInput, exercisesList, dispatch)
+          }
           placeholder="Deadlift"
           type="text"
         />
