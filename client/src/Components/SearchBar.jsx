@@ -1,18 +1,15 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {Box, Button, Stack, TextField, Typography} from '@mui/material'
-import { listWorkoutsByTargetMuscle } from '../actions/supabase'
-import { useDispatch, useSelector } from 'react-redux'
+import { listWorkoutsByTargetMuscle } from '../actions/exercisedb'
+import { useDispatch } from 'react-redux'
 
 const SearchBar = () => {
-    let newSearchResults = useSelector(state => state.searchResults.searchResults)
     const [Search, setSearch] = useState('')
     const dispatch = useDispatch()
-
     const handleSearch = async() => {
         if (Search) {
-            newSearchResults = await listWorkoutsByTargetMuscle(dispatch, Search)
-            
+            await listWorkoutsByTargetMuscle(dispatch, Search)
         }
     }
 

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import ExerciseDetail from './ExerciseDetail'
+import React from 'react'
 
 const Home = () => {
   return (
