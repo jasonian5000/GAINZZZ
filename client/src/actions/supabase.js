@@ -2,7 +2,7 @@ const userSignUp = async (firstName, lastName, username, email, password) => {
   const body = { firstName, lastName, username, email, password };
   const length = JSON.stringify(body).length;
   console.log(length);
-  const user = await fetch("http://localhost:3001/sign_up", {
+  await fetch("http://localhost:3001/sign_up", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -10,8 +10,6 @@ const userSignUp = async (firstName, lastName, username, email, password) => {
     mode: "no-cors",
     body: JSON.stringify(body),
   });
-  const results = await user.json();
-  console.log(results);
 };
 
 const findUser = () => {};

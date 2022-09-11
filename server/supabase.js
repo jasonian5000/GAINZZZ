@@ -19,24 +19,15 @@ const userSignUp = async (firstName, lastName, username, email, password) => {
   return user;
 };
 
-// const userSignUp = async (firstName, lastName, username, email, password) => {
-//   const user = await fetch(`${window.location.origin}/sign_up`, {
-//     method: "POST",
-//     body: JSON.stringify(firstName, lastName, username, email, password),
-//   });
-//   const results = await user.json()
-//   console.log(results)
-// };
-
 const userSignIn = async (email, password) => {
   const { user, session, error } = await supabase.auth.signIn({
     email: email,
     password: password,
   });
   console.log(session);
-  console.log("signed in");
+  console.log("sign in");
   if (error) {
-    console.log(error);
+    console.log("sign in failed");
     return error;
   }
   return user;
@@ -60,7 +51,6 @@ const createAccount = async (
   password,
   username
 ) => {
-  // change hardcoded data to whatever the user inputs
   const { data, error } = await supabase
     .from("userTable")
     .insert([

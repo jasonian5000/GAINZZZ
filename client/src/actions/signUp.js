@@ -30,8 +30,6 @@ const sendSignUp = async (e) => {
       input.password
     );
     console.log(userEntry);
-    window.alert("Account created! Check your email to confirm and sign in.");
-    // set dispatch here
   }
 };
 
