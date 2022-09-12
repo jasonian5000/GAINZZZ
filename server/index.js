@@ -1,7 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 const app = express()
-import { userSignUp, userSignIn, userSignOut } from './supabase_server.js'
+import {
+    userSignUp,
+    sendSupabase,
+    trainerDropDown,
+    addAccountInformation,
+} from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
 const PORT = process.env.PORT || 3001
@@ -23,6 +28,16 @@ app.post('/search', async (req, res) => {
     }
 })
 
+app.get('/get_keys', async (req, res) => {
+    const result = sendSupabase()
+    try {
+        res.send(result)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
     try {
@@ -34,21 +49,43 @@ app.post('/sign_up', async (req, res) => {
     }
 })
 
-app.post('/sign_in', async (req, res) => {
-    const { email, password } = req.body
+app.get('/trainer_dropdown', async (req, res) => {
     try {
-        await userSignIn(email, password)
-        res.send('sign in successful')
+        let ptTable = await trainerDropDown()
+        res.status(200).send(ptTable)
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 })
 
-app.post('/sign_out', async (req, res) => {
+app.post('/add_acct_info', async (req, res) => {
+    const {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        access_token,
+    } = req.body
     try {
-        userSignOut()
-        res.send('sign out successful')
+        addAccountInformation(
+            height,
+            gender,
+            weight,
+            bmi,
+            age,
+            bodyFat,
+            totalBurnedCalories,
+            personalTrainer,
+            access_token
+        )
+        console.log('account updated')
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 })

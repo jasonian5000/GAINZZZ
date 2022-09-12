@@ -14,61 +14,39 @@ export const userSignUp = async (firstName, lastName, username, email, password)
     console.log(error)
     return error;
   }
-  let userID = user.id;
-  createAccount(firstName, lastName, username, email, password, userID);
+  createAccount(firstName, lastName, username, email, password);
   return user;
-};
-
-export const userSignIn = async (email, password) => {
-  const { user, session, error } = await supabase.auth.signIn({
-    email: email,
-    password: password,
-  });
-  
-  if (error) {
-    console.log("sign in failed");
-    return error;
-  }
-  return user;
-};
-
-export const userSignOut = async () => {
-  const { error, session } = await supabase.auth.signOut();
-  if (error) {
-    console.log(error);
-    return error;
-  }
-  console.log(session);
-  console.log("signed out");
 };
 
 const createAccount = async (
-  firstName,
-  lastName,
-  userID,
-  email,
-  password,
-  username
+    firstName,
+    lastName,
+    email,
+    password,
+    username
 ) => {
-  const { data, error } = await supabase
-    .from("userTable")
-    .insert([
-      {
-        created_at: new Date(),
-        updated_at: new Date(),
-        username: username,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-      },
-    ]);
-  if (data) {
-    console.log(data);
-  } else {
-    console.log(error);
-  }
-};
+    const { data, error } = await supabase.from('userTable').insert([
+        {
+            created_at: new Date(),
+            updated_at: new Date(),
+            username: username,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+        },
+    ])
+    if (data) {
+        console.log(data)
+    } else {
+        console.log(error)
+    }
+}
+
+export const sendSupabase = () => {
+  const result = { supabaseKey: supabaseKey, supabaseUrl: supabaseUrl }
+  return result
+}
 
 export const trainerDropDown = async () => {
   let { data: ptTable, error } = await supabase
@@ -81,28 +59,28 @@ export const trainerDropDown = async () => {
   }
 };
 
-export const findUser = async () => {
-  const { data } = await supabase.from("userTable").select();
-  console.log(data);
-};
+// export const findUser = async () => {
+//   const { data } = await supabase.from("userTable").select();
+//   console.log(data);
+// };
 
-export const setFavoriteWorkouts = async () => {
-  const { data, error } = await supabase.from("favoriteWorkouts").insert([
-    {
-      created_at: new Date(),
-      updated_at: new Date(),
-      workoutID: "2407",
-      gif: "http://d205bpvrqc9yn1.cloudfront.net/2407.gif",
-      workoutName: "barbell biceps curl (with arm blaster)",
-      targetMuscle: "biceps",
-    },
-  ]);
-  if (data === true) {
-    console.log(data);
-  } else {
-    console.error(error);
-  }
-};
+// export const setFavoriteWorkouts = async () => {
+//   const { data, error } = await supabase.from("favoriteWorkouts").insert([
+//     {
+//       created_at: new Date(),
+//       updated_at: new Date(),
+//       workoutID: "2407",
+//       gif: "http://d205bpvrqc9yn1.cloudfront.net/2407.gif",
+//       workoutName: "barbell biceps curl (with arm blaster)",
+//       targetMuscle: "biceps",
+//     },
+//   ]);
+//   if (data === true) {
+//     console.log(data);
+//   } else {
+//     console.error(error);
+//   }
+// };
 
 export const addAccountInformation = async (
   height,
