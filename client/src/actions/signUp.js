@@ -1,5 +1,5 @@
 import { captureUserSignUp } from "./inputs";
-import { userSignUp } from "./supabase";
+import { userSignUp } from "./supabase_client";
 
 const sendSignUp = async (e) => {
   const regex =

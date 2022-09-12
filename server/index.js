@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 const app = express();
-import { userSignUp, userSignIn, userSignOut } from "./supabase.js";
+import { userSignUp, userSignIn, userSignOut } from "./supabase_server.js";
 
 const PORT = process.env.PORT || 3001;
 

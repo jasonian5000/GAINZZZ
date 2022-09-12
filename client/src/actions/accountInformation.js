@@ -1,4 +1,4 @@
-import { trainerDropDown, addAccountInformation } from "./supabase";
+import { trainerDropDown, addAccountInformation } from "./supabase_client";
 import { captureAccountInformation } from "./inputs";
 
 const getTrainers = async (dispatch) => {

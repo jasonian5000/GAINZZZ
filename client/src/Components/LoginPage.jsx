@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "../css/loginPage.css";
-import { userSignIn } from "../actions/supabase";
+import { userSignIn } from "../actions/supabase_client";
 import { Link } from "react-router-dom";
 import { setSignIn } from "../actions/inputs";
 import { checkToken } from "../actions/checkToken";
