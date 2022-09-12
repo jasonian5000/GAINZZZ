@@ -1,19 +1,13 @@
-const searchExercises = (SearchInput, exercisesList, dispatch) => {
-  let bodyPart = exercisesList.filter((result) =>
-    result.bodyPart.toLowerCase().includes(SearchInput.toLowerCase())
-  );
-  let equipment = exercisesList.filter((result) =>
-    result.equipment.toLowerCase().includes(SearchInput.toLowerCase())
-  );
-  let name = exercisesList.filter((result) =>
-    result.name.toLowerCase().includes(SearchInput.toLowerCase())
-  );
-  let target = exercisesList.filter((result) =>
-    result.target.toLowerCase().includes(SearchInput.toLowerCase())
-  );
-  let results = [...bodyPart, ...equipment, ...name, ...target]
+export const searchExercises = async (searchInput, dispatch) => {
+  let body = { "searchInput": searchInput }
+  let search = await fetch("http://localhost:3001/search", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+  let results = await search.json()
   console.log(results);
-  dispatch({ type: "SET_SEARCH_RESULTS", payload: results });
+  await dispatch({ type: "SET_SEARCH_RESULTS", payload: results });
 };
-
-export { searchExercises };

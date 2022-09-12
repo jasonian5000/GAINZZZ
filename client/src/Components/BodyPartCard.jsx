@@ -10,7 +10,7 @@ const BodyPartCard = ({ bodyPart, item }) => {
   return (
     <Stack
       type="button"
-      onClick={() => searchExercises(item, exercisesList, dispatch)}
+      onClick={() => searchExercises(item, dispatch)}
       alignItems="center"
       justifyContent="center"
       className="bodyPartCard"
