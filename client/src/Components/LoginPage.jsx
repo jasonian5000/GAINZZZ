@@ -3,26 +3,18 @@ import styled from 'styled-components';
 import "../css/loginPage.css"
 import { userSignIn } from '../actions/supabase';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { setSignIn } from '../actions/inputs';
 import { checkToken } from '../actions/checkToken';
-import { useState } from 'react';
 
 export const LoginPage = () => {
-  const dispatch = useDispatch()
   const signIn = async (e) => {
-    console.log(e)
-    console.log("This is e", e.target.value)
     let data = setSignIn(e)
-    let user = await userSignIn(data.email, data.password)
+    userSignIn(data.email, data.password)
     let token = checkToken()
     if (token) {
-      console.log(token)
-      // use dispatch
     }
   }
   return (
-          <>
     <LoginRoot>
       <Workoutlady>
         <Text1>GAINZZ</Text1>
@@ -57,7 +49,6 @@ export const LoginPage = () => {
         </Text7>
       </Workoutlady>
     </LoginRoot>
-          </>
   );
 };
 const LoginRoot = styled.div`
