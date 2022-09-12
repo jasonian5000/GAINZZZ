@@ -18,6 +18,31 @@ export const userSignUp = async (firstName, lastName, username, email, password)
   return user;
 };
 
+export const userSignIn = async (email, password) => {
+  const { user, session, error } = await supabase.auth.signIn({
+    email: email,
+    password: password,
+  });
+  
+  if (error) {
+    console.log("sign in failed");
+    return error;
+  }
+  return user;
+};
+
+export const userSignOut = async () => {
+  const { error, session } = await supabase.auth.signOut();
+  if (error) {
+    console.log(error);
+    return error;
+  } else {
+    console.log(session);
+    console.log("signed out");
+    window.alert('You have been signed out!')
+  }
+};
+
 const createAccount = async (
     firstName,
     lastName,

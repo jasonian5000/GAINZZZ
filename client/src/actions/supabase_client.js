@@ -48,14 +48,17 @@ export const userSignIn = async (email, password) => {
 //     console.log('signed out')
 // }
 
-export const userSignOut = async () => {
+export const userSignOut = async (navigate) => {
     const { error, session } = await supabase.auth.signOut()
     if (error) {
         console.log(error)
         return error
+    } else {
+        console.log(session)
+        console.log('signed out')
+        window.alert("You have been signed out!")
+        navigate("/")
     }
-    console.log(session)
-    console.log('signed out')
 }
 
 export const trainerDropDown = async () => {
@@ -138,6 +141,7 @@ export const addAccountInformation = async (
     totalBurnedCalories,
     personalTrainer
 ) => {
+    console.log(supabase.auth)
     const { data, error } = await supabase.from('accountInfo').insert([
         {
             created_at: new Date(),
@@ -150,6 +154,7 @@ export const addAccountInformation = async (
             totalBurnedCalories: totalBurnedCalories,
             bodyFat: bodyFat,
             personalTrainer: personalTrainer,
+            userID: supabase.auth.currentUser.id
         },
     ])
     if (data) {
