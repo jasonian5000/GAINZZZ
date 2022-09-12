@@ -24,6 +24,7 @@ export const userSignIn = async (email, password) => {
     email: email,
     password: password,
   });
+  
   if (error) {
     console.log("sign in failed");
     return error;
