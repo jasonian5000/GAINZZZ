@@ -101,6 +101,7 @@ export const addAccountInformation = async (
     totalBurnedCalories,
     personalTrainer
 ) => {
+    console.log(supabase.auth)
     const { data, error } = await supabase.from('accountInfo').insert([
         {
             created_at: new Date(),
@@ -113,6 +114,7 @@ export const addAccountInformation = async (
             totalBurnedCalories: totalBurnedCalories,
             bodyFat: bodyFat,
             personalTrainer: personalTrainer,
+            userID: supabase.auth.currentUser.id
         },
     ])
     if (data) {
