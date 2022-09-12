@@ -1,48 +1,47 @@
-import React from 'react';
-import styled from 'styled-components';
-import "../css/loginPage.css"
-import { userSignIn } from '../actions/supabase';
-import { Link } from 'react-router-dom';
-import { setSignIn } from '../actions/inputs';
-import { checkToken } from '../actions/checkToken';
+import React from "react";
+import styled from "styled-components";
+import "../css/loginPage.css";
+import { userSignIn } from "../actions/supabase_client";
+import { Link } from "react-router-dom";
+import { setSignIn } from "../actions/inputs";
+import { checkToken } from "../actions/checkToken";
 
 export const LoginPage = () => {
   const signIn = async (e) => {
-    let data = setSignIn(e)
-    userSignIn(data.email, data.password)
-    let token = checkToken()
+    let data = setSignIn(e);
+    userSignIn(data.email, data.password);
+    let token = checkToken();
     if (token) {
     }
-  }
+  };
   return (
     <LoginRoot>
       <Workoutlady>
         <Text1>GAINZZ</Text1>
         <Text2>Log In</Text2>
-            <form action="">
-        <Emailusername>
-          <input
-            className="emailLoginInput"
-            placeholder="Email"
-            type="email"
-          ></input>
-        </Emailusername>
-        <Password1>
-          <input
-            className="passwordLoginInput"
-            placeholder="Password"
-            type="password"
-          ></input>
-        </Password1>
-        <Text5>Forgot Password?</Text5>
-        <LogIn>
-          <button onClick={(e) => signIn(e)}>sign in (auth) </button>
-        </LogIn>
-            
-            </form>
+        <form action="">
+          <Emailusername>
+            <input
+              className="emailLoginInput"
+              placeholder="Email"
+              type="email"
+            ></input>
+          </Emailusername>
+          <Password1>
+            <input
+              className="passwordLoginInput"
+              placeholder="Password"
+              type="password"
+            ></input>
+          </Password1>
+          <Text5>Forgot Password?</Text5>
+          <LogIn>
+            <button onClick={(e) => signIn(e)}>sign in (auth) </button>
+          </LogIn>
+        </form>
 
         <Text7>
-          Dont have an account?{' '}
+          Dont have an account?{" "}
           <Link to="/sign_up" className="btn btn-primary">
             Sign up
           </Link>
@@ -67,7 +66,7 @@ const Workoutlady = styled.div`
   align-items: flex-start;
   padding: 23px 13px 19px 17px;
   background-size: cover;
-  background-image: url('https://file.rendit.io/n/nTv4mwmS1sGjJWPurLye.png');
+  background-image: url("https://file.rendit.io/n/nTv4mwmS1sGjJWPurLye.png");
 `;
 const Text1 = styled.div`
   width: 188px;
@@ -96,12 +95,12 @@ const Emailusername = styled.div`
   margin: 0px 0px 7px 0px;
   padding: 25px 20px 34px 20px;
   background-size: cover;
-  background-image: url('https://file.rendit.io/n/N7yeFBmZ1IBYmgavcC80.svg');
+  background-image: url("https://file.rendit.io/n/N7yeFBmZ1IBYmgavcC80.svg");
 `;
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: ${(props) => props.inputColor || 'palevioletred'};
+  color: ${(props) => props.inputColor || "palevioletred"};
   background: papayawhip;
   border: none;
   border-radius: 3px;
@@ -116,7 +115,7 @@ const Password1 = styled.div`
   margin: 0px 0px 3px 0px;
   padding: 25px 20px 30px 20px;
   background-size: cover;
-  background-image: url('https://file.rendit.io/n/n6zs7xy3jJV49rIf4sr9.svg');
+  background-image: url("https://file.rendit.io/n/n6zs7xy3jJV49rIf4sr9.svg");
 `;
 const Text4 = styled.div`
   width: 74px;
@@ -143,7 +142,7 @@ const LogIn = styled.div`
   margin: 0px 0px 33px 20px;
   padding: 17px 0px 25px 0px;
   background-size: cover;
-  background-image: url('https://file.rendit.io/n/6enQPbX9LxYMBWz8Zx9k.svg');
+  background-image: url("https://file.rendit.io/n/6enQPbX9LxYMBWz8Zx9k.svg");
 `;
 const loginButton = styled.div`
   width: 73px;

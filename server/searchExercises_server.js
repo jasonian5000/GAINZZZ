@@ -1,4 +1,6 @@
-const searchExercises = (SearchInput, exercisesList, dispatch) => {
+import { exercisesList } from "./exercisesList.js";
+
+const searchExercises = (SearchInput) => {
   let bodyPart = exercisesList.filter((result) =>
     result.bodyPart.toLowerCase().includes(SearchInput.toLowerCase())
   );
@@ -12,8 +14,7 @@ const searchExercises = (SearchInput, exercisesList, dispatch) => {
     result.target.toLowerCase().includes(SearchInput.toLowerCase())
   );
   let results = [...bodyPart, ...equipment, ...name, ...target]
-  console.log(results);
-  dispatch({ type: "SET_SEARCH_RESULTS", payload: results });
+  return results
 };
 
 export { searchExercises };

@@ -5,7 +5,7 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const userSignUp = async (firstName, lastName, username, email, password) => {
+export const userSignUp = async (firstName, lastName, username, email, password) => {
   const { user, error } = await supabase.auth.signUp({
     email: email,
     password: password,
@@ -19,11 +19,12 @@ const userSignUp = async (firstName, lastName, username, email, password) => {
   return user;
 };
 
-const userSignIn = async (email, password) => {
+export const userSignIn = async (email, password) => {
   const { user, session, error } = await supabase.auth.signIn({
     email: email,
     password: password,
   });
+  
   if (error) {
     console.log("sign in failed");
     return error;
@@ -31,7 +32,7 @@ const userSignIn = async (email, password) => {
   return user;
 };
 
-const userSignOut = async () => {
+export const userSignOut = async () => {
   const { error, session } = await supabase.auth.signOut();
   if (error) {
     console.log(error);
@@ -69,7 +70,7 @@ const createAccount = async (
   }
 };
 
-const trainerDropDown = async () => {
+export const trainerDropDown = async () => {
   let { data: ptTable, error } = await supabase
     .from("ptTable")
     .select("id,ptName");
@@ -80,12 +81,12 @@ const trainerDropDown = async () => {
   }
 };
 
-const findUser = async () => {
+export const findUser = async () => {
   const { data } = await supabase.from("userTable").select();
   console.log(data);
 };
 
-const setFavoriteWorkouts = async () => {
+export const setFavoriteWorkouts = async () => {
   const { data, error } = await supabase.from("favoriteWorkouts").insert([
     {
       created_at: new Date(),
@@ -103,7 +104,7 @@ const setFavoriteWorkouts = async () => {
   }
 };
 
-const addAccountInformation = async (
+export const addAccountInformation = async (
   height,
   gender,
   weight,
@@ -130,15 +131,4 @@ const addAccountInformation = async (
   if (data) {
     console.log("account info: ", data);
   } else console.log(error);
-};
-
-export {
-  findUser,
-  setFavoriteWorkouts,
-  createAccount,
-  userSignUp,
-  userSignIn,
-  userSignOut,
-  addAccountInformation,
-  trainerDropDown
 };

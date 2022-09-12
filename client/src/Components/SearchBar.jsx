@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { searchExercises } from "../actions/searchExercises";
+import { useDispatch } from "react-redux";
+import { searchExercises } from "../actions/searchExercises_client";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const exercisesList = useSelector((state) => state.search.exercisesList);
-  const [SearchInput, setSearchInput] = useState("");
-  const handleKeyPress = (e, SearchInput, exercisesList, dispatch) => {
+  const [searchInput, setSearchInput] = useState("");
+  const handleKeyPress = async (e, SearchInput, dispatch) => {
     if (e.key === "Enter") {
-      searchExercises(SearchInput, exercisesList, dispatch);
+      await searchExercises(SearchInput, dispatch);
       setSearchInput("");
     }
   };
@@ -31,10 +30,10 @@ const SearchBar = () => {
             width: { lg: "800px", xs: "350px" },
           }}
           height="76px"
-          value={SearchInput}
+          value={searchInput}
           onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
           onKeyPress={(e) =>
-            handleKeyPress(e, SearchInput, exercisesList, dispatch)
+            handleKeyPress(e, searchInput, dispatch)
           }
           placeholder="Deadlift"
           type="text"
@@ -51,7 +50,7 @@ const SearchBar = () => {
             position: "absolute",
             right: "0",
           }}
-          onClick={() => searchExercises(SearchInput, exercisesList, dispatch)}
+          onClick={() => searchExercises(searchInput, dispatch)}
         >
           Search
         </Button>
