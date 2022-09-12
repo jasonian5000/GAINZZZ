@@ -1,9 +1,10 @@
 import React from 'react'
+import { userSignOut } from '../actions/supabase_client'
 
 const Home = () => {
   return (
     <div>
-      Home
+      <button onClick={userSignOut}>Sign Out</button>
     </div>
   )
 }
