@@ -47,6 +47,7 @@ app.post('/sign_in', async (req, res) => {
 app.post('/sign_out', async (req, res) => {
     try {
         userSignOut()
+        res.redirect("http://localhost:3000/")
         res.send('sign out successful')
     } catch (error) {
         res.status(400).send(error)

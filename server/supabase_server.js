@@ -37,9 +37,11 @@ export const userSignOut = async () => {
   if (error) {
     console.log(error);
     return error;
+  } else {
+    console.log(session);
+    console.log("signed out");
+    window.alert('You have been signed out!')
   }
-  console.log(session);
-  console.log("signed out");
 };
 
 const createAccount = async (

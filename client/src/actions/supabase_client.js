@@ -44,14 +44,17 @@ export const userSignIn = async (email, password) => {
   return user;
 };
 
-export const userSignOut = async () => {
+export const userSignOut = async (navigate) => {
     const { error, session } = await supabase.auth.signOut()
     if (error) {
         console.log(error)
         return error
+    } else {
+        console.log(session)
+        console.log('signed out')
+        window.alert("You have been signed out!")
+        navigate("/")
     }
-    console.log(session)
-    console.log('signed out')
 }
 
 export const trainerDropDown = async () => {
