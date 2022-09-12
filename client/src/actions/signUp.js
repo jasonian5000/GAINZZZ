@@ -22,15 +22,14 @@ const sendSignUp = async (e) => {
       "Please make sure your password contains at least six characters"
     );
   } else {
-    let userEntry = await userSignUp(
+    await userSignUp(
       input.firstName,
       input.lastName,
       input.username,
       input.email,
       input.password
     );
-    console.log(userEntry);
   }
 };
 
-export default sendSignUp
+export default sendSignUp;

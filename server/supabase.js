@@ -24,8 +24,6 @@ const userSignIn = async (email, password) => {
     email: email,
     password: password,
   });
-  console.log(session);
-  console.log("sign in");
   if (error) {
     console.log("sign in failed");
     return error;

@@ -1,12 +1,4 @@
 import "./App.css";
-import {
-  createAccount,
-  findUser,
-  setFavoriteWorkouts,
-  userSignIn,
-  userSignOut,
-  userSignUp,
-} from "./actions/supabase";
 import { Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import Home from "./Components/Home";
@@ -28,15 +20,6 @@ function App() {
         <Route path="/sign_up" element={<SignUpPage />} />
         <Route path="/account_information" element={<AccountInformation />} />
       </Routes>
-      <div className="App">
-        GAINZZZ
-        <button onClick={findUser}>find user</button>
-        <button onClick={setFavoriteWorkouts}>Add to Favorites </button>
-        <button onClick={createAccount}>Create an account </button>
-        <button onClick={userSignIn}>Login </button>
-        <button onClick={userSignUp}>sign up (auth) </button>
-        <button onClick={userSignOut}>sign out (auth) </button>
-      </div>
       <Footer />
     </Box>
   );
