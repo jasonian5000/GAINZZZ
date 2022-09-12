@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/navbar.css'
+import { userSignOut } from '../actions/supabase_client'
 
 const Home = () => {
     return (

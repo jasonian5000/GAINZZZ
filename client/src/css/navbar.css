@@ -249,7 +249,7 @@ nav .menu-btn,
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url();
+    /* background-image: url(); */
     text-align: center;
 }
 
