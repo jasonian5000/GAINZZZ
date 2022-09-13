@@ -1,3 +1,3 @@
-const addToFavorites = () => {
-    
+export const addToFavorites = () => {
+
 }

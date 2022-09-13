@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import '../../css/exerciseCard.css'
+import { addToFavorites } from "../../actions/addToFavorites";
 
 const ExerciseCard = () => {
   const searchResults = useSelector((state) => state.search?.searchResults);
@@ -15,7 +16,7 @@ const ExerciseCard = () => {
           </Typography>
           <img src={exercise.gifUrl} alt={exercise.name} loading="lazy" />
           <Stack>
-            <Button>Add to Workout</Button>
+            <Button onclick={() =>{addToFavorites()}}>Add to Workout</Button>
           </Stack>
         </Link>
       ))}

@@ -6,6 +6,8 @@ const getTrainers = async (dispatch) => {
   dispatch({ type: "SET_TRAINER_DROP_DOWN_LIST", payload: trainerList });
 };
 
+
+
 const sendAccountInformation = async (e) => {
   const input = captureAccountInformation(e);
   if (input.height.length < 1) {
