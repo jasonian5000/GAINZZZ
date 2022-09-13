@@ -36,7 +36,7 @@ export const LoginPage = () => {
           </Password1>
           <Text5>Forgot Password?</Text5>
           <LogIn>
-            <button onClick={(e) => signIn(e)}>sign in (auth) </button>
+            <button onClick={(e) => signIn(e)}>sign in</button>
           </LogIn>
         </form>
 

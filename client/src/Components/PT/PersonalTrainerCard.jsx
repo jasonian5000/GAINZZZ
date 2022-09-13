@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Stack, Typography } from '@mui/material'
+import { Card } from '@mui/material'
 
 const PersonalTrainerCard = (props) => {
     console.log("Props", props)

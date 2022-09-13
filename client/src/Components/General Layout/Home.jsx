@@ -1,8 +1,11 @@
 import React from 'react'
 import '../../css/navbar.css'
+import "../../css/homePage.css"
 import { userSignOut } from '../../actions/supabase_client'
+import {useNavigate} from "react-router-dom"
 
 const Home = () => {
+    const navigate = useNavigate()
     return (
         <div id="main">
             <div className="name">
@@ -20,7 +23,7 @@ const Home = () => {
                     </a>
                 </div>
             </div>
-            <button onClick={() => userSignOut()}>Sign Out</button>
+            <button className='signOutButton' onClick={() => userSignOut(navigate)}>Sign Out</button>
         </div>
     )
 }

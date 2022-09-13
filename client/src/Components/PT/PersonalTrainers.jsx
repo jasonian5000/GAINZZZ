@@ -8,6 +8,7 @@ import PersonalTrainerCard from './PersonalTrainerCard'
 const PersonalTrainers = () => {
     const dispatch = useDispatch()
     const trainers = useSelector(state => state.trainers.trainers)
+    console.log(trainers)
 
     useEffect(() => {
         getPersonalTrainers(dispatch)
@@ -15,9 +16,9 @@ const PersonalTrainers = () => {
     return (
         <div className="PersonalTrainerContainer">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                {trainers.map(trainer => (
-                    <Stack>
-                        <PersonalTrainerCard trainer={trainer} key={trainer.id}/>
+                {trainers.map((trainer) => (
+                    <Stack key={trainer.id}>
+                        <PersonalTrainerCard trainer={trainer} />
                     </Stack>
                 ))}
             </Box>

@@ -52,7 +52,7 @@ export const userSignIn = async (email, password) => {
 //     console.log('signed out')
 // }
 
-export const userSignOut = async navigate => {
+export const userSignOut = async (navigate) => {
     const { error, session } = await supabase.auth.signOut()
     if (error) {
         console.log(error)
