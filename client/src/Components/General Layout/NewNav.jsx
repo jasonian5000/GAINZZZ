@@ -15,7 +15,7 @@ const NewNav = () => {
     }
     window.addEventListener('scroll', changeBackground)
     return (
-        <nav className={nav ? 'nav active' : 'nav'}>
+        <nav id='navbar'className={nav ? 'nav active' : 'nav'}>
             <Link to="/" className="logo">
                 <img src={logo} alt="" />
             </Link>

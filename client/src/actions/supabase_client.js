@@ -54,23 +54,7 @@ export const trainerDropDown = async () => {
 //     console.log(data)
 // }
 
-// export const setFavoriteWorkouts = async () => {
-//     const { data, error } = await supabase.from('favoriteWorkouts').insert([
-//         {
-//             created_at: new Date(),
-//             updated_at: new Date(),
-//             workoutID: '2407',
-//             gif: 'http://d205bpvrqc9yn1.cloudfront.net/2407.gif',
-//             workoutName: 'barbell biceps curl (with arm blaster)',
-//             targetMuscle: 'biceps',
-//         },
-//     ])
-//     if (data === true) {
-//         console.log(data)
-//     } else {
-//         console.error(error)
-//     }
-// }
+
 
 const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
@@ -124,4 +108,17 @@ export const getUserFavorites = async () => {
     const favoritesIdList = await response.json()
     console.log(favoritesIdList)
     return favoritesIdList
+}
+
+export const addToFavorites = async workoutID => {
+    const userID = await getUserId()
+    const body = { workoutID, userID }
+    await fetch('http://localhost:3001/add_favorite', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    console.log('added to favorites')
 }

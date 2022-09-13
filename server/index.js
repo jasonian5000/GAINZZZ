@@ -7,6 +7,7 @@ import {
     addAccountInformation,
     userSignIn,
     getUserFavorites,
+    addToFavorites,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -70,7 +71,7 @@ app.post('/add_acct_info', async (req, res) => {
         bodyFat,
         totalBurnedCalories,
         personalTrainer,
-        userID
+        userID,
     } = req.body
     try {
         addAccountInformation(
@@ -91,11 +92,22 @@ app.post('/add_acct_info', async (req, res) => {
     }
 })
 
-app.post("/user_favorites", async (req, res) => {
-    const {userID} = req.body
+app.post('/user_favorites', async (req, res) => {
+    const { userID } = req.body
     try {
         const favoritesIdList = await getUserFavorites(userID)
         res.status(200).send(favoritesIdList)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/add_favorite', async (req, res) => {
+    const { userID, workoutID } = req.body
+    try {
+        await addToFavorites(userID, workoutID)
+        res.status(200).send("added to favorites")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
