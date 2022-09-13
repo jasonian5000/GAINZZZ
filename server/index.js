@@ -6,6 +6,7 @@ import {
     sendSupabase,
     trainerDropDown,
     addAccountInformation,
+    userSignIn,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -28,16 +29,6 @@ app.post('/search', async (req, res) => {
     }
 })
 
-app.get('/get_keys', async (req, res) => {
-    const result = sendSupabase()
-    try {
-        res.send(result)
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(error)
-    }
-})
-
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
     try {
@@ -46,6 +37,17 @@ app.post('/sign_up', async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
+    }
+})
+
+app.post('/sign_in', async (req, res) => {
+    const { email, password } = req.body
+    try {
+      const sessionData = await userSignIn(email, password)
+      console.log(sessionData)
+      res.status(200).send(sessionData)
+    } catch (error) {
+      res.status(400).send(error)
     }
 })
 

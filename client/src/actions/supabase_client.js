@@ -22,19 +22,26 @@ export const userSignUp = async (
 }
 
 export const userSignIn = async (email, password) => {
-    const result = await fetch('http://localhost:3001/get_keys', {
-        method: 'GET',
-    })
-    const json = await result.json()
-    const { supabaseUrl, supabaseKey } = await json
-    const supabase = createClient(supabaseUrl, supabaseKey)
-    const { error } = await supabase.auth.signIn({
-        email: email,
-        password: password,
-    })
-    if (error) {
-        console.log('sign in failed')
+    const body = {
+        email,
+        password
     }
+    const sessionData = await fetch('http://localhost:3001/sign_in', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const json = await sessionData.json()
+    console.log(json)
+    await setStorage(json)
+}
+
+const setStorage = async (json) => {
+    const sessionData = {"currentSession": json.session, "expiresAt": json.session.expires_at}
+    localStorage.setItem("supabase.auth.token", JSON.stringify(sessionData))
+    console.log(supabase.auth.user())
 }
 
 // export const userSignOut = async () => {
