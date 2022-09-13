@@ -12,7 +12,7 @@ import NewNav from "./Components/General Layout/NewNav";
 
 function App() {
   return (
-    <Box width="400px" sx={{ width: { xl: "1888px" }}} m="auto">
+    <Box width="400px" sx={{ width: { xl: "auto" }}} m="auto" className="mainBox">
       <NewNav/>
       <Routes>
         <Route path="/" element={<Home />} />
