@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
+import { getFavoriteExercises } from './searchExercises_server.js'
 dotenv.config()
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
@@ -116,7 +117,8 @@ export const addAccountInformation = async (
     age,
     bodyFat,
     totalBurnedCalories,
-    personalTrainer
+    personalTrainer,
+    userID
 ) => {
     const { data, error } = await supabase.from('accountInfo').insert([
         {
@@ -130,9 +132,25 @@ export const addAccountInformation = async (
             totalBurnedCalories: totalBurnedCalories,
             bodyFat: bodyFat,
             personalTrainer: personalTrainer,
+            userID: userID,
         },
     ])
     if (data) {
         console.log('account info: ', data)
     } else console.log(error)
+}
+
+const getFavoritesIds = async userID => {
+    const { data, error } = await supabase
+        .from('favoriteWorkouts')
+        .select()
+        .eq('userID', userID)
+    return data
+    console.log(data)
+}
+
+export const getUserFavorites = async userID => {
+    const tableData = await getFavoritesIds(userID)
+    const favoriteExercises = getFavoriteExercises(tableData)
+    return favoriteExercises
 }

@@ -1,8 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
-const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
-const supabase = createClient(supabaseUrl, supabaseKey)
-
 export const userSignUp = async (
     firstName,
     lastName,
@@ -40,23 +35,11 @@ export const userSignIn = async (email, password) => {
     }
     localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
 }
-
-// export const userSignOut = async () => {
-//     const result = await fetch('http://localhost:3001/get_keys', {
-//         method: 'GET',
-//     })
-//     const json = await result.json()
-//     const { supabaseUrl, supabaseKey } = await json
-//     const supabase = createClient(supabaseUrl, supabaseKey)
-//     await supabase.auth.signOut()
-//     console.log('signed out')
-// }
-
 export const userSignOut = async navigate => {
-        localStorage.removeItem(supabase.auth.token)
-        window.alert('You have been signed out!')
-        navigate('/')
-    }
+    localStorage.removeItem('supabase.auth.token')
+    window.alert('You have been signed out!')
+    navigate('/login_page')
+}
 
 export const trainerDropDown = async () => {
     const trainers = await fetch('http://localhost:3001/trainer_dropdown', {
@@ -89,44 +72,12 @@ export const trainerDropDown = async () => {
 //     }
 // }
 
-// export const addAccountInformation = async (
-//     height,
-//     gender,
-//     weight,
-//     bmi,
-//     age,
-//     bodyFat,
-//     totalBurnedCalories,
-//     personalTrainer
-// ) => {
-//     const result = await fetch('http://localhost:3001/get_keys', {
-//         method: 'GET',
-//     })
-//     const json = await result.json()
-//     const { supabaseUrl, supabaseKey } = await json
-//     const supabase = createClient(supabaseUrl, supabaseKey)
-//     const access_token = supabase.auth.session().access_token
-//     console.log(access_token)
-//     const body = {
-//         height,
-//         gender,
-//         weight,
-//         bmi,
-//         age,
-//         bodyFat,
-//         totalBurnedCalories,
-//         personalTrainer,
-//         access_token,
-//     }
-//     await fetch('http://localhost:3001/add_acct_info', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body),
-//     })
-//     console.log('user created')
-// }
+const getUserId = async () => {
+    let local = localStorage.getItem('supabase.auth.token')
+    const parsed = JSON.parse(local)
+    const userID = await parsed.currentSession.user.id
+    return await userID
+}
 
 export const addAccountInformation = async (
     height,
@@ -138,23 +89,39 @@ export const addAccountInformation = async (
     totalBurnedCalories,
     personalTrainer
 ) => {
-    console.log(supabase.auth)
-    const { data, error } = await supabase.from('accountInfo').insert([
-        {
-            created_at: new Date(),
-            updated_at: new Date(),
-            height: height,
-            gender: gender,
-            weight: weight,
-            bmi: bmi,
-            age: age,
-            totalBurnedCalories: totalBurnedCalories,
-            bodyFat: bodyFat,
-            personalTrainer: personalTrainer,
-            userID: supabase.auth.currentUser.id,
+    const userID = await getUserId()
+    const body = {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID: userID,
+    }
+    await fetch('http://localhost:3001/add_acct_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-    ])
-    if (data) {
-        console.log('account info: ', data)
-    } else console.log(error)
+        body: JSON.stringify(body),
+    })
+    console.log('user created')
+}
+
+export const getUserFavorites = async () => {
+    const userID = await getUserId()
+    const body = {userID: userID}
+    const response = await fetch('http://localhost:3001/user_favorites', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const favoritesIdList = await response.json()
+    console.log(favoritesIdList)
+    return favoritesIdList
 }

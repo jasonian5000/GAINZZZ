@@ -9,7 +9,7 @@ import { checkToken } from "../../actions/checkToken";
 export const LoginPage = () => {
   const signIn = async (e) => {
     let data = setSignIn(e);
-    userSignIn(data.email, data.password);
+    await userSignIn(data.email, data.password);
     let token = checkToken();
     if (token) {
     }

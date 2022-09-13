@@ -3,10 +3,10 @@ import cors from 'cors'
 const app = express()
 import {
     userSignUp,
-    sendSupabase,
     trainerDropDown,
     addAccountInformation,
     userSignIn,
+    getUserFavorites,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -50,8 +50,6 @@ app.post('/sign_in', async (req, res) => {
     }
 })
 
-
-
 app.get('/trainer_dropdown', async (req, res) => {
     try {
         let ptTable = await trainerDropDown()
@@ -72,7 +70,7 @@ app.post('/add_acct_info', async (req, res) => {
         bodyFat,
         totalBurnedCalories,
         personalTrainer,
-        access_token,
+        userID
     } = req.body
     try {
         addAccountInformation(
@@ -84,9 +82,20 @@ app.post('/add_acct_info', async (req, res) => {
             bodyFat,
             totalBurnedCalories,
             personalTrainer,
-            access_token
+            userID
         )
         console.log('account updated')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post("/user_favorites", async (req, res) => {
+    const {userID} = req.body
+    try {
+        const favoritesIdList = await getUserFavorites(userID)
+        res.status(200).send(favoritesIdList)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

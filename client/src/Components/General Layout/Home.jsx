@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/navbar.css'
 import "../../css/homePage.css"
-import { userSignOut } from '../../actions/supabase_client'
+import { getUserFavorites, userSignOut } from '../../actions/supabase_client'
 import {useNavigate} from "react-router-dom"
 
 const Home = () => {
@@ -23,7 +23,18 @@ const Home = () => {
                     </a>
                 </div>
             </div>
-            <button className='signOutButton' onClick={() => userSignOut(navigate)}>Sign Out</button>
+            <button
+                className="signOutButton"
+                onClick={() => userSignOut(navigate)}
+            >
+                Sign Out
+            </button>
+            <button
+                className="signOutButton"
+                onClick={() => getUserFavorites()}
+            >
+                Favs
+            </button>
         </div>
     )
 }
