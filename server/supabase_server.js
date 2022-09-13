@@ -85,6 +85,16 @@ export const trainerDropDown = async () => {
     }
 }
 
+export const userAddToFavorites = async () => {
+    const { data, error } = await supabase
+        .from('favoriteWorkouts')
+        .insert([{ 
+        created_at: new Date(), 
+        updated_at: new Date(),
+        
+    }])
+}
+
 // export const findUser = async () => {
 //   const { data } = await supabase.from("userTable").select();
 //   console.log(data);
