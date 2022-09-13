@@ -6,7 +6,6 @@ import { searchExercises } from '../../actions/searchExercises_client';
 
 const BodyPartCard = ({ bodyPart, item }) => {
   const dispatch = useDispatch()
-  const exercisesList = useSelector((state) => state.search.exercisesList);
   return (
     <Stack
       type="button"

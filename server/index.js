@@ -1,7 +1,13 @@
 import express from 'express'
 import cors from 'cors'
 const app = express()
-import { userSignUp, userSignIn, userSignOut } from './supabase_server.js'
+import {
+    userSignUp,
+    sendSupabase,
+    trainerDropDown,
+    addAccountInformation,
+    userSignIn,
+} from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
 const PORT = process.env.PORT || 3001
@@ -37,19 +43,50 @@ app.post('/sign_up', async (req, res) => {
 app.post('/sign_in', async (req, res) => {
     const { email, password } = req.body
     try {
-        await userSignIn(email, password)
-        res.send('sign in successful')
+        const sessionData = await userSignIn(email, password)
+        res.status(200).send(sessionData)
     } catch (error) {
         res.status(400).send(error)
     }
 })
 
-app.post('/sign_out', async (req, res) => {
+app.get('/trainer_dropdown', async (req, res) => {
     try {
-        userSignOut()
-        res.redirect("http://localhost:3000/")
-        res.send('sign out successful')
+        let ptTable = await trainerDropDown()
+        res.status(200).send(ptTable)
     } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/add_acct_info', async (req, res) => {
+    const {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        access_token,
+    } = req.body
+    try {
+        addAccountInformation(
+            height,
+            gender,
+            weight,
+            bmi,
+            age,
+            bodyFat,
+            totalBurnedCalories,
+            personalTrainer,
+            access_token
+        )
+        console.log('account updated')
+    } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 })
