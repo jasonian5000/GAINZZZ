@@ -91,8 +91,14 @@ export const userAddToFavorites = async () => {
         .insert([{ 
         created_at: new Date(), 
         updated_at: new Date(),
+        workoutID: workoutID,
         
     }])
+        if (data) {
+            console.log(data)
+        } else {
+            console.log(error)
+        }
 }
 
 // export const findUser = async () => {
