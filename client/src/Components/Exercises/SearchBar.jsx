@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { searchExercises } from "../actions/searchExercises_client";
+import { searchExercises } from "../../actions/searchExercises_client";
 
 const SearchBar = () => {
   const dispatch = useDispatch();

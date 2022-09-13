@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
-import '../css/bodyPartCard.css'
-import { useDispatch } from 'react-redux';
-import { searchExercises } from '../actions/searchExercises_client';
+import '../../css/bodyPartCard.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { searchExercises } from '../../actions/searchExercises_client';
 
 const BodyPartCard = ({ bodyPart, item }) => {
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const BodyPartCard = ({ bodyPart, item }) => {
       }}
     >
       <img
-        src={require("../assets/gym.webp")}
+        src={require("../../assets/gym.webp")}
         style={{ width: "50px", height: "50" }}
         alt={item}
       />

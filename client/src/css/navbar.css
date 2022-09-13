@@ -32,7 +32,7 @@ input{
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../assets/workout1.png');
+    background-image: url('../assets/workout2.png');
     position: relative;
     z-index: 0;
 }
@@ -332,39 +332,6 @@ nav .menu-btn,
     .name .details{
         font-size: 1rem;
     }
-    .pr-heading{
-		left: 50%;
-		top: 50%;
-        transform: translate(-50%,-50%);
-        text-align: center;
-    }
-    .pr-heading h2{
-        font-size: 1.5rem;
-    }
-    .pr-heading h1{
-        font-size: 3rem;
-    }
-    .pr-heading .details{
-        font-size: 1rem;
-    }
-	.about-image img{
-		height:400px;
-    }
-    #features{
-		height:auto;
-    }
-    .a-container{
-		flex-wrap: wrap;
-	}
-    .a-box{
-		flex-grow: 1;
-	}
-    .a-b-img img{
-		object-fit:contain;
-    }
-    
-    
-
 }
 
 @media(max-width:1190px){
@@ -376,11 +343,6 @@ nav .menu-btn,
 		top: 50%;
 		transform: translate(-50%,-50%);
     }
-    .pr-heading{
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%,-50%);
-	}
 	.about-image{
         display:none;
     }
@@ -388,10 +350,7 @@ nav .menu-btn,
         margin-left: 20%;
         margin-top: 20px;
     }
-    .pr-btn{
-        margin-left: 20%;
-        margin-top: 20px;
-    }
+
 	#about{
 		justify-content: center;
         padding-top: 0px;
@@ -413,9 +372,6 @@ nav .menu-btn,
 	.name{
 		width:60%;
     }
-    .pr-heading{
-		width:60%;
-    }
 }
 
 @media(max-width:1190px){.menu-icon{
@@ -434,9 +390,6 @@ nav .menu-btn,
         }
         .header-btn{
             margin-left: 0;
-        }
-        .pr-btns{
-            margin: 0;
         }
         .menu{
             display:none;

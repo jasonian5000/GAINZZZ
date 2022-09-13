@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import '../css/exerciseCard.css'
+import '../../css/exerciseCard.css'
 
 const ExerciseCard = () => {
   const searchResults = useSelector((state) => state.search?.searchResults);
