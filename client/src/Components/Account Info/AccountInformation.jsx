@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrainers, sendAccountInformation } from "../../actions/accountInformation";
+import "../../css/accountInformation.css"
 
 const AccountInformation = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ useEffect(
       getTrainers(dispatch);
     },
     // eslint-disable-next-line
-    
+
     []
 );
 
@@ -24,7 +25,7 @@ useEffect(
         <div>
         <h1>Please enter your personal information</h1>
         <div>
-            <form>
+            <form className="accountInformationForm">
             <div>
                 <label htmlFor="height">Height</label>
                 <input
