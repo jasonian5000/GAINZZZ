@@ -5,13 +5,20 @@ import { userSignIn } from "../../actions/supabase_client";
 import { Link } from "react-router-dom";
 import { setSignIn } from "../../actions/inputs";
 import { checkToken } from "../../actions/checkToken";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
-  const signIn = async (e) => {
-    let data = setSignIn(e);
-    userSignIn(data.email, data.password);
+  const navigate = useNavigate()
+  const signIn = async (e, navigate) => {
+    let data =  setSignIn(e);
+    await userSignIn(data.email, data.password);
     let token = checkToken();
     if (token) {
+      window.alert("Signed in. Welcome to GAINZZZ!")
+      navigate("/")
+    } else {
+      window.alert("Invalid Credentials")
+      navigate('/login_page')
     }
   };
   return (
@@ -36,7 +43,7 @@ export const LoginPage = () => {
           </Password1>
           <Text5>Forgot Password?</Text5>
           <LogIn>
-            <button onClick={(e) => signIn(e)}>sign in</button>
+            <button onClick={(e) => signIn(e, navigate)}>sign in</button>
           </LogIn>
         </form>
 
