@@ -53,17 +53,10 @@ export const userSignIn = async (email, password) => {
 // }
 
 export const userSignOut = async navigate => {
-    const { error, session } = await supabase.auth.signOut()
-    if (error) {
-        console.log(error)
-        return error
-    } else {
-        console.log(session)
-        console.log('signed out')
+        localStorage.removeItem(supabase.auth.token)
         window.alert('You have been signed out!')
         navigate('/')
     }
-}
 
 export const trainerDropDown = async () => {
     const trainers = await fetch('http://localhost:3001/trainer_dropdown', {
