@@ -43,11 +43,10 @@ app.post('/sign_up', async (req, res) => {
 app.post('/sign_in', async (req, res) => {
     const { email, password } = req.body
     try {
-      const sessionData = await userSignIn(email, password)
-      console.log(sessionData)
-      res.status(200).send(sessionData)
+        const sessionData = await userSignIn(email, password)
+        res.status(200).send(sessionData)
     } catch (error) {
-      res.status(400).send(error)
+        res.status(400).send(error)
     }
 })
 

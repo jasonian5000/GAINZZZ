@@ -24,7 +24,7 @@ export const userSignUp = async (
 export const userSignIn = async (email, password) => {
     const body = {
         email,
-        password
+        password,
     }
     const sessionData = await fetch('http://localhost:3001/sign_in', {
         method: 'POST',
@@ -34,14 +34,11 @@ export const userSignIn = async (email, password) => {
         body: JSON.stringify(body),
     })
     const json = await sessionData.json()
-    console.log(json)
-    await setStorage(json)
-}
-
-const setStorage = async (json) => {
-    const sessionData = {"currentSession": json.session, "expiresAt": json.session.expires_at}
-    localStorage.setItem("supabase.auth.token", JSON.stringify(sessionData))
-    console.log(supabase.auth.user())
+    const sendSession = {
+        currentSession: json.session,
+        expiresAt: json.session.expires_at,
+    }
+    localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
 }
 
 // export const userSignOut = async () => {
@@ -55,7 +52,7 @@ const setStorage = async (json) => {
 //     console.log('signed out')
 // }
 
-export const userSignOut = async (navigate) => {
+export const userSignOut = async navigate => {
     const { error, session } = await supabase.auth.signOut()
     if (error) {
         console.log(error)
@@ -63,8 +60,8 @@ export const userSignOut = async (navigate) => {
     } else {
         console.log(session)
         console.log('signed out')
-        window.alert("You have been signed out!")
-        navigate("/")
+        window.alert('You have been signed out!')
+        navigate('/')
     }
 }
 
@@ -161,7 +158,7 @@ export const addAccountInformation = async (
             totalBurnedCalories: totalBurnedCalories,
             bodyFat: bodyFat,
             personalTrainer: personalTrainer,
-            userID: supabase.auth.currentUser.id
+            userID: supabase.auth.currentUser.id,
         },
     ])
     if (data) {
