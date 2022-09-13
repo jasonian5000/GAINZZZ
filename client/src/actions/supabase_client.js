@@ -61,7 +61,7 @@ export const userSignOut = async (navigate) => {
         console.log(session)
         console.log('signed out')
         window.alert('You have been signed out!')
-        navigate('/')
+        navigate('/login_page')
     }
 }
 
