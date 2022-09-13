@@ -2,7 +2,7 @@ import { Box, Stack } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPersonalTrainers } from '../actions/personalTrainersInformation'
+import { getPersonalTrainers } from '../../actions/personalTrainersInformation'
 import PersonalTrainerCard from './PersonalTrainerCard'
 
 const PersonalTrainers = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrainers, sendAccountInformation } from "../actions/accountInformation";
+import { getTrainers, sendAccountInformation } from "../../actions/accountInformation";
 
 const AccountInformation = () => {
   const dispatch = useDispatch();

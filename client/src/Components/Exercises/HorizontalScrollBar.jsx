@@ -3,9 +3,9 @@ import { Box, Typography } from "@mui/material";
 import BodyPartCard from "./BodyPartCard";
 import { useSelector } from 'react-redux';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
-import '../css/hideScrollBar.css'
-import RightArrowIcon from "../assets/right-arrow.png";
-import LeftArrowIcon from "../assets/left-arrow.png";
+import '../../css/hideScrollBar.css'
+import RightArrowIcon from "../../assets/right-arrow.png";
+import LeftArrowIcon from "../../assets/left-arrow.png";
 
 const LeftArrow = () => {
   const { scrollPrev } = useContext(VisibilityContext);
