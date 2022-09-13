@@ -64,6 +64,14 @@ const NewNav = () => {
                         Login
                     </Link>
                 </li>
+                <li>
+                    <Link
+                        to="/personal_trainers"
+                        style={{ textDecoration: 'none', color: '#ffff' }}
+                    >
+                        Personal Trainers
+                    </Link>
+                </li>
             </ul>
         </nav>
     )

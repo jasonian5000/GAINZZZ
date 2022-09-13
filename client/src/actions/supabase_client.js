@@ -60,7 +60,7 @@ export const userSignOut = async (navigate) => {
 export const trainerDropDown = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
-        .select('id,ptName')
+        .select('id,ptName,specialties,description,rates,testimonials')
     if (ptTable) {
         return ptTable
     } else {

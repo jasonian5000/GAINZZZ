@@ -8,6 +8,7 @@ import { LoginPage } from "./Components/LoginPage";
 import SignUpPage from "./Components/SignUpPage";
 import AccountInformation from "./Components/AccountInformation";
 import NewNav from "./Components/NewNav";
+import PersonalTrainers from "./Components/PersonalTrainers";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login_page" element={<LoginPage />} />
         <Route path="/sign_up" element={<SignUpPage />} />
         <Route path="/account_information" element={<AccountInformation />} />
+        <Route path="/personal_trainers" element={<PersonalTrainers />} />
       </Routes>
       <Footer />
     </Box>

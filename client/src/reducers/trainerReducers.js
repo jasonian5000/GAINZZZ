@@ -1,5 +1,6 @@
 const initialState = {
   trainerDropDownList: [],
+  trainers: [],
 };
 
 const trainerReducers = (state = initialState, action) => {
@@ -9,6 +10,11 @@ const trainerReducers = (state = initialState, action) => {
         ...state,
         trainerDropDownList: action.payload,
       };
+    case "SET_TRAINER_INFO":
+      return {
+        ...state,
+        trainers: action.payload
+      }
     default:
       return state;
   }
