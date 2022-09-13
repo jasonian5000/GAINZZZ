@@ -12,9 +12,12 @@ const ExerciseDetails = () => {
     const perPage = 9;
     const paginte = (e, value) => {
         setCurrentPage(value)
-        window.scrollTo({top:1800, behavior: 'smooth'})
+        window.scrollTo({top:500, behavior: 'smooth'})
     }
     const searchResults = useSelector(state => state.search?.searchResults)
+    const indexOfLast = currentPage * perPage
+    const indexOfFirst = indexOfLast - perPage
+    const current = searchResults.slice(indexOfFirst, indexOfLast)
   const [bodyPart, setBodyPart] = useState("all");
   return (
       <div className="ED-Container">
@@ -27,10 +30,10 @@ const ExerciseDetails = () => {
                   />
               </Box>
               <Stack>
-                  <ExerciseCard/>
+                  <ExerciseCard current={current} />
               </Stack>
-              <Stack mt='100px' alignItems='center'>
-                  {searchResults.lengtj > 9 && (
+              <Stack mb='0'mt='100px' alignItems='center'>
+                  {searchResults.length > 9 && (
                       <Pagination
                           color='standard'
                           shape="rounded"
