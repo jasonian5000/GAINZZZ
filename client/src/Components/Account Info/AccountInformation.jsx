@@ -15,6 +15,7 @@ useEffect(
       getTrainers(dispatch);
     },
     // eslint-disable-next-line
+    
     []
 );
 
