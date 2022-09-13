@@ -49,7 +49,7 @@ input{
     height: 100%;
     z-index: -1;
 }
-nav{
+.nav{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
