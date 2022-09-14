@@ -86,10 +86,11 @@ export const trainerDropDown = async () => {
     }
 }
 
-export const getPersonalInfo = async () => {
+export const getPersonalInfo = async (userID) => {
     let { data: accountInfo, error } = await supabase
         .from('accountInfo')
-        .select('*')
+        .select()
+        .eq('userID', userID)
     if (accountInfo) {
         return accountInfo
     } else {

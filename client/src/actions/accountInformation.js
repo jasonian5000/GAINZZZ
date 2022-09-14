@@ -8,7 +8,7 @@ const getTrainers = async (dispatch) => {
 
 const getUserPersonalInfo = async (dispatch) => {
   const personalInfo = await getPersonalInfo()
-  dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+  await dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
 }
 
 const sendAccountInformation = async (e) => {

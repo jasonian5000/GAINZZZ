@@ -62,9 +62,11 @@ app.get('/trainer_dropdown', async (req, res) => {
     }
 })
 
-app.get('/account_information', async (req, res) => {
+app.post('/account_information', async (req, res) => {
+    const { userID } = req.body
+    console.log("this is userID", userID)
     try {
-        let accountInfo = await getPersonalInfo()
+        let accountInfo = await getPersonalInfo(userID)
         res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)

@@ -1,3 +1,10 @@
+const getUserId = async () => {
+    let local = localStorage.getItem('supabase.auth.token')
+    const parsed = JSON.parse(local)
+    const userID = await parsed.currentSession.user.id
+    return await userID
+}
+
 export const userSignUp = async (
     firstName,
     lastName,
@@ -55,20 +62,20 @@ export const trainerDropDown = async () => {
 // }
 
 export const getPersonalInfo = async () => {
-    const personalInfo = await fetch("http://localhost:3001/account_information", {
-        method: "GET",
-    })
+    const userID = await getUserId()
+    const body = { userID: userID }
+    const personalInfo = await fetch(
+        'http://localhost:3001/account_information',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        }
+    )
     const getAccountInfo = personalInfo.json()
     return getAccountInfo
-}
-
-
-
-const getUserId = async () => {
-    let local = localStorage.getItem('supabase.auth.token')
-    const parsed = JSON.parse(local)
-    const userID = await parsed.currentSession.user.id
-    return await userID
 }
 
 export const addAccountInformation = async (

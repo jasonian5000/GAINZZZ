@@ -124,9 +124,9 @@ return (
             Personal Information
         </h1>
         <div>
-            {personalInformation.map((info) => {
+            {personalInformation?.map((info) => {
                 return (
-                    <p>Height: {info.height}</p>
+                    <p>Height: {info?.height}</p>
                 )
             })}
         </div>
