@@ -12,7 +12,7 @@ const AccountInformation = () => {
     const trainerDropDownList = useSelector(
         state => state.trainers.trainerDropDownList
     )
-    const info = useSelector(state => state.personalInfo.accountInfo[0])
+    const info = useSelector(state => state.personalInfo.accountInfo)
     console.log(info)
     const [value, setValue] = useState(1)
     const handleChange = e => {
@@ -96,6 +96,7 @@ const AccountInformation = () => {
             <div>
                 <h1>Personal Information</h1>
                 <div>
+                    {/* map through the useSelector */}
                     <p
                         style={{
                             display: info.height ? 'block' : 'none',
