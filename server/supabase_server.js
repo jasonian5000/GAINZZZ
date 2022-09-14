@@ -89,9 +89,9 @@ export const trainerDropDown = async () => {
 }
 
 
-export const getPersonalInfo = async userID => {
+export const getAcctInfo = async userID => {
     let { data: accountInfo, error } = await supabase
-        .from('accountInfo')
+        .from('userTable')
         .select('*, ptTable(ptName)')
         .eq('userID', userID)
     if (accountInfo) {

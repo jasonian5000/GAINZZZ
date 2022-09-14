@@ -111,7 +111,7 @@ return (
                                                     key={trainer.id}
                                                     value={trainer.id}
                                                 >
-                                                    {trainer.ptName}
+                                                    {trainer?.ptName}
                                                 </option>
                                             </>
                                         ))}
@@ -167,7 +167,7 @@ return (
                                         : 'none',
                                 }}
                             >
-                                Personal Trainer: {info?.ptTable.ptName}
+                                Personal Trainer: {info?.ptTable?.ptName}
                             </p>
                         </>
                     )
