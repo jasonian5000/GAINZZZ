@@ -154,7 +154,7 @@ export const getUserFavorites = async () => {
     return favoritesIdList
 }
 
-export const addToFavorites = async workoutID => {
+export const addToFavorites = async (workoutID) => {
     const userID = await getUserId()
     const body = { workoutID, userID }
     await fetch('http://localhost:3001/add_favorite', {
