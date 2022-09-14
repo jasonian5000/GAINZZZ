@@ -29,7 +29,9 @@ return (
     <>
         <div className="accountInformationContainer">
             <div className="accountInformationForm">
-                <h1 className="title">Please enter your personal information</h1>
+                <h1 className="title">
+                    Please enter your personal information
+                </h1>
                 <div>
                     <form>
                         <div>
@@ -86,8 +88,8 @@ return (
                             </div>
                             <div>
                                 <label htmlFor="totalBurnedCalories">
-                                    total burned calories. (If you do not know it,
-                                    leave it blank.)
+                                    total burned calories. (If you do not know
+                                    it, leave it blank.)
                                 </label>
                                 <input
                                     type="text"
@@ -98,19 +100,29 @@ return (
                             <div>
                                 <label htmlFor="personalTrainer">
                                     select personal trainer
-                                    <select value={value} onChange={handleChange}>
+                                    <select
+                                        value={value}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">No trainer</option>
                                         {trainerDropDownList.map(trainer => (
-                                            <option
-                                                key={trainer.id}
-                                                value={trainer.id}
-                                            >
-                                                {trainer.ptName}
-                                            </option>
+                                            <>
+                                                <option
+                                                    key={trainer.id}
+                                                    value={trainer.id}
+                                                >
+                                                    {trainer.ptName}
+                                                </option>
+                                            </>
                                         ))}
                                     </select>
                                 </label>
                             </div>
-                            <button onClick={e => sendAccountInformation(e)}>
+                            <button
+                                style={{
+                                    display: personalInformation.length > 0 ? 'none' : 'block'}}
+                                onClick={e => sendAccountInformation(e)}
+                            >
                                 Submit
                             </button>
                             <button>Update</button>
@@ -120,16 +132,47 @@ return (
             </div>
         </div>
         <div>
-        <h1>
-            Personal Information
-        </h1>
-        <div>
-            {personalInformation?.map((info) => {
-                return (
-                    <p>Height: {info?.height}</p>
-                )
-            })}
-        </div>
+            <h1>Personal Information</h1>
+            <div>
+                {personalInformation?.map(info => {
+                    return (
+                        <>
+                            <p>Height: {info?.height}</p>
+                            <p>Age: {info?.age} years old</p>
+                            <p>Gender: {info?.gender}</p>
+                            <p>Weight: {info?.weight} pounds</p>
+                            <p
+                                style={{
+                                    display: info.bodyfat ? 'block' : 'none',
+                                }}
+                            >
+                                bodyfat: {info?.bodyfat}
+                            </p>
+                            <p style={{ display: info.bmi ? 'block' : 'none' }}>
+                                BMI: {info?.bmi}
+                            </p>
+                            <p
+                                style={{
+                                    display: info.totalBurnedCalories
+                                        ? 'block'
+                                        : 'none',
+                                }}
+                            >
+                                total burned calories: {info?.bmi}
+                            </p>
+                            <p
+                                style={{
+                                    display: info.personalTrainer
+                                        ? 'block'
+                                        : 'none',
+                                }}
+                            >
+                                Personal Trainer: {info?.ptTable.ptName}
+                            </p>
+                        </>
+                    )
+                })}
+            </div>
         </div>
     </>
 )
