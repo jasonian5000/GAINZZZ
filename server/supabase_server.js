@@ -89,9 +89,10 @@ export const trainerDropDown = async () => {
 export const getPersonalInfo = async (userID) => {
     let { data: accountInfo, error } = await supabase
         .from('accountInfo')
-        .select()
+        .select('*, ptTable(ptName)')
         .eq('userID', userID)
     if (accountInfo) {
+        console.log(accountInfo)
         return accountInfo
     } else {
         console.log(error)
@@ -113,11 +114,6 @@ export const userAddToFavorites = async () => {
             console.log(error)
         }
 }
-
-// export const findUser = async () => {
-//   const { data } = await supabase.from("userTable").select();
-//   console.log(data);
-// };
 
 export const addAccountInformation = async (
     height,

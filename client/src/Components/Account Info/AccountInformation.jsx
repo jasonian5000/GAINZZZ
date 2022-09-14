@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    getUserPersonalInfo,
+    getUserPersonalInfo as getAcctInfo,
     getTrainers,
     sendAccountInformation,
 } from '../../actions/accountInformation'
@@ -19,7 +19,7 @@ const AccountInformation = () => {
 useEffect(
     () => {
       getTrainers(dispatch);
-      getUserPersonalInfo(dispatch)
+      getAcctInfo(dispatch)
     },
     // eslint-disable-next-line
     []

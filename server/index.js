@@ -62,7 +62,7 @@ app.get('/trainer_dropdown', async (req, res) => {
     }
 })
 
-app.post('/account_information', async (req, res) => {
+app.post('/acct_info', async (req, res) => {
     const { userID } = req.body
     console.log("this is userID", userID)
     try {
@@ -75,6 +75,37 @@ app.post('/account_information', async (req, res) => {
 })
 
 app.post('/add_acct_info', async (req, res) => {
+    const {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID,
+    } = req.body
+    try {
+        addAccountInformation(
+            height,
+            gender,
+            weight,
+            bmi,
+            age,
+            bodyFat,
+            totalBurnedCalories,
+            personalTrainer,
+            userID
+        )
+        console.log('account updated')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/update_acct_info', async (req, res) => {
     const {
         height,
         gender,

@@ -61,11 +61,11 @@ export const trainerDropDown = async () => {
 //     console.log(data)
 // }
 
-export const getPersonalInfo = async () => {
+export const getAcctInfo = async () => {
     const userID = await getUserId()
     const body = { userID: userID }
     const personalInfo = await fetch(
-        'http://localhost:3001/account_information',
+        'http://localhost:3001/acct_info',
         {
             method: 'POST',
             headers: {
@@ -74,11 +74,11 @@ export const getPersonalInfo = async () => {
             body: JSON.stringify(body),
         }
     )
-    const getAccountInfo = personalInfo.json()
-    return getAccountInfo
+    const AcctInfo = personalInfo.json()
+    return AcctInfo
 }
 
-export const addAccountInformation = async (
+export const addAcctInfo = async (
     height,
     gender,
     weight,
