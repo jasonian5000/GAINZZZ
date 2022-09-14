@@ -8,7 +8,7 @@ import {
     userSignIn,
     getUserFavorites,
     addToFavorites,
-    getPersonalInfo,
+    getAcctInfo,
     updateAcctInfo,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
@@ -34,9 +34,10 @@ app.post('/search', async (req, res) => {
 
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
+    console.log("Req.body", req.body)
     try {
-        userSignUp(firstName, lastName, username, email, password)
-        res.send('new user created')
+        await userSignUp(firstName, lastName, username, email, password)
+        res.send("account created")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -67,7 +68,7 @@ app.post('/acct_info', async (req, res) => {
     const { userID } = req.body
     console.log("this is userID", userID)
     try {
-        let accountInfo = await getPersonalInfo(userID)
+        let accountInfo = await getAcctInfo(userID)
         res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)

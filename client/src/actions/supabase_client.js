@@ -18,9 +18,9 @@ export const userSignUp = async (
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body),   
     })
-    console.log('user created')
+    console.log( body,'user created')
 }
 
 export const userSignIn = async (email, password) => {
@@ -64,16 +64,13 @@ export const trainerDropDown = async () => {
 export const getAcctInfo = async () => {
     const userID = await getUserId()
     const body = { userID: userID }
-    const personalInfo = await fetch(
-        'http://localhost:3001/acct_info',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        }
-    )
+    const personalInfo = await fetch('http://localhost:3001/acct_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
     const AcctInfo = personalInfo.json()
     return AcctInfo
 }
@@ -144,7 +141,7 @@ export const updateAcctInfo = async (
 
 export const getUserFavorites = async () => {
     const userID = await getUserId()
-    const body = {userID: userID}
+    const body = { userID: userID }
     const response = await fetch('http://localhost:3001/user_favorites', {
         method: 'POST',
         headers: {
@@ -157,7 +154,7 @@ export const getUserFavorites = async () => {
     return favoritesIdList
 }
 
-export const addToFavorites = async workoutID => {
+export const addToFavorites = async (workoutID) => {
     const userID = await getUserId()
     const body = { workoutID, userID }
     await fetch('http://localhost:3001/add_favorite', {

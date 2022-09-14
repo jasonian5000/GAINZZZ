@@ -3,12 +3,11 @@ import "../../css/loginPage.css";
 import { userSignIn } from "../../actions/supabase_client";
 import { setSignIn } from "../../actions/inputs";
 import { checkToken } from "../../actions/checkToken";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import logo from '../../assets/GAINZZZ.png'
-
 
 export const LoginPage = () => {
   const navigate = useNavigate()
@@ -54,7 +53,7 @@ export const LoginPage = () => {
                           Sign In
                       </button>
                       <h3>
-                          Dont have an account? <span>Register</span>
+                          Dont have an account? <span> <Link to="/sign_up">Register</Link> </span>
                       </h3>
                       <h1>OR</h1>
                       <ul className="iconList">

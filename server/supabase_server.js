@@ -6,6 +6,14 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+export const userSignIn = async (email, password) => {
+    const sessionData = await supabase.auth.signIn({
+        email: email,
+        password: password,
+    })
+    return sessionData
+}
+
 export const userSignUp = async (
     firstName,
     lastName,
@@ -17,20 +25,12 @@ export const userSignUp = async (
         email: email,
         password: password,
     })
+    const userID = user.id
     if (error) {
         console.log(error)
         return error
     }
-    createAccount(firstName, lastName, username, email, password)
-    return user
-}
-
-export const userSignIn = async (email, password) => {
-    const sessionData = await supabase.auth.signIn({
-        email: email,
-        password: password,
-    })
-    return sessionData
+    await createAccount(userID, firstName, lastName, email, password, username)
 }
 
 export const userSignOut = async () => {
@@ -46,12 +46,14 @@ export const userSignOut = async () => {
 }
 
 const createAccount = async (
+    userID,
     firstName,
     lastName,
     email,
     password,
     username
 ) => {
+    console.log( "firstName: ",firstName, "last name",lastName, "email",email, "password",password, "username",username)
     const { data, error } = await supabase.from('userTable').insert([
         {
             created_at: new Date(),
@@ -61,10 +63,12 @@ const createAccount = async (
             firstName: firstName,
             lastName: lastName,
             email: email,
+            userID: userID,
         },
     ])
+    console.log("data", data)
     if (data) {
-        console.log(data)
+        return data
     } else {
         console.log(error)
     }
@@ -87,9 +91,9 @@ export const trainerDropDown = async () => {
 }
 
 
-export const getPersonalInfo = async userID => {
+export const getAcctInfo = async userID => {
     let { data: accountInfo, error } = await supabase
-        .from('accountInfo')
+        .from('userTable')
         .select('*, ptTable(ptName)')
         .eq('userID', userID)
     if (accountInfo) {

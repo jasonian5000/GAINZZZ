@@ -111,7 +111,7 @@ return (
                                                     key={trainer.id}
                                                     value={trainer.id}
                                                 >
-                                                    {trainer.ptName}
+                                                    {trainer?.ptName}
                                                 </option>
                                             </>
                                         ))}
@@ -125,7 +125,10 @@ return (
                             >
                                 Submit
                             </button>
-                            <button>Update</button>
+                            <button
+                            style={{
+                            display: personalInformation.length > 0 ? 'block' : 'none'}}
+                            >Update</button>
                         </div>
                     </form>
                 </div>
@@ -167,7 +170,7 @@ return (
                                         : 'none',
                                 }}
                             >
-                                Personal Trainer: {info?.ptTable.ptName}
+                                Personal Trainer: {info?.ptTable?.ptName}
                             </p>
                         </>
                     )

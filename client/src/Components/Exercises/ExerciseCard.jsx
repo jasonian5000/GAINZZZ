@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux'
 import React from 'react'
 import { Button, Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'

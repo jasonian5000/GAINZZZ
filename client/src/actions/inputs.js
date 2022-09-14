@@ -1,4 +1,5 @@
 const captureUserSignUp = (e) => {
+  console.log(e)
   e.preventDefault();
   let input = {
     firstName: e.target.form[0].value,
