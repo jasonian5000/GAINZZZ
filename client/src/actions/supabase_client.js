@@ -36,6 +36,8 @@ export const userSignIn = async (email, password) => {
         body: JSON.stringify(body),
     })
     const json = await sessionData.json()
+    // make if else statement that tells someone to 
+    // confirm email after they have signed up 
     const sendSession = {
         currentSession: json.session,
         expiresAt: json.session.expires_at,
