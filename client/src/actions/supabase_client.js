@@ -20,7 +20,7 @@ export const userSignUp = async (
         },
         body: JSON.stringify(body),   
     })
-    console.log('user created')
+    console.log( body,'user created')
 }
 
 export const userSignIn = async (email, password) => {
