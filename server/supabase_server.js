@@ -30,7 +30,7 @@ export const userSignUp = async (
         console.log(error)
         return error
     }
-    await createAccount(userID, firstName, lastName, username, email, password)
+    await createAccount(userID, firstName, lastName, email, password, username)
 }
 
 export const userSignOut = async () => {
@@ -53,6 +53,7 @@ const createAccount = async (
     password,
     username
 ) => {
+    console.log( "firstName: ",firstName, "last name",lastName, "email",email, "password",password, "username",username)
     const { data, error } = await supabase.from('userTable').insert([
         {
             created_at: new Date(),
@@ -65,6 +66,7 @@ const createAccount = async (
             userID: userID,
         },
     ])
+    console.log("data", data)
     if (data) {
         return data
     } else {

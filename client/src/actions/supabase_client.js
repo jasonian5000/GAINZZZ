@@ -20,7 +20,7 @@ export const userSignUp = async (
         },
         body: JSON.stringify(body),
     })
-    console.log('user created')
+    console.log( body,'user created')
 }
 
 export const userSignIn = async (email, password) => {
@@ -36,6 +36,8 @@ export const userSignIn = async (email, password) => {
         body: JSON.stringify(body),
     })
     const json = await sessionData.json()
+    // make if else statement that tells someone to 
+    // confirm email after they have signed up 
     const sendSession = {
         currentSession: json.session,
         expiresAt: json.session.expires_at,
@@ -106,7 +108,7 @@ export const getUserFavorites = async () => {
     return favoritesIdList
 }
 
-export const addToFavorites = async workoutID => {
+export const addToFavorites = async (workoutID) => {
     const userID = await getUserId()
     const body = { workoutID, userID }
     await fetch('http://localhost:3001/add_favorite', {

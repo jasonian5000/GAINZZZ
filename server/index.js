@@ -33,6 +33,7 @@ app.post('/search', async (req, res) => {
 
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
+    console.log("Req.body", req.body)
     try {
         await userSignUp(firstName, lastName, username, email, password)
         res.send('account created')
