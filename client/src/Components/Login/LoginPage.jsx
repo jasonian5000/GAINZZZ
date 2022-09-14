@@ -4,6 +4,11 @@ import { userSignIn } from "../../actions/supabase_client";
 import { setSignIn } from "../../actions/inputs";
 import { checkToken } from "../../actions/checkToken";
 import { useNavigate } from "react-router-dom";
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import logo from '../../assets/GAINZZZ.png'
+
 
 export const LoginPage = () => {
   const navigate = useNavigate()
@@ -51,6 +56,14 @@ export const LoginPage = () => {
                       <h3>
                           Dont have an account? <span>Register</span>
                       </h3>
+                      <h1>OR</h1>
+                      <ul className="iconList">
+                          <li ><FacebookIcon id="icon"/></li>
+                          <li ><InstagramIcon id="icon"/></li>
+                          <li ><TwitterIcon  id="icon"/></li>
+                          
+                      </ul>
+                      <p className="bottom-form">Terms of Service | <img src={logo} className='form-logo'/></p>
                   </form>
               </div>
           </div>

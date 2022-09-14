@@ -206,7 +206,7 @@ nav .menu-btn,
         nav{
             justify-content: space-between;
             height: 65px;
-            padding: 0px 30px;
+            padding: 0px 0px;
         }
         .logo img{
             width:70px;
