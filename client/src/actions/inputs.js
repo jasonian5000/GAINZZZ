@@ -1,4 +1,4 @@
-const captureUserSignUp = (e) => {
+export const captureUserSignUp = (e) => {
   e.preventDefault();
   let input = {
     firstName: e.target.form[0].value,
@@ -10,32 +10,33 @@ const captureUserSignUp = (e) => {
   return input;
 };
 
-const captureAccountInformation = (e) => {
+export const captureAcctInfo = (e, info) => {
   e.preventDefault()
+  let height =
+      e.target.form[0].value === '' ? info.height : e.target.form[0].value
+  let weight =
+      e.target.form[1].value === '' ? info.weight : e.target.form[1].value
+    let gender =
+        e.target.form[2].value === '' ? info.gender : e.target.form[2].value
+  let age =
+      e.target.form[3].value === '' ? info.age : e.target.form[3].value
+  let personalTrainer =
+      e.target.form[4].value === '' ? info.personalTrainer : e.target.form[4].value
   let input = {
-    height: e.target.form[0].value,
-    gender: e.target.form[1].value,
-    weight: e.target.form[2].value,
-    bmi: e.target.form[3].value,
-    age: e.target.form[4].value,
-    bodyFat: e.target.form[5].value,
-    totalBurnedCalories: e.target.form[6].value,
-    personalTrainer: e.target.form[7].value
-  };
+      height,
+      weight,
+      gender,
+      age,
+      personalTrainer,
+  }
   return input
 }
 
-const setSignIn = (e) => {
+export const setSignIn = (e) => {
   e.preventDefault();
   let data = {
     email: e.target.form[0].value,
     password: e.target.form[1].value,
   };
   return data;
-}
-
-export {
-    captureUserSignUp,
-    setSignIn,
-    captureAccountInformation,
 }

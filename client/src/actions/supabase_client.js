@@ -18,7 +18,7 @@ export const userSignUp = async (
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),   
+        body: JSON.stringify(body),
     })
     console.log('user created')
 }
@@ -75,58 +75,10 @@ export const getAcctInfo = async () => {
     return AcctInfo
 }
 
-export const addAcctInfo = async (
-    height,
-    gender,
-    weight,
-    bmi,
-    age,
-    bodyFat,
-    totalBurnedCalories,
-    personalTrainer
-) => {
+export const updateAcctInfo = async updatedInfo => {
     const userID = await getUserId()
     const body = {
-        height,
-        gender,
-        weight,
-        bmi,
-        age,
-        bodyFat,
-        totalBurnedCalories,
-        personalTrainer,
-        userID: userID,
-    }
-    await fetch('http://localhost:3001/add_acct_info', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    console.log('user created')
-}
-
-export const updateAcctInfo = async (
-    height,
-    gender,
-    weight,
-    bmi,
-    age,
-    bodyFat,
-    totalBurnedCalories,
-    personalTrainer
-) => {
-    const userID = await getUserId()
-    const body = {
-        height,
-        gender,
-        weight,
-        bmi,
-        age,
-        bodyFat,
-        totalBurnedCalories,
-        personalTrainer,
+        updatedInfo,
         userID: userID,
     }
     await fetch('http://localhost:3001/update_acct_info', {

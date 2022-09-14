@@ -4,7 +4,6 @@ const app = express()
 import {
     userSignUp,
     trainerDropDown,
-    addAccountInformation,
     userSignIn,
     getUserFavorites,
     addToFavorites,
@@ -36,7 +35,7 @@ app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
     try {
         await userSignUp(firstName, lastName, username, email, password)
-        res.send("account created")
+        res.send('account created')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -65,7 +64,7 @@ app.get('/trainer_dropdown', async (req, res) => {
 
 app.post('/acct_info', async (req, res) => {
     const { userID } = req.body
-    console.log("this is userID", userID)
+    console.log('this is userID', userID)
     try {
         let accountInfo = await getAcctInfo(userID)
         res.status(200).send(accountInfo)
@@ -75,61 +74,41 @@ app.post('/acct_info', async (req, res) => {
     }
 })
 
-app.post('/add_acct_info', async (req, res) => {
-    const {
-        height,
-        gender,
-        weight,
-        bmi,
-        age,
-        bodyFat,
-        totalBurnedCalories,
-        personalTrainer,
-        userID,
-    } = req.body
-    try {
-        addAccountInformation(
-            height,
-            gender,
-            weight,
-            bmi,
-            age,
-            bodyFat,
-            totalBurnedCalories,
-            personalTrainer,
-            userID
-        )
-        console.log('account updated')
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(error)
-    }
-})
+// app.post('/add_acct_info', async (req, res) => {
+//     const {
+//         height,
+//         gender,
+//         weight,
+//         bmi,
+//         age,
+//         bodyFat,
+//         totalBurnedCalories,
+//         personalTrainer,
+//         userID,
+//     } = req.body
+//     try {
+//         addAccountInformation(
+//             height,
+//             gender,
+//             weight,
+//             bmi,
+//             age,
+//             bodyFat,
+//             totalBurnedCalories,
+//             personalTrainer,
+//             userID
+//         )
+//         console.log('account updated')
+//     } catch (error) {
+//         console.log(error)
+//         res.status(400).send(error)
+//     }
+// })
 
 app.post('/update_acct_info', async (req, res) => {
-    const {
-        height,
-        gender,
-        weight,
-        bmi,
-        age,
-        bodyFat,
-        totalBurnedCalories,
-        personalTrainer,
-        userID,
-    } = req.body
+    const { updatedInfo, userID } = req.body
     try {
-        updateAcctInfo(
-            height,
-            gender,
-            weight,
-            bmi,
-            age,
-            bodyFat,
-            totalBurnedCalories,
-            personalTrainer,
-            userID
-        )
+        await updateAcctInfo(updatedInfo, userID)
         console.log('account updated')
     } catch (error) {
         console.log(error)
@@ -152,7 +131,7 @@ app.post('/add_favorite', async (req, res) => {
     const { userID, workoutID } = req.body
     try {
         await addToFavorites(userID, workoutID)
-        res.status(200).send("added to favorites")
+        res.status(200).send('added to favorites')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

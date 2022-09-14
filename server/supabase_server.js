@@ -117,59 +117,51 @@ export const userAddToFavorites = async () => {
     }
 }
 
-export const addAccountInformation = async (
-    height,
-    gender,
-    weight,
-    bmi,
-    age,
-    bodyFat,
-    totalBurnedCalories,
-    personalTrainer,
-    userID
-) => {
-    const { data, error } = await supabase.from('accountInfo').insert([
-        {
-            created_at: new Date(),
-            updated_at: new Date(),
-            height: height,
-            gender: gender,
-            weight: weight,
-            bmi: bmi,
-            age: age,
-            totalBurnedCalories: totalBurnedCalories,
-            bodyFat: bodyFat,
-            personalTrainer: personalTrainer,
-            userID: userID,
-        },
-    ])
-    if (data) {
-        console.log('account info: ', data)
-    } else console.log(error)
-}
+// export const addAccountInformation = async (
+//     height,
+//     gender,
+//     weight,
+//     bmi,
+//     age,
+//     bodyFat,
+//     totalBurnedCalories,
+//     personalTrainer,
+//     userID
+// ) => {
+//     const { data, error } = await supabase.from('accountInfo').insert([
+//         {
+//             created_at: new Date(),
+//             updated_at: new Date(),
+//             height: height,
+//             gender: gender,
+//             weight: weight,
+//             bmi: bmi,
+//             age: age,
+//             totalBurnedCalories: totalBurnedCalories,
+//             bodyFat: bodyFat,
+//             personalTrainer: personalTrainer,
+//             userID: userID,
+//         },
+//     ])
+//     if (data) {
+//         console.log('account info: ', data)
+//     } else console.log(error)
+// }
 
 export const updateAcctInfo = async (
-    height,
-    gender,
-    weight,
-    bmi,
-    age,
-    bodyFat,
-    totalBurnedCalories,
-    personalTrainer,
+    updatedInfo,
     userID
 ) => {
+    console.log(updatedInfo)
+    const { height, weight, gender, age, personalTrainer} = updatedInfo
     const { data, error } = await supabase
-        .from('accountInfo')
+        .from('userTable')
         .update({
             updated_at: new Date(),
             height: height,
             gender: gender,
             weight: weight,
-            bmi: bmi,
             age: age,
-            totalBurnedCalories: totalBurnedCalories,
-            bodyFat: bodyFat,
             personalTrainer: personalTrainer,
         })
         .eq('userID', userID)
