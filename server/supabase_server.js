@@ -86,6 +86,7 @@ export const trainerDropDown = async () => {
     }
 }
 
+
 export const getPersonalInfo = async userID => {
     let { data: accountInfo, error } = await supabase
         .from('accountInfo')
