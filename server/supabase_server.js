@@ -6,6 +6,14 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+export const userSignIn = async (email, password) => {
+    const sessionData = await supabase.auth.signIn({
+        email: email,
+        password: password,
+    })
+    return sessionData
+}
+
 export const userSignUp = async (
     firstName,
     lastName,
@@ -17,20 +25,12 @@ export const userSignUp = async (
         email: email,
         password: password,
     })
+    const userID = user.id
     if (error) {
         console.log(error)
         return error
     }
-    createAccount(firstName, lastName, username, email, password)
-    return user
-}
-
-export const userSignIn = async (email, password) => {
-    const sessionData = await supabase.auth.signIn({
-        email: email,
-        password: password,
-    })
-    return sessionData
+    await createAccount(userID, firstName, lastName, username, email, password)
 }
 
 export const userSignOut = async () => {
@@ -46,6 +46,7 @@ export const userSignOut = async () => {
 }
 
 const createAccount = async (
+    userID,
     firstName,
     lastName,
     email,
@@ -61,10 +62,11 @@ const createAccount = async (
             firstName: firstName,
             lastName: lastName,
             email: email,
+            userID: userID,
         },
     ])
     if (data) {
-        console.log(data)
+        return data
     } else {
         console.log(error)
     }

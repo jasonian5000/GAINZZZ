@@ -35,8 +35,8 @@ app.post('/search', async (req, res) => {
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
     try {
-        userSignUp(firstName, lastName, username, email, password)
-        res.send('new user created')
+        await userSignUp(firstName, lastName, username, email, password)
+        res.send("account created")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
