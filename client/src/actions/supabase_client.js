@@ -110,6 +110,38 @@ export const addAcctInfo = async (
     console.log('user created')
 }
 
+export const updateAcctInfo = async (
+    height,
+    gender,
+    weight,
+    bmi,
+    age,
+    bodyFat,
+    totalBurnedCalories,
+    personalTrainer
+) => {
+    const userID = await getUserId()
+    const body = {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID: userID,
+    }
+    await fetch('http://localhost:3001/update_acct_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    console.log('user updated')
+}
+
 export const getUserFavorites = async () => {
     const userID = await getUserId()
     const body = {userID: userID}

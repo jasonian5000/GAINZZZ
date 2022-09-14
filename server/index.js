@@ -9,6 +9,7 @@ import {
     getUserFavorites,
     addToFavorites,
     getPersonalInfo,
+    updateAcctInfo,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -118,7 +119,7 @@ app.post('/update_acct_info', async (req, res) => {
         userID,
     } = req.body
     try {
-        addAccountInformation(
+        updateAcctInfo(
             height,
             gender,
             weight,
