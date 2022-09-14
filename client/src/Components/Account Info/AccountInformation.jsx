@@ -125,7 +125,10 @@ return (
                             >
                                 Submit
                             </button>
-                            <button>Update</button>
+                            <button
+                            style={{
+                            display: personalInformation.length > 0 ? 'block' : 'none'}}
+                            >Update</button>
                         </div>
                     </form>
                 </div>
