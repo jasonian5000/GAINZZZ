@@ -1,17 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import "../css/loginPage.css";
-import { userSignIn } from "../actions/supabase_client";
+import "../../css/loginPage.css";
+import { userSignIn } from "../../actions/supabase_client";
 import { Link } from "react-router-dom";
-import { setSignIn } from "../actions/inputs";
-import { checkToken } from "../actions/checkToken";
+import { setSignIn } from "../../actions/inputs";
+import { checkToken } from "../../actions/checkToken";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
-  const signIn = async (e) => {
-    let data = setSignIn(e);
-    userSignIn(data.email, data.password);
+  const navigate = useNavigate()
+  const signIn = async (e, navigate) => {
+    let data =  setSignIn(e);
+    await userSignIn(data.email, data.password);
     let token = checkToken();
     if (token) {
+      window.alert("Signed in. Welcome to GAINZZZ!")
+      navigate("/")
+    } else {
+      window.alert("Invalid Credentials")
+      navigate('/login_page')
     }
   };
   return (
@@ -36,7 +43,7 @@ export const LoginPage = () => {
           </Password1>
           <Text5>Forgot Password?</Text5>
           <LogIn>
-            <button onClick={(e) => signIn(e)}>sign in (auth) </button>
+            <button onClick={(e) => signIn(e, navigate)}>sign in</button>
           </LogIn>
         </form>
 
@@ -97,14 +104,6 @@ const Emailusername = styled.div`
   background-size: cover;
   background-image: url("https://file.rendit.io/n/N7yeFBmZ1IBYmgavcC80.svg");
 `;
-const Input = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
-  color: ${(props) => props.inputColor || "palevioletred"};
-  background: papayawhip;
-  border: none;
-  border-radius: 3px;
-`;
 const Password1 = styled.div`
   width: 305px;
   display: flex;
@@ -116,13 +115,6 @@ const Password1 = styled.div`
   padding: 25px 20px 30px 20px;
   background-size: cover;
   background-image: url("https://file.rendit.io/n/n6zs7xy3jJV49rIf4sr9.svg");
-`;
-const Text4 = styled.div`
-  width: 74px;
-  height: 20px;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 16px;
-  font-family: Inter;
 `;
 const Text5 = styled.div`
   width: 177px;
@@ -144,23 +136,10 @@ const LogIn = styled.div`
   background-size: cover;
   background-image: url("https://file.rendit.io/n/6enQPbX9LxYMBWz8Zx9k.svg");
 `;
-const loginButton = styled.div`
-  width: 73px;
-  height: 36px;
-  color: #ffffff;
-  font-size: 24px;
-  font-family: Inter;
-`;
 const Text7 = styled.div`
   height: 32px;
   margin: 0px 0px 0px 15px;
   font-size: 20px;
   font-family: Inter;
   white-space: pre-wrap;
-`;
-const signUpButton = styled.div`
-  display: contents;
-  color: #c03131;
-  font-size: 20px;
-  font-family: Inter;
 `;

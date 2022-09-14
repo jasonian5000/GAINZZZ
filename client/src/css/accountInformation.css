@@ -1,0 +1,11 @@
+.accountInformationForm {
+    margin-top: 400px;
+}
+
+.accountInformationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

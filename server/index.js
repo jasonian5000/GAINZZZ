@@ -1,7 +1,14 @@
 import express from 'express'
 import cors from 'cors'
 const app = express()
-import { userSignUp, userSignIn, userSignOut } from './supabase_server.js'
+import {
+    userSignUp,
+    trainerDropDown,
+    addAccountInformation,
+    userSignIn,
+    getUserFavorites,
+    addToFavorites,
+} from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
 const PORT = process.env.PORT || 3001
@@ -37,19 +44,72 @@ app.post('/sign_up', async (req, res) => {
 app.post('/sign_in', async (req, res) => {
     const { email, password } = req.body
     try {
-        await userSignIn(email, password)
-        res.send('sign in successful')
+        const sessionData = await userSignIn(email, password)
+        res.status(200).send(sessionData)
     } catch (error) {
         res.status(400).send(error)
     }
 })
 
-app.post('/sign_out', async (req, res) => {
+app.get('/trainer_dropdown', async (req, res) => {
     try {
-        userSignOut()
-        res.redirect("http://localhost:3000/")
-        res.send('sign out successful')
+        let ptTable = await trainerDropDown()
+        res.status(200).send(ptTable)
     } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/add_acct_info', async (req, res) => {
+    const {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID,
+    } = req.body
+    try {
+        addAccountInformation(
+            height,
+            gender,
+            weight,
+            bmi,
+            age,
+            bodyFat,
+            totalBurnedCalories,
+            personalTrainer,
+            userID
+        )
+        console.log('account updated')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/user_favorites', async (req, res) => {
+    const { userID } = req.body
+    try {
+        const favoritesIdList = await getUserFavorites(userID)
+        res.status(200).send(favoritesIdList)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/add_favorite', async (req, res) => {
+    const { userID, workoutID } = req.body
+    try {
+        await addToFavorites(userID, workoutID)
+        res.status(200).send("added to favorites")
+    } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 })

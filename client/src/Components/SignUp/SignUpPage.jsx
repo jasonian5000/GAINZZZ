@@ -1,10 +1,11 @@
 import React from "react";
-import sendSignUp from "../actions/signUp";
+import sendSignUp from "../../actions/signUp";
+import "../../css/signUpForm.css"
 
 const SignUpPage = () => {
   return (
     <>
-      <form>
+      <form className="signUpForm">
         <div>
           <div>
             <label htmlFor="firstName">First name</label>
