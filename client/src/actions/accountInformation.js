@@ -1,4 +1,4 @@
-import { trainerDropDown, addAccountInformation, getPersonalInfo } from "./supabase_client";
+import { trainerDropDown, addAcctInfo, getAcctInfo } from "./supabase_client";
 import { captureAccountInformation } from "./inputs";
 
 const getTrainers = async (dispatch) => {
@@ -7,8 +7,8 @@ const getTrainers = async (dispatch) => {
 };
 
 const getUserPersonalInfo = async (dispatch) => {
-  const personalInfo = await getPersonalInfo()
-  dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+  const personalInfo = await getAcctInfo()
+  await dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
 }
 
 const sendAccountInformation = async (e) => {
@@ -20,7 +20,7 @@ const sendAccountInformation = async (e) => {
   } else if (input.weight.length < 1) {
     window.alert("Please provide your weight");
   } else {
-    await addAccountInformation(
+    await addAcctInfo(
       input?.height,
       input?.gender,
       input?.weight,

@@ -86,11 +86,14 @@ export const trainerDropDown = async () => {
     }
 }
 
-export const getPersonalInfo = async () => {
+
+export const getPersonalInfo = async userID => {
     let { data: accountInfo, error } = await supabase
         .from('accountInfo')
-        .select('*')
+        .select('*, ptTable(ptName)')
+        .eq('userID', userID)
     if (accountInfo) {
+        console.log(accountInfo)
         return accountInfo
     } else {
         console.log(error)
@@ -98,25 +101,19 @@ export const getPersonalInfo = async () => {
 }
 
 export const userAddToFavorites = async () => {
-    const { data, error } = await supabase
-        .from('favoriteWorkouts')
-        .insert([{ 
-        created_at: new Date(), 
-        updated_at: new Date(),
-        workoutID: workoutID,
-        
-    }])
-        if (data) {
-            console.log(data)
-        } else {
-            console.log(error)
-        }
+    const { data, error } = await supabase.from('favoriteWorkouts').insert([
+        {
+            created_at: new Date(),
+            updated_at: new Date(),
+            workoutID: workoutID,
+        },
+    ])
+    if (data) {
+        console.log(data)
+    } else {
+        console.log(error)
+    }
 }
-
-// export const findUser = async () => {
-//   const { data } = await supabase.from("userTable").select();
-//   console.log(data);
-// };
 
 export const addAccountInformation = async (
     height,
@@ -149,6 +146,36 @@ export const addAccountInformation = async (
     } else console.log(error)
 }
 
+export const updateAcctInfo = async (
+    height,
+    gender,
+    weight,
+    bmi,
+    age,
+    bodyFat,
+    totalBurnedCalories,
+    personalTrainer,
+    userID
+) => {
+    const { data, error } = await supabase
+        .from('accountInfo')
+        .update({
+            updated_at: new Date(),
+            height: height,
+            gender: gender,
+            weight: weight,
+            bmi: bmi,
+            age: age,
+            totalBurnedCalories: totalBurnedCalories,
+            bodyFat: bodyFat,
+            personalTrainer: personalTrainer,
+        })
+        .eq('userID', userID)
+    if (data) {
+        console.log('account info: ', data)
+    } else console.log(error)
+}
+
 const getFavoritesIds = async userID => {
     const { data, error } = await supabase
         .from('favoriteWorkouts')
@@ -165,7 +192,7 @@ export const getUserFavorites = async userID => {
 }
 
 export const addToFavorites = async (userID, workoutID) => {
-  const { data, error } = await supabase.from('favoriteWorkouts').insert([
+    const { data, error } = await supabase.from('favoriteWorkouts').insert([
         {
             workoutID: workoutID,
             userID: userID,

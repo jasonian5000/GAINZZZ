@@ -1,3 +1,10 @@
+const getUserId = async () => {
+    let local = localStorage.getItem('supabase.auth.token')
+    const parsed = JSON.parse(local)
+    const userID = await parsed.currentSession.user.id
+    return await userID
+}
+
 export const userSignUp = async (
     firstName,
     lastName,
@@ -54,24 +61,24 @@ export const trainerDropDown = async () => {
 //     console.log(data)
 // }
 
-export const getPersonalInfo = async () => {
-    const personalInfo = await fetch("http://localhost:3001/account_information", {
-        method: "GET",
-    })
-    const getAccountInfo = personalInfo.json()
-    return getAccountInfo
+export const getAcctInfo = async () => {
+    const userID = await getUserId()
+    const body = { userID: userID }
+    const personalInfo = await fetch(
+        'http://localhost:3001/acct_info',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        }
+    )
+    const AcctInfo = personalInfo.json()
+    return AcctInfo
 }
 
-
-
-const getUserId = async () => {
-    let local = localStorage.getItem('supabase.auth.token')
-    const parsed = JSON.parse(local)
-    const userID = await parsed.currentSession.user.id
-    return await userID
-}
-
-export const addAccountInformation = async (
+export const addAcctInfo = async (
     height,
     gender,
     weight,
@@ -101,6 +108,38 @@ export const addAccountInformation = async (
         body: JSON.stringify(body),
     })
     console.log('user created')
+}
+
+export const updateAcctInfo = async (
+    height,
+    gender,
+    weight,
+    bmi,
+    age,
+    bodyFat,
+    totalBurnedCalories,
+    personalTrainer
+) => {
+    const userID = await getUserId()
+    const body = {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID: userID,
+    }
+    await fetch('http://localhost:3001/update_acct_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    console.log('user updated')
 }
 
 export const getUserFavorites = async () => {

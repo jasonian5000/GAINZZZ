@@ -9,6 +9,7 @@ import {
     getUserFavorites,
     addToFavorites,
     getPersonalInfo,
+    updateAcctInfo,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -62,9 +63,11 @@ app.get('/trainer_dropdown', async (req, res) => {
     }
 })
 
-app.get('/account_information', async (req, res) => {
+app.post('/acct_info', async (req, res) => {
+    const { userID } = req.body
+    console.log("this is userID", userID)
     try {
-        let accountInfo = await getPersonalInfo()
+        let accountInfo = await getPersonalInfo(userID)
         res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)
@@ -86,6 +89,37 @@ app.post('/add_acct_info', async (req, res) => {
     } = req.body
     try {
         addAccountInformation(
+            height,
+            gender,
+            weight,
+            bmi,
+            age,
+            bodyFat,
+            totalBurnedCalories,
+            personalTrainer,
+            userID
+        )
+        console.log('account updated')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/update_acct_info', async (req, res) => {
+    const {
+        height,
+        gender,
+        weight,
+        bmi,
+        age,
+        bodyFat,
+        totalBurnedCalories,
+        personalTrainer,
+        userID,
+    } = req.body
+    try {
+        updateAcctInfo(
             height,
             gender,
             weight,
