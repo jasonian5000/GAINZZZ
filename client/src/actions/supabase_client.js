@@ -54,6 +54,14 @@ export const trainerDropDown = async () => {
 //     console.log(data)
 // }
 
+export const getPersonalInfo = async () => {
+    const personalInfo = await fetch("http://localhost:3001/account_information", {
+        method: "GET",
+    })
+    const getAccountInfo = personalInfo.json()
+    return getAccountInfo
+}
+
 
 
 const getUserId = async () => {

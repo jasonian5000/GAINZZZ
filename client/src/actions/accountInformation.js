@@ -1,4 +1,4 @@
-import { trainerDropDown, addAccountInformation } from "./supabase_client";
+import { trainerDropDown, addAccountInformation, getPersonalInfo } from "./supabase_client";
 import { captureAccountInformation } from "./inputs";
 
 const getTrainers = async (dispatch) => {
@@ -6,7 +6,10 @@ const getTrainers = async (dispatch) => {
   dispatch({ type: "SET_TRAINER_DROP_DOWN_LIST", payload: trainerList });
 };
 
-
+const getUserPersonalInfo = async (dispatch) => {
+  const personalInfo = await getPersonalInfo()
+  dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+}
 
 const sendAccountInformation = async (e) => {
   const input = captureAccountInformation(e);
@@ -31,4 +34,4 @@ const sendAccountInformation = async (e) => {
   }
 };
 
-export { getTrainers, sendAccountInformation };
+export { getTrainers, sendAccountInformation, getUserPersonalInfo }

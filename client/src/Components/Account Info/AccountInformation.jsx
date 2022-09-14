@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrainers, sendAccountInformation } from "../../actions/accountInformation";
+import {
+    getUserPersonalInfo,
+    getTrainers,
+    sendAccountInformation,
+} from '../../actions/accountInformation'
 import "../../css/accountInformation.css"
 
 const AccountInformation = () => {
   const dispatch = useDispatch();
   const trainerDropDownList = useSelector((state) => state.trainers.trainerDropDownList);
+  const personalInformation = useSelector((state) => state.personalInfo.accountInfo)
   const [value, setValue] = useState(1);
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -14,12 +19,14 @@ const AccountInformation = () => {
 useEffect(
     () => {
       getTrainers(dispatch);
+      getUserPersonalInfo(dispatch)
     },
     // eslint-disable-next-line
     []
 );
 
   return (
+    <>
       <div className="accountInformationContainer">
           <div className="accountInformationForm">
               <h1 className="title">Please enter your personal information</h1>
@@ -112,6 +119,22 @@ useEffect(
               </div>
           </div>
       </div>
+      <div>
+        <h1>
+            Personal Information
+        </h1>
+        <div>
+            {personalInformation.map((info) => {
+                return (
+                    <p>Height: {info.height}</p>
+                )
+            })}
+        </div>
+        <div>
+
+        </div>
+      </div>
+    </>
   )
 };
 

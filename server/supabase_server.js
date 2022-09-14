@@ -86,6 +86,17 @@ export const trainerDropDown = async () => {
     }
 }
 
+export const getPersonalInfo = async () => {
+    let { data: accountInfo, error } = await supabase
+        .from('accountInfo')
+        .select('*')
+    if (accountInfo) {
+        return accountInfo
+    } else {
+        console.log(error)
+    }
+}
+
 export const userAddToFavorites = async () => {
     const { data, error } = await supabase
         .from('favoriteWorkouts')

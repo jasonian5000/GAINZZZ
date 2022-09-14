@@ -8,6 +8,7 @@ import {
     userSignIn,
     getUserFavorites,
     addToFavorites,
+    getPersonalInfo,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -55,6 +56,16 @@ app.get('/trainer_dropdown', async (req, res) => {
     try {
         let ptTable = await trainerDropDown()
         res.status(200).send(ptTable)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.get('/account_information', async (req, res) => {
+    try {
+        let accountInfo = await getPersonalInfo()
+        res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

@@ -63,6 +63,7 @@ const initialState = {
         'weighted',
         'wheel roller',
     ],
+    
 }
 
 export default initialState
