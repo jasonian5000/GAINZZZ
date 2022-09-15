@@ -13,15 +13,20 @@ export const userSignUp = async (
     password
 ) => {
     const body = { firstName, lastName, username, email, password }
-    await fetch('http://localhost:3001/sign_up', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    console.log( body,'user created')
-    alert("please confirm you email address to sign in")
+    try {
+        await fetch('http://localhost:3001/sign_up', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log(body, 'user created')
+        alert('please confirm you email address to sign in')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }
 
 export const userSignIn = async (email, password) => {
@@ -29,46 +34,68 @@ export const userSignIn = async (email, password) => {
         email,
         password,
     }
-    const sessionData = await fetch('http://localhost:3001/sign_in', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    const json = await sessionData.json()
-    const sendSession = {
-        currentSession: json.session,
-        expiresAt: json.session.expires_at,
+    try {
+        const sessionData = await fetch('http://localhost:3001/sign_in', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        const json = await sessionData.json()
+        const sendSession = {
+            currentSession: json.session,
+            expiresAt: json.session.expires_at,
+        }
+        localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
     }
-    localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
-}
-export const userSignOut = async navigate => {
-    localStorage.removeItem('supabase.auth.token')
-    window.alert('You have been signed out!')
-    navigate('/login_page')
 }
 
-export const trainerDropDown = async () => {
-    const trainers = await fetch('http://localhost:3001/trainer_dropdown', {
-        method: 'GET',
-    })
-    const ptTable = trainers.json()
-    return ptTable
+export const userSignOut = navigate => {
+    try {
+        localStorage.removeItem('supabase.auth.token')
+        window.alert('You have been signed out!')
+        navigate('/login_page')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
+}
+
+export const trainerInfo = async () => {
+    try {
+        const trainers = await fetch('http://localhost:3001/trainer_info', {
+            method: 'GET',
+        })
+        const ptTable = trainers.json()
+        return ptTable
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }
 
 export const getAcctInfo = async () => {
     const userID = await getUserId()
     const body = { userID: userID }
-    const personalInfo = await fetch('http://localhost:3001/acct_info', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    const AcctInfo = personalInfo.json()
-    return AcctInfo
+    try {
+        const personalInfo = await fetch('http://localhost:3001/acct_info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        const AcctInfo = personalInfo.json()
+        console.log(AcctInfo)
+        return AcctInfo
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }
 
 export const updateAcctInfo = async updatedInfo => {
@@ -77,40 +104,73 @@ export const updateAcctInfo = async updatedInfo => {
         updatedInfo,
         userID: userID,
     }
-    await fetch('http://localhost:3001/update_acct_info', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    console.log('user updated')
+    try {
+        await fetch('http://localhost:3001/update_acct_info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('user updated')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }
 
 export const getUserFavorites = async () => {
     const userID = await getUserId()
     const body = { userID: userID }
-    const response = await fetch('http://localhost:3001/user_favorites', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    const favoritesIdList = await response.json()
-    console.log(favoritesIdList)
-    return favoritesIdList
+    try {
+        const response = await fetch('http://localhost:3001/user_favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        const favoritesIdList = await response.json()
+        console.log(favoritesIdList)
+        return favoritesIdList
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }
 
-export const addToFavorites = async (workoutID) => {
+export const addToFavorites = async workoutID => {
     const userID = await getUserId()
     const body = { workoutID, userID }
-    await fetch('http://localhost:3001/add_favorite', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-    console.log('added to favorites')
+    try {
+        await fetch('http://localhost:3001/add_favorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('added to favorites')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
+}
+
+export const deleteAcct = async () => {
+    const userID = await getUserId()
+    const body = { userID: userID }
+    try {
+        await fetch('http://localhost:3001/delete_acct', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('accout deleted')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong')
+    }
 }

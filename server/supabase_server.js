@@ -33,17 +33,6 @@ export const userSignUp = async (
     await createAccount(userID, firstName, lastName, email, password, username)
 }
 
-export const userSignOut = async () => {
-    const { error, session } = await supabase.auth.signOut()
-    if (error) {
-        console.log(error)
-        return error
-    } else {
-        console.log('signed out')
-        window.alert('You have been signed out!')
-    }
-}
-
 const createAccount = async (
     userID,
     firstName,
@@ -71,12 +60,18 @@ const createAccount = async (
     }
 }
 
-export const sendSupabase = () => {
-    const result = { supabaseKey: supabaseKey, supabaseUrl: supabaseUrl }
-    return result
+export const userSignOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+        console.log(error)
+        return error
+    } else {
+        console.log('signed out')
+        window.alert('You have been signed out!')
+    }
 }
 
-export const trainerDropDown = async () => {
+export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
         .select('id,ptName,specialties,description,rates,testimonials')
@@ -143,4 +138,17 @@ export const addToFavorites = async (userID, workoutID) => {
     if (data) {
         console.log(data)
     } else console.log(error)
+}
+
+export const deleteUserData = async userID => {
+    const { data, error } = await supabase
+        .from('userTable')
+        .delete()
+        .eq('userID', userID)
+    console.log('User data deleted')
+}
+
+const deleteUserAcct = async userID => {
+    const { data: user, error } = await supabase.auth.api.deleteUser(userID)
+    console.log('User auth deleted')
 }

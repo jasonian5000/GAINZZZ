@@ -8,7 +8,7 @@ import {
     setFavWorkouts
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
-import {Card} from "@mui/material"
+// import {Card} from "@mui/material"
 import { Box, Stack } from '@mui/system'
 
 const AccountInformation = () => {
@@ -28,13 +28,6 @@ const AccountInformation = () => {
         },
         // eslint-disable-next-line
         []
-    )
-    // eslint-disable-next-line
-    useEffect(
-        () => {
-            setInfo(userInfo)
-            console.log(info)
-        }
     )
     return (
         <>
@@ -113,28 +106,28 @@ const AccountInformation = () => {
                             <>
                                 <p
                                     style={{
-                                        display: info.height ? 'block' : 'none',
+                                        display: info?.height ? 'block' : 'none',
                                     }}
                                 >
                                     Height: {info?.height}
                                 </p>
                                 <p
                                     style={{
-                                        display: info.weight ? 'block' : 'none',
+                                        display: info?.weight ? 'block' : 'none',
                                     }}
                                 >
                                     Weight: {info?.weight} pounds
                                 </p>
                                 <p
                                     style={{
-                                        display: info.gender ? 'block' : 'none',
+                                        display: info?.gender ? 'block' : 'none',
                                     }}
                                 >
                                     Gender: {info?.gender}
                                 </p>
                                 <p
                                     style={{
-                                        display: info.age ? 'block' : 'none',
+                                        display: info?.age ? 'block' : 'none',
                                     }}
                                 >
                                     Age: {info?.age} years old

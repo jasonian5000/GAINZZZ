@@ -1,8 +1,8 @@
-import { trainerDropDown } from "./supabase_client"
+import { trainerInfo } from "./supabase_client"
 
 
 const getPersonalTrainers = async (dispatch) => {
-    const trainers = await trainerDropDown()
+    const trainers = await trainerInfo()
     dispatch({ type: 'SET_TRAINER_INFO', payload: trainers})
 }
 

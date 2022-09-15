@@ -1,8 +1,8 @@
-import { trainerDropDown, getAcctInfo, updateAcctInfo, getUserFavorites } from './supabase_client'
+import { trainerInfo, getAcctInfo, updateAcctInfo, getUserFavorites } from './supabase_client'
 import { captureAcctInfo } from './inputs'
 
 const getTrainers = async dispatch => {
-    const trainerList = await trainerDropDown()
+    const trainerList = await trainerInfo()
     dispatch({ type: 'SET_TRAINER_DROP_DOWN_LIST', payload: trainerList })
 }
 

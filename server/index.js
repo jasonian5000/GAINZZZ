@@ -3,12 +3,13 @@ import cors from 'cors'
 const app = express()
 import {
     userSignUp,
-    trainerDropDown,
+    getTrainerInfo,
     userSignIn,
     getUserFavorites,
     addToFavorites,
     getAcctInfo,
     updateAcctInfo,
+    deleteUserData,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -32,7 +33,7 @@ app.post('/search', async (req, res) => {
 
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
-    console.log("Req.body", req.body)
+    console.log('Req.body', req.body)
     try {
         await userSignUp(firstName, lastName, username, email, password)
         res.send('account created')
@@ -52,9 +53,9 @@ app.post('/sign_in', async (req, res) => {
     }
 })
 
-app.get('/trainer_dropdown', async (req, res) => {
+app.get('/trainer_info', async (req, res) => {
     try {
-        let ptTable = await trainerDropDown()
+        let ptTable = await getTrainerInfo()
         res.status(200).send(ptTable)
     } catch (error) {
         console.log(error)
@@ -67,7 +68,6 @@ app.post('/acct_info', async (req, res) => {
     try {
         let accountInfo = await getAcctInfo(userID)
         res.status(200).send(accountInfo)
-        console.log("hit")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -79,6 +79,17 @@ app.post('/update_acct_info', async (req, res) => {
     try {
         await updateAcctInfo(updatedInfo, userID)
         console.log('account updated')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('delete_acct', async (req, res) => {
+    const { userID } = req.body
+    try {
+        await deleteUserData(userID)
+        res.status(200)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
