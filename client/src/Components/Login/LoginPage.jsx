@@ -44,7 +44,7 @@ export const LoginPage = () => {
                               <p>Stay Signed in?</p>
                               <input className="keepSignIn" type="checkbox" />
                           </div>
-                          <p>Forget Password?</p>
+                          <a href="">Forget Password?</a>
                       </div>
                       <button
                           id="submit-btn"
@@ -53,16 +53,28 @@ export const LoginPage = () => {
                           Sign In
                       </button>
                       <h3>
-                          Dont have an account? <span> <Link to="/sign_up">Register</Link> </span>
+                          Dont have an account?{' '}
+                          <span>
+                              {' '}
+                              <Link to="/sign_up">Register</Link>{' '}
+                          </span>
                       </h3>
                       <h1>OR</h1>
                       <ul className="iconList">
-                          <li ><FacebookIcon id="icon"/></li>
-                          <li ><InstagramIcon id="icon"/></li>
-                          <li ><TwitterIcon  id="icon"/></li>
-                          
+                          <li>
+                              <FacebookIcon id="icon" />
+                          </li>
+                          <li>
+                              <InstagramIcon id="icon" />
+                          </li>
+                          <li>
+                              <TwitterIcon id="icon" />
+                          </li>
                       </ul>
-                      <p className="bottom-form">Terms of Service | <img src={logo} className='form-logo'/></p>
+                      <p className="bottom-form">
+                          Terms of Service |{' '}
+                          <img src={logo} className="form-logo" />
+                      </p>
                   </form>
               </div>
           </div>

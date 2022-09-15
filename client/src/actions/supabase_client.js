@@ -120,3 +120,6 @@ export const addToFavorites = async (workoutID) => {
     })
     console.log('added to favorites')
 }
+
+
+

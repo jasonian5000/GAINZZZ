@@ -116,7 +116,7 @@ const AccountInformation = () => {
                         {favWorkouts?.map(workout => {
                             return (
                                 <>
-                                    <Stack>
+                                    <Stack key={workout.id}>
                                         <FavoritesCard workout={workout} />
                                     </Stack>
                                 </>

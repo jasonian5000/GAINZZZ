@@ -198,3 +198,8 @@ export const addToFavorites = async (userID, workoutID) => {
         console.log(data)
     } else console.log(error)
 }
+
+
+export const passwordRecover = async (email) => {
+    let { data, error } = await supabase.auth.api.resetPasswordForEmail(email)
+}

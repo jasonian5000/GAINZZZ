@@ -32,4 +32,5 @@ const sendSignUp = async (e) => {
   }
 };
 
+
 export default sendSignUp;
