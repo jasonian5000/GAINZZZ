@@ -126,7 +126,6 @@ export const updateAcctInfo = async updatedInfo => {
         console.log('user updated')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
     }
 }
 
@@ -161,7 +160,7 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-        console.log('added to favorites')
+       window.alert('added to favorites')
     } catch (error) {
         console.log(error)
         alert('something went wrong')
@@ -185,3 +184,6 @@ export const deleteAcct = async () => {
         alert('something went wrong')
     }
 }
+
+
+

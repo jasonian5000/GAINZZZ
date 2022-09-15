@@ -10,6 +10,7 @@ import {
 import '../../css/accountInformation.css'
 // import {Card} from "@mui/material"
 import { Box, Stack } from '@mui/system'
+import IndividualAccountInfo from './IndividualAccountInfo'
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
@@ -103,51 +104,7 @@ const AccountInformation = () => {
                 <div>
                     {info?.map(info => {
                         return (
-                            <>
-                                <p
-                                    style={{
-                                        display: info?.height
-                                            ? 'block'
-                                            : 'none',
-                                    }}
-                                >
-                                    Height: {info?.height}
-                                </p>
-                                <p
-                                    style={{
-                                        display: info?.weight
-                                            ? 'block'
-                                            : 'none',
-                                    }}
-                                >
-                                    Weight: {info?.weight} pounds
-                                </p>
-                                <p
-                                    style={{
-                                        display: info?.gender
-                                            ? 'block'
-                                            : 'none',
-                                    }}
-                                >
-                                    Gender: {info?.gender}
-                                </p>
-                                <p
-                                    style={{
-                                        display: info?.age ? 'block' : 'none',
-                                    }}
-                                >
-                                    Age: {info?.age} years old
-                                </p>
-                                <p
-                                    style={{
-                                        display: info?.ptTable?.ptName
-                                            ? 'block'
-                                            : 'none',
-                                    }}
-                                >
-                                    Personal Trainer: {info?.ptTable?.ptName}
-                                </p>
-                            </>
+                            <IndividualAccountInfo info={info}/>
                         )
                     })}
                 </div>
@@ -159,7 +116,7 @@ const AccountInformation = () => {
                         {favWorkouts?.map(workout => {
                             return (
                                 <>
-                                    <Stack>
+                                    <Stack key={workout.id}>
                                         <FavoritesCard workout={workout} />
                                     </Stack>
                                 </>

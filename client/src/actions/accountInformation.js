@@ -19,6 +19,7 @@ const setFavWorkouts = async (dispatch) => {
 const sendAcctInfo = async (e, info) => {
     const updatedInfo = captureAcctInfo(e, info)
     console.log(updatedInfo)
+    window.location.reload()
     await updateAcctInfo(updatedInfo)
     window.alert('Information added Succesfully')
 }
