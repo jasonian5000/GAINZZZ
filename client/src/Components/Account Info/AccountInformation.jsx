@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import FavoritesCard from "./FavoritesCard"
 import { useDispatch, useSelector } from 'react-redux'
 import {
     setAcctInfo,
     getTrainers,
     sendAcctInfo,
+    setFavWorkouts
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
+import {Card} from "@mui/material"
+import { Box, Stack } from '@mui/system'
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
-    const trainerDropDownList = useSelector(
-        state => state.trainers.trainerDropDownList
-    )
-    const userInfo = useSelector(state => state.personalInfo.accountInfo[0])
-    const [info, setInfo] = useState(userInfo)
+    const trainerDropDownList = useSelector(state => state.trainers.trainerDropDownList)
+    const info = useSelector((state) => state.personalInfo.accountInfo)
+    const favWorkouts = useSelector((state) => state.favoriteWorkouts.favoriteWorkouts)
     const [value, setValue] = useState(1)
     const handleChange = e => {
         setValue(e.target.value)
@@ -22,6 +24,7 @@ const AccountInformation = () => {
         () => {
             getTrainers(dispatch)
             setAcctInfo(dispatch)
+            setFavWorkouts(dispatch)
         },
         // eslint-disable-next-line
         []
@@ -103,43 +106,67 @@ const AccountInformation = () => {
                 </div>
             </div>
             <div>
-                <h1>Personal Information</h1>
+                <h1>Account Information</h1>
                 <div>
-                    <p
-                        style={{
-                            display: info?.height ? 'block' : 'none',
-                        }}
-                    >
-                        Height: {info?.height}
-                    </p>
-                    <p
-                        style={{
-                            display: info.weight ? 'block' : 'none',
-                        }}
-                    >
-                        Weight: {info?.weight} pounds
-                    </p>
-                    <p
-                        style={{
-                            display: info?.gender ? 'block' : 'none',
-                        }}
-                    >
-                        Gender: {info?.gender}
-                    </p>
-                    <p
-                        style={{
-                            display: info?.age ? 'block' : 'none',
-                        }}
-                    >
-                        Age: {info?.age} years old
-                    </p>
-                    <p
-                        style={{
-                            display: info?.personalTrainer ? 'block' : 'none',
-                        }}
-                    >
-                        Personal Trainer: {info?.ptTable?.ptName}
-                    </p>
+                    {info?.map(info => {
+                        return (
+                            <>
+                                <p
+                                    style={{
+                                        display: info.height ? 'block' : 'none',
+                                    }}
+                                >
+                                    Height: {info?.height}
+                                </p>
+                                <p
+                                    style={{
+                                        display: info.weight ? 'block' : 'none',
+                                    }}
+                                >
+                                    Weight: {info?.weight} pounds
+                                </p>
+                                <p
+                                    style={{
+                                        display: info.gender ? 'block' : 'none',
+                                    }}
+                                >
+                                    Gender: {info?.gender}
+                                </p>
+                                <p
+                                    style={{
+                                        display: info.age ? 'block' : 'none',
+                                    }}
+                                >
+                                    Age: {info?.age} years old
+                                </p>
+                                <p
+                                    style={{
+                                        display: info.personalTrainer
+                                            ? 'block'
+                                            : 'none',
+                                    }}
+                                >
+                                    Personal Trainer: {info?.ptTable?.ptName}
+                                </p>
+                            </>
+                        )
+                    })}
+                </div>
+            </div>
+            <div>
+                <h1>Your Favorite Workouts</h1>
+                <div>
+                    <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
+                        {favWorkouts?.map(workout => {
+                            return (
+                                <>
+                                    <Stack>
+                                        <FavoritesCard workout={workout} />
+                                    </Stack>
+                                </>
+                            )
+                        })}
+                    </Box>
                 </div>
             </div>
         </>
