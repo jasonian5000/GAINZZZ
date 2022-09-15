@@ -27,15 +27,14 @@ const RightArrow = () => {
   );
 };
 
-const HorizontalScrollBar = ({ bodyPart, setBodyPart }) => {
+const HorizontalScrollBar = () => {
   
   const bodyPartList = useSelector((state)=> state.search?.bodyPartList)
   return (
-    <ScrollMenu LeftArrow = {LeftArrow} RightArrow={RightArrow}
-    className='SCROLL-MENU'>
-      {bodyPartList?.map((item) => (
-        <Box key={item.id || item} itemID={item.id || item} title={item.id || item} m="0 40px">
-          <BodyPartCard bodypart={bodyPart} setBodyPart={setBodyPart} item={item} />
+    <ScrollMenu LeftArrow = {LeftArrow} RightArrow={RightArrow}>
+      {bodyPartList?.map((bodyPart) => (
+        <Box key={bodyPart.id || bodyPart} bodypartid={bodyPart.id || bodyPart} title={bodyPart.id || bodyPart} m="0 40px">
+          <BodyPartCard bodyPart={bodyPart} />
         </Box>
       ))}
     </ScrollMenu>
