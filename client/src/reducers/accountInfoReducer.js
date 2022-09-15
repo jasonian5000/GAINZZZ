@@ -1,5 +1,5 @@
 const initialState = {
-    accountInfo: {},
+    accountInfo: [],
 }
 
 const accountInformationReducer = (state = initialState, action) =>{
