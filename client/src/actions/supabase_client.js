@@ -9,7 +9,7 @@ export const getAccessToken = async () => {
     let local = localStorage.getItem('supabase.auth.token')
     const parsed = JSON.parse(local)
     const access_token = await parsed.currentSession.access_token
-    return await access_token 
+    return await access_token
 }
 
 export const userSignUp = async (
@@ -88,9 +88,8 @@ export const trainerInfo = async () => {
 export const getAcctInfo = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
-    console.log("access token: ", access_token)
-    const body = { userID,
-    access_token }
+    console.log('access token: ', access_token)
+    const body = { userID, access_token }
     console.log(body)
     try {
         const personalInfo = await fetch('http://localhost:3001/acct_info', {
@@ -111,9 +110,11 @@ export const getAcctInfo = async () => {
 
 export const updateAcctInfo = async updatedInfo => {
     const userID = await getUserId()
+    const access_token = await getAccessToken()
     const body = {
         updatedInfo,
-        userID: userID,
+        userID,
+        access_token,
     }
     try {
         await fetch('http://localhost:3001/update_acct_info', {
@@ -131,9 +132,10 @@ export const updateAcctInfo = async updatedInfo => {
 
 export const getUserFavorites = async () => {
     const userID = await getUserId()
-    const body = { userID: userID }
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
     try {
-        const response = await fetch('http://localhost:3001/user_favorites', {
+        const response = await fetch('http://localhost:3001/get_favorites', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -151,7 +153,8 @@ export const getUserFavorites = async () => {
 
 export const addToFavorites = async workoutID => {
     const userID = await getUserId()
-    const body = { workoutID, userID }
+    const access_token = await getAccessToken()
+    const body = { workoutID, userID, access_token }
     try {
         await fetch('http://localhost:3001/add_favorite', {
             method: 'POST',
@@ -160,7 +163,7 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-       window.alert('added to favorites')
+        window.alert('added to favorites')
     } catch (error) {
         console.log(error)
         alert('something went wrong')
@@ -184,6 +187,3 @@ export const deleteAcct = async () => {
         alert('something went wrong')
     }
 }
-
-
-

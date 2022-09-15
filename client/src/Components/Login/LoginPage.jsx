@@ -44,7 +44,7 @@ export const LoginPage = () => {
                               <p>Stay Signed in?</p>
                               <input className="keepSignIn" type="checkbox" />
                           </div>
-                          <a href="">Forget Password?</a>
+                          <a href="www.google.com">Forget Password?</a>
                       </div>
                       <button
                           id="submit-btn"

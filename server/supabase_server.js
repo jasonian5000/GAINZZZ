@@ -86,52 +86,70 @@ export const getAcctInfo = async (userID, access_token) => {
     return accountInfo
 }
 
-export const updateAcctInfo = async (updatedInfo, userID) => {
+export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     const { height, weight, gender, age, personalTrainer } = updatedInfo
-    const { data, error } = await supabase
-        .from('userTable')
-        .update({
-            updated_at: new Date(),
-            height: height,
-            gender: gender,
-            weight: weight,
-            age: age,
-            personalTrainer: personalTrainer,
+    console.log("server updated info:", updatedInfo)
+    try {
+        let data = await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+            method: 'POST',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
+            },
+            body: JSON.stringify({
+                updated_at: new Date(),
+                height: height,
+                gender: gender,
+                weight: weight,
+                age: age,
+                personalTrainer: personalTrainer,
+            }),
         })
-        .eq('userID', userID)
-    if (data) {
-        console.log('account info updated')
-    } else console.log(error)
+        let json = await data.json()
+        console.log("the problem: ", json)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-
-
-const getFavoritesIds = async userID => {
-    const { data, error } = await supabase
-        .from('favoriteWorkouts')
-        .select()
-        .eq('userID', userID)
-    return data
+const getFavoritesIds = async (userID, access_token) => {
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/favoriteWorkouts?select=workoutID&userID=eq.${userID}`,
+        {
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let json = await data.json()
+    return json
 }
 
-export const getUserFavorites = async userID => {
-    const tableData = await getFavoritesIds(userID)
+export const getUserFavorites = async (userID, access_token) => {
+    const tableData = await getFavoritesIds(userID, access_token)
     const favoriteExercises = getFavoriteExercises(tableData)
     return favoriteExercises
 }
 
-export const addToFavorites = async (userID, workoutID) => {
-    const { data, error } = await supabase.from('favoriteWorkouts').insert([
-        {
+export const addToFavorites = async (userID, workoutID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts`, {
+        method: 'POST',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
             created_at: new Date(),
             updated_at: new Date(),
             workoutID: workoutID,
             userID: userID,
-        },
-    ])
-    if (data) {
-        console.log(data)
-    } else console.log(error)
+        }),
+    })
 }
 
 export const deleteUserData = async userID => {

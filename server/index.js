@@ -76,9 +76,9 @@ app.post('/acct_info', async (req, res) => {
 })
 
 app.post('/update_acct_info', async (req, res) => {
-    const { updatedInfo, userID } = req.body
+    const { updatedInfo, userID, access_token } = req.body
     try {
-        await updateAcctInfo(updatedInfo, userID)
+        await updateAcctInfo(updatedInfo, userID, access_token)
         console.log('account updated')
     } catch (error) {
         console.log(error)
@@ -86,21 +86,21 @@ app.post('/update_acct_info', async (req, res) => {
     }
 })
 
-app.post('delete_acct', async (req, res) => {
-    const { userID } = req.body
-    try {
-        await deleteUserData(userID)
-        res.status(200)
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(error)
-    }
-})
+// app.post('/delete_acct', async (req, res) => {
+//     const { userID } = req.body
+//     try {
+//         await deleteUserData(userID)
+//         res.status(200)
+//     } catch (error) {
+//         console.log(error)
+//         res.status(400).send(error)
+//     }
+// })
 
-app.post('/user_favorites', async (req, res) => {
-    const { userID } = req.body
+app.post('/get_favorites', async (req, res) => {
+    const { userID, access_token } = req.body
     try {
-        const favoritesIdList = await getUserFavorites(userID)
+        const favoritesIdList = await getUserFavorites(userID, access_token)
         res.status(200).send(favoritesIdList)
     } catch (error) {
         console.log(error)
@@ -109,20 +109,15 @@ app.post('/user_favorites', async (req, res) => {
 })
 
 app.post('/add_favorite', async (req, res) => {
-    const { userID, workoutID } = req.body
+    const { userID, workoutID, access_token } = req.body
     try {
-        await addToFavorites(userID, workoutID)
+        await addToFavorites(userID, workoutID, access_token)
         res.status(200).send('added to favorites')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
     }
 })
-
-
-
-
-
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`)

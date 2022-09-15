@@ -12,16 +12,17 @@ export const captureUserSignUp = (e) => {
 
 export const captureAcctInfo = (e, info) => {
   e.preventDefault()
+  
   let height =
-      e.target.form[0].value === '' ? info.height : e.target.form[0].value
+      e.target.form[0].value === '' ? info[0].height : e.target.form[0].value
   let weight =
-      e.target.form[1].value === '' ? info.weight : e.target.form[1].value
+      e.target.form[1].value === '' ? info[0].weight : e.target.form[1].value
     let gender =
-        e.target.form[2].value === '' ? info.gender : e.target.form[2].value
+        e.target.form[2].value === '' ? info[0].gender : e.target.form[2].value
   let age =
-      e.target.form[3].value === '' ? info.age : e.target.form[3].value
+      e.target.form[3].value === '' ? info[0].age : e.target.form[3].value
   let personalTrainer =
-      e.target.form[4].value === '' ? info.personalTrainer : e.target.form[4].value
+      e.target.form[4].value === '' ? info[0].personalTrainer : e.target.form[4].value
   let input = {
       height,
       weight,
