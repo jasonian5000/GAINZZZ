@@ -33,18 +33,6 @@ export const userSignUp = async (
     await createAccount(userID, firstName, lastName, email, password, username)
 }
 
-export const userSignOut = async () => {
-    const { error, session } = await supabase.auth.signOut()
-    if (error) {
-        console.log(error)
-        return error
-    } else {
-        console.log(session)
-        console.log('signed out')
-        window.alert('You have been signed out!')
-    }
-}
-
 const createAccount = async (
     userID,
     firstName,
@@ -53,7 +41,6 @@ const createAccount = async (
     password,
     username
 ) => {
-    console.log( "firstName: ",firstName, "last name",lastName, "email",email, "password",password, "username",username)
     const { data, error } = await supabase.from('userTable').insert([
         {
             created_at: new Date(),
@@ -66,7 +53,6 @@ const createAccount = async (
             userID: userID,
         },
     ])
-    console.log("data", data)
     if (data) {
         return data
     } else {
@@ -74,12 +60,18 @@ const createAccount = async (
     }
 }
 
-export const sendSupabase = () => {
-    const result = { supabaseKey: supabaseKey, supabaseUrl: supabaseUrl }
-    return result
+export const userSignOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+        console.log(error)
+        return error
+    } else {
+        console.log('signed out')
+        window.alert('You have been signed out!')
+    }
 }
 
-export const trainerDropDown = async () => {
+export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
         .select('id,ptName,specialties,description,rates,testimonials')
@@ -90,72 +82,20 @@ export const trainerDropDown = async () => {
     }
 }
 
-
 export const getAcctInfo = async userID => {
     let { data: accountInfo, error } = await supabase
         .from('userTable')
         .select('*, ptTable(ptName)')
         .eq('userID', userID)
     if (accountInfo) {
-        console.log(accountInfo)
         return accountInfo
     } else {
         console.log(error)
     }
 }
 
-export const userAddToFavorites = async () => {
-    const { data, error } = await supabase.from('favoriteWorkouts').insert([
-        {
-            created_at: new Date(),
-            updated_at: new Date(),
-            workoutID: workoutID,
-        },
-    ])
-    if (data) {
-        console.log(data)
-    } else {
-        console.log(error)
-    }
-}
-
-// export const addAccountInformation = async (
-//     height,
-//     gender,
-//     weight,
-//     bmi,
-//     age,
-//     bodyFat,
-//     totalBurnedCalories,
-//     personalTrainer,
-//     userID
-// ) => {
-//     const { data, error } = await supabase.from('accountInfo').insert([
-//         {
-//             created_at: new Date(),
-//             updated_at: new Date(),
-//             height: height,
-//             gender: gender,
-//             weight: weight,
-//             bmi: bmi,
-//             age: age,
-//             totalBurnedCalories: totalBurnedCalories,
-//             bodyFat: bodyFat,
-//             personalTrainer: personalTrainer,
-//             userID: userID,
-//         },
-//     ])
-//     if (data) {
-//         console.log('account info: ', data)
-//     } else console.log(error)
-// }
-
-export const updateAcctInfo = async (
-    updatedInfo,
-    userID
-) => {
-    console.log(updatedInfo)
-    const { height, weight, gender, age, personalTrainer} = updatedInfo
+export const updateAcctInfo = async (updatedInfo, userID) => {
+    const { height, weight, gender, age, personalTrainer } = updatedInfo
     const { data, error } = await supabase
         .from('userTable')
         .update({
@@ -168,7 +108,7 @@ export const updateAcctInfo = async (
         })
         .eq('userID', userID)
     if (data) {
-        console.log('account info: ', data)
+        console.log('account info updated')
     } else console.log(error)
 }
 
@@ -178,7 +118,6 @@ const getFavoritesIds = async userID => {
         .select()
         .eq('userID', userID)
     return data
-    console.log(data)
 }
 
 export const getUserFavorites = async userID => {
@@ -190,6 +129,8 @@ export const getUserFavorites = async userID => {
 export const addToFavorites = async (userID, workoutID) => {
     const { data, error } = await supabase.from('favoriteWorkouts').insert([
         {
+            created_at: new Date(),
+            updated_at: new Date(),
             workoutID: workoutID,
             userID: userID,
         },
@@ -199,7 +140,15 @@ export const addToFavorites = async (userID, workoutID) => {
     } else console.log(error)
 }
 
+export const deleteUserData = async userID => {
+    const { data, error } = await supabase
+        .from('userTable')
+        .delete()
+        .eq('userID', userID)
+    console.log('User data deleted')
+}
 
-export const passwordRecover = async (email) => {
-    let { data, error } = await supabase.auth.api.resetPasswordForEmail(email)
+const deleteUserAcct = async userID => {
+    const { data: user, error } = await supabase.auth.api.deleteUser(userID)
+    console.log('User auth deleted')
 }
