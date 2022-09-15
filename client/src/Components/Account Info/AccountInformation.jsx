@@ -8,7 +8,6 @@ import {
     setFavWorkouts
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
-import {Card} from "@mui/material"
 import { Box, Stack } from '@mui/system'
 
 const AccountInformation = () => {

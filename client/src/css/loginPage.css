@@ -4,6 +4,8 @@
     height: 100vh;
     background: url('../assets/workoutLady3.jpg');
     width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .form-container{
     margin-top: 20vh;

@@ -1,7 +1,6 @@
 import { Box, Pagination, Stack } from "@mui/material";
 import React from "react";
 import HorizontalScrollBar from "./HorizontalScrollBar";
-import { useState } from "react";
 import "../../css/exerciseDetail.css";
 import SearchBar from "./SearchBar";
 import ExerciseCard from "./ExerciseCard";
