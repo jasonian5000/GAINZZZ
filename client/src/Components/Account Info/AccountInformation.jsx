@@ -106,21 +106,27 @@ const AccountInformation = () => {
                             <>
                                 <p
                                     style={{
-                                        display: info?.height ? 'block' : 'none',
+                                        display: info?.height
+                                            ? 'block'
+                                            : 'none',
                                     }}
                                 >
                                     Height: {info?.height}
                                 </p>
                                 <p
                                     style={{
-                                        display: info?.weight ? 'block' : 'none',
+                                        display: info?.weight
+                                            ? 'block'
+                                            : 'none',
                                     }}
                                 >
                                     Weight: {info?.weight} pounds
                                 </p>
                                 <p
                                     style={{
-                                        display: info?.gender ? 'block' : 'none',
+                                        display: info?.gender
+                                            ? 'block'
+                                            : 'none',
                                     }}
                                 >
                                     Gender: {info?.gender}
@@ -134,7 +140,7 @@ const AccountInformation = () => {
                                 </p>
                                 <p
                                     style={{
-                                        display: info.personalTrainer
+                                        display: info?.ptTable?.ptName
                                             ? 'block'
                                             : 'none',
                                     }}

@@ -5,6 +5,13 @@ export const getUserId = async () => {
     return await userID
 }
 
+export const getAccessToken = async () => {
+    let local = localStorage.getItem('supabase.auth.token')
+    const parsed = JSON.parse(local)
+    const access_token = await parsed.currentSession.access_token
+    return await access_token 
+}
+
 export const userSignUp = async (
     firstName,
     lastName,
@@ -80,7 +87,11 @@ export const trainerInfo = async () => {
 
 export const getAcctInfo = async () => {
     const userID = await getUserId()
-    const body = { userID: userID }
+    const access_token = await getAccessToken()
+    console.log("access token: ", access_token)
+    const body = { userID,
+    access_token }
+    console.log(body)
     try {
         const personalInfo = await fetch('http://localhost:3001/acct_info', {
             method: 'POST',
@@ -89,7 +100,7 @@ export const getAcctInfo = async () => {
             },
             body: JSON.stringify(body),
         })
-        const AcctInfo = personalInfo.json()
+        const AcctInfo = await personalInfo.json()
         console.log(AcctInfo)
         return AcctInfo
     } catch (error) {

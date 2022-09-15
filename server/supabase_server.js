@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
 import { getFavoriteExercises } from './searchExercises_server.js'
@@ -60,17 +61,6 @@ const createAccount = async (
     }
 }
 
-export const userSignOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-        console.log(error)
-        return error
-    } else {
-        console.log('signed out')
-        window.alert('You have been signed out!')
-    }
-}
-
 export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
@@ -82,16 +72,18 @@ export const getTrainerInfo = async () => {
     }
 }
 
-export const getAcctInfo = async userID => {
-    let { data: accountInfo, error } = await supabase
-        .from('userTable')
-        .select('*, ptTable(ptName)')
-        .eq('userID', userID)
-    if (accountInfo) {
-        return accountInfo
-    } else {
-        console.log(error)
-    }
+export const getAcctInfo = async (userID, access_token) => {
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/userTable?select=height,weight,gender,age,ptTable(ptName)&userID=eq.${userID}`,
+        {
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let accountInfo = await data.json()
+    return accountInfo
 }
 
 export const updateAcctInfo = async (updatedInfo, userID) => {
@@ -111,6 +103,8 @@ export const updateAcctInfo = async (updatedInfo, userID) => {
         console.log('account info updated')
     } else console.log(error)
 }
+
+
 
 const getFavoritesIds = async userID => {
     const { data, error } = await supabase

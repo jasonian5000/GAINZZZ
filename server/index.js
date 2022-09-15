@@ -64,9 +64,10 @@ app.get('/trainer_info', async (req, res) => {
 })
 
 app.post('/acct_info', async (req, res) => {
-    const { userID } = req.body
+    const { userID, access_token } = req.body
     try {
-        let accountInfo = await getAcctInfo(userID)
+        let accountInfo = await getAcctInfo(userID, access_token)
+        console.log(accountInfo)
         res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)
