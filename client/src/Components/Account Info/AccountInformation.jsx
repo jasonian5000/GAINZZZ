@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
     setAcctInfo,
     getTrainers,
-    sendAcctInfo
+    sendAcctInfo,
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 
@@ -12,8 +12,8 @@ const AccountInformation = () => {
     const trainerDropDownList = useSelector(
         state => state.trainers.trainerDropDownList
     )
-    const info = useSelector(state => state.personalInfo.accountInfo[0])
-    console.log(info)
+    const userInfo = useSelector(state => state.personalInfo.accountInfo[0])
+    const [info, setInfo] = useState(userInfo)
     const [value, setValue] = useState(1)
     const handleChange = e => {
         setValue(e.target.value)
@@ -25,6 +25,13 @@ const AccountInformation = () => {
         },
         // eslint-disable-next-line
         []
+    )
+    // eslint-disable-next-line
+    useEffect(
+        () => {
+            setInfo(userInfo)
+            console.log(info)
+        }
     )
     return (
         <>
@@ -88,7 +95,9 @@ const AccountInformation = () => {
                                     </select>
                                 </label>
                             </div>
-                            <button onClick={(e) => sendAcctInfo(e, info)}>Update</button>
+                            <button onClick={e => sendAcctInfo(e, info)}>
+                                Update
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -98,7 +107,7 @@ const AccountInformation = () => {
                 <div>
                     <p
                         style={{
-                            display: info.height ? 'block' : 'none',
+                            display: info?.height ? 'block' : 'none',
                         }}
                     >
                         Height: {info?.height}
@@ -112,21 +121,21 @@ const AccountInformation = () => {
                     </p>
                     <p
                         style={{
-                            display: info.gender ? 'block' : 'none',
+                            display: info?.gender ? 'block' : 'none',
                         }}
                     >
                         Gender: {info?.gender}
                     </p>
                     <p
                         style={{
-                            display: info.age ? 'block' : 'none',
+                            display: info?.age ? 'block' : 'none',
                         }}
                     >
                         Age: {info?.age} years old
                     </p>
                     <p
                         style={{
-                            display: info.personalTrainer ? 'block' : 'none',
+                            display: info?.personalTrainer ? 'block' : 'none',
                         }}
                     >
                         Personal Trainer: {info?.ptTable?.ptName}

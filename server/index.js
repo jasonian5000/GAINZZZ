@@ -23,7 +23,6 @@ app.post('/search', async (req, res) => {
     const { searchInput } = req.body
     try {
         let searchResults = searchExercises(searchInput)
-        console.log(searchResults)
         res.status(200).send(searchResults)
     } catch (error) {
         console.log(error)
@@ -65,46 +64,15 @@ app.get('/trainer_dropdown', async (req, res) => {
 
 app.post('/acct_info', async (req, res) => {
     const { userID } = req.body
-    console.log('this is userID', userID)
     try {
         let accountInfo = await getAcctInfo(userID)
         res.status(200).send(accountInfo)
+        console.log("hit")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
     }
 })
-
-// app.post('/add_acct_info', async (req, res) => {
-//     const {
-//         height,
-//         gender,
-//         weight,
-//         bmi,
-//         age,
-//         bodyFat,
-//         totalBurnedCalories,
-//         personalTrainer,
-//         userID,
-//     } = req.body
-//     try {
-//         addAccountInformation(
-//             height,
-//             gender,
-//             weight,
-//             bmi,
-//             age,
-//             bodyFat,
-//             totalBurnedCalories,
-//             personalTrainer,
-//             userID
-//         )
-//         console.log('account updated')
-//     } catch (error) {
-//         console.log(error)
-//         res.status(400).send(error)
-//     }
-// })
 
 app.post('/update_acct_info', async (req, res) => {
     const { updatedInfo, userID } = req.body

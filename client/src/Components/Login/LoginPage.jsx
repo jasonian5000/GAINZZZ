@@ -62,7 +62,7 @@ export const LoginPage = () => {
                           <li ><TwitterIcon  id="icon"/></li>
                           
                       </ul>
-                      <p className="bottom-form">Terms of Service | <img src={logo} className='form-logo'/></p>
+                      <p className="bottom-form">Terms of Service | <img src={logo} alt="logo" className='form-logo'/></p>
                   </form>
               </div>
           </div>

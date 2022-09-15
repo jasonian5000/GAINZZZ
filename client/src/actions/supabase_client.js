@@ -1,4 +1,4 @@
-const getUserId = async () => {
+export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
     const parsed = JSON.parse(local)
     const userID = await parsed.currentSession.user.id
@@ -21,6 +21,7 @@ export const userSignUp = async (
         body: JSON.stringify(body),
     })
     console.log( body,'user created')
+    alert("please confirm you email address to sign in")
 }
 
 export const userSignIn = async (email, password) => {
@@ -36,8 +37,6 @@ export const userSignIn = async (email, password) => {
         body: JSON.stringify(body),
     })
     const json = await sessionData.json()
-    // make if else statement that tells someone to 
-    // confirm email after they have signed up 
     const sendSession = {
         currentSession: json.session,
         expiresAt: json.session.expires_at,
@@ -57,11 +56,6 @@ export const trainerDropDown = async () => {
     const ptTable = trainers.json()
     return ptTable
 }
-
-// export const findUser = async () => {
-//     const { data } = await supabase.from('userTable').select()
-//     console.log(data)
-// }
 
 export const getAcctInfo = async () => {
     const userID = await getUserId()
