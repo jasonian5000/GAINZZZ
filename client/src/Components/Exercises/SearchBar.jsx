@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { searchExercises } from "../../actions/searchExercises_client";
+import { resetPages } from "../../actions/pageAction";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,10 @@ const SearchBar = () => {
             position: "absolute",
             right: "0",
           }}
-          onClick={() => searchExercises(searchInput, dispatch)}
+          onClick={() => {
+            searchExercises(searchInput, dispatch);
+            resetPages(dispatch)
+          }}
         >
           Search
         </Button>
