@@ -33,8 +33,9 @@ const SearchBar = () => {
           height="76px"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
-          onKeyPress={(e) =>
+          onKeyPress={(e) => {
             handleKeyPress(e, searchInput, dispatch)
+            resetPages(dispatch)}
           }
           placeholder="Deadlift"
           type="text"
