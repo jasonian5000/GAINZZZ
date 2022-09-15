@@ -89,7 +89,7 @@ export const getAcctInfo = async () => {
             },
             body: JSON.stringify(body),
         })
-        const AcctInfo = personalInfo.json()
+        const AcctInfo = await personalInfo.json()
         console.log(AcctInfo)
         return AcctInfo
     } catch (error) {
@@ -115,7 +115,6 @@ export const updateAcctInfo = async updatedInfo => {
         console.log('user updated')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
     }
 }
 
@@ -150,7 +149,7 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-        console.log('added to favorites')
+       window.alert('added to favorites')
     } catch (error) {
         console.log(error)
         alert('something went wrong')
