@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
 import '../../css/bodyPartCard.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { searchExercises } from '../../actions/searchExercises_client';
 import { resetPages } from '../../actions/pageAction';
 

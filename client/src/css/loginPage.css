@@ -2,8 +2,12 @@
 .login-Container{
     display: flex;
     height: 100vh;
-    background: url('../assets/workoutLady3.jpg');
+    background: url('../assets/workoutLady3.2.jpg');
     width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 0;
 }
 .form-container{
     margin-top: 20vh;
