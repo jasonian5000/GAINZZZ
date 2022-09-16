@@ -10,6 +10,7 @@ import {
     getAcctInfo,
     updateAcctInfo,
     deleteUserData,
+    removeFavorite,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -67,7 +68,6 @@ app.post('/acct_info', async (req, res) => {
     const { userID, access_token } = req.body
     try {
         let accountInfo = await getAcctInfo(userID, access_token)
-        console.log(accountInfo)
         res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)
@@ -79,23 +79,23 @@ app.post('/update_acct_info', async (req, res) => {
     const { updatedInfo, userID, access_token } = req.body
     try {
         await updateAcctInfo(updatedInfo, userID, access_token)
-        console.log('account updated')
+        console.log('update acct route complete')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
     }
 })
 
-// app.post('/delete_acct', async (req, res) => {
-//     const { userID } = req.body
-//     try {
-//         await deleteUserData(userID)
-//         res.status(200)
-//     } catch (error) {
-//         console.log(error)
-//         res.status(400).send(error)
-//     }
-// })
+app.post('/delete_acct', async (req, res) => {
+    const { userID, access_token } = req.body
+    try {
+        await deleteUserData(userID, access_token)
+        res.status(200)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
 
 app.post('/get_favorites', async (req, res) => {
     const { userID, access_token } = req.body
@@ -113,6 +113,17 @@ app.post('/add_favorite', async (req, res) => {
     try {
         await addToFavorites(userID, workoutID, access_token)
         res.status(200).send('added to favorites')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/remove_favorite', async (req, res) => {
+    const { userID, workoutID, access_token } = req.body
+    try {
+        await removeFavorite(userID, workoutID, access_token)
+        res.status(200).send('remove favorite route hit')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

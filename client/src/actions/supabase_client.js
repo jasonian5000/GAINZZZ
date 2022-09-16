@@ -32,7 +32,7 @@ export const userSignUp = async (
         alert('please confirm you email address to sign in')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong creating new user')
     }
 }
 
@@ -57,7 +57,7 @@ export const userSignIn = async (email, password) => {
         localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong signing in user')
     }
 }
 
@@ -68,7 +68,7 @@ export const userSignOut = navigate => {
         navigate('/login_page')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong signing out user')
     }
 }
 
@@ -81,7 +81,7 @@ export const trainerInfo = async () => {
         return ptTable
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong getting trainer info')
     }
 }
 
@@ -104,7 +104,7 @@ export const getAcctInfo = async () => {
         return AcctInfo
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong getting account info')
     }
 }
 
@@ -127,6 +127,7 @@ export const updateAcctInfo = async updatedInfo => {
         console.log('user updated')
     } catch (error) {
         console.log(error)
+        alert('something went wrong updating account info')
     }
 }
 
@@ -147,7 +148,7 @@ export const getUserFavorites = async () => {
         return favoritesIdList
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong getting favorite workouts')
     }
 }
 
@@ -166,13 +167,33 @@ export const addToFavorites = async workoutID => {
         window.alert('added to favorites')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong adding favorite workout')
+    }
+}
+
+export const removeFavorite = async (workoutID) => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = { userID, workoutID, access_token }
+    try {
+       await fetch('http://localhost:3001/remove_favorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('remove favorite request sent')
+    } catch (error) {
+        console.log(error)
+        alert('something went wrong removing favorite workout')
     }
 }
 
 export const deleteAcct = async () => {
     const userID = await getUserId()
-    const body = { userID: userID }
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
     try {
         await fetch('http://localhost:3001/delete_acct', {
             method: 'POST',
@@ -184,6 +205,6 @@ export const deleteAcct = async () => {
         console.log('accout deleted')
     } catch (error) {
         console.log(error)
-        alert('something went wrong')
+        alert('something went wrong deleting account')
     }
 }

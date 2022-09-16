@@ -7,6 +7,7 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({
         email: email,
@@ -88,7 +89,6 @@ export const getAcctInfo = async (userID, access_token) => {
 
 export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     const { height, weight, gender, age, personalTrainer } = updatedInfo
-    console.log("server updated info:", updatedInfo)
     try {
         let data = await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
             method: 'PATCH',
@@ -107,8 +107,8 @@ export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
                 personalTrainer: personalTrainer,
             }),
         })
-        let json = await data.json()
-        console.log("the problem: ", json)
+        await data.json()
+        console.log("account update successful")
     } catch (error) {
         console.log(error)
     }
@@ -152,12 +152,34 @@ export const addToFavorites = async (userID, workoutID, access_token) => {
     })
 }
 
-export const deleteUserData = async userID => {
-    const { data, error } = await supabase
-        .from('userTable')
-        .delete()
-        .eq('userID', userID)
+export const removeFavorite = async (userID, workoutID, access_token) => {
+     await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}&workoutID=eq.${workoutID}`, {
+         method: 'DELETE',
+         headers: {
+             apikey: supabaseKey,
+             Authorization: `Bearer ${access_token}`,
+             'Content-Type': 'application/json',
+             Prefer: 'return=representation',
+         }
+     })
+     console.log("Work out removed from favorites")
+}
+
+export const deleteUserData = async (userID, access_token) => {
+    await fetch(
+        `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
+        {
+            method: 'DELETE',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
+            },
+        }
+    )
     console.log('User data deleted')
+    deleteUserAcct(userID)
 }
 
 const deleteUserAcct = async userID => {
