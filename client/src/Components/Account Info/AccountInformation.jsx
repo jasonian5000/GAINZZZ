@@ -25,6 +25,7 @@ const AccountInformation = () => {
         setValue(e.target.value)
     }
     useEffect(
+        
         () => {
             getTrainers(dispatch)
             setAcctInfo(dispatch)
