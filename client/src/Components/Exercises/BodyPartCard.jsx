@@ -1,20 +1,24 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
 import '../../css/bodyPartCard.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { searchExercises } from '../../actions/searchExercises_client';
+import { resetPages } from '../../actions/pageAction';
 
-const BodyPartCard = ({ bodyPart, item }) => {
+const BodyPartCard = ({ bodyPart }) => {
   const dispatch = useDispatch()
   return (
     <Stack
       type="button"
-      onClick={() => searchExercises(item, dispatch)}
+      onClick={() => {
+        searchExercises(bodyPart, dispatch);
+        resetPages(dispatch)
+      }
+      }
       alignItems="center"
       justifyContent="center"
       className="bodyPartCard"
       sx={{
-        borderTop: bodyPart === item ? "4px solid #ff2625" : "",
         backgroundColor: "#fff",
         borderBottomLeftRadius: "20px",
         width: "270px",
@@ -25,10 +29,10 @@ const BodyPartCard = ({ bodyPart, item }) => {
       <img
         src={require("../../assets/gym.webp")}
         style={{ width: "50px", height: "50" }}
-        alt={item}
+        alt={bodyPart}
       />
       <Typography fontSize="24px" fontWeight="bold" textTransform="capitalize">
-        {item}
+        {bodyPart}
       </Typography>
     </Stack>
   );  

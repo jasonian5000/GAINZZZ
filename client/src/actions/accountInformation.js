@@ -1,34 +1,28 @@
-import { trainerDropDown, addAccountInformation } from "./supabase_client";
-import { captureAccountInformation } from "./inputs";
+import { trainerInfo, getAcctInfo, updateAcctInfo, getUserFavorites } from './supabase_client'
+import { captureAcctInfo } from './inputs'
 
-const getTrainers = async (dispatch) => {
-  const trainerList = await trainerDropDown();
-  dispatch({ type: "SET_TRAINER_DROP_DOWN_LIST", payload: trainerList });
-};
+const getTrainers = async dispatch => {
+    const trainerList = await trainerInfo()
+    dispatch({ type: 'SET_TRAINER_DROP_DOWN_LIST', payload: trainerList })
+}
 
+const setAcctInfo = async dispatch => {
+    const personalInfo = await getAcctInfo()
+    await dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+}
 
+const setFavWorkouts = async (dispatch) => {
+    const favWorkouts = await getUserFavorites()
+    await dispatch({type: 'SET_FAVORITE_WORKOUTS', payload: favWorkouts})
+}
 
-const sendAccountInformation = async (e) => {
-  const input = captureAccountInformation(e);
-  if (input.height.length < 1) {
-    window.alert("Please provide your height");
-  } else if (input.gender.length < 1) {
-    window.alert("Please provide your gender");
-  } else if (input.weight.length < 1) {
-    window.alert("Please provide your weight");
-  } else {
-    await addAccountInformation(
-      input?.height,
-      input?.gender,
-      input?.weight,
-      input?.bmi,
-      input?.age,
-      input?.bodyFat,
-      input?.totalBurnedCalories,
-      input.personalTrainer
-    );
-    window.alert("Information added Succesfully");
-  }
-};
+const sendAcctInfo = async (e, info) => {
+    console.log("incoming info: ", info)
+    const updatedInfo = captureAcctInfo(e, info)
+    console.log("updated info:",updatedInfo)
+    window.location.reload()
+    await updateAcctInfo(updatedInfo)
+    window.alert('Information added Succesfully')
+}
 
-export { getTrainers, sendAccountInformation };
+export { getTrainers, sendAcctInfo, setAcctInfo, setFavWorkouts }

@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux'
 import React from 'react'
 import { Button, Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'
 import { addToFavorites } from '../../actions/supabase_client'
 
-const ExerciseCard = () => {
-    const searchResults = useSelector(state => state.search?.searchResults)
+const ExerciseCard = (props) => {
     return (
         <div className="cardContainer">
-            {searchResults?.map((exercise, index) => (
+            {props.current?.map((exercise, index) => (
                 <div key={index} className="exerciseCard">
                     <Typography
                         ml="21px"

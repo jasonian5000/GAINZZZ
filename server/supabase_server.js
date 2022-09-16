@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
 import { getFavoriteExercises } from './searchExercises_server.js'
@@ -5,6 +6,15 @@ dotenv.config()
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabase = createClient(supabaseUrl, supabaseKey)
+
+
+export const userSignIn = async (email, password) => {
+    const sessionData = await supabase.auth.signIn({
+        email: email,
+        password: password,
+    })
+    return sessionData
+}
 
 export const userSignUp = async (
     firstName,
@@ -17,35 +27,16 @@ export const userSignUp = async (
         email: email,
         password: password,
     })
+    const userID = user.id
     if (error) {
         console.log(error)
         return error
     }
-    createAccount(firstName, lastName, username, email, password)
-    return user
-}
-
-export const userSignIn = async (email, password) => {
-    const sessionData = await supabase.auth.signIn({
-        email: email,
-        password: password,
-    })
-    return sessionData
-}
-
-export const userSignOut = async () => {
-    const { error, session } = await supabase.auth.signOut()
-    if (error) {
-        console.log(error)
-        return error
-    } else {
-        console.log(session)
-        console.log('signed out')
-        window.alert('You have been signed out!')
-    }
+    await createAccount(userID, firstName, lastName, email, password, username)
 }
 
 const createAccount = async (
+    userID,
     firstName,
     lastName,
     email,
@@ -61,21 +52,17 @@ const createAccount = async (
             firstName: firstName,
             lastName: lastName,
             email: email,
+            userID: userID,
         },
     ])
     if (data) {
-        console.log(data)
+        return data
     } else {
         console.log(error)
     }
 }
 
-export const sendSupabase = () => {
-    const result = { supabaseKey: supabaseKey, supabaseUrl: supabaseUrl }
-    return result
-}
-
-export const trainerDropDown = async () => {
+export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
         .select('id,ptName,specialties,description,rates,testimonials')
@@ -86,81 +73,116 @@ export const trainerDropDown = async () => {
     }
 }
 
-export const userAddToFavorites = async () => {
-    const { data, error } = await supabase
-        .from('favoriteWorkouts')
-        .insert([{ 
-        created_at: new Date(), 
-        updated_at: new Date(),
-        workoutID: workoutID,
-        
-    }])
-        if (data) {
-            console.log(data)
-        } else {
-            console.log(error)
-        }
-}
-
-// export const findUser = async () => {
-//   const { data } = await supabase.from("userTable").select();
-//   console.log(data);
-// };
-
-export const addAccountInformation = async (
-    height,
-    gender,
-    weight,
-    bmi,
-    age,
-    bodyFat,
-    totalBurnedCalories,
-    personalTrainer,
-    userID
-) => {
-    const { data, error } = await supabase.from('accountInfo').insert([
+export const getAcctInfo = async (userID, access_token) => {
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/userTable?select=height,weight,gender,age,ptTable(ptName)&userID=eq.${userID}`,
         {
-            created_at: new Date(),
-            updated_at: new Date(),
-            height: height,
-            gender: gender,
-            weight: weight,
-            bmi: bmi,
-            age: age,
-            totalBurnedCalories: totalBurnedCalories,
-            bodyFat: bodyFat,
-            personalTrainer: personalTrainer,
-            userID: userID,
-        },
-    ])
-    if (data) {
-        console.log('account info: ', data)
-    } else console.log(error)
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let accountInfo = await data.json()
+    return accountInfo
 }
 
-const getFavoritesIds = async userID => {
-    const { data, error } = await supabase
-        .from('favoriteWorkouts')
-        .select()
-        .eq('userID', userID)
-    return data
-    console.log(data)
+export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
+    const { height, weight, gender, age, personalTrainer } = updatedInfo
+    try {
+        let data = await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+            method: 'PATCH',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
+            },
+            body: JSON.stringify({
+                updated_at: new Date(),
+                height: height,
+                gender: gender,
+                weight: weight,
+                age: age,
+                personalTrainer: personalTrainer,
+            }),
+        })
+        await data.json()
+        console.log("account update successful")
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-export const getUserFavorites = async userID => {
-    const tableData = await getFavoritesIds(userID)
+const getFavoritesIds = async (userID, access_token) => {
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/favoriteWorkouts?select=workoutID&userID=eq.${userID}`,
+        {
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let json = await data.json()
+    return json
+}
+
+export const getUserFavorites = async (userID, access_token) => {
+    const tableData = await getFavoritesIds(userID, access_token)
     const favoriteExercises = getFavoriteExercises(tableData)
     return favoriteExercises
 }
 
-export const addToFavorites = async (userID, workoutID) => {
-  const { data, error } = await supabase.from('favoriteWorkouts').insert([
-        {
+export const addToFavorites = async (userID, workoutID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts`, {
+        method: 'POST',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+            created_at: new Date(),
+            updated_at: new Date(),
             workoutID: workoutID,
             userID: userID,
-        },
-    ])
-    if (data) {
-        console.log(data)
-    } else console.log(error)
+        }),
+    })
+}
+
+export const removeFavorite = async (userID, workoutID, access_token) => {
+     await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}&workoutID=eq.${workoutID}`, {
+         method: 'DELETE',
+         headers: {
+             apikey: supabaseKey,
+             Authorization: `Bearer ${access_token}`,
+             'Content-Type': 'application/json',
+             Prefer: 'return=representation',
+         }
+     })
+     console.log("Work out removed from favorites")
+}
+
+export const deleteUserData = async (userID, access_token) => {
+    await fetch(
+        `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
+        {
+            method: 'DELETE',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
+            },
+        }
+    )
+    console.log('User data deleted')
+    deleteUserAcct(userID)
+}
+
+const deleteUserAcct = async userID => {
+    const { data: user, error } = await supabase.auth.api.deleteUser(userID)
+    console.log('User auth deleted')
 }

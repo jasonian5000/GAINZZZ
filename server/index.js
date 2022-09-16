@@ -3,11 +3,14 @@ import cors from 'cors'
 const app = express()
 import {
     userSignUp,
-    trainerDropDown,
-    addAccountInformation,
+    getTrainerInfo,
     userSignIn,
     getUserFavorites,
     addToFavorites,
+    getAcctInfo,
+    updateAcctInfo,
+    deleteUserData,
+    removeFavorite,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -22,7 +25,6 @@ app.post('/search', async (req, res) => {
     const { searchInput } = req.body
     try {
         let searchResults = searchExercises(searchInput)
-        console.log(searchResults)
         res.status(200).send(searchResults)
     } catch (error) {
         console.log(error)
@@ -32,9 +34,10 @@ app.post('/search', async (req, res) => {
 
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
+    console.log('Req.body', req.body)
     try {
-        userSignUp(firstName, lastName, username, email, password)
-        res.send('new user created')
+        await userSignUp(firstName, lastName, username, email, password)
+        res.send('account created')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -51,9 +54,9 @@ app.post('/sign_in', async (req, res) => {
     }
 })
 
-app.get('/trainer_dropdown', async (req, res) => {
+app.get('/trainer_info', async (req, res) => {
     try {
-        let ptTable = await trainerDropDown()
+        let ptTable = await getTrainerInfo()
         res.status(200).send(ptTable)
     } catch (error) {
         console.log(error)
@@ -61,41 +64,43 @@ app.get('/trainer_dropdown', async (req, res) => {
     }
 })
 
-app.post('/add_acct_info', async (req, res) => {
-    const {
-        height,
-        gender,
-        weight,
-        bmi,
-        age,
-        bodyFat,
-        totalBurnedCalories,
-        personalTrainer,
-        userID,
-    } = req.body
+app.post('/acct_info', async (req, res) => {
+    const { userID, access_token } = req.body
     try {
-        addAccountInformation(
-            height,
-            gender,
-            weight,
-            bmi,
-            age,
-            bodyFat,
-            totalBurnedCalories,
-            personalTrainer,
-            userID
-        )
-        console.log('account updated')
+        let accountInfo = await getAcctInfo(userID, access_token)
+        res.status(200).send(accountInfo)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
     }
 })
 
-app.post('/user_favorites', async (req, res) => {
-    const { userID } = req.body
+app.post('/update_acct_info', async (req, res) => {
+    const { updatedInfo, userID, access_token } = req.body
     try {
-        const favoritesIdList = await getUserFavorites(userID)
+        await updateAcctInfo(updatedInfo, userID, access_token)
+        console.log('update acct route complete')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/delete_acct', async (req, res) => {
+    const { userID, access_token } = req.body
+    try {
+        await deleteUserData(userID, access_token)
+        res.status(200)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/get_favorites', async (req, res) => {
+    const { userID, access_token } = req.body
+    try {
+        const favoritesIdList = await getUserFavorites(userID, access_token)
         res.status(200).send(favoritesIdList)
     } catch (error) {
         console.log(error)
@@ -104,10 +109,21 @@ app.post('/user_favorites', async (req, res) => {
 })
 
 app.post('/add_favorite', async (req, res) => {
-    const { userID, workoutID } = req.body
+    const { userID, workoutID, access_token } = req.body
     try {
-        await addToFavorites(userID, workoutID)
-        res.status(200).send("added to favorites")
+        await addToFavorites(userID, workoutID, access_token)
+        res.status(200).send('added to favorites')
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/remove_favorite', async (req, res) => {
+    const { userID, workoutID, access_token } = req.body
+    try {
+        await removeFavorite(userID, workoutID, access_token)
+        res.status(200).send('remove favorite route hit')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

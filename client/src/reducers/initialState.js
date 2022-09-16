@@ -12,6 +12,27 @@ const initialState = {
         'upper legs',
         'waist',
     ],
+//     bodyPartList: [{name: "back",
+// image: "http://backpicture.com"},
+// {name: "cardio",
+// image: ""},
+// {name: "chest",
+// image: ""},
+// {name: "lower arms",
+// image: ""},
+// {name: "lower legs",
+// image: ""},
+// {name: "neck",
+// image: ""},
+// {name: "shoulders",
+// image: ""},
+// {name: "upper arms",
+// image: ""},
+// {name: "upper legs",
+// image: ""},
+// {name: "waist",
+// image: ""}
+// ],
     targetMuscleList: [
         'abductors',
         'abs',
@@ -63,6 +84,7 @@ const initialState = {
         'weighted',
         'wheel roller',
     ],
+    
 }
 
 export default initialState

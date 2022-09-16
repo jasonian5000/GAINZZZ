@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { searchExercises } from "../../actions/searchExercises_client";
+import { resetPages } from "../../actions/pageAction";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -32,8 +33,9 @@ const SearchBar = () => {
           height="76px"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
-          onKeyPress={(e) =>
+          onKeyPress={(e) => {
             handleKeyPress(e, searchInput, dispatch)
+            resetPages(dispatch)}
           }
           placeholder="Deadlift"
           type="text"
@@ -50,7 +52,10 @@ const SearchBar = () => {
             position: "absolute",
             right: "0",
           }}
-          onClick={() => searchExercises(searchInput, dispatch)}
+          onClick={() => {
+            searchExercises(searchInput, dispatch);
+            resetPages(dispatch)
+          }}
         >
           Search
         </Button>
