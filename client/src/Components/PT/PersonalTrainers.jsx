@@ -10,7 +10,7 @@ const PersonalTrainers = () => {
     const trainers = useSelector(state => state.trainers.trainers)
     console.log(trainers)
 
-    useEffect(() => {
+    useEffect((dispatch) => {
         getPersonalTrainers(dispatch)
     }, [])
     return (
