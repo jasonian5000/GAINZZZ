@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import FavoritesCard from "./FavoritesCard"
+import FavoritesCard from './FavoritesCard'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     setAcctInfo,
     getTrainers,
     sendAcctInfo,
-    setFavWorkouts
+    setFavWorkouts,
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 // import {Card} from "@mui/material"
@@ -14,9 +14,13 @@ import IndividualAccountInfo from './IndividualAccountInfo'
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
-    const trainerDropDownList = useSelector(state => state.trainers.trainerDropDownList)
-    const info = useSelector((state) => state.personalInfo.accountInfo)
-    const favWorkouts = useSelector((state) => state.favoriteWorkouts.favoriteWorkouts)
+    const trainerDropDownList = useSelector(
+        state => state.trainers.trainerDropDownList
+    )
+    const info = useSelector(state => state.personalInfo.accountInfo)
+    const favWorkouts = useSelector(
+        state => state.favoriteWorkouts.favoriteWorkouts
+    )
     const [value, setValue] = useState(1)
     const handleChange = e => {
         setValue(e.target.value)
@@ -80,14 +84,12 @@ const AccountInformation = () => {
                                     >
                                         <option value="">No trainer</option>
                                         {trainerDropDownList.map(trainer => (
-                                            <>
-                                                <option
-                                                    key={trainer.id}
-                                                    value={trainer.id}
-                                                >
-                                                    {trainer?.ptName}
-                                                </option>
-                                            </>
+                                            <option
+                                                key={trainer.id}
+                                                value={trainer.id}
+                                            >
+                                                {trainer?.ptName}
+                                            </option>
                                         ))}
                                     </select>
                                 </label>
@@ -102,10 +104,8 @@ const AccountInformation = () => {
             <div>
                 <h1>Account Information</h1>
                 <div>
-                    {info?.map(info => {
-                        return (
-                            <IndividualAccountInfo info={info}/>
-                        )
+                    {info?.map((info, index) => {
+                        return <IndividualAccountInfo key={index} info={info} />
                     })}
                 </div>
             </div>
@@ -115,11 +115,9 @@ const AccountInformation = () => {
                     <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
                         {favWorkouts?.map(workout => {
                             return (
-                                <>
                                     <Stack key={workout.id}>
                                         <FavoritesCard workout={workout} />
                                     </Stack>
-                                </>
                             )
                         })}
                     </Box>

@@ -91,7 +91,7 @@ export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     console.log("server updated info:", updatedInfo)
     try {
         let data = await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 apikey: supabaseKey,
                 Authorization: `Bearer ${access_token}`,
