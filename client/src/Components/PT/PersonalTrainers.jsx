@@ -10,9 +10,9 @@ const PersonalTrainers = () => {
     const trainers = useSelector(state => state.trainers.trainers)
     console.log(trainers)
 
-    useEffect((dispatch) => {
+    useEffect(() => {
         getPersonalTrainers(dispatch)
-    }, [])
+    }, [dispatch])
     return (
         <div className="PersonalTrainerContainer">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
