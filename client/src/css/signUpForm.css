@@ -1,3 +1,9 @@
 .signUpForm {
-    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 170px;
+    background-image: url(../assets/gymBackground.jpg);
+    height: 100vh;
+    background-size: 100vw;
+    background-repeat: no-repeat;
 }
