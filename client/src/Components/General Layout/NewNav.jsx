@@ -18,13 +18,11 @@ const NewNav = () => {
         }
     }
     window.addEventListener('scroll', changeBackground)
-    const [loggedIn, setLoggedIn] = useState(checkToken())
-    useEffect(
-        () => {
-            setLoggedIn(checkToken())
-            console.log("this works")
-        }, [loggedIn]
-    )
+    const tokenState = checkToken()
+    const [loggedIn, setLoggedIn] = useState(tokenState)
+    useEffect(() => {
+        setLoggedIn(checkToken())
+    }, [tokenState])
     return (
         <nav id="navbar" className={nav ? 'nav active' : 'nav'}>
             <Link to="/" className="logo">
@@ -101,7 +99,9 @@ const NewNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <button onClick={() => userSignOut(navigate)}>Sign Out</button>
+                    <button onClick={() => userSignOut(navigate)}>
+                        Sign Out
+                    </button>
                 </li>
             </ul>
         </nav>
