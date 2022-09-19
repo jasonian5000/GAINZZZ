@@ -74,7 +74,7 @@ const Workout = () => {
       <Button onClick={() => {handleSearch() }}>Get Workout</Button>
       <h1>Your Workout</h1>
       {myWorkout ? myWorkout?.map((workout) => (
-        <Box m="0 40px">
+        <Box key={workout.name} m="0 40px">
           <Button>{workout.name}</Button>
         </Box>)) :
         null}
