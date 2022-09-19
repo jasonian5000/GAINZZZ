@@ -190,7 +190,7 @@ export const removeFavorite = async (workoutID) => {
     }
 }
 
-export const deleteAcct = async (password) => {
+export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
@@ -203,7 +203,7 @@ export const deleteAcct = async (password) => {
             body: JSON.stringify(body),
         })
         console.log('account deleted')
-        userSignOut()
+        userSignOut(navigate)
     } catch (error) {
         console.log("error: ", error)
         alert('something went wrong deleting account')

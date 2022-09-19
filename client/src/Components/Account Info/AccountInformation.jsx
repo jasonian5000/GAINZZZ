@@ -11,9 +11,11 @@ import {
 import '../../css/accountInformation.css'
 import { Box, Stack } from '@mui/system'
 import IndividualAccountInfo from './IndividualAccountInfo'
+import { useNavigate } from "react-router-dom"
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const trainerDropDownList = useSelector(
         state => state.trainers.trainerDropDownList
     )
@@ -98,7 +100,7 @@ const AccountInformation = () => {
                             <button onClick={e => sendAcctInfo(e, info)}>
                                 Update
                             </button>
-                            <button onClick={confirmDeleteAccount}> Delete Account</button>
+                            <button onClick={() => confirmDeleteAccount(navigate)}> Delete Account</button>
                         </form>
                     </div>
                 </div>
