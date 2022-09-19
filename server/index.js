@@ -9,8 +9,8 @@ import {
     addToFavorites,
     getAcctInfo,
     updateAcctInfo,
-    deleteUserData,
     removeFavorite,
+    destroyAllUserData,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -87,9 +87,9 @@ app.post('/update_acct_info', async (req, res) => {
 })
 
 app.post('/delete_acct', async (req, res) => {
-    const { userID, access_token } = req.body
+    const { userID, access_token, password } = req.body
     try {
-        await deleteUserData(userID, access_token)
+        await destroyAllUserData(userID, access_token, password)
         res.status(200)
     } catch (error) {
         console.log(error)

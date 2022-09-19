@@ -6,6 +6,7 @@ import {
     getTrainers,
     sendAcctInfo,
     setFavWorkouts,
+    confirmDeleteAccount,
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 import { Box, Stack } from '@mui/system'
@@ -97,6 +98,7 @@ const AccountInformation = () => {
                             <button onClick={e => sendAcctInfo(e, info)}>
                                 Update
                             </button>
+                            <button onClick={confirmDeleteAccount}> Delete Account</button>
                         </form>
                     </div>
                 </div>
@@ -115,9 +117,9 @@ const AccountInformation = () => {
                     <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
                         {favWorkouts?.map(workout => {
                             return (
-                                    <Stack key={workout.id}>
-                                        <FavoritesCard workout={workout} />
-                                    </Stack>
+                                <Stack key={workout.id}>
+                                    <FavoritesCard workout={workout} />
+                                </Stack>
                             )
                         })}
                     </Box>
