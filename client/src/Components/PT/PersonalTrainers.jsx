@@ -12,7 +12,7 @@ const PersonalTrainers = () => {
 
     useEffect(() => {
         getPersonalTrainers(dispatch)
-    }, [])
+    }, [dispatch])
     return (
         <div className="PersonalTrainerContainer">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
