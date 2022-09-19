@@ -4,18 +4,18 @@ import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
+import ExerciseCard from './ExerciseCard'
 
 const Workout = () => {
   const dispatch = useDispatch()
   const [myLevel, setMyLevel] = useState('')
   const [mytarget, setMytarget] = useState('')
   const [myWorkout, setMyWorkout] = useState('')
+  const [workoutImg, setWorkoutImg] = useState('')
   const searchResults = useSelector(state => state.search?.searchResults)
   
   const handleLevelChange = (e) => {
     setMyLevel(e.target.value)
-    // randomworkout(searchResults, e.target.value)
-    // console.log(randomworkout(searchResults, e.target.value))
   }
   
   const handleBodyChange = (e) => {
@@ -40,7 +40,7 @@ const Workout = () => {
       <h1>Choose your workout!</h1>
       <h1>Favortied Exercises</h1>
       <p>(Add them to your workout)</p>
-      <Box width='250px'>
+      <Box className='inputSelect'  width='250px'>
         <TextField
           label='Target Muscle'
           select
@@ -59,7 +59,7 @@ const Workout = () => {
         <MenuItem value='waist'>Abs</MenuItem>
         </TextField>
       </Box>
-      <Box width='250px' >
+      <Box className='inputSelect' width='250px' >
         <TextField
           label='Workout level'
           select
@@ -71,13 +71,19 @@ const Workout = () => {
         <MenuItem value='7'>Intense</MenuItem>
         </TextField>
       </Box>
-      <Button onClick={() => {handleSearch() }}>Get Workout</Button>
+      <Button onClick={() => { handleSearch(); setWorkoutImg('') }}>Get Workout</Button>
       <h1>Your Workout</h1>
+      <div className='myWorkout-container'>
+        <ul className='exercises'>
       {myWorkout ? myWorkout?.map((workout) => (
-        <Box m="0 40px">
-          <Button>{workout.name}</Button>
+        <Box key={workout.id || workout} workoutid={workout.id || workout} title={workout.id || workout} m="0 40px">
+          <Button value={workout.gifUrl} onClick={(e) => {setWorkoutImg(e.target.value)}}>{workout.name}</Button>
+          <ExerciseCard workout={workout} />
         </Box>)) :
         null}
+          </ul>
+          <img src={workoutImg}></img>
+        </div>
       </div>
   )
 }
