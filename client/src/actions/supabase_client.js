@@ -65,7 +65,7 @@ export const userSignOut = navigate => {
     try {
         localStorage.removeItem('supabase.auth.token')
         window.alert('You have been signed out!')
-        navigate('/login_page')
+        navigate('/')
     } catch (error) {
         console.log(error)
         alert('something went wrong signing out user')
