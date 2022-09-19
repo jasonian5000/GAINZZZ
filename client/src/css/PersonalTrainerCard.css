@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
+
+
+.cardContainer { 
+    font-family: 'Lato';
+    font-size: 15px;
+    padding: 20px;
+}
+
+.card {
+    padding: 30px;
+    margin: 20px;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    color: #F9F6EE;
+}
