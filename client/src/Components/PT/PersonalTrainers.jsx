@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPersonalTrainers } from '../../actions/personalTrainersInformation'
 import PersonalTrainerCard from './PersonalTrainerCard'
+import "../../css/PersonalTrainers.css"
 
 const PersonalTrainers = () => {
     const dispatch = useDispatch()
