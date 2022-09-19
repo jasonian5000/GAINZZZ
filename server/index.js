@@ -9,8 +9,8 @@ import {
     addToFavorites,
     getAcctInfo,
     updateAcctInfo,
-    deleteUserData,
     removeFavorite,
+    destroyAllUserData,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -34,7 +34,6 @@ app.post('/search', async (req, res) => {
 
 app.post('/sign_up', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body
-    console.log('Req.body', req.body)
     try {
         await userSignUp(firstName, lastName, username, email, password)
         res.send('account created')
@@ -79,7 +78,6 @@ app.post('/update_acct_info', async (req, res) => {
     const { updatedInfo, userID, access_token } = req.body
     try {
         await updateAcctInfo(updatedInfo, userID, access_token)
-        console.log('update acct route complete')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -87,9 +85,9 @@ app.post('/update_acct_info', async (req, res) => {
 })
 
 app.post('/delete_acct', async (req, res) => {
-    const { userID, access_token } = req.body
+    const { userID, access_token, password } = req.body
     try {
-        await deleteUserData(userID, access_token)
+        await destroyAllUserData(userID, access_token, password)
         res.status(200)
     } catch (error) {
         console.log(error)
@@ -123,7 +121,6 @@ app.post('/remove_favorite', async (req, res) => {
     const { userID, workoutID, access_token } = req.body
     try {
         await removeFavorite(userID, workoutID, access_token)
-        res.status(200).send('remove favorite route hit')
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

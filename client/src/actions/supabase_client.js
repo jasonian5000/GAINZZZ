@@ -190,10 +190,10 @@ export const removeFavorite = async (workoutID) => {
     }
 }
 
-export const deleteAcct = async () => {
+export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
-    const body = { userID, access_token }
+    const body = { userID, access_token, password }
     try {
         await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
             method: 'POST',
@@ -202,9 +202,10 @@ export const deleteAcct = async () => {
             },
             body: JSON.stringify(body),
         })
-        console.log('accout deleted')
+        console.log('account deleted')
+        userSignOut(navigate)
     } catch (error) {
-        console.log(error)
+        console.log("error: ", error)
         alert('something went wrong deleting account')
     }
 }

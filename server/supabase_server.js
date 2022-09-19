@@ -7,7 +7,6 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({
         email: email,
@@ -90,25 +89,28 @@ export const getAcctInfo = async (userID, access_token) => {
 export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     const { height, weight, gender, age, personalTrainer } = updatedInfo
     try {
-        let data = await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
-            method: 'PATCH',
-            headers: {
-                apikey: supabaseKey,
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'application/json',
-                Prefer: 'return=representation',
-            },
-            body: JSON.stringify({
-                updated_at: new Date(),
-                height: height,
-                gender: gender,
-                weight: weight,
-                age: age,
-                personalTrainer: personalTrainer,
-            }),
-        })
+        let data = await fetch(
+            `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
+            {
+                method: 'PATCH',
+                headers: {
+                    apikey: supabaseKey,
+                    Authorization: `Bearer ${access_token}`,
+                    'Content-Type': 'application/json',
+                    Prefer: 'return=representation',
+                },
+                body: JSON.stringify({
+                    updated_at: new Date(),
+                    height: height,
+                    gender: gender,
+                    weight: weight,
+                    age: age,
+                    personalTrainer: personalTrainer,
+                }),
+            }
+        )
         await data.json()
-        console.log("account update successful")
+        console.log('account update successful')
     } catch (error) {
         console.log(error)
     }
@@ -153,21 +155,8 @@ export const addToFavorites = async (userID, workoutID, access_token) => {
 }
 
 export const removeFavorite = async (userID, workoutID, access_token) => {
-     await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}&workoutID=eq.${workoutID}`, {
-         method: 'DELETE',
-         headers: {
-             apikey: supabaseKey,
-             Authorization: `Bearer ${access_token}`,
-             'Content-Type': 'application/json',
-             Prefer: 'return=representation',
-         }
-     })
-     console.log("Work out removed from favorites")
-}
-
-export const deleteUserData = async (userID, access_token) => {
     await fetch(
-        `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
+        `${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}&workoutID=eq.${workoutID}`,
         {
             method: 'DELETE',
             headers: {
@@ -178,11 +167,63 @@ export const deleteUserData = async (userID, access_token) => {
             },
         }
     )
-    console.log('User data deleted')
-    deleteUserAcct(userID)
+    console.log('Work out removed from favorites')
+}
+
+const passwordCheck = async (userID, access_token, password) => {
+    const data = await fetch(
+        `${supabaseUrl}/rest/v1/userTable?select=password&userID=eq.${userID}`,
+        {
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let passwordData = await data.json()
+    console.log("password checked")
+    return passwordData[0].password === password
+}
+
+const deleteUserData = async (userID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+        method: 'DELETE',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+    })
+    console.log("user personal info deleted")
+}
+
+const deleteAllFavorites = async (userID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}`, {
+        method: 'DELETE',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+    })
+    console.log('all favorite workouts removed')
 }
 
 const deleteUserAcct = async userID => {
     const { data: user, error } = await supabase.auth.api.deleteUser(userID)
     console.log('User auth deleted')
+}
+
+export const destroyAllUserData = async (userID, access_token, password) => {
+    const validPassword = await passwordCheck(userID, access_token, password)
+    if (validPassword === true) {
+        await deleteUserData(userID, access_token)
+        await deleteAllFavorites(userID, access_token)
+        await deleteUserAcct(userID)
+        console.log('all user data destroyed')
+    } else {
+        console.log('invalid password')
+    }
 }
