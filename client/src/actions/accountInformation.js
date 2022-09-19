@@ -1,4 +1,4 @@
-import { trainerInfo, getAcctInfo, updateAcctInfo, getUserFavorites } from './supabase_client'
+import { trainerInfo, getAcctInfo, updateAcctInfo, getUserFavorites, deleteAcct } from './supabase_client'
 import { captureAcctInfo } from './inputs'
 
 const getTrainers = async dispatch => {
@@ -23,6 +23,13 @@ const sendAcctInfo = async (e, info) => {
     window.location.reload()
     await updateAcctInfo(updatedInfo)
     window.alert('Information added Succesfully')
+}
+
+export const confirmDeleteAccount = async () => {
+    let password = prompt("Please enter your password to delete your account")
+    if (password) {
+        await deleteAcct(password)
+    }
 }
 
 export { getTrainers, sendAcctInfo, setAcctInfo, setFavWorkouts }
