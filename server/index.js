@@ -17,7 +17,7 @@ import { searchExercises } from './searchExercises_server.js'
 const PORT = process.env.PORT || 3001
 
 app.use(
-    cors({ origin: 'http://127.0.0.1:5500', methods: 'GET,POST,PUT,DELETE' })
+    cors({ origin: '*', methods: 'GET,POST,PUT,DELETE' })
 )
 app.use(express.json())
 
