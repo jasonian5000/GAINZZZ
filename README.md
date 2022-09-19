@@ -7,3 +7,8 @@
 - start styling needed pages 
 - make a delete user account
 - make password reset page
+
+
+
+# tickets to complete 
+- style Personal Trainers Page
