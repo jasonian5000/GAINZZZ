@@ -7,3 +7,5 @@
 - start styling needed pages 
 - make a delete user account
 - make password reset page
+
+[Deployment](https://gainzzz-1shoukr.vercel.app/)
