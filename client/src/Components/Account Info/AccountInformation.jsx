@@ -44,7 +44,7 @@ const AccountInformation = () => {
                                 <input
                                     type="text"
                                     className="height"
-                                    placeholder="Enter your height"
+                                    placeholder="Enter your height in inches"
                                 />
                             </div>
                             <div>
@@ -52,7 +52,7 @@ const AccountInformation = () => {
                                 <input
                                     type="text"
                                     className="weight"
-                                    placeholder="Enter your weight"
+                                    placeholder="Enter your weight in pounds"
                                 />
                             </div>
                             <div>
