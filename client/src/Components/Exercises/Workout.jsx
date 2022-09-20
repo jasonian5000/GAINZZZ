@@ -4,7 +4,7 @@ import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import ExerciseCard from './ExerciseCard'
+import Timer from '../Timer'
 
 const Workout = () => {
   const dispatch = useDispatch()
@@ -37,9 +37,9 @@ const Workout = () => {
   
   return (
     <div className='workout-container'>
-      <h1>Choose your workout!</h1>
       <h1>Favortied Exercises</h1>
       <p>(Add them to your workout)</p>
+      <h1>Choose your workout!</h1>
       <Box className='inputSelect'  width='250px'>
         <TextField
           label='Target Muscle'
@@ -75,15 +75,15 @@ const Workout = () => {
       <h1>Your Workout</h1>
       <div className='myWorkout-container'>
         <ul className='exercises'>
-      {myWorkout ? myWorkout?.map((workout) => (
-        <Box key={workout.id || workout} workoutid={workout.id || workout} title={workout.id || workout} m="0 40px">
+      {myWorkout ? myWorkout?.map((workout, index) => (
+        <Box key={index} workoutid={workout.id || workout} title={workout.id || workout} m="0 40px">
           <Button value={workout.gifUrl} onClick={(e) => {setWorkoutImg(e.target.value)}}>{workout.name}</Button>
-          <ExerciseCard workout={workout} />
         </Box>)) :
         null}
           </ul>
           <img src={workoutImg}></img>
-        </div>
+      </div>
+      <Timer/>
       </div>
   )
 }
