@@ -3,6 +3,7 @@ import {
     getAcctInfo,
     updateAcctInfo,
     deleteAcct,
+    getWeightData,
 } from './supabase_client'
 import { captureAcctInfo } from './inputs'
 
@@ -17,9 +18,7 @@ export const setAcctInfo = async dispatch => {
 }
 
 export const sendAcctInfo = async (e, info) => {
-    console.log('incoming info: ', info)
     const updatedInfo = captureAcctInfo(e, info)
-    console.log('updated info:', updatedInfo)
     window.location.reload()
     await updateAcctInfo(updatedInfo)
     window.alert('Information added Succesfully')
@@ -30,6 +29,11 @@ export const confirmDeleteAccount = async navigate => {
     if (password) {
         await deleteAcct(password, navigate)
     }
+}
+
+export const setWeightData = async dispatch => {
+    const weightData = await getWeightData()
+    await dispatch({ type: "SET_WEIGHT_DATA", payload: weightData})
 }
 
 export const bmiCalc = (height, weight) => {

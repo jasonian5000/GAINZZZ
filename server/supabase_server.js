@@ -259,7 +259,7 @@ export const destroyAllUserData = async (userID, access_token, password) => {
 
 export const getTrackedWeight = async (userID, access_token) => {
     let data = await fetch(
-        `${supabaseUrl}/rest/v1/weightTracker?select=weight&userID=eq.${userID}`,
+        `${supabaseUrl}/rest/v1/weightTracker?select=weight,created_at&userID=eq.${userID}`,
         {
             headers: {
                 apikey: supabaseKey,
