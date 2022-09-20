@@ -61,7 +61,7 @@ export const userSignIn = async (email, password) => {
     }
 }
 
-export const userSignOut = navigate => {
+export const userSignOut = (navigate) => {
     try {
         localStorage.removeItem('supabase.auth.token')
         console.log('You have been signed out!')
@@ -179,7 +179,7 @@ export const removeFavorite = async workoutID => {
     }
 }
 
-export const deleteAcct = async (password, navigate) => {
+export const deleteAcct = async (password) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
@@ -196,8 +196,6 @@ export const deleteAcct = async (password, navigate) => {
         console.log('wtf you pos')
         console.log(error)
     }
-    console.log('pleeeease')
-    userSignOut(navigate)
 }
 
 export const getWeightData = async () => {

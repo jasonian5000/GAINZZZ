@@ -9,12 +9,10 @@ import {
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 import IndividualAccountInfo from './IndividualAccountInfo'
-import { useNavigate } from 'react-router-dom'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Label } from 'recharts'
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const trainerDropDownList = useSelector(
         state => state.trainers.trainerDropDownList
     )
@@ -96,7 +94,7 @@ const AccountInformation = () => {
                                 Update
                             </button>
                             <button
-                                onClick={() => confirmDeleteAccount(navigate)}
+                                onClick={() => confirmDeleteAccount()}
                             >
                                 Delete Account
                             </button>

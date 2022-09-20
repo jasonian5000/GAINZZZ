@@ -5,7 +5,7 @@ import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import FavoritesCard from './FavoritesCard'
-import { setFavWorkouts, randomWorkout, addWorkoutsCompleted } from '../../actions/workoutBuilder'
+import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
 import Timer from '../Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
 

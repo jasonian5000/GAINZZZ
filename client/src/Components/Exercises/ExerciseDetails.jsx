@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import ExerciseCard from "./ExerciseCard";
 import { useSelector, useDispatch } from "react-redux"; 
 import { setPage } from "../../actions/pageAction";
+import { markFavorites } from "../../actions/searchExercises_client";
 
 
 const ExerciseDetails = () => {
@@ -20,7 +21,6 @@ const ExerciseDetails = () => {
         (setPage(dispatch, value))
         window.scrollTo({top:500, behavior: 'smooth'})
     }
-
     return (
         <div className="ED-Container">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
