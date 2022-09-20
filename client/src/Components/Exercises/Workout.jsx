@@ -38,7 +38,7 @@ const Workout = () => {
 
     return (
         <div className="workout-container">
-            <h1>Favorite Exercises</h1>
+            <h1>Favortied Exercises</h1>
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
                 {favWorkouts?.map(workout => {
                     return (
