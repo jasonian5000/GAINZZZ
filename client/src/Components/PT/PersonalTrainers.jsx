@@ -9,7 +9,7 @@ import "../../css/PersonalTrainers.css"
 const PersonalTrainers = () => {
     const dispatch = useDispatch()
     const trainers = useSelector(state => state.trainers.trainers)
-    console.log(trainers)
+    console.log("this is trainers" ,trainers)
 
     useEffect(() => {
         getPersonalTrainers(dispatch)
