@@ -26,7 +26,7 @@ const Workout = () => {
         // eslint-disable-next-line
         []
     )
-    
+
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
@@ -61,8 +61,10 @@ const Workout = () => {
                     label="Target Muscle"
                     select
                     value={mytarget}
-                    onChange={e => { setMyTarget(e.target.value);
-                        searchExercises(e.target.value, dispatch)}}
+                    onChange={e => {
+                        setMyTarget(e.target.value)
+                        searchExercises(e.target.value, dispatch)
+                    }}
                     fullWidth
                 >
                     <MenuItem value="back">Back</MenuItem>
@@ -92,7 +94,7 @@ const Workout = () => {
             </Box>
             <Button
                 onClick={() => {
-                    setMyWorkout(randomWorkout(searchResults, myLevel));
+                    setMyWorkout(randomWorkout(searchResults, myLevel))
                     setWorkoutImg('')
                 }}
             >
