@@ -10,14 +10,7 @@ import {
 import '../../css/accountInformation.css'
 import IndividualAccountInfo from './IndividualAccountInfo'
 import { useNavigate } from 'react-router-dom'
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Label
-} from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Label } from 'recharts'
 
 const AccountInformation = () => {
     const dispatch = useDispatch()
@@ -105,7 +98,6 @@ const AccountInformation = () => {
                             <button
                                 onClick={() => confirmDeleteAccount(navigate)}
                             >
-                                {' '}
                                 Delete Account
                             </button>
                         </form>
@@ -130,7 +122,12 @@ const AccountInformation = () => {
                 >
                     <XAxis dataKey="created_at" stroke="#f5f5f5" />
                     <YAxis domain={[200, 300]} stroke="#f5f5f5">
-                        <Label value="pounds" stroke="#f5f5f5" position='left' angle={270} />
+                        <Label
+                            value="pounds"
+                            stroke="#f5f5f5"
+                            position="left"
+                            angle={270}
+                        />
                     </YAxis>
                     <Tooltip />
                     <Line type="monotone" dataKey="weight" stroke="red" />

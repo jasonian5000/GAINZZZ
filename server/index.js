@@ -87,7 +87,8 @@ app.post('/delete_acct', async (req, res) => {
     const { userID, access_token, password } = req.body
     try {
         await destroyAllUserData(userID, access_token, password)
-        res.status(200)
+        console.log("delete account route successful")
+        res.status(200).send("delete account successful")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

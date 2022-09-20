@@ -24,10 +24,10 @@ export const sendAcctInfo = async (e, info) => {
     window.alert('Information added Succesfully')
 }
 
-export const confirmDeleteAccount = async navigate => {
+export const confirmDeleteAccount = navigate => {
     let password = prompt('Please enter your password to delete your account')
     if (password) {
-        await deleteAcct(password, navigate)
+        deleteAcct(password, navigate)
     }
 }
 

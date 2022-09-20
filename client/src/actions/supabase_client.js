@@ -23,7 +23,7 @@ export const userSignUp = async (
 ) => {
     const body = { firstName, lastName, username, email, password }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/sign_up', {
+        await fetch('http://localhost:3001/sign_up', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const userSignIn = async (email, password) => {
         password,
     }
     try {
-        const sessionData = await fetch('https://gainzzzz.herokuapp.com/sign_in', {
+        const sessionData = await fetch('http://localhost:3001/sign_in', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export const userSignOut = navigate => {
 
 export const trainerInfo = async () => {
     try {
-        const trainers = await fetch('https://gainzzzz.herokuapp.com/trainer_info', {
+        const trainers = await fetch('http://localhost:3001/trainer_info', {
             method: 'GET',
         })
         const ptTable = trainers.json()
@@ -88,7 +88,7 @@ export const getAcctInfo = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        const personalInfo = await fetch('https://gainzzzz.herokuapp.com/acct_info', {
+        const personalInfo = await fetch('http://localhost:3001/acct_info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export const updateAcctInfo = async updatedInfo => {
         access_token,
     }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/update_acct_info', {
+        await fetch('http://localhost:3001/update_acct_info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ export const getUserFavorites = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        const response = await fetch('https://gainzzzz.herokuapp.com/get_favorites', {
+        const response = await fetch('http://localhost:3001/get_favorites', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export const addToFavorites = async workoutID => {
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/add_favorite', {
+        await fetch('http://localhost:3001/add_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export const removeFavorite = async workoutID => {
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/remove_favorite', {
+        await fetch('http://localhost:3001/remove_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,17 +183,21 @@ export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
-        await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
+    try {
+        await fetch('http://localhost:3001/delete_acct', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
         })
-        console.log('account deleted')
-        localStorage.removeItem('supabase.auth.token')
-        console.log('You have been signed out!')
-        navigate('/')
+        console.log('work you bastard')
+    } catch (error) {
+        console.log('wtf you pos')
+        console.log(error)
+    }
+    console.log('pleeeease')
+    userSignOut(navigate)
 }
 
 export const getWeightData = async () => {
@@ -202,7 +206,7 @@ export const getWeightData = async () => {
     const body = { userID, access_token }
     try {
         let weightData = await fetch(
-            'https://gainzzzz.herokuapp.com/get_tracked_weight',
+            'http://localhost:3001/get_tracked_weight',
             {
                 method: 'POST',
                 headers: {

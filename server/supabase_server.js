@@ -245,11 +245,25 @@ const deleteUserAcct = async userID => {
     console.log('User auth deleted')
 }
 
+const deleteTrackedWeight = async (userID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/weightTracker?userID=eq.${userID}`, {
+        method: 'DELETE',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+    })
+    console.log('all tracked weight removed')
+}
+
 export const destroyAllUserData = async (userID, access_token, password) => {
     const validPassword = await passwordCheck(userID, access_token, password)
     if (validPassword === true) {
         await deleteUserData(userID, access_token)
         await deleteAllFavorites(userID, access_token)
+        await deleteTrackedWeight(userID, access_token)
         await deleteUserAcct(userID)
         console.log('all user data destroyed')
     } else {
