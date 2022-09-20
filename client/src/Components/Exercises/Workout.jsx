@@ -44,9 +44,9 @@ const Workout = () => {
                 <h1>Your Favorite Workouts</h1>
                 <div>
                     <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                        {favWorkouts?.map(workout => {
+                        {favWorkouts?.map((workout, index) => {
                             return (
-                                <Stack key={workout.id}>
+                                <Stack key={index}>
                                     <FavoritesCard workout={workout} />
                                 </Stack>
                             )

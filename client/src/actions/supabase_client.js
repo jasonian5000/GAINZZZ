@@ -166,7 +166,7 @@ export const removeFavorite = async workoutID => {
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
     try {
-        await fetch('http://localhost:3001/remove_favorite', {
+        await fetch('https://gainzzzz.herokuapp.com/remove_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -203,13 +203,16 @@ export const getWeightData = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        let weightData = await fetch('http://localhost:3001/get_tracked_weight', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
+        let weightData = await fetch(
+            'https://gainzzzz.herokuapp.com/get_tracked_weight',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
         let json = await weightData.json()
         let formatted = refineDate(json)
         return formatted
