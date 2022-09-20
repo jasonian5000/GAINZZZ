@@ -1,6 +1,6 @@
 export const searchExercises = async (searchInput, dispatch) => {
   let body = { "searchInput": searchInput }
-  let search = await fetch('http://localhost:3001/search', {
+  let search = await fetch('http://gainzzzz.herokuapp.com/search', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
