@@ -11,14 +11,12 @@ import '../../css/accountInformation.css'
 import IndividualAccountInfo from './IndividualAccountInfo'
 import { useNavigate } from 'react-router-dom'
 import {
-    AreaChart,
-    Area,
+    LineChart,
+    Line,
     XAxis,
     YAxis,
-    CartesianGrid,
     Tooltip,
-    Legend,
-    ResponsiveContainer,
+    Label
 } from 'recharts'
 
 const AccountInformation = () => {
@@ -39,7 +37,6 @@ const AccountInformation = () => {
         // eslint-disable-next-line
         []
     )
-    console.log(weightData)
     return (
         <>
             <div className="accountInformationContainer">
@@ -123,73 +120,21 @@ const AccountInformation = () => {
                     })}
                 </div>
             </div>
-            <div>
-                {/* <ResponsiveContainer width="100%" height="100%"> */}
-                    <AreaChart
-                        width={730}
-                        height={250}
-                        data={weightData}
-                        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-                    >
-                        <defs>
-                            <linearGradient
-                                id="colorWeight"
-                                x1="0"
-                                y1="0"
-                                x2="0"
-                                y2="1"
-                            >
-                                <stop
-                                    offset="5%"
-                                    stopColor="#8884d8"
-                                    stopOpacity={0.8}
-                                />
-                                <stop
-                                    offset="95%"
-                                    stopColor="#8884d8"
-                                    stopOpacity={0}
-                                />
-                            </linearGradient>
-                            {/* <linearGradient
-                            id="colorPv"
-                            x1="0"
-                            y1="0"
-                            x2="0"
-                            y2="1"
-                        >
-                            <stop
-                                offset="5%"
-                                stopColor="#82ca9d"
-                                stopOpacity={0.8}
-                            />
-                            <stop
-                                offset="95%"
-                                stopColor="#82ca9d"
-                                stopOpacity={0}
-                            />
-                        </linearGradient> */}
-                        </defs>
-                        <XAxis dataKey="created_at" />
-                        <YAxis />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <Tooltip />
-                        <Legend />
-                        <Area
-                            type="monotone"
-                            dataKey="weight"
-                            stroke="#8884d8"
-                            fillOpacity={1}
-                            fill="url(#colorWeight)"
-                        />
-                        {/* <Area
-                        type="monotone"
-                        dataKey="pv"
-                        stroke="#82ca9d"
-                        fillOpacity={1}
-                        fill="url(#colorPv)"
-                    /> */}
-                    </AreaChart>
-                {/* </ResponsiveContainer> */}
+            <div style={{ background: 'black', color: 'white' }}>
+                <h1>Weight Tracker</h1>
+                <LineChart
+                    width={730}
+                    height={300}
+                    data={weightData}
+                    margin={{ top: 0, right: 0, left: 50, bottom: 0 }}
+                >
+                    <XAxis dataKey="created_at" stroke="#f5f5f5" />
+                    <YAxis domain={[200, 300]} stroke="#f5f5f5">
+                        <Label value="pounds" stroke="#f5f5f5" position='left' angle={270} />
+                    </YAxis>
+                    <Tooltip />
+                    <Line type="monotone" dataKey="weight" stroke="red" />
+                </LineChart>
             </div>
         </>
     )
