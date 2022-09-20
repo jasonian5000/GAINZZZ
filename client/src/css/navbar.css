@@ -80,7 +80,8 @@ nav ul{
 	box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411);
 	transition: all ease 0.2s;
 }
-nav ul li a{
+nav ul li a,
+.logout{
     font-family: 'Lato';
 	height:40px;
 	line-height: 43px;
@@ -95,11 +96,15 @@ nav ul li a{
     border-radius: 3px;
     transition: 0.2s ease-in-out;
 }
-nav ul li a:hover{
+nav ul li a:hover,
+.logout:hover{
 	background-color: #FF1414;
     color:#ffffff;
 	box-shadow: 5px 10px 30px rgba(255, 2, 2, 0.336);
 	transition: all ease 0.2s;
+}
+.logout{
+    background: #FF1414;
 }
 nav .menu-btn,
 .menu-icon{
@@ -232,7 +237,8 @@ nav .menu-btn,
         .menu li{
             width:100%;
         }
-        nav .menu li a{
+        nav .menu li a,
+        .logout{
             width:100%;
             height:40px;
             justify-content: center;
@@ -240,6 +246,10 @@ nav .menu-btn,
             margin:0px;
             padding: 25px;
             border:1px solid rgba(38,38,38,0.03);
+        }
+        .logout{
+            background: none;
+            color:#FF1414
         }
         nav .menu-icon{
             cursor:pointer;

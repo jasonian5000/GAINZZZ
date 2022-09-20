@@ -11,7 +11,7 @@ import { setPage } from "../../actions/pageAction";
 const ExerciseDetails = () => {
     const dispatch= useDispatch()
     const currentPage = useSelector(state=>state.LoadedPage.Page)
-    const perPage = 9;
+    const perPage = 8;
     const searchResults = useSelector(state => state.search?.searchResults)
     const indexOfLast = currentPage * perPage
     const indexOfFirst = indexOfLast - perPage
@@ -32,7 +32,7 @@ const ExerciseDetails = () => {
                     <ExerciseCard current={current} />
                 </Stack>
                 <Stack mb='0'mt='100px' alignItems='center'>
-                    {searchResults.length > 9 && (
+                    {searchResults.length > 8 && (
                         <Pagination
                             color='standard'
                             shape="rounded"

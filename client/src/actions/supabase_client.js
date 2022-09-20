@@ -1,4 +1,4 @@
-import { refineDate } from "./accountInformation"
+import { refineDate } from './accountInformation'
 
 export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
@@ -23,7 +23,7 @@ export const userSignUp = async (
 ) => {
     const body = { firstName, lastName, username, email, password }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/sign_up', {
+        await fetch('http://localhost:3001/sign_up', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const userSignIn = async (email, password) => {
         password,
     }
     try {
-        const sessionData = await fetch('https://gainzzzz.herokuapp.com/sign_in', {
+        const sessionData = await fetch('http://localhost:3001/sign_in', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export const userSignOut = navigate => {
 
 export const trainerInfo = async () => {
     try {
-        const trainers = await fetch('https://gainzzzz.herokuapp.com/trainer_info', {
+        const trainers = await fetch('http://localhost:3001/trainer_info', {
             method: 'GET',
         })
         const ptTable = trainers.json()
@@ -88,7 +88,7 @@ export const getAcctInfo = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        const personalInfo = await fetch('https://gainzzzz.herokuapp.com/acct_info', {
+        const personalInfo = await fetch('http://localhost:3001/acct_info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export const updateAcctInfo = async updatedInfo => {
         access_token,
     }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/update_acct_info', {
+        await fetch('http://localhost:3001/update_acct_info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ export const getUserFavorites = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        const response = await fetch('https://gainzzzz.herokuapp.com/get_favorites', {
+        const response = await fetch('http://localhost:3001/get_favorites', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export const addToFavorites = async workoutID => {
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/add_favorite', {
+        await fetch('http://localhost:3001/add_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -184,18 +184,20 @@ export const deleteAcct = async (password, navigate) => {
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
     try {
-        await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
+        await fetch('http://localhost:3001/delete_acct', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
         })
-        console.log('account deleted')
-        userSignOut(navigate)
+        console.log('work you bastard')
     } catch (error) {
+        console.log('wtf you pos')
         console.log(error)
     }
+    console.log('pleeeease')
+    userSignOut(navigate)
 }
 
 export const getWeightData = async () => {
@@ -216,5 +218,49 @@ export const getWeightData = async () => {
         let json = await weightData.json()
         let formatted = refineDate(json)
         return formatted
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchWorkoutsCompleted = async () => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
+    try {
+        const data = await fetch('http://localhost:3001/get_workouts_completed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        const completed = await data.json()
+        console.log(completed)
+        return completed
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const sendWorkoutsCompleted = async workoutsCompleted => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = {
+        workoutsCompleted,
+        userID,
+        access_token,
+    }
+    try {
+        await fetch('http://localhost:3001/update_workouts_completed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('workouts completed updated')
+    } catch (error) {
+        console.log(error)
+    }
 }

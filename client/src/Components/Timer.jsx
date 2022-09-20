@@ -32,7 +32,7 @@ const Timer = () => {
             clearInterval(interval)
         }
         return () => clearInterval(interval)
-    }, [isActive, seconds])
+    }, [isActive, minutes, seconds])
 
     return (
         <div className="app">

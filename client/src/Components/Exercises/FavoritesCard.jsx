@@ -3,6 +3,7 @@ import { Typography } from '@mui/material'
 import { removeFavorite } from '../../actions/supabase_client'
 import { useDispatch } from 'react-redux'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
+import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
 
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const UserAccountInformation = props => {
             <button onClick={() => {removeFavorite(props?.workout?.id); setFavWorkouts(dispatch)}}>
                 Remove from Favorites
             </button>
+            <button onClick={()=>{addExerciseToWorkout(dispatch, props.workout)}}>Add to workout</button>
         </div>
     )
 }
