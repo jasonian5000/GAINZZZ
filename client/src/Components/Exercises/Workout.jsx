@@ -5,7 +5,13 @@ import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import FavoritesCard from './FavoritesCard'
-import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
+import {
+    setFavWorkouts,
+    randomWorkout,
+    addWorkoutsCompleted,
+} from '../../actions/workoutBuilder'
+import Timer from '../Timer'
+import { setMyWorkout } from '../../actions/myWorkout.Actions'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -31,7 +37,7 @@ const Workout = () => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
-        setMyWorkout( dispatch, newWorkout)
+        setMyWorkout(dispatch, newWorkout)
         console.log(myWorkout)
         setWorkoutImg('')
         setReset(Math.random())
@@ -54,7 +60,7 @@ const Workout = () => {
                 </div>
             </div>
 
-                        <h1>Choose your workout!</h1>
+            <h1>Choose your workout!</h1>
             <Box className="inputSelect" width="250px">
                 <TextField
                     label="Target Muscle"
@@ -126,11 +132,19 @@ const Workout = () => {
                             </Box>
                         ))
                         : null}
-                    <Button onClick={() => { addWorkoutsCompleted(); setMyWorkout(dispatch, []) }}> Complete Workout</Button>
+                    <Button
+                        onClick={() => {
+                            addWorkoutsCompleted()
+                            setMyWorkout(dispatch, [])
+                        }}
+                    >
+                        {' '}
+                        Complete Workout
+                    </Button>
                 </ul>
                 <img src={workoutImg} alt={workoutImg}></img>
             </div>
-            <Timer/>
+            <Timer />
         </div>
     )
 }
