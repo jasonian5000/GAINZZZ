@@ -20,6 +20,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-scroll-menu": "^0.1.0",
+    "recharts": "^2.1.14",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.3.5",
