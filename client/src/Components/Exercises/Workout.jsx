@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import FavoritesCard from './FavoritesCard'
 import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
+import Timer from '../Timer'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -128,6 +129,7 @@ const Workout = () => {
                 </ul>
                 <img src={workoutImg} alt={workoutImg}></img>
             </div>
+            <Timer/>
         </div>
     )
 }
