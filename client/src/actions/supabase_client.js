@@ -184,7 +184,7 @@ export const deleteAcct = async (password, navigate) => {
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
     try {
-        await fetch('http://localhost:3001/delete_acct', {
+        await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -228,13 +228,16 @@ export const fetchWorkoutsCompleted = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        const data = await fetch('http://localhost:3001/get_workouts_completed', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
+        const data = await fetch(
+            'https://gainzzzz.herokuapp.com/get_workouts_completed',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
         const completed = await data.json()
         console.log(completed)
         return completed
@@ -252,13 +255,16 @@ export const sendWorkoutsCompleted = async workoutsCompleted => {
         access_token,
     }
     try {
-        await fetch('http://localhost:3001/update_workouts_completed', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
+        await fetch(
+            'https://gainzzzz.herokuapp.com/update_workouts_completed',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
         console.log('workouts completed updated')
     } catch (error) {
         console.log(error)
