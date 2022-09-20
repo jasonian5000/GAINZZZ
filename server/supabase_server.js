@@ -67,8 +67,10 @@ export const userSignUp = async (
 export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
-        .select('id,ptName,specialties,description,rates,testimonials')
+        .select('id,ptName,specialties,description,rates,testimonials,test2,test3,img')
+        // changed the code, but no change in actual card itself. not sure why
     if (ptTable) {
+        console.log(ptTable)
         return ptTable
     } else {
         console.log(error)

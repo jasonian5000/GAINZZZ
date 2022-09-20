@@ -3,6 +3,7 @@ import { Card } from '@mui/material'
 import "../../css/PersonalTrainerCard.css"
 
 const PersonalTrainerCard = (props) => {
+    console.log("this is props", props)
 return (
     <div className="cardContainer">
         <Card
@@ -17,6 +18,8 @@ return (
                 <p>Rates: {props?.trainer?.rates}</p>
                 <p>Client Reviews: </p>
                 <p>{props?.trainer?.testimonials}</p>
+                <img src={props?.trainer?.img} alt="" /> 
+                {/* Need to figure out why the above isnt working */}
             </div>
         </Card>
     </div>
