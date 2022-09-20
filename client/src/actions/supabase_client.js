@@ -183,6 +183,7 @@ export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
+    try {
         await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
             method: 'POST',
             headers: {
@@ -190,10 +191,13 @@ export const deleteAcct = async (password, navigate) => {
             },
             body: JSON.stringify(body),
         })
-        console.log('account deleted')
-        localStorage.removeItem('supabase.auth.token')
-        console.log('You have been signed out!')
-        navigate('/')
+        console.log('work you bastard')
+    } catch (error) {
+        console.log('wtf you pos')
+        console.log(error)
+    }
+    console.log('pleeeease')
+    userSignOut(navigate)
 }
 
 export const getWeightData = async () => {
@@ -214,6 +218,54 @@ export const getWeightData = async () => {
         let json = await weightData.json()
         let formatted = refineDate(json)
         return formatted
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchWorkoutsCompleted = async () => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
+    try {
+        const data = await fetch(
+            'https://gainzzzz.herokuapp.com/get_workouts_completed',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
+        const completed = await data.json()
+        console.log(completed)
+        return completed
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const sendWorkoutsCompleted = async workoutsCompleted => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = {
+        workoutsCompleted,
+        userID,
+        access_token,
+    }
+    try {
+        await fetch(
+            'https://gainzzzz.herokuapp.com/update_workouts_completed',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
+        console.log('workouts completed updated')
     } catch (error) {
         console.log(error)
     }

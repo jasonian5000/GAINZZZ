@@ -67,10 +67,10 @@ export const userSignUp = async (
 export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
-        .select('id,ptName,specialties,description,rates,testimonials,test2,test3,img')
-        // changed the code, but no change in actual card itself. not sure why
+        .select(
+            'id,ptName,specialties,description,rates,testimonials,test2,test3,img'
+        )
     if (ptTable) {
-        console.log(ptTable)
         return ptTable
     } else {
         console.log(error)
@@ -91,6 +91,45 @@ export const getAcctInfo = async (userID, access_token) => {
     return accountInfo
 }
 
+export const getWorkoutsCompleted = async (userID, access_token) => {
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/userTable?select=workoutsCompleted&userID=eq.${userID}`,
+        {
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+            },
+        }
+    )
+    let completed = await data.json()
+    return completed
+}
+
+export const updateWorkoutsCompleted = async (
+    workoutsCompleted,
+    userID,
+    access_token
+) => {
+    try {
+        await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+            method: 'PATCH',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
+            },
+            body: JSON.stringify({
+                updated_at: new Date(),
+                workoutsCompleted: workoutsCompleted,
+            }),
+        })
+        console.log("workouts completed updated")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const trackWeight = async (userID, access_token, weight) => {
     try {
         await fetch(`${supabaseUrl}/rest/v1/weightTracker`, {
@@ -107,7 +146,7 @@ const trackWeight = async (userID, access_token, weight) => {
                 userID: userID,
             }),
         })
-        console.log("weight tracked")
+        console.log('weight tracked')
     } catch (error) {
         console.log(error)
     }
@@ -247,11 +286,25 @@ const deleteUserAcct = async userID => {
     console.log('User auth deleted')
 }
 
+const deleteTrackedWeight = async (userID, access_token) => {
+    await fetch(`${supabaseUrl}/rest/v1/weightTracker?userID=eq.${userID}`, {
+        method: 'DELETE',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+    })
+    console.log('all tracked weight removed')
+}
+
 export const destroyAllUserData = async (userID, access_token, password) => {
     const validPassword = await passwordCheck(userID, access_token, password)
     if (validPassword === true) {
         await deleteUserData(userID, access_token)
         await deleteAllFavorites(userID, access_token)
+        await deleteTrackedWeight(userID, access_token)
         await deleteUserAcct(userID)
         console.log('all user data destroyed')
     } else {

@@ -1,29 +1,44 @@
 import React from 'react'
 import { Card } from '@mui/material'
 import "../../css/PersonalTrainerCard.css"
+import  {useState} from "react"
+import PersonalCardInfo from './PersonalCardInfo'
 
 const PersonalTrainerCard = (props) => {
-    console.log("this is props", props)
-return (
-    <div className="cardContainer">
-        <Card
-            sx={{ borderRadius: '16px', boxShadow: 3, bgcolor: 'text.primary' }}
-            variant="outlined"
-            className="card"
-        >
-            <div className="content">
-                <h1>{props?.trainer?.ptName}</h1>
-                <p>{props?.trainer?.description}</p>
-                <p>Specializations in {props?.trainer?.specialties}</p>
-                <p>Rates: {props?.trainer?.rates}</p>
-                <p>Client Reviews: </p>
-                <p>{props?.trainer?.testimonials}</p>
-                <img src={props?.trainer?.img} alt="" /> 
-                {/* Need to figure out why the above isnt working */}
+    const [visibleDetails, setVisibleDetails] = useState(false)
+    const handleClick = () => {
+        console.log("clicked the image")
+        setVisibleDetails(!visibleDetails)
+    }
+    return (
+            <div className="cardContainer">
+                <Card
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        borderRadius: '16px',
+                        boxShadow: 3,
+                        bgcolor: 'text.primary',
+                    }}
+                    variant="outlined"
+                    className="card">
+                        <div className='topCard'>
+                            <h1 className="trainerName">{props?.trainer?.ptName}</h1>
+                            <h5
+                                style={{ display: !visibleDetails ? 'block' : 'none' }} className="trainerName">
+                                click the image for more information about our amazing trainer!
+                            </h5>
+                            <img
+                                onClick={handleClick}
+                                className="trainerImg"
+                                src={props?.trainer?.img}
+                                alt="personal trainer"
+                            />
+                        </div>
+                    {visibleDetails ? <PersonalCardInfo props={props} /> : ''}
+                </Card>
             </div>
-        </Card>
-    </div>
-)
+    )
 }
 
 export default PersonalTrainerCard

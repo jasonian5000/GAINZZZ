@@ -12,6 +12,8 @@ import {
     removeFavorite,
     destroyAllUserData,
     getTrackedWeight,
+    getWorkoutsCompleted,
+    updateWorkoutsCompleted,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
@@ -87,7 +89,8 @@ app.post('/delete_acct', async (req, res) => {
     const { userID, access_token, password } = req.body
     try {
         await destroyAllUserData(userID, access_token, password)
-        res.status(200)
+        console.log("delete account route successful")
+        res.status(200).send("delete account successful")
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -131,6 +134,29 @@ app.post('/get_tracked_weight', async (req, res) => {
     try {
         let weightData = await getTrackedWeight(userID, access_token)
         res.status(200).send(weightData)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/get_workouts_completed', async (req, res) => {
+    const { userID, access_token } = req.body
+    try {
+        let completed = await getWorkoutsCompleted(userID, access_token)
+        console.log(completed)
+        res.status(200).send(completed)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/update_workouts_completed', async (req, res) => {
+    const { workoutsCompleted, userID, access_token } = req.body
+    console.log(workoutsCompleted)
+    try {
+        await updateWorkoutsCompleted(workoutsCompleted, userID, access_token)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

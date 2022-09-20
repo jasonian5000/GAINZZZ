@@ -2,14 +2,30 @@
 
 
 .cardContainer { 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-family: 'Lato';
     font-size: 15px;
     padding: 20px;
 }
 
 .card {
+    font-family: 'Lato';
     padding: 30px;
     margin: 20px;
+}
+
+.trainerName{
+color: #F9F6EE;
+
+}
+
+.testCard{
+border: 1px solid red;
+display: flex;
+flex-direction: row;
 }
 
 
@@ -18,4 +34,17 @@
     flex-direction: column;
     gap: 23px;
     color: #F9F6EE;
+    font-family: 'Lato';
+}
+
+.trainerImg {
+    width: 500px;
+    border-radius: 16px;
+}
+
+.topCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

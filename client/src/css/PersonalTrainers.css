@@ -1,6 +1,28 @@
 .PersonalTrainerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:400px) {
+.PersonalTrainerContainer {
     display: grid;
     grid-template-columns: repeat(1, 70%);
     justify-content: center;
     align-items: center;
 }
+}
+
