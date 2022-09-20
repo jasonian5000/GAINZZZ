@@ -1,52 +1,63 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import '../css/timer.css'
 
 const Timer = () => {
-
-    const [seconds, setSeconds] = useState(0)
     const [minutes, setMinutes] = useState(0)
-    
-    var timer;
+    const [seconds, setSeconds] = useState(0)
+    const [isActive, setIsActive] = useState(false)
+
+    function toggle() {
+        setIsActive(!isActive)
+    }
+
+    function reset() {
+        setSeconds(0)
+        setMinutes(0)
+        setIsActive(false)
+    }
+
     useEffect(() => {
-        timer = setInterval(() => {
-            setSeconds(seconds + 1)
-            
+        let interval = null
+        if (isActive) {
+            interval = setInterval(() => {
+                setSeconds(seconds => seconds + 1)
+            }, 1000)
             if (seconds === 59) {
-                setMinutes(minutes + 1);
+                setMinutes(minutes + 1)
                 setSeconds(0)
             }
-        }, 1000)
-        
-        return () => clearInterval(timer)
-    },);
+        } else if (!isActive && seconds !== 0) {
+            clearInterval(interval)
+        }
+        return () => clearInterval(interval)
+    }, [isActive, seconds])
 
-
-    const restart = () => {
-        setMinutes(0)
-        setSeconds(0)
-        clearInterval(timer);
-    }
-    const stop = () => {
-        clearInterval(timer);
-    }
-    const start = () => {
-        setSeconds(seconds + 1)
-    }
     return (
-        <div className='timer'>
-            <div className='container'>
-                <div className='timer-container'>
-                    <h1>Timer</h1>
-                    <h1> {minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}</h1>
-                    <button className='restart' onClick={ restart }>Restart</button>
-                    <button className='stop' onClick={stop}>Stop</button>
-                    <button className='start' onClick={start}>Start</button>
-                </div>
-                
+        <div className="app">
+            <div className="time">
+                {minutes < 10 ? '0' + minutes : minutes}m:
+                {seconds < 10 ? '0' + seconds : seconds}s
             </div>
-    </div>
+            <div className="row">
+                <button
+                    className={`button button-primary button-primary-${
+                        isActive ? 'active' : 'inactive'
+                    }`}
+                    onClick={toggle}
+                >
+                    {isActive ? 'Pause' : 'Start'}
+                </button>
+                <button className="button" onClick={reset}>
+                    Reset
+                </button>
+            </div>
+        </div>
     )
-    }
-
+}
 export default Timer
+
+
+
+
