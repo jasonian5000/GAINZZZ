@@ -34,7 +34,7 @@ const NewNav = () => {
             </label>
             <ul
                 className="menu"
-                style={{ display: loggedIn ? 'none' : 'flex' }}
+                style={{ display: loggedIn ? 'none' : 'auto' }}
             >
                 <li>
                     <Link
@@ -64,7 +64,7 @@ const NewNav = () => {
             </ul>
             <ul
                 className="menu"
-                style={{ display: loggedIn ? 'flex' : 'none' }}
+                style={{ display: loggedIn ? 'auto' : 'none' }}
             >
                 <li>
                     <Link
@@ -107,7 +107,7 @@ const NewNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <button onClick={() => userSignOut(navigate)}>
+                    <button className='logout' onClick={() => userSignOut(navigate)}>
                         Sign Out
                     </button>
                 </li>
