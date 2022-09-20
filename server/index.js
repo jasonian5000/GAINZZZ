@@ -11,14 +11,13 @@ import {
     updateAcctInfo,
     removeFavorite,
     destroyAllUserData,
+    getTrackedWeight,
 } from './supabase_server.js'
 import { searchExercises } from './searchExercises_server.js'
 
 const PORT = process.env.PORT || 3001
 
-app.use(
-    cors({ origin: '*', methods: 'GET,POST,PUT,DELETE' })
-)
+app.use(cors({ origin: '*', methods: 'GET,POST,PUT,DELETE' }))
 app.use(express.json())
 
 app.post('/search', async (req, res) => {
@@ -121,6 +120,17 @@ app.post('/remove_favorite', async (req, res) => {
     const { userID, workoutID, access_token } = req.body
     try {
         await removeFavorite(userID, workoutID, access_token)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+app.post('/get_tracked_weight', async (req, res) => {
+    const { userID, access_token } = req.body
+    try {
+        let weightData = await getTrackedWeight(userID, access_token)
+        res.status(200).send(weightData)
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

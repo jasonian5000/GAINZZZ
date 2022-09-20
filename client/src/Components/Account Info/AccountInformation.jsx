@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import FavoritesCard from './FavoritesCard'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     setAcctInfo,
     getTrainers,
     sendAcctInfo,
-    setFavWorkouts,
     confirmDeleteAccount,
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
-import { Box, Stack } from '@mui/system'
 import IndividualAccountInfo from './IndividualAccountInfo'
 import { useNavigate } from "react-router-dom"
 
@@ -20,9 +17,6 @@ const AccountInformation = () => {
         state => state.trainers.trainerDropDownList
     )
     const info = useSelector(state => state.personalInfo.accountInfo)
-    const favWorkouts = useSelector(
-        state => state.favoriteWorkouts.favoriteWorkouts
-    )
     const [value, setValue] = useState(1)
     const handleChange = e => {
         setValue(e.target.value)
@@ -32,7 +26,6 @@ const AccountInformation = () => {
         () => {
             getTrainers(dispatch)
             setAcctInfo(dispatch)
-            setFavWorkouts(dispatch)
         },
         // eslint-disable-next-line
         []
@@ -51,7 +44,7 @@ const AccountInformation = () => {
                                 <input
                                     type="text"
                                     className="height"
-                                    placeholder="Enter your height"
+                                    placeholder="Enter your height in inches"
                                 />
                             </div>
                             <div>
@@ -59,7 +52,7 @@ const AccountInformation = () => {
                                 <input
                                     type="text"
                                     className="weight"
-                                    placeholder="Enter your weight"
+                                    placeholder="Enter your weight in pounds"
                                 />
                             </div>
                             <div>
@@ -111,20 +104,6 @@ const AccountInformation = () => {
                     {info?.map((info, index) => {
                         return <IndividualAccountInfo key={index} info={info} />
                     })}
-                </div>
-            </div>
-            <div>
-                <h1>Your Favorite Workouts</h1>
-                <div>
-                    <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                        {favWorkouts?.map(workout => {
-                            return (
-                                <Stack key={workout.id}>
-                                    <FavoritesCard workout={workout} />
-                                </Stack>
-                            )
-                        })}
-                    </Box>
                 </div>
             </div>
         </>
