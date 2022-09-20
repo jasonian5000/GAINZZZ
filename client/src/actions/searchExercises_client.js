@@ -16,6 +16,7 @@ export const searchExercises = async (searchInput, dispatch) => {
 
 export const markFavorites = async workoutID => {
     let favorites = await getUserFavorites()
+    console.log(favorites)
     favorites.forEach(favorite => {
         if (favorite.id === workoutID) {
             return true
@@ -23,5 +24,5 @@ export const markFavorites = async workoutID => {
             return false
         }
     })
-    console.log(favorites)
+    
 }

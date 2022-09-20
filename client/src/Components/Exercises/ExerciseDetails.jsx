@@ -6,7 +6,6 @@ import SearchBar from "./SearchBar";
 import ExerciseCard from "./ExerciseCard";
 import { useSelector, useDispatch } from "react-redux"; 
 import { setPage } from "../../actions/pageAction";
-import { markFavorites } from "../../actions/searchExercises_client";
 
 
 const ExerciseDetails = () => {

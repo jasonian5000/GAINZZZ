@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'
 import { addToFavorites } from '../../actions/supabase_client'
+import { markFavorites } from '../../actions/searchExercises_client'
 
 const ExerciseCard = (props) => {
     return (
@@ -26,7 +27,7 @@ const ExerciseCard = (props) => {
                     <Stack>
                         <Button
                             onClick={() => {
-                                addToFavorites(exercise.id)
+                                addToFavorites(exercise.id);markFavorites(exercise.id)
                             }}
                         >
                             Add to Favorites
