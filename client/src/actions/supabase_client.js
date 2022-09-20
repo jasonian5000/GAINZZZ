@@ -222,3 +222,45 @@ export const getWeightData = async () => {
         console.log(error)
     }
 }
+
+export const fetchWorkoutsCompleted = async () => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
+    try {
+        const data = await fetch('http://localhost:3001/get_workouts_completed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        const completed = await data.json()
+        console.log(completed)
+        return completed
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const sendWorkoutsCompleted = async workoutsCompleted => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = {
+        workoutsCompleted,
+        userID,
+        access_token,
+    }
+    try {
+        await fetch('http://localhost:3001/update_workouts_completed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        console.log('workouts completed updated')
+    } catch (error) {
+        console.log(error)
+    }
+}
