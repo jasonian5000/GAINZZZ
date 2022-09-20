@@ -1,3 +1,5 @@
+import { refineDate } from './accountInformation'
+
 export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
     const parsed = JSON.parse(local)
@@ -164,7 +166,7 @@ export const removeFavorite = async workoutID => {
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
     try {
-        await fetch('http://localhost:3001/remove_favorite', {
+        await fetch('https://gainzzzz.herokuapp.com/remove_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -181,7 +183,6 @@ export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
-    try {
         await fetch('https://gainzzzz.herokuapp.com/delete_acct', {
             method: 'POST',
             headers: {
@@ -190,10 +191,9 @@ export const deleteAcct = async (password, navigate) => {
             body: JSON.stringify(body),
         })
         console.log('account deleted')
-        userSignOut(navigate)
-    } catch (error) {
-        console.log(error)
-    }
+        localStorage.removeItem('supabase.auth.token')
+        console.log('You have been signed out!')
+        navigate('/')
 }
 
 export const getWeightData = async () => {
@@ -201,14 +201,20 @@ export const getWeightData = async () => {
     const access_token = await getAccessToken()
     const body = { userID, access_token }
     try {
-        let weightData = await fetch('http://localhost:3001/get_tracked_weight', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
+        let weightData = await fetch(
+            'https://gainzzzz.herokuapp.com/get_tracked_weight',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            }
+        )
         let json = await weightData.json()
-        return json
-    } catch (error) {}
+        let formatted = refineDate(json)
+        return formatted
+    } catch (error) {
+        console.log(error)
+    }
 }
