@@ -15,6 +15,6 @@ export const addWorkoutsCompleted = async () => {
     console.log(fetchData)
     const completed = await Number(fetchData[0].workoutsCompleted) + 1
     console.log(completed)
-
+    
     await sendWorkoutsCompleted(completed)
 }

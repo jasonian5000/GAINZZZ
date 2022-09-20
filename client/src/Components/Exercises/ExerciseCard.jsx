@@ -3,8 +3,17 @@ import { Button, Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'
 import { addToFavorites } from '../../actions/supabase_client'
 import { markFavorites } from '../../actions/searchExercises_client'
+import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone'
+import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 const ExerciseCard = (props) => {
+    // const favorites = useSelector((state) => state.favoriteWorkouts.favoriteWorkouts)
+    const [visibleDetails, setVisibleDetails] = useState(false)
+    const handleClick = () => {
+        setVisibleDetails(!visibleDetails)
+        }
     return (
         <div className="cardContainer">
             {props.current?.map((exercise, index) => (
@@ -26,11 +35,15 @@ const ExerciseCard = (props) => {
                     />
                     <Stack>
                         <Button
+                            className="exerciseCardButton"
+                            variant="outlined"
+                            size="small"
                             onClick={() => {
                                 addToFavorites(exercise.id);markFavorites(exercise.id)
                             }}
                         >
-                            Add to Favorites
+                            {/* find fix for why bottom doesnt change */}
+                            <FavoriteTwoToneIcon style={{ display: !visibleDetails ? <FavoriteSharpIcon/> : 'auto'}}/> 
                         </Button>
                     </Stack>
                 </div>
