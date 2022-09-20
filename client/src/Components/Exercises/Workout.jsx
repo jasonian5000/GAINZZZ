@@ -103,6 +103,7 @@ const Workout = () => {
                 Get Workout
             </Button>
             <h1>Your Workout</h1>
+            <p>(Click to see workout gif)</p>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>
                     {myWorkout
@@ -127,7 +128,7 @@ const Workout = () => {
                             </Box>
                         ))
                         : null}
-                    <Button onClick={()=>{}}> Complete Workout</Button>
+                    <Button onClick={() => { addWorkoutsCompleted(); setMyWorkout(dispatch, []) }}> Complete Workout</Button>
                 </ul>
                 <img src={workoutImg} alt={workoutImg}></img>
             </div>
