@@ -36,6 +36,33 @@ export const setWeightData = async dispatch => {
     await dispatch({ type: "SET_WEIGHT_DATA", payload: weightData})
 }
 
+const formatDate = (created_at) => {
+    let months = {
+        '01': 'Jan',
+        '02': 'Feb',
+        '03': 'Mar',
+        '04': 'Apr',
+        '05': 'May',
+        '06': 'Jun',
+        '07': 'Jul',
+        '08': 'Aug',
+        '09': 'Sep',
+        '10': 'Oct',
+        '11': 'Nov',
+        '12': 'Dec',
+    }
+    let year = created_at.substr(2, 2)
+    let month = created_at.substr(5, 2)
+    return `${months[month]} '${year}`
+}
+
+export const refineDate = (json) => {
+    json.forEach(entry => {
+        entry.created_at = formatDate(entry.created_at)
+    });
+    return json
+}
+
 export const bmiCalc = (height, weight) => {
     let heightM = Number(height) * 0.0254
     let weightKg = Number(weight) * 0.453592
