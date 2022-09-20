@@ -18,6 +18,8 @@ return (
                 <p>Rates: {props?.trainer?.rates}</p>
                 <p>Client Reviews: </p>
                 <p>{props?.trainer?.testimonials}</p>
+                <p>{props?.trainer?.test2}</p>
+                <p>{props?.trainer?.test3}</p>
                 <img src={props?.trainer?.img} alt="" /> 
                 {/* Need to figure out why the above isnt working */}
             </div>
