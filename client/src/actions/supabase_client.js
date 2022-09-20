@@ -1,3 +1,5 @@
+import { refineDate } from "./accountInformation"
+
 export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
     const parsed = JSON.parse(local)
@@ -209,6 +211,7 @@ export const getWeightData = async () => {
             body: JSON.stringify(body),
         })
         let json = await weightData.json()
-        return json
+        let formatted = refineDate(json)
+        return formatted
     } catch (error) {}
 }
