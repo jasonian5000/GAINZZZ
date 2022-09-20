@@ -67,9 +67,10 @@ export const userSignUp = async (
 export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
-        .select('id,ptName,specialties,description,rates,testimonials,img')
+        .select('id,ptName,specialties,description,rates,testimonials,test2,test3,img')
         // changed the code, but no change in actual card itself. not sure why
     if (ptTable) {
+        console.log(ptTable)
         return ptTable
     } else {
         console.log(error)
@@ -260,7 +261,7 @@ export const destroyAllUserData = async (userID, access_token, password) => {
 
 export const getTrackedWeight = async (userID, access_token) => {
     let data = await fetch(
-        `${supabaseUrl}/rest/v1/weightTracker?select=weight&userID=eq.${userID}`,
+        `${supabaseUrl}/rest/v1/weightTracker?select=weight,created_at&userID=eq.${userID}`,
         {
             headers: {
                 apikey: supabaseKey,

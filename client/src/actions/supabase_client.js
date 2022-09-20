@@ -32,7 +32,6 @@ export const userSignUp = async (
         alert('please confirm you email address to sign in')
     } catch (error) {
         console.log(error)
-        
     }
 }
 
@@ -85,9 +84,7 @@ export const trainerInfo = async () => {
 export const getAcctInfo = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
-    console.log('access token: ', access_token)
     const body = { userID, access_token }
-    console.log(body)
     try {
         const personalInfo = await fetch('https://gainzzzz.herokuapp.com/acct_info', {
             method: 'POST',
@@ -97,7 +94,6 @@ export const getAcctInfo = async () => {
             body: JSON.stringify(body),
         })
         const AcctInfo = await personalInfo.json()
-        console.log(AcctInfo)
         return AcctInfo
     } catch (error) {
         console.log(error)
@@ -139,7 +135,6 @@ export const getUserFavorites = async () => {
             body: JSON.stringify(body),
         })
         const favoritesIdList = await response.json()
-        console.log(favoritesIdList)
         return favoritesIdList
     } catch (error) {
         console.log(error)
@@ -164,12 +159,12 @@ export const addToFavorites = async workoutID => {
     }
 }
 
-export const removeFavorite = async (workoutID) => {
+export const removeFavorite = async workoutID => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
     try {
-       await fetch('https://gainzzzz.herokuapp.com/remove_favorite', {
+        await fetch('http://localhost:3001/remove_favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -199,4 +194,21 @@ export const deleteAcct = async (password, navigate) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const getWeightData = async () => {
+    const userID = await getUserId()
+    const access_token = await getAccessToken()
+    const body = { userID, access_token }
+    try {
+        let weightData = await fetch('http://localhost:3001/get_tracked_weight', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+        let json = await weightData.json()
+        return json
+    } catch (error) {}
 }
