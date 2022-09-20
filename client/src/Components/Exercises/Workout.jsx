@@ -4,8 +4,7 @@ import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import FavoritesCard from './FavoritesCard'
-import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
+import Timer from '../Timer'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -39,23 +38,18 @@ const Workout = () => {
 
     return (
         <div className="workout-container">
-            <h1>Choose your workout!</h1>
-            <div>
-                <h1>Your Favorite Workouts</h1>
-                <div>
-                    <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                        {favWorkouts?.map(workout => {
-                            return (
-                                <Stack key={workout.id}>
-                                    <FavoritesCard workout={workout} />
-                                </Stack>
-                            )
-                        })}
-                    </Box>
-                </div>
-            </div>
-
+            <h1>Favorite Exercises</h1>
+            <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
+                {favWorkouts?.map(workout => {
+                    return (
+                        <Stack key={workout.id}>
+                            <FavoritesCard workout={workout} />
+                        </Stack>
+                    )
+                })}
+            </Box>
             <p>(Add them to your workout)</p>
+            <h1>Choose your workout!</h1>
             <Box className="inputSelect" width="250px">
                 <TextField
                     label="Target Muscle"
@@ -84,7 +78,7 @@ const Workout = () => {
                     label="Workout level"
                     select
                     value={myLevel}
-                    onChange={e => setMyLevel(e.target.value)}
+                    onChange={handleLevelChange}
                     fullWidth
                 >
                     <MenuItem value="3">Quick</MenuItem>
@@ -102,7 +96,7 @@ const Workout = () => {
             </Button>
             <h1>Your Workout</h1>
             <div className="myWorkout-container">
-                <ul className="exercises" key={reset}>
+                <ul className="exercises">
                     {myWorkout
                         ? myWorkout?.map((workout, index) => (
                               <Box
@@ -119,15 +113,13 @@ const Workout = () => {
                                   >
                                       {workout.name}
                                   </Button>
-                                  <button onClick={() => changeWorkout(index)}>
-                                      new exercise
-                                  </button>
                               </Box>
                           ))
                         : null}
                 </ul>
-                <img src={workoutImg} alt={workoutImg}></img>
+                <img src={workoutImg}></img>
             </div>
+            <Timer />
         </div>
     )
 }
