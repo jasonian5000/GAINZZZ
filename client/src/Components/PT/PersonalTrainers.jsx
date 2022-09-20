@@ -17,11 +17,11 @@ const PersonalTrainers = () => {
     return (
         <div className="PersonalTrainerContainer">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                {trainers.map((trainer) => (
+                {/* {trainers.map((trainer) => (
                     <Stack key={trainer.id}>
                         <PersonalTrainerCard trainer={trainer} />
                     </Stack>
-                ))}
+                ))} */}
             </Box>
         </div>
     )
