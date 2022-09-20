@@ -84,6 +84,14 @@ const NewNav = () => {
                 </li>
                 <li>
                     <Link
+                        to="/workout"
+                        style={{ textDecoration: 'none', color: '#ffff' }}
+                    >
+                        Create Workout
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         to="/account_information"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >

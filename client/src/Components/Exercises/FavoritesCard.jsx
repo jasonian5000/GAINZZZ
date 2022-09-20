@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@mui/material'
 import { removeFavorite } from '../../actions/supabase_client'
 import { useDispatch } from 'react-redux'
-import { setFavWorkouts } from '../../actions/accountInformation'
+import { setFavWorkouts } from '../../actions/workoutBuilder'
 
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
