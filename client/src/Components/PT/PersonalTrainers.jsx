@@ -16,10 +16,11 @@ const PersonalTrainers = () => {
     }, [dispatch])
     return (
         <div className="PersonalTrainerContainer">
-            <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
+            
+            <Box sx={{ display: 'grid', flexDirection: 'row',}} mt="50px" p="20px">
                 {trainers.map((trainer) => (
                     <Stack key={trainer.id}>
-                        <PersonalTrainerCard trainer={trainer} />
+                        <PersonalTrainerCard  trainer={trainer} />
                     </Stack>
                 ))}
             </Box>
