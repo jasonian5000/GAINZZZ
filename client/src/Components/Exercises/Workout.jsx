@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import FavoritesCard from './FavoritesCard'
-import { useEffect } from 'react'
-import { setFavWorkouts } from '../../actions/workoutBuilder'
+import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -27,12 +26,7 @@ const Workout = () => {
         // eslint-disable-next-line
         []
     )
-
-    const randomWorkout = (arr, num) => {
-        const random = [...arr].sort(() => 0.5 - Math.random())
-        return random.slice(0, num)
-    }
-
+    
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
