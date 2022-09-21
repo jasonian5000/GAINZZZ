@@ -3,6 +3,7 @@ import { Card } from '@mui/material'
 import "../../css/PersonalTrainerCard.css"
 import  {useState} from "react"
 import PersonalCardInfo from './PersonalCardInfo'
+import JuneTrainer from '../../assets/Los-Angeles-Personal-Trainer.jpg'
 
 const PersonalTrainerCard = (props) => {
     const [visibleDetails, setVisibleDetails] = useState(false)

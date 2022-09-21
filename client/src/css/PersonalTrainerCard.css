@@ -9,6 +9,7 @@
     font-family: 'Lato';
     font-size: 15px;
     padding: 20px;
+    width: 500px;
 }
 
 .card {
@@ -40,6 +41,7 @@ flex-direction: row;
 .trainerImg {
     width: 500px;
     border-radius: 16px;
+    height: 50vh;
 }
 
 .topCard {
