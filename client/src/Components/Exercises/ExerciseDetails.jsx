@@ -20,7 +20,6 @@ const ExerciseDetails = () => {
         (setPage(dispatch, value))
         window.scrollTo({top:500, behavior: 'smooth'})
     }
-
     return (
         <div className="ED-Wrapper">
             <div className="ED-Container">
