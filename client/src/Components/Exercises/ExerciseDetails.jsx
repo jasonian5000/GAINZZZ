@@ -22,7 +22,8 @@ const ExerciseDetails = () => {
     }
 
     return (
-        <div className="ED-Container">
+        <div className="ED-Wrapper">
+            <div className="ED-Container">
             <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
                 <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
                     <SearchBar />
@@ -45,6 +46,7 @@ const ExerciseDetails = () => {
                     )}
                 </Stack>
             </Box>
+            </div>
         </div>
     )
 };
