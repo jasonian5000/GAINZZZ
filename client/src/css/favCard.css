@@ -1,0 +1,8 @@
+.favCard{
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;
+    justify-content: center;
+    align-items: center;
+
+}

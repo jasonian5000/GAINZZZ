@@ -59,6 +59,7 @@ const Workout = () => {
                     </div>
                 </Box>
             </div>
+
             <div className="workout-box">
                 <h1 className='workout-title'>Choose your workout!</h1>
                 <div className="select-container">
@@ -119,13 +120,13 @@ const Workout = () => {
                 <ul className="exercises" key={reset}>
                     {myWorkout
                         ? myWorkout?.map((workout, index) => (
-                            <Box
+                            <Box id = 'myWorkout-card'
                                 key={index}
                                 workoutid={workout.id || workout}
                                 title={workout.id || workout}
                                 m="0 40px"
                             >
-                                <Button
+                                <Button id='exercise-btn'
                                     value={workout.gifUrl}
                                     onClick={e => {
                                         setWorkoutImg(e.target.value)
@@ -148,7 +149,7 @@ const Workout = () => {
                         Complete Workout
                     </Button>
                 </ul>
-                <img src={workoutImg} alt={workoutImg}></img>
+                <img id='myWorkout-img' src={workoutImg} alt={workoutImg}></img>
             </div>
             <Timer />
         </div>

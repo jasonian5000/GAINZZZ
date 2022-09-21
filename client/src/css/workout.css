@@ -8,6 +8,7 @@
 }
 .myWorkout-container{
     display: flex;
+    justify-content: center;
 }
 #favorites-container{
     display: flex;
@@ -51,4 +52,29 @@ p{
     border-radius: 3px;
     transition: 0.2s ease-in-out;
     background: #FF1414;
+}
+#favorites-container{
+    display: flex;
+    gap: 40px
+}
+#removeFav-btn,
+#addTo-btn{
+    background: #FF1414;
+    border-radius: 5px;
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+}
+#exercise-btn{
+    margin: 10px;
+    width:60%;
+    color: black;
+}
+#myWorkout-card{
+    background: white;
+    margin: 10px;
+    width: 100%
+}
+#myWorkout-img{
+    margin: 10px 50px;
 }
