@@ -20,31 +20,35 @@ const ExerciseDetails = () => {
         (setPage(dispatch, value))
         window.scrollTo({top:500, behavior: 'smooth'})
     }
-
     return (
-        <div className="ED-Container">
-            <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-                <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
-                    <SearchBar />
-                    <HorizontalScrollBar/>
+        <div className="ED-Wrapper">
+            <div className="ED-Container">
+                <Box >
+                    <Box
+                        sx={{ position: 'relative', width: '100%', p: '20px' }}
+                    >
+                        <SearchBar />
+                        <HorizontalScrollBar />
+                    </Box>
+                    <Stack>
+                        <ExerciseCard current={current} />
+                    </Stack>
+                    <Stack mb="0" mt="100px" alignItems="center">
+                        {searchResults.length > 8 && (
+                            <Pagination
+                                shape="rounded"
+                                defaultPage={1}
+                                count={Math.ceil(
+                                    searchResults.length / perPage
+                                )}
+                                page={currentPage}
+                                onChange={paginate}
+                                size="large"
+                            />
+                        )}
+                    </Stack>
                 </Box>
-                <Stack>
-                    <ExerciseCard current={current} />
-                </Stack>
-                <Stack mb='0'mt='100px' alignItems='center'>
-                    {searchResults.length > 8 && (
-                        <Pagination
-                            color='standard'
-                            shape="rounded"
-                            defaultPage={1}
-                            count={Math.ceil(searchResults.length / perPage)}
-                            page={currentPage}
-                            onChange={paginate}
-                            size='large'
-                        />
-                    )}
-                </Stack>
-            </Box>
+            </div>
         </div>
     )
 };

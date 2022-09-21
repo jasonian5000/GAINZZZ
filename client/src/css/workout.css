@@ -8,4 +8,73 @@
 }
 .myWorkout-container{
     display: flex;
+    justify-content: center;
+}
+#favorites-container{
+    display: flex;
+    flex-direction: row;
+}
+#fav-img{
+    height: 150px;
+    width: 150px;
+}
+.workout-box{
+    margin: 4rem 0;
+}
+.select-container{
+    display: flex;
+    justify-content: center;
+}
+.workout-btn{
+    display: flex;
+    justify-content: center;
+}
+.workout-title,
+.workout-btn,
+.select-container{
+    margin: 3rem 0;
+}
+p{
+    text-align: center;
+}
+#get-workout-btn{
+    font-family: 'Lato';
+	height:40px;
+	line-height: 43px;
+	margin: 3px;
+	padding: 0px 22px;
+	display: flex;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	color:#ffffff;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    transition: 0.2s ease-in-out;
+    background: #FF1414;
+}
+#favorites-container{
+    display: flex;
+    gap: 40px
+}
+#removeFav-btn,
+#addTo-btn{
+    background: #FF1414;
+    border-radius: 5px;
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+}
+#exercise-btn{
+    margin: 10px;
+    width:60%;
+    color: black;
+}
+#myWorkout-card{
+    background: white;
+    margin: 10px;
+    width: 100%
+}
+#myWorkout-img{
+    margin: 10px 50px;
 }
