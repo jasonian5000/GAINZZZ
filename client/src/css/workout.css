@@ -9,3 +9,46 @@
 .myWorkout-container{
     display: flex;
 }
+#favorites-container{
+    display: flex;
+    flex-direction: row;
+}
+#fav-img{
+    height: 100px;
+    width: 100px;
+}
+.workout-box{
+    margin: 4rem 0;
+}
+.select-container{
+    display: flex;
+    justify-content: center;
+}
+.workout-btn{
+    display: flex;
+    justify-content: center;
+}
+.workout-title,
+.workout-btn,
+.select-container{
+    margin: 3rem 0;
+}
+p{
+    text-align: center;
+}
+#get-workout-btn{
+    font-family: 'Lato';
+	height:40px;
+	line-height: 43px;
+	margin: 3px;
+	padding: 0px 22px;
+	display: flex;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	color:#ffffff;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    transition: 0.2s ease-in-out;
+    background: #FF1414;
+}

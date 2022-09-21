@@ -47,8 +47,8 @@ const Workout = () => {
         <div className="workout-container">
             <div>
                 <h1>Your Favorite Workouts</h1>
-                <div>
-                    <Box sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
+                <Box>
+                    <div id="favorites-container">
                         {favWorkouts?.map(workout => {
                             return (
                                 <Stack key={workout.id}>
@@ -56,56 +56,63 @@ const Workout = () => {
                                 </Stack>
                             )
                         })}
+                    </div>
+                </Box>
+            </div>
+            <div className="workout-box">
+                <h1 className='workout-title'>Choose your workout!</h1>
+                <div className="select-container">
+                    <Box className="inputSelect" width="350px">
+                        <TextField
+                            label="Target Muscle"
+                            select
+                            value={mytarget}
+                            onChange={e => {
+                                setMyTarget(e.target.value)
+                                searchExercises(e.target.value, dispatch)
+                            }}
+                            fullWidth
+                        >
+                            <MenuItem value="back">Back</MenuItem>
+                            <MenuItem value="cardio">Cardio</MenuItem>
+                            <MenuItem value="chest">Chest</MenuItem>
+                            <MenuItem value="lower arms">Lower Arms</MenuItem>
+                            <MenuItem value="lower legs">Lower Legs</MenuItem>
+                            <MenuItem value="neck">Neck</MenuItem>
+                            <MenuItem value="shoulders">Shoulders</MenuItem>
+                            <MenuItem value="upper arms">Upper Arms</MenuItem>
+                            <MenuItem value="upper legs">Upper Legs</MenuItem>
+                            <MenuItem value="waist">Abs</MenuItem>
+                        </TextField>
                     </Box>
+                    <Box className="inputSelect" width="350px">
+                        <TextField
+                            label="Workout level"
+                            select
+                            value={myLevel}
+                            onChange={e => setMyLevel(e.target.value)}
+                            fullWidth
+                        >
+                            <MenuItem value="3">Quick</MenuItem>
+                            <MenuItem value="5">Moderate</MenuItem>
+                            <MenuItem value="7">Intense</MenuItem>
+                        </TextField>
+                    </Box>
+                </div>
+                <div className='workout-btn'>
+                    <Button
+                        id="get-workout-btn"
+                        onClick={() => {
+                            const random = randomWorkout(searchResults, myLevel)
+                            setMyWorkout(dispatch, random)
+                            setWorkoutImg('')
+                        }}
+                    >
+                        Get Workout
+                    </Button>
                 </div>
             </div>
 
-            <h1>Choose your workout!</h1>
-            <Box className="inputSelect" width="250px">
-                <TextField
-                    label="Target Muscle"
-                    select
-                    value={mytarget}
-                    onChange={e => {
-                        setMyTarget(e.target.value)
-                        searchExercises(e.target.value, dispatch)
-                    }}
-                    fullWidth
-                >
-                    <MenuItem value="back">Back</MenuItem>
-                    <MenuItem value="cardio">Cardio</MenuItem>
-                    <MenuItem value="chest">Chest</MenuItem>
-                    <MenuItem value="lower arms">Lower Arms</MenuItem>
-                    <MenuItem value="lower legs">Lower Legs</MenuItem>
-                    <MenuItem value="neck">Neck</MenuItem>
-                    <MenuItem value="shoulders">Shoulders</MenuItem>
-                    <MenuItem value="upper arms">Upper Arms</MenuItem>
-                    <MenuItem value="upper legs">Upper Legs</MenuItem>
-                    <MenuItem value="waist">Abs</MenuItem>
-                </TextField>
-            </Box>
-            <Box className="inputSelect" width="250px">
-                <TextField
-                    label="Workout level"
-                    select
-                    value={myLevel}
-                    onChange={e => setMyLevel(e.target.value)}
-                    fullWidth
-                >
-                    <MenuItem value="3">Quick</MenuItem>
-                    <MenuItem value="5">Moderate</MenuItem>
-                    <MenuItem value="7">Intense</MenuItem>
-                </TextField>
-            </Box>
-            <Button
-                onClick={() => {
-                    const random = randomWorkout(searchResults, myLevel)
-                    setMyWorkout(dispatch, random)
-                    setWorkoutImg('')
-                }}
-            >
-                Get Workout
-            </Button>
             <h1>Your Workout</h1>
             <p>(Click to see workout gif)</p>
             <div className="myWorkout-container">
@@ -130,7 +137,7 @@ const Workout = () => {
                                     new exercise
                                 </button>
                             </Box>
-                        ))
+                            ))
                         : null}
                     <Button
                         onClick={() => {
@@ -138,7 +145,6 @@ const Workout = () => {
                             setMyWorkout(dispatch, [])
                         }}
                     >
-                        {' '}
                         Complete Workout
                     </Button>
                 </ul>

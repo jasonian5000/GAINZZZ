@@ -19,7 +19,7 @@ const UserAccountInformation = props => {
             >
                 {props?.workout?.name}
             </Typography>
-            <img src={props?.workout?.gifUrl} alt="" loading="lazy" />
+            <img id='fav-img'src={props?.workout?.gifUrl} alt="" loading="lazy" />
             <button onClick={() => {removeFavorite(props?.workout?.id); setFavWorkouts(dispatch)}}>
                 Remove from Favorites
             </button>
