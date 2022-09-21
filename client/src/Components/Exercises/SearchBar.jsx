@@ -23,7 +23,7 @@ const SearchBar = () => {
         textAlign="center"
       >
         Search For Exercises by Keyword
-      </Typography>\courses\207
+      </Typography>
       <Box position="relative" mb="72px">
         <TextField
           sx={{
