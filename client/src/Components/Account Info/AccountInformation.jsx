@@ -19,8 +19,8 @@ const AccountInformation = () => {
         []
     )
     return (
-        <div className="accountInformationWrapper">
-            <div className="accountInformationContainer">
+        <div className="acctInfoPageWrapper">
+            <div className="acctInfoPageContainer">
                 <IndividualAccountInfo />
                 <UpdateAccountForm />
             </div>
