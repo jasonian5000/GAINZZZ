@@ -196,6 +196,7 @@ const getFavoritesIds = async (userID, access_token) => {
         }
     )
     let json = await data.json()
+    console.log(json)
     return json
 }
 
