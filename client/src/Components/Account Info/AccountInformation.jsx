@@ -18,6 +18,7 @@ const AccountInformation = () => {
     )
     const weightData = useSelector(state => state.personalInfo.weightData)
     const info = useSelector(state => state.personalInfo.accountInfo)
+    console.log("This is info", info)
     const [value, setValue] = useState(1)
     useEffect(
         () => {
@@ -36,41 +37,40 @@ const AccountInformation = () => {
                         Please enter your personal information
                     </h1>
                     <div>
-                        <form>
-                            <div>
+                        <form className="formContainer">
+                            <div className="height">
                                 <label htmlFor="height">Height</label>
                                 <input
                                     type="text"
-                                    className="height"
                                     placeholder="Enter your height in inches"
                                 />
                             </div>
-                            <div>
+                            <div className="weight">
                                 <label htmlFor="weight">Weight</label>
                                 <input
                                     type="text"
-                                    className="weight"
                                     placeholder="Enter your weight in pounds"
                                 />
                             </div>
-                            <div>
+                            <div className="gender">
                                 <label htmlFor="gender">Gender</label>
                                 <input
                                     type="text"
-                                    className="gender"
                                     placeholder="Enter your gender"
                                 />
                             </div>
-                            <div>
+                            <div className="age">
                                 <label htmlFor="age">Age</label>
                                 <input
                                     type="text"
-                                    className="age"
                                     placeholder="Enter your age"
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="personalTrainer">
+                            <div className="trainers">
+                                <label
+                                    className="trainersLabel"
+                                    htmlFor="personalTrainer"
+                                >
                                     select personal trainer
                                     <select
                                         value={value}
@@ -90,20 +90,28 @@ const AccountInformation = () => {
                                     </select>
                                 </label>
                             </div>
-                            <button onClick={e => sendAcctInfo(e, info)}>
-                                Update
-                            </button>
-                            <button
-                                onClick={() => confirmDeleteAccount()}
-                            >
-                                Delete Account
-                            </button>
+                            <div className="buttons">
+                                <button
+                                    className="btn btn-5"
+                                    onClick={e => sendAcctInfo(e, info)}
+                                >
+                                    Update
+                                </button>
+                                <button
+                                    className="btn btn-5"
+                                    onClick={() =>
+                                        confirmDeleteAccount(navigate)
+                                    }
+                                >
+                                    Delete Account
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
             <div>
-                <h1>Account Information</h1>
+                <h1 className="ACC_TITLE">Account Information</h1>
                 <div>
                     {info?.map((info, index) => {
                         return <IndividualAccountInfo key={index} info={info} />
