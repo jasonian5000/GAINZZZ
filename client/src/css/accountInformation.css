@@ -5,9 +5,9 @@
     background-size: cover;
 }
 
-.accountInformationForm {
+/* .accountInformationForm {
     margin-top: 20vh;
-}
+} */
 
 .accountInformationContainer {
   display: flex;
@@ -17,16 +17,15 @@
 .formContainer {
     display: flex;
     flex-direction: column;
-    margin: 0 5vw;
+    /* margin: 0 5vw; */
 }
 
 .height, .weight, .gender, .age, .trainers {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* flex-direction: column; */
+    justify-content: space-between;
     align-items: center;
     background-color: rgba(white, 0.8);
-    border: solid 1px #ff512f;
     width: 100%;
     height: 60px;
     padding: 25px;
@@ -44,7 +43,7 @@
     width: 100%;
 }
 
-.idividualAccountInfoContainer{
+.idividualAccountInfoContainer, .accountInformationForm{
     display: flex;
     flex-direction: column;
     align-items: center;
