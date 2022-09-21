@@ -8,12 +8,12 @@ import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 
-const ExerciseCard = (props) => {
+const ExerciseCard = props => {
     // const favorites = useSelector((state) => state.favoriteWorkouts.favoriteWorkouts)
     const [visibleDetails, setVisibleDetails] = useState(false)
     const handleClick = () => {
         setVisibleDetails(!visibleDetails)
-        }
+    }
     return (
         <div className="cardContainer">
             {props.current?.map((exercise, index) => (
@@ -39,11 +39,26 @@ const ExerciseCard = (props) => {
                             variant="outlined"
                             size="small"
                             onClick={() => {
-                                addToFavorites(exercise.id);markFavorites(exercise.id)
+                                addToFavorites(exercise.id)
                             }}
                         >
                             {/* find fix for why bottom doesnt change */}
-                            <FavoriteTwoToneIcon style={{ display: !visibleDetails ? <FavoriteSharpIcon/> : 'auto'}}/> 
+                            <FavoriteTwoToneIcon
+                                style={{
+                                    display:
+                                        markFavorites(exercise.id) === true
+                                            ? 'none'
+                                            : 'auto',
+                                }}
+                            />
+                            <FavoriteSharpIcon
+                                style={{
+                                    display:
+                                        markFavorites(exercise.id) === true
+                                            ? 'auto'
+                                            : 'none',
+                                }}
+                            />
                         </Button>
                     </Stack>
                 </div>

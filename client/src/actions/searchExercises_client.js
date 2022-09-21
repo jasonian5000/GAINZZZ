@@ -19,8 +19,10 @@ export const markFavorites = async workoutID => {
     console.log(favorites)
     favorites.forEach(favorite => {
         if (favorite.id === workoutID) {
+          console.log(true)
             return true
         } else {
+          console.log(false)
             return false
         }
     })
