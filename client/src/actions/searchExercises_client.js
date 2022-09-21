@@ -1,8 +1,8 @@
-import { getUserFavorites } from './supabase_client'
+import { getUserFavorites, serverURL } from './supabase_client'
 
 export const searchExercises = async (searchInput, dispatch) => {
     let body = { searchInput: searchInput }
-    let search = await fetch('http://localhost:3001/search', {
+    let search = await fetch(`${serverURL}:3001/search`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
