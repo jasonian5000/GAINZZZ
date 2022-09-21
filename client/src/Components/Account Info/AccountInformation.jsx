@@ -30,7 +30,7 @@ const AccountInformation = () => {
         []
     )
     return (
-        <>
+        <div className='accountInformationWrapper'>
             <div className="accountInformationContainer">
                 <div className="accountInformationForm">
                     <h1 className="title">
@@ -139,7 +139,7 @@ const AccountInformation = () => {
                     <Line type="monotone" dataKey="weight" stroke="red" />
                 </LineChart>
             </div>
-        </>
+        </div>
     )
 }
 
