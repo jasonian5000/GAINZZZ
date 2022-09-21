@@ -19,6 +19,7 @@ const PersonalTrainerCard = (props) => {
                         borderRadius: '16px',
                         boxShadow: 3,
                         bgcolor: 'text.primary',
+                
                     }}
                     variant="outlined"
                     className="card">
