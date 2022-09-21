@@ -12,14 +12,27 @@ import IndividualAccountInfo from './IndividualAccountInfo'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Label } from 'recharts'
 
 const AccountInformation = () => {
+    const makeNumberArray = (start, finish) => {
+        let state = Array(finish - start).fill({})
+        return state.map((part, index) => ({
+            value: String(start + index),
+        }))
+    }
+    const heightList = makeNumberArray(36, 91)
+    const weightList = makeNumberArray(50, 500)
+    const ageList = makeNumberArray(16, 100)
+
     const dispatch = useDispatch()
     const trainerDropDownList = useSelector(
         state => state.trainers.trainerDropDownList
     )
     const weightData = useSelector(state => state.personalInfo.weightData)
     const info = useSelector(state => state.personalInfo.accountInfo)
-    console.log("This is info", info)
-    const [value, setValue] = useState(1)
+    const [heightValue, setHeightValue] = useState()
+    const [weightValue, setWeightValue] = useState()
+    const [genderValue, setGenderValue] = useState()
+    const [ageValue, setAgeValue] = useState()
+    const [trainerValue, setTrainerValue] = useState(1)
     useEffect(
         () => {
             getTrainers(dispatch)
@@ -30,7 +43,7 @@ const AccountInformation = () => {
         []
     )
     return (
-        <div className='accountInformationWrapper'>
+        <div className="accountInformationWrapper">
             <div className="accountInformationContainer">
                 <div className="accountInformationForm">
                     <h1 className="title">
@@ -40,31 +53,76 @@ const AccountInformation = () => {
                         <form className="formContainer">
                             <div className="height">
                                 <label htmlFor="height">Height</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your height in inches"
-                                />
+                                <select
+                                    value={heightValue}
+                                    onChange={e => {
+                                        setHeightValue(e.target.value)
+                                    }}
+                                >
+                                    <option value="">select..</option>
+                                    {heightList.map(height => (
+                                        <option
+                                            key={height.value}
+                                            value={height.value}
+                                        >
+                                            {height.value}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="weight">
                                 <label htmlFor="weight">Weight</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your weight in pounds"
-                                />
+                                <select
+                                    value={weightValue}
+                                    onChange={e => {
+                                        setWeightValue(e.target.value)
+                                    }}
+                                >
+                                    <option value="">select..</option>
+                                    {weightList.map(weight => (
+                                        <option
+                                            key={weight.value}
+                                            value={weight.value}
+                                        >
+                                            {weight.value}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="gender">
                                 <label htmlFor="gender">Gender</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your gender"
-                                />
+                                <select
+                                    value={genderValue}
+                                    onChange={e => {
+                                        setGenderValue(e.target.value)
+                                    }}
+                                >
+                                    <option value="">select..</option>
+                                    <option value="male">male</option>
+                                    <option value="female">female</option>
+                                    <option value="prefer not to say">
+                                        prefer not to say
+                                    </option>
+                                </select>
                             </div>
                             <div className="age">
                                 <label htmlFor="age">Age</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your age"
-                                />
+                                <select
+                                    value={ageValue}
+                                    onChange={e => {
+                                        setAgeValue(e.target.value)
+                                    }}
+                                >
+                                    <option value="">select..</option>
+                                    {ageList.map(age => (
+                                        <option
+                                            key={age.value}
+                                            value={age.value}
+                                        >
+                                            {age.value}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="trainers">
                                 <label
@@ -73,9 +131,9 @@ const AccountInformation = () => {
                                 >
                                     select personal trainer
                                     <select
-                                        value={value}
+                                        value={trainerValue}
                                         onChange={e => {
-                                            setValue(e.target.value)
+                                            setTrainerValue(e.target.value)
                                         }}
                                     >
                                         <option value="">No trainer</option>
@@ -99,9 +157,7 @@ const AccountInformation = () => {
                                 </button>
                                 <button
                                     className="btn btn-5"
-                                    onClick={() =>
-                                        confirmDeleteAccount()
-                                    }
+                                    onClick={() => confirmDeleteAccount()}
                                 >
                                     Delete Account
                                 </button>
