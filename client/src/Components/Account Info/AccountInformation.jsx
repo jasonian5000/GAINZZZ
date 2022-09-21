@@ -100,7 +100,7 @@ const AccountInformation = () => {
                                 <button
                                     className="btn btn-5"
                                     onClick={() =>
-                                        confirmDeleteAccount(navigate)
+                                        confirmDeleteAccount()
                                     }
                                 >
                                     Delete Account
