@@ -40,7 +40,7 @@ export default function UpdateAccountForm() {
             <div className="updateFormWrapper">
                 <h1>Update Account</h1>
                 <form className="updateFormContainer">
-                    <div className="heightSelect">
+                    <div className="updateSelect">
                         <label htmlFor="height">Height:</label>
                         <select
                             className="dropDownMenu"
@@ -57,7 +57,7 @@ export default function UpdateAccountForm() {
                             ))}
                         </select>
                     </div>
-                    <div className="weightSelect">
+                    <div className="updateSelect">
                         <label htmlFor="weight">Weight:</label>
                         <select
                             className="dropDownMenu"
@@ -74,7 +74,7 @@ export default function UpdateAccountForm() {
                             ))}
                         </select>
                     </div>
-                    <div className="ageSelect">
+                    <div className="updateSelect">
                         <label htmlFor="age">Age:</label>
                         <select
                             className="dropDownMenu"
@@ -91,7 +91,7 @@ export default function UpdateAccountForm() {
                             ))}
                         </select>
                     </div>
-                    <div className="genderSelect">
+                    <div className="updateSelect">
                         <label htmlFor="gender">Gender:</label>
                         <select
                             className="dropDownMenu"
@@ -108,7 +108,7 @@ export default function UpdateAccountForm() {
                             </option>
                         </select>
                     </div>
-                    <div className="trainersSelect">
+                    <div className="updateSelect">
                         <label htmlFor="personalTrainer">
                             Personal Trainer:
                         </label>
