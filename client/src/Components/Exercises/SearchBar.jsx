@@ -17,18 +17,21 @@ const SearchBar = () => {
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
       <Typography
         fontWeight={700}
-        sx={{ fontSize: { lg: "40px", xs: "25px" } }}
+        sx={{ fontSize: { lg: "40px", xs: "25px" }, color:'whitesmoke' }}
+        mt='80px'
         mb="50px"
         textAlign="center"
       >
-        {" "}
         Search For Exercises by Keyword
-      </Typography>
+      </Typography>\courses\207
       <Box position="relative" mb="72px">
         <TextField
           sx={{
-            input: { fontWeight: "700", border: "none", borderRadius: "4px" },
+            input: { fontWeight: "700", border: "none", borderRadius: "4px", color: 'whitesmoke'},
             width: { lg: "800px", xs: "350px" },
+            color: 'white',
+            border: '2px solid white',
+            'border-radius':'4px',
           }}
           height="76px"
           value={searchInput}
@@ -48,7 +51,7 @@ const SearchBar = () => {
             textTransform: "none",
             width: { lg: "150px", xs: "12px" },
             fontSize: { lg: "16px", xs: "12px" },
-            height: "56px",
+            height: "60px",
             position: "absolute",
             right: "0",
           }}

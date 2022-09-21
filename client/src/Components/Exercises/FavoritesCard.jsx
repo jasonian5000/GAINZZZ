@@ -4,11 +4,12 @@ import { removeFavorite } from '../../actions/supabase_client'
 import { useDispatch } from 'react-redux'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
+import '../../css/favCard.css'
 
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
     return (
-        <div>
+        <div className='favCard'>
             <Typography
                 ml="21px"
                 color="black"
@@ -19,11 +20,11 @@ const UserAccountInformation = props => {
             >
                 {props?.workout?.name}
             </Typography>
-            <img src={props?.workout?.gifUrl} alt="" loading="lazy" />
-            <button onClick={() => {removeFavorite(props?.workout?.id); setFavWorkouts(dispatch)}}>
+            <img id='fav-img'src={props?.workout?.gifUrl} alt="" loading="lazy" />
+            <button id='removeFav-btn'onClick={() => {removeFavorite(props?.workout?.id); setFavWorkouts(dispatch)}}>
                 Remove from Favorites
             </button>
-            <button onClick={()=>{addExerciseToWorkout(dispatch, props.workout)}}>Add to workout</button>
+            <button id='addTo-btn'onClick={()=>{addExerciseToWorkout(dispatch, props.workout)}}>Add to workout</button>
         </div>
     )
 }
