@@ -1,6 +1,6 @@
 import { refineDate } from './accountInformation'
-// export const serverURL = 'http://localhost:3001'
-export const serverURL = 'https://gainzzzz.herokuapp.com'
+export const serverURL = 'http://localhost:3001'
+// export const serverURL = 'https://gainzzzz.herokuapp.com'
 
 export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
