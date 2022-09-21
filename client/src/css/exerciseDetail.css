@@ -1,6 +1,16 @@
-.ED-wrapper{
-    
+.ED-Wrapper{
+    background: url('../assets/gym_mat.jpg');
+    background-size: cover;
+
 }
 .ED-Container{
-    margin: 30px;
+    min-height: 90vh;
+    padding:20px
+}
+
+.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root{
+    color: white !important;
+}
+.css-1scal0h-MuiPaginationItem-root{
+    color:white !important;
 }
