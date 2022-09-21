@@ -1,25 +1,38 @@
 import React from 'react'
-import { bmiCalc } from '../../actions/accountInformation'
-import "../../css/IndividualAccountInfo.css"
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
+import '../../css/accountInformation.css'
 
-const IndividualAccountInfo = props => {
-    const bmi = bmiCalc(props.info.height, props.info.weight)
+const IndividualAccountInfo = () => {
+    const dispatch = useDispatch()
+    const info = useSelector(state => state.personalInfo.accountInfo)
+    const [update, setUpdate] = useState(info[0])
+    const bmi = bmiCalc(info?.height, info?.weight)
+    useEffect(() => {
+        setAcctInfo(dispatch)
+    }, [])
+
+    useEffect(() => {
+        setUpdate(info[0])
+    }, [info])
     return (
         <div className="idividualAccountInfoContainer">
             <h1>Account Information</h1>
             <p
                 style={{
-                    display: props?.info?.height ? 'block' : 'none',
+                    display: update?.height ? 'block' : 'none',
                 }}
             >
-                Height: {props?.info?.height} inches
+                Height: {update?.height} inches
             </p>
             <p
                 style={{
-                    display: props?.info?.weight ? 'block' : 'none',
+                    display: update?.weight ? 'block' : 'none',
                 }}
             >
-                Weight: {props?.info?.weight} pounds
+                Weight: {update?.weight} pounds
             </p>
             <p
                 style={{
@@ -30,24 +43,24 @@ const IndividualAccountInfo = props => {
             </p>
             <p
                 style={{
-                    display: props?.info?.gender ? 'block' : 'none',
+                    display: update?.gender ? 'block' : 'none',
                 }}
             >
-                Gender: {props?.info?.gender}
+                Gender: {update?.gender}
             </p>
             <p
                 style={{
-                    display: props?.info?.age ? 'block' : 'none',
+                    display: update?.age ? 'block' : 'none',
                 }}
             >
-                Age: {props?.info?.age} years old
+                Age: {update?.age} years old
             </p>
             <p
                 style={{
-                    display: props?.info?.ptTable?.ptName ? 'block' : 'none',
+                    display: update?.ptTable?.ptName ? 'block' : 'none',
                 }}
             >
-                Personal Trainer: {props?.info?.ptTable?.ptName}
+                Personal Trainer: {update?.ptTable?.ptName}
             </p>
         </div>
     )

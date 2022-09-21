@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-    setAcctInfo,
     getTrainers,
     sendAcctInfo,
     confirmDeleteAccount,
@@ -36,7 +35,6 @@ const AccountInformation = () => {
     useEffect(
         () => {
             getTrainers(dispatch)
-            setAcctInfo(dispatch)
             setWeightData(dispatch)
         },
         // eslint-disable-next-line
@@ -45,16 +43,14 @@ const AccountInformation = () => {
     return (
         <div className="accountInformationWrapper">
             <div className="accountInformationContainer">
-                <div className="ACC_TITLE">
-                    {info?.map((info, index) => {
-                        return <IndividualAccountInfo key={index} info={info} />
-                    })}
+                <div className="acctTitle">
+                    <IndividualAccountInfo />
                 </div>
                 <div className="accountInformationForm">
-                    <h1 className="title">
-                        Please enter your personal information
-                    </h1>
                     <div className="formWrapper">
+                        <h1 className="title">
+                            Please enter your personal information
+                        </h1>
                         <form className="formContainer">
                             <div className="height">
                                 <label htmlFor="height">Height</label>

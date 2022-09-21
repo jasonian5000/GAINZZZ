@@ -7,28 +7,17 @@
 
 .accountInformationForm {
     margin-top: 20vh;
-    grid-area: right;
-    margin-right: 300px;
 }
 
 .accountInformationContainer {
-  display: grid;
-  grid-template-areas: 'left right';
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr;
-}
-
-
-.formWrapper {
-
+  display: flex;
+  justify-content: center;
 }
 
 .formContainer {
-    /* margin-left: 200vh; */
     display: flex;
     flex-direction: column;
-    
-    /* height: 50vh; */
+    margin: 0 5vw;
 }
 
 .height {
@@ -119,13 +108,25 @@
     width: 100%;
 }
 
-.ACC_TITLE {
-    grid-area: left;
+.acctTitle {
     margin-top: 25vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 5vw;
+}
+
+.idividualAccountInfoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 11vh;
+    background-color: aliceblue;
+    border-radius: 20px;
+    opacity: 0.4;
+
 }
 
 .btn {
