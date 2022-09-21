@@ -9,10 +9,14 @@ const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
     const info = useSelector(state => state.personalInfo.accountInfo)
     const [update, setUpdate] = useState(info[0])
-    const bmi = bmiCalc(info?.height, info?.weight)
-    useEffect(() => {
-        setAcctInfo(dispatch)
-    }, [])
+    const bmi = bmiCalc(update?.height, update?.weight)
+    useEffect(
+        () => {
+            setAcctInfo(dispatch)
+        },
+        // eslint-disable-next-line
+        []
+    )
 
     useEffect(() => {
         setUpdate(info[0])

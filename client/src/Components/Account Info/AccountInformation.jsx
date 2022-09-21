@@ -43,9 +43,7 @@ const AccountInformation = () => {
     return (
         <div className="accountInformationWrapper">
             <div className="accountInformationContainer">
-                <div className="acctTitle">
-                    <IndividualAccountInfo />
-                </div>
+                <IndividualAccountInfo />
                 <div className="accountInformationForm">
                     <div className="formWrapper">
                         <h1 className="title">
@@ -126,28 +124,25 @@ const AccountInformation = () => {
                                 </select>
                             </div>
                             <div className="trainers">
-                                <label
-                                    className="trainersLabel"
-                                    htmlFor="personalTrainer"
-                                >
+                                <label htmlFor="personalTrainer">
                                     select personal trainer
-                                    <select
-                                        value={trainerValue}
-                                        onChange={e => {
-                                            setTrainerValue(e.target.value)
-                                        }}
-                                    >
-                                        <option value="">No trainer</option>
-                                        {trainerDropDownList.map(trainer => (
-                                            <option
-                                                key={trainer.id}
-                                                value={trainer.id}
-                                            >
-                                                {trainer?.ptName}
-                                            </option>
-                                        ))}
-                                    </select>
                                 </label>
+                                <select
+                                    value={trainerValue}
+                                    onChange={e => {
+                                        setTrainerValue(e.target.value)
+                                    }}
+                                >
+                                    <option value="">No trainer</option>
+                                    {trainerDropDownList.map(trainer => (
+                                        <option
+                                            key={trainer.id}
+                                            value={trainer.id}
+                                        >
+                                            {trainer?.ptName}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="buttons">
                                 <button
