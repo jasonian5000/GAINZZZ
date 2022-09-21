@@ -1,10 +1,12 @@
 import React from 'react'
 import { bmiCalc } from '../../actions/accountInformation'
+import "../../css/IndividualAccountInfo.css"
 
 const IndividualAccountInfo = props => {
     const bmi = bmiCalc(props.info.height, props.info.weight)
     return (
-        <div>
+        <div className="idividualAccountInfoContainer">
+            <h1>Account Information</h1>
             <p
                 style={{
                     display: props?.info?.height ? 'block' : 'none',

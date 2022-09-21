@@ -30,13 +30,18 @@ const AccountInformation = () => {
         []
     )
     return (
-        <div className='accountInformationWrapper'>
+        <div className="accountInformationWrapper">
             <div className="accountInformationContainer">
+                <div className="ACC_TITLE">
+                    {info?.map((info, index) => {
+                        return <IndividualAccountInfo key={index} info={info} />
+                    })}
+                </div>
                 <div className="accountInformationForm">
                     <h1 className="title">
                         Please enter your personal information
                     </h1>
-                    <div>
+                    <div className="formWrapper">
                         <form className="formContainer">
                             <div className="height">
                                 <label htmlFor="height">Height</label>
@@ -99,23 +104,13 @@ const AccountInformation = () => {
                                 </button>
                                 <button
                                     className="btn btn-5"
-                                    onClick={() =>
-                                        confirmDeleteAccount()
-                                    }
+                                    onClick={() => confirmDeleteAccount()}
                                 >
                                     Delete Account
                                 </button>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <div>
-                <h1 className="ACC_TITLE">Account Information</h1>
-                <div>
-                    {info?.map((info, index) => {
-                        return <IndividualAccountInfo key={index} info={info} />
-                    })}
                 </div>
             </div>
             <div style={{ background: 'black', color: 'white' }}>

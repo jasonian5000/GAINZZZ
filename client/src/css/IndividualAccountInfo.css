@@ -1,0 +1,14 @@
+.idividualAccountInfoContainer{
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 11vh;
+    background-color: aliceblue;
+    border-radius: 20px;
+    margin-bottom: 200px;
+    opacity: 0.4;
+
+}
