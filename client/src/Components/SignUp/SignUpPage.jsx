@@ -7,15 +7,15 @@ const SignUpPage = () => {
     <>
       <form className="signUpForm">
         <div className="form-container">
-          <div>
-            <label htmlFor="firstName">First name</label>
+          <div className="firstNameContainer">
+            <label classname="" htmlFor="firstName">First name</label>
             <input
               name="firstName"
               type="text"
               placeholder="Enter your first name"
             />
           </div>
-          <div>
+          <div className="lastNameContainer">
             <label htmlFor="lastName">Last name</label>
             <input
               name="lastName"
@@ -23,17 +23,17 @@ const SignUpPage = () => {
               placeholder="Enter your last name"
             />
           </div>
-        <div>
+        <div className="usernameContainer">
           <label htmlFor="username" required>
             username
           </label>
           <input name="username" type="text" placeholder="username" />
         </div>
-        <div>
+        <div className="emailContainer">
           <label>Email address</label>
           <input name="email" type="email" placeholder="email" />
         </div>
-        <div>
+        <div className="passwordContainer">
           <label htmlFor="password">Password</label>
           <input
             name="password"
