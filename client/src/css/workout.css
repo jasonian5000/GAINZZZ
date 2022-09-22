@@ -61,11 +61,21 @@ p{
     gap: 30px
 }
 #removeFav-btn,
-#addTo-btn{
+#addTo-btn,
+#complete-btn{
+    color:#ffffff;
     background: #FF1414;
     border-radius: 5px;
     width: 70%;
     margin: 10px;
+    padding: 10px;
+}
+#newExercise-btn{
+        color:#ffffff;
+    background: black;
+    border-radius: 5px;
+    width: 30%;
+    margin: 8px;
     padding: 10px;
 }
 #exercise-btn{

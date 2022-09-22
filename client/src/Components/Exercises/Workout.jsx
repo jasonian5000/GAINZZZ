@@ -126,13 +126,14 @@ const Workout = () => {
                                   >
                                       {workout.name}
                                   </Button>
-                                  <button onClick={() => changeWorkout(index)}>
-                                      new exercise
+                                  <button id='newExercise-btn' onClick={() => changeWorkout(index)}>
+                                      Shuffle
                                   </button>
                               </Box>
                           ))
                         : null}
                     <Button
+                        id='complete-btn'
                         key={myWorkout}
                         sx={{
                             color: 'success.main',
