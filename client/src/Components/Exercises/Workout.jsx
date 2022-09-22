@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
-import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
+import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import FavoritesCard from './FavoritesCard'
 import {
     setFavWorkouts,
     randomWorkout,
@@ -12,6 +11,7 @@ import {
 } from '../../actions/workoutBuilder'
 import Timer from '../Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
+import FavWorkoutScroll from './FavWorkoutScroll'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -21,9 +21,6 @@ const Workout = () => {
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
-    const favWorkouts = useSelector(
-        state => state.favoriteWorkouts.favoriteWorkouts
-    )
 
     useEffect(
         () => {
@@ -43,25 +40,23 @@ const Workout = () => {
         setReset(Math.random())
     }
 
+    const removeWorkout = index => {
+        let newWorkout = myWorkout
+        newWorkout.splice(index, 1)
+        setMyWorkout(dispatch, newWorkout)
+        console.log(myWorkout)
+        setWorkoutImg('')
+        setReset(Math.random())
+    }
+
     return (
-        <div className="workout-container">
+        <div className="workout-wrapper">
             <div>
-                <h1>Your Favorite Workouts</h1>
-                <Box>
-                    <div id="favorites-container">
-                        {favWorkouts?.map(workout => {
-                            return (
-                                <Stack key={workout.id}>
-                                    <FavoritesCard workout={workout} />
-                                </Stack>
-                            )
-                        })}
-                    </div>
-                </Box>
+            <FavWorkoutScroll/>
             </div>
 
             <div className="workout-box">
-                <h1 className='workout-title'>Choose your workout!</h1>
+                <h1 className="workout-title">Choose your workout!</h1>
                 <div className="select-container">
                     <Box className="inputSelect" width="350px">
                         <TextField
@@ -100,7 +95,7 @@ const Workout = () => {
                         </TextField>
                     </Box>
                 </div>
-                <div className='workout-btn'>
+                <div className="workout-btn">
                     <Button
                         id="get-workout-btn"
                         onClick={() => {
@@ -113,43 +108,53 @@ const Workout = () => {
                     </Button>
                 </div>
             </div>
-
             <h1>Your Workout</h1>
-            <p>(Click to see workout gif)</p>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>
                     {myWorkout
                         ? myWorkout?.map((workout, index) => (
-                            <Box id = 'myWorkout-card'
-                                key={index}
-                                workoutid={workout.id || workout}
-                                title={workout.id || workout}
-                                m="0 40px"
-                            >
-                                <Button id='exercise-btn'
-                                    value={workout.gifUrl}
-                                    onClick={e => {
-                                        setWorkoutImg(e.target.value)
-                                    }}
-                                >
-                                    {workout.name}
-                                </Button>
-                                <button onClick={() => changeWorkout(index)}>
-                                    new exercise
-                                </button>
-                            </Box>
-                            ))
+                              <Box
+                                  id="myWorkout-card"
+                                  key={index}
+                                  workoutid={workout.id || workout}
+                                  title={workout.id || workout}
+                                  m="0 40px"
+                              >
+                                  <Button
+                                      id="exercise-btn"
+                                      value={workout.gifUrl}
+                                      onClick={e => {
+                                          setWorkoutImg(e.target.value)
+                                      }}
+                                  >
+                                      {workout.name}
+                                  </Button>
+                                  <button id='newExercise-btn' onClick={() => changeWorkout(index)}>
+                                      Shuffle
+                                  </button>
+                                  <button id="newExercise-btn" onClick={() => removeWorkout(index)}>Remove</button>
+                              </Box>
+                          ))
                         : null}
                     <Button
+                        id='complete-btn'
+                        key={myWorkout}
+                        sx={{
+                            color: 'success.main',
+                            left: 40,
+                            display: 'active',
+                        }}
+                        style={{ display: myWorkout[0] ? 'auto' : 'none' }}
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
+                            setWorkoutImg('')
                         }}
                     >
                         Complete Workout
                     </Button>
                 </ul>
-                <img id='myWorkout-img' src={workoutImg} alt={workoutImg}></img>
+                <img id="myWorkout-img" src={workoutImg} alt={workoutImg}></img>
             </div>
             <Timer />
         </div>

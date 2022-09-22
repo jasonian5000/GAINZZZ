@@ -1,8 +1,11 @@
 .favCard{
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     background: whitesmoke;
     justify-content: center;
     align-items: center;
+    width: 300px;
+    height: 400px;
 
 }

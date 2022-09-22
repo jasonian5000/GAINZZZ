@@ -21,10 +21,10 @@ const NewNav = () => {
     const tokenState = checkToken()
     const [loggedIn, setLoggedIn] = useState(tokenState)
     useEffect(() => {
-        setLoggedIn(checkToken())
+        setLoggedIn(tokenState)
     }, [tokenState])
     return (
-        <nav id="navbar" className={nav ? 'nav active' : 'nav'}>
+        <nav key={String(loggedIn)} id="navbar" className={nav ? 'nav active' : 'nav'}>
             <Link to="/" className="logo">
                 <img src={logo} alt="" />
             </Link>

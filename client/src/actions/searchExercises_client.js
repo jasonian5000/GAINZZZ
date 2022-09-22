@@ -1,4 +1,4 @@
-import { getUserFavorites, serverURL } from './supabase_client'
+import { serverURL } from './supabase_client'
 
 export const searchExercises = async (searchInput, dispatch) => {
     let body = { searchInput: searchInput }
@@ -14,17 +14,17 @@ export const searchExercises = async (searchInput, dispatch) => {
     await dispatch({ type: 'SET_SEARCH_RESULTS', payload: results })
 }
 
-export const markFavorites = async workoutID => {
-    let favorites = await getUserFavorites()
-    console.log(favorites)
-    favorites.forEach(favorite => {
+export const markFavorites = (favorites, workoutID) => {
+    let check = ""
+    favorites.find(favorite => {
         if (favorite.id === workoutID) {
-          console.log(true)
+            check = true
             return true
         } else {
-          console.log(false)
+            check = false
             return false
         }
     })
-    
+    return check 
 }
+

@@ -8,8 +8,8 @@ import '../../css/accountInformation.css'
 const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
     const info = useSelector(state => state.personalInfo.accountInfo)
-    const [update, setUpdate] = useState(info[0])
-    const bmi = bmiCalc(update?.height, update?.weight)
+    const [currentInfo, setCurrentInfo] = useState(info[0])
+    const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     useEffect(
         () => {
             setAcctInfo(dispatch)
@@ -19,53 +19,77 @@ const IndividualAccountInfo = () => {
     )
 
     useEffect(() => {
-        setUpdate(info[0])
+        setCurrentInfo(info[0])
     }, [info])
     return (
-        <div className="idividualAccountInfoContainer">
+        <div className="acctInfoContainer">
             <h1>Account Information</h1>
-            <p
-                style={{
-                    display: update?.height ? 'block' : 'none',
-                }}
-            >
-                Height: {update?.height} inches
-            </p>
-            <p
-                style={{
-                    display: update?.weight ? 'block' : 'none',
-                }}
-            >
-                Weight: {update?.weight} pounds
-            </p>
-            <p
-                style={{
-                    display: bmi > 0 ? 'block' : 'none',
-                }}
-            >
-                BMI: {bmi}
-            </p>
-            <p
-                style={{
-                    display: update?.gender ? 'block' : 'none',
-                }}
-            >
-                Gender: {update?.gender}
-            </p>
-            <p
-                style={{
-                    display: update?.age ? 'block' : 'none',
-                }}
-            >
-                Age: {update?.age} years old
-            </p>
-            <p
-                style={{
-                    display: update?.ptTable?.ptName ? 'block' : 'none',
-                }}
-            >
-                Personal Trainer: {update?.ptTable?.ptName}
-            </p>
+            {currentInfo?.height ? (
+                <div className="infoDisplay">
+                    <p>Height: </p>
+                    <p>{currentInfo?.height} inches</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Height(in inches): </p>
+                    <p>Please Update Height</p>
+                </div>
+            )}
+            {currentInfo?.weight ? (
+                <div className="infoDisplay">
+                    <p>Weight: </p>
+                    <p>{currentInfo?.weight} pounds</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Weight: </p>
+                    <p>Please Update Weight</p>
+                </div>
+            )}
+            {bmi > 0 ? (
+                <div className="infoDisplay">
+                    <p>BMI: </p>
+                    <p>{bmi}</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>BMI: </p>
+                    <p>Please Update Height/Weight</p>
+                </div>
+            )}
+            {currentInfo?.age ? (
+                <div className="infoDisplay">
+                    <p>Age: </p>
+                    <p>{currentInfo?.age} years old</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Age: </p>
+                    <p>Please Update Age</p>
+                </div>
+            )}
+            {currentInfo?.gender ? (
+                <div className="infoDisplay">
+                    <p>Gender: </p>
+                    <p>{currentInfo?.gender}</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Gender: </p>
+                    <p>Please Update Gender</p>
+                </div>
+            )}
+            {currentInfo?.ptTable?.ptName ? (
+                <div className="infoDisplay">
+                    <p>Personal Trainer: </p>
+                    <p>{currentInfo?.ptTable?.ptName}</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Personal Trainer: </p>
+                    <p>Please Update Personal Trainer</p>
+                </div>
+            )}
         </div>
     )
 }
