@@ -1,3 +1,4 @@
+import { Box, MenuItem, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,90 +43,105 @@ export default function UpdateAccountForm() {
                 <form className="updateFormContainer">
                     <div className="updateSelect">
                         <label htmlFor="height">Height:</label>
-                        <select
-                            className="dropDownMenu"
-                            value={heightValue}
-                            onChange={e => {
-                                setHeightValue(e.target.value)
-                            }}
-                        >
-                            <option value="">select..</option>
-                            {heightList.map(height => (
-                                <option key={height.value} value={height.value}>
-                                    {height.value}
-                                </option>
-                            ))}
-                        </select>
+                        <Box className="inputSelect" width="250px">
+                            <TextField
+                                label="Height"
+                                select
+                                value={heightValue}
+                                onChange={e => setHeightValue(e.target.value)}
+                                fullWidth
+                            >
+                                {heightList.map(height => (
+                                    <MenuItem
+                                        key={height.value}
+                                        value={height.value}
+                                    >
+                                        {height.value}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
                     </div>
                     <div className="updateSelect">
                         <label htmlFor="weight">Weight:</label>
-                        <select
-                            className="dropDownMenu"
-                            value={weightValue}
-                            onChange={e => {
-                                setWeightValue(e.target.value)
-                            }}
-                        >
-                            <option value="">select..</option>
-                            {weightList.map(weight => (
-                                <option key={weight.value} value={weight.value}>
-                                    {weight.value}
-                                </option>
-                            ))}
-                        </select>
+                        <Box className="inputSelect" width="250px">
+                            <TextField
+                                label="Weight"
+                                select
+                                value={weightValue}
+                                onChange={e => setWeightValue(e.target.value)}
+                                fullWidth
+                            >
+                                {weightList.map(weight => (
+                                    <MenuItem
+                                        key={weight.value}
+                                        value={weight.value}
+                                    >
+                                        {weight.value}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
                     </div>
                     <div className="updateSelect">
                         <label htmlFor="age">Age:</label>
-                        <select
-                            className="dropDownMenu"
-                            value={ageValue}
-                            onChange={e => {
-                                setAgeValue(e.target.value)
-                            }}
-                        >
-                            <option value="">select..</option>
-                            {ageList.map(age => (
-                                <option key={age.value} value={age.value}>
-                                    {age.value}
-                                </option>
-                            ))}
-                        </select>
+                        <Box className="inputSelect" width="250px">
+                            <TextField
+                                label="Age"
+                                select
+                                value={ageValue}
+                                onChange={e => setAgeValue(e.target.value)}
+                                fullWidth
+                            >
+                                {ageList.map(age => (
+                                    <MenuItem key={age.value} value={age.value}>
+                                        {age.value}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
                     </div>
                     <div className="updateSelect">
                         <label htmlFor="gender">Gender:</label>
-                        <select
-                            className="dropDownMenu"
-                            value={genderValue}
-                            onChange={e => {
-                                setGenderValue(e.target.value)
-                            }}
-                        >
-                            <option value="">select..</option>
-                            <option value="male">male</option>
-                            <option value="female">female</option>
-                            <option value="prefer not to say">
-                                prefer not to say
-                            </option>
-                        </select>
+                        <Box className="inputSelect" width="250px">
+                            <TextField
+                                label="gender"
+                                select
+                                value={genderValue}
+                                onChange={e => setGenderValue(e.target.value)}
+                                fullWidth
+                            >
+                                <MenuItem value="male">Male </MenuItem>
+                                <MenuItem value="female">Female </MenuItem>
+                                <MenuItem value="prefer not to answer">
+                                    {' '}
+                                    Prefer not to answer
+                                </MenuItem>
+                            </TextField>
+                        </Box>
                     </div>
                     <div className="updateSelect">
                         <label htmlFor="personalTrainer">
                             Personal Trainer:
                         </label>
-                        <select
-                            className="dropDownMenu"
-                            value={trainerValue}
-                            onChange={e => {
-                                setTrainerValue(e.target.value)
-                            }}
-                        >
-                            <option value="">No trainer</option>
-                            {trainerDropDownList.map(trainer => (
-                                <option key={trainer.id} value={trainer.id}>
-                                    {trainer?.ptName}
-                                </option>
-                            ))}
-                        </select>
+                        <Box className="inputSelect" width="250px">
+                            <TextField
+                                label="trainer"
+                                select
+                                value={trainerValue}
+                                onChange={e => setTrainerValue(e.target.value)}
+                                fullWidth
+                            >
+                                {trainerDropDownList.map(trainer => (
+                                    <MenuItem
+                                        key={trainer.value}
+                                        value={trainer.value}
+                                    >
+                                        {trainer.value}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
                     </div>
                     <div className="buttons">
                         <button
