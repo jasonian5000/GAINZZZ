@@ -119,7 +119,8 @@ export default function UpdateAccountForm() {
                                 setTrainerValue(e.target.value)
                             }}
                         >
-                            <option value="">No trainer</option>
+                            <option value="">select..</option>
+                            <option value="no trainer">no trainer</option>
                             {trainerDropDownList.map(trainer => (
                                 <option key={trainer.id} value={trainer.id}>
                                     {trainer?.ptName}
