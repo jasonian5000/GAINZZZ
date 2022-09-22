@@ -64,20 +64,17 @@ export const refineDate = (json) => {
 }
 
 export const setWeightRange = (weightData) => {
-    console.log(weightData)
     let high = 0
-    let low = 0
-    for (let index = 0; index < weightData.length; index++) {
-        console.log(weightData.weight)
-        if (weightData.weight > high) {
-            console.log(weightData.weight)
-            high = weightData.weight
+    let low = weightData[0]?.weight
+    for (let index = 0; index < weightData?.length; index++) {
+        if (weightData[index]?.weight > high) {
+            high = weightData[index]?.weight
         }
-        if (weightData.weight < low) {
-            low = weightData.weight
+        if (weightData[index]?.weight < low) {
+            low = weightData[index]?.weight
         }
     }
-    return (low, high)
+    return ({low: low - 20, high: high + 20})
 }
 
 export const bmiCalc = (height, weight) => {

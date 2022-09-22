@@ -8,7 +8,7 @@ const SignUpPage = () => {
       <form className="signUpForm">
         <div className="form-container">
           <div className="firstNameContainer">
-            <label classname="" htmlFor="firstName">First name</label>
+            <label className="" htmlFor="firstName">First name</label>
             <input
               name="firstName"
               type="text"
