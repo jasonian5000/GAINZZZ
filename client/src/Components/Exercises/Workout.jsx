@@ -18,8 +18,6 @@ const Workout = () => {
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
-    // const [on, setOn] = useState(false)
-
 
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
@@ -145,8 +143,14 @@ const Workout = () => {
                           ))
                         : null}
                     <Button
-                        sx={{ color: 'success.main', left:  40, display: "active" }}    
-                        // make above button a ternery to have it toggle display on and off 
+                        key={myWorkout}
+                        sx={{
+                            color: 'success.main',
+                            left: 40,
+                            display: 'active',
+                        }}
+                        style={{ display: myWorkout[0] ? 'auto' : 'none' }}
+                        // make above button a ternery to have it toggle display on and off
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
