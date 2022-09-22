@@ -34,9 +34,10 @@ const FavWorkoutScroll = () => {
     return (
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
             <div id="favorites-container">
-                {favWorkouts?.map(workout => {
+                {favWorkouts?.map((workout, index) => {
                     return (
-                        <Stack key={workout.id}>
+                        <Stack key={index}
+                            >
                             <FavoritesCard workout={workout} />
                         </Stack>
                     )
