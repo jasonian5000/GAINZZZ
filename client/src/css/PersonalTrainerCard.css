@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
 
 
-.cardContainer { 
+.personalTrainercardContainer { 
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,15 +18,47 @@
     margin: 20px;
 }
 
-.trainerName{
-color: #F9F6EE;
 
+
+.topCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.testCard{
-border: 1px solid red;
-display: flex;
-flex-direction: row;
+.left-side-topCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid purple;
+}
+
+.right-side-topCard {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    border: 1px solid blue;
+}
+
+.preCardInfo {
+    color: #F9F6EE;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.trainerName{
+color: #F9F6EE;
+}
+
+.imageClickDescription {
+    color: #F9F6EE;
+    position: relative;
+    font-size: x-small
 }
 
 
@@ -40,12 +72,5 @@ flex-direction: row;
 
 .trainerImg {
     border-radius: 16px;
-    height: 50vh;
-}
-
-.topCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 30vh;
 }

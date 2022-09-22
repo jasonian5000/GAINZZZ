@@ -30,9 +30,11 @@ const ExerciseDetails = () => {
                         <SearchBar />
                         <HorizontalScrollBar />
                     </Box>
+                    <div>
                     <Stack>
                         <ExerciseCard current={current} />
                     </Stack>
+                    </div>
                     <Stack mb="0" mt="100px" alignItems="center">
                         {searchResults.length > 8 && (
                             <Pagination
