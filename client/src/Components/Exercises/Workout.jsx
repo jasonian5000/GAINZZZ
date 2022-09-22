@@ -114,33 +114,30 @@ const Workout = () => {
                     </Button>
                 </div>
             </div>
-
             <h1>Your Workout</h1>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>
                     {myWorkout
                         ? myWorkout?.map((workout, index) => (
-                              <Box
-                                  id="myWorkout-card"
-                                  key={index}
-                                  workoutid={workout.id || workout}
-                                  title={workout.id || workout}
-                                  m="0 40px"
-                              >
-                                  <Button
-                                      id="exercise-btn"
-                                      value={workout.gifUrl}
-                                      onClick={e => {
-                                          setWorkoutImg(e.target.value)
-                                      }}
-                                  >
-                                      {workout.name}
-                                  </Button>
-                                  <button onClick={() => changeWorkout(index)}>
-                                      new exercise
-                                  </button>
-                              </Box>
-                          ))
+                                <Box
+                                    id="myWorkout-card"
+                                    key={index}
+                                    workoutid={workout.id || workout}
+                                    title={workout.id || workout}
+                                    m="0 40px">
+                                    <Button
+                                        id="exercise-btn"
+                                        value={workout.gifUrl}
+                                        onClick={e => {
+                                            setWorkoutImg(e.target.value)
+                                        }}>
+                                        {workout.name}
+                                    </Button>
+                                    <button onClick={() => changeWorkout(index)}>
+                                        new exercise
+                                    </button>
+                                </Box>
+                            ))
                         : null}
                     <Button
                         key={myWorkout}
