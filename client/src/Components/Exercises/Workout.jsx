@@ -148,6 +148,7 @@ const Workout = () => {
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
+                            setWorkoutImg('')
                         }}
                     >
                         Complete Workout
