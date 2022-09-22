@@ -91,3 +91,9 @@ p{
 #myWorkout-img{
     margin: 10px 50px;
 }
+
+@media(max-width:1190px){
+    .myWorkout-container{
+        flex-direction: column;
+    }
+}

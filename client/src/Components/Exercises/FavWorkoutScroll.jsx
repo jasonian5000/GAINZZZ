@@ -3,36 +3,36 @@ import { Box, Stack, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
 import '../../css/hideScrollBar.css'
-import RightArrowIcon from '../../assets/right-arrow.png'
-import LeftArrowIcon from '../../assets/left-arrow.png'
+// import RightArrowIcon from '../../assets/right-arrow.png'
+// import LeftArrowIcon from '../../assets/left-arrow.png'
 import FavoritesCard from './FavoritesCard'
 
-const LeftArrow = () => {
-    const { scrollPrev } = useContext(VisibilityContext)
+// const LeftArrow = () => {
+//     const { scrollPrev } = useContext(VisibilityContext)
 
-    return (
-        <Typography onClick={() => scrollPrev()} className="right-arrow">
-            <img src={LeftArrowIcon} alt="right-arrow" />
-        </Typography>
-    )
-}
+//     return (
+//         <Typography onClick={() => scrollPrev()} className="right-arrow">
+//             <img src={LeftArrowIcon} alt="right-arrow" />
+//         </Typography>
+//     )
+// }
 
-const RightArrow = () => {
-    const { scrollNext } = useContext(VisibilityContext)
+// const RightArrow = () => {
+//     const { scrollNext } = useContext(VisibilityContext)
 
-    return (
-        <Typography onClick={() => scrollNext()} className="left-arrow">
-            <img src={RightArrowIcon} alt="right-arrow" />
-        </Typography>
-    )
-}
+//     return (
+//         <Typography onClick={() => scrollNext()} className="left-arrow">
+//             <img src={RightArrowIcon} alt="right-arrow" />
+//         </Typography>
+//     )
+// }
 
 const FavWorkoutScroll = () => {
         const favWorkouts = useSelector(
             state => state.favoriteWorkouts.favoriteWorkouts
         )
     return (
-        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        <ScrollMenu >
             <div id="favorites-container">
                 {favWorkouts?.map((workout, index) => {
                     return (
