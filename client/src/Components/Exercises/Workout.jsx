@@ -18,7 +18,7 @@ const Workout = () => {
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
-    const [on, setOn] = useState(false)
+    // const [on, setOn] = useState(false)
 
 
     const [reset, setReset] = useState(1)
