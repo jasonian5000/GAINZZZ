@@ -1,9 +1,28 @@
 .signUpForm {
     display: flex;
     flex-direction: column;
-    margin-top: 170px;
-    background-image: url(../assets/gymBackground.jpg);
     height: 100vh;
-    background-size: 100vw;
+    background: url('../assets/workoutLady3.2.jpg');
+    width: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.form-container{
+    margin-top: 20vh;
+    width: 40%;
+    height: 70%;
+    display: flex;
+    margin-left: 3rem;
+    background: rgba(247, 247, 247, 0.753);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px 10px;
+    width: 100%;
 }

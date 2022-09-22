@@ -6,7 +6,7 @@ const SignUpPage = () => {
   return (
     <>
       <form className="signUpForm">
-        <div>
+        <div className="form-container">
           <div>
             <label htmlFor="firstName">First name</label>
             <input
@@ -23,7 +23,6 @@ const SignUpPage = () => {
               placeholder="Enter your last name"
             />
           </div>
-        </div>
         <div>
           <label htmlFor="username" required>
             username
@@ -42,6 +41,7 @@ const SignUpPage = () => {
             placeholder="Must contain 6+ characters"
           />
           <button onClick={(e) => sendSignUp(e)}>Register</button>
+        </div>
         </div>
       </form>
     </>
