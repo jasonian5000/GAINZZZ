@@ -16,6 +16,7 @@ const SignUpPage = () => {
                           First name
                       </label>
                       <input
+                          className="firstNameInput"
                           name="firstName"
                           type="text"
                           placeholder="Enter your first name"
@@ -24,6 +25,7 @@ const SignUpPage = () => {
                   <div className="lastNameContainer">
                       <label htmlFor="lastName">Last name</label>
                       <input
+                          className="lastNameInput"
                           name="lastName"
                           type="text"
                           placeholder="Enter your last name"
@@ -34,6 +36,7 @@ const SignUpPage = () => {
                           username
                       </label>
                       <input
+                      className="usernameInput"
                           name="username"
                           type="text"
                           placeholder="username"
@@ -41,29 +44,32 @@ const SignUpPage = () => {
                   </div>
                   <div className="emailContainer">
                       <label>Email address</label>
-                      <input name="email" type="email" placeholder="email" />
+                      <input
+                      className="emailInput" 
+                      name="email" type="email" placeholder="email" />
                   </div>
                   <div className="passwordContainer">
                       <label htmlFor="password">Password</label>
                       <input
+                      className="passwordInput"
                           name="password"
                           type="password"
                           placeholder="Must contain 6+ characters"
                       />
                       <div className="buttonContainer">
-                        <button onClick={e => sendSignUp(e)}>Register</button>
+                          <button onClick={e => sendSignUp(e)}>Register</button>
                       </div>
                   </div>
                   <div className="iconList">
-                  <li>
-                      <FacebookIcon id="icon" />
-                  </li>
-                  <li>
-                      <InstagramIcon id="icon" />
-                  </li>
-                  <li>
-                      <TwitterIcon id="icon" />
-                  </li>
+                      <li>
+                          <FacebookIcon id="icon" />
+                      </li>
+                      <li>
+                          <InstagramIcon id="icon" />
+                      </li>
+                      <li>
+                          <TwitterIcon id="icon" />
+                      </li>
                   </div>
               </div>
           </form>
