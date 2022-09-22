@@ -10,6 +10,7 @@ import {
 import '../../css/accountInformation.css'
 
 export default function UpdateAccountForm() {
+
     const makeNumberArray = (start, finish) => {
         let state = Array(finish - start).fill({})
         return state.map((part, index) => ({
@@ -24,11 +25,11 @@ export default function UpdateAccountForm() {
         state => state.trainers.trainerDropDownList
     )
     const info = useSelector(state => state.personalInfo.accountInfo)
-    const [heightValue, setHeightValue] = useState()
-    const [weightValue, setWeightValue] = useState()
-    const [genderValue, setGenderValue] = useState()
-    const [ageValue, setAgeValue] = useState()
-    const [trainerValue, setTrainerValue] = useState()
+    const [heightValue, setHeightValue] = useState('')
+    const [weightValue, setWeightValue] = useState('')
+    const [genderValue, setGenderValue] = useState('')
+    const [ageValue, setAgeValue] = useState('')
+    const [trainerValue, setTrainerValue] = useState('')
     useEffect(
         () => {
             getTrainers(dispatch)
@@ -36,7 +37,13 @@ export default function UpdateAccountForm() {
         // eslint-disable-next-line
         []
     )
+        console.log({ heightValue })
+        console.log({ weightValue })
+    console.log({ ageValue })
+    console.log(genderValue)
+    console.log(trainerValue)
     return (
+        
         <div className="acctUpdateForm">
             <div className="updateFormWrapper">
                 <h1>Update Account</h1>
@@ -56,7 +63,7 @@ export default function UpdateAccountForm() {
                                         key={height.value}
                                         value={height.value}
                                     >
-                                        {height.value}
+                                        {height?.value}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -77,7 +84,7 @@ export default function UpdateAccountForm() {
                                         key={weight.value}
                                         value={weight.value}
                                     >
-                                        {weight.value}
+                                        {weight?.value}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -95,7 +102,7 @@ export default function UpdateAccountForm() {
                             >
                                 {ageList.map(age => (
                                     <MenuItem key={age.value} value={age.value}>
-                                        {age.value}
+                                        {age?.value}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -105,17 +112,16 @@ export default function UpdateAccountForm() {
                         <label htmlFor="gender">Gender:</label>
                         <Box className="inputSelect" width="250px">
                             <TextField
-                                label="gender"
+                                label="Gender"
                                 select
                                 value={genderValue}
                                 onChange={e => setGenderValue(e.target.value)}
                                 fullWidth
                             >
-                                <MenuItem value="male">Male </MenuItem>
-                                <MenuItem value="female">Female </MenuItem>
+                                <MenuItem value="male">male </MenuItem>
+                                <MenuItem value="female">female </MenuItem>
                                 <MenuItem value="prefer not to answer">
-                                    {' '}
-                                    Prefer not to answer
+                                    prefer not to answer
                                 </MenuItem>
                             </TextField>
                         </Box>
@@ -126,7 +132,7 @@ export default function UpdateAccountForm() {
                         </label>
                         <Box className="inputSelect" width="250px">
                             <TextField
-                                label="trainer"
+                                label="Optional"
                                 select
                                 value={trainerValue}
                                 onChange={e => setTrainerValue(e.target.value)}
@@ -134,10 +140,10 @@ export default function UpdateAccountForm() {
                             >
                                 {trainerDropDownList.map(trainer => (
                                     <MenuItem
-                                        key={trainer.value}
-                                        value={trainer.value}
+                                        key={trainer.id}
+                                        value={trainer.id}
                                     >
-                                        {trainer.value}
+                                        {trainer?.ptName}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -146,7 +152,10 @@ export default function UpdateAccountForm() {
                     <div className="buttons">
                         <button
                             className="updateButton"
-                            onClick={e => sendAcctInfo(e, info)}
+                            onClick={e => { sendAcctInfo(e, info); console.log(
+                                'IAM THE CONSOLE LOGGGG',
+                                e.target.form[8].value
+                            ) }}
                         >
                             Update
                         </button>
@@ -156,6 +165,7 @@ export default function UpdateAccountForm() {
                         >
                             Delete Account
                         </button>
+                        
                     </div>
                 </form>
             </div>
