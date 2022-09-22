@@ -5,15 +5,9 @@ import { addToFavorites } from '../../actions/supabase_client'
 import { markFavorites } from '../../actions/searchExercises_client'
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone'
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
 
 const ExerciseCard = props => {
     // const favorites = useSelector((state) => state.favoriteWorkouts.favoriteWorkouts)
-    const [visibleDetails, setVisibleDetails] = useState(false)
-    const handleClick = () => {
-        setVisibleDetails(!visibleDetails)
-    }
     return (
         <div className="cardContainer">
             {props.current?.map((exercise, index) => (

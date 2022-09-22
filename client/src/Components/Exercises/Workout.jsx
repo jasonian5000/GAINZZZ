@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
-import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
+import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import FavoritesCard from './FavoritesCard'
 import {
     setFavWorkouts,
     randomWorkout,
@@ -23,9 +22,6 @@ const Workout = () => {
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
-    const favWorkouts = useSelector(
-        state => state.favoriteWorkouts.favoriteWorkouts
-    )
 
     useEffect(
         () => {
