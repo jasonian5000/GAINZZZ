@@ -63,6 +63,23 @@ export const refineDate = (json) => {
     return json
 }
 
+export const setWeightRange = (weightData) => {
+    console.log(weightData)
+    let high = 0
+    let low = 0
+    for (let index = 0; index < weightData.length; index++) {
+        console.log(weightData.weight)
+        if (weightData.weight > high) {
+            console.log(weightData.weight)
+            high = weightData.weight
+        }
+        if (weightData.weight < low) {
+            low = weightData.weight
+        }
+    }
+    return (low, high)
+}
+
 export const bmiCalc = (height, weight) => {
     let heightM = Number(height) * 0.0254
     let weightKg = Number(weight) * 0.453592

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-    setWeightData,
+    setWeightData, setWeightRange,
 } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 import IndividualAccountInfo from './IndividualAccountInfo'
@@ -18,6 +18,7 @@ const AccountInformation = () => {
         // eslint-disable-next-line
         []
     )
+    console.log(setWeightRange(weightData))
     return (
         <div className="acctInfoPageWrapper">
             <div className="acctInfoPageContainer">
