@@ -100,7 +100,6 @@ const Workout = () => {
                     </Button>
                 </div>
             </div>
-
             <h1>Your Workout</h1>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>

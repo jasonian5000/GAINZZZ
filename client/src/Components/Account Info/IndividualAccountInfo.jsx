@@ -31,7 +31,7 @@ const IndividualAccountInfo = () => {
                 </div>
             ) : (
                 <div className="infoDisplay">
-                    <p>Height: </p>
+                    <p>Height(in inches): </p>
                     <p>Please Update Height</p>
                 </div>
             )}
