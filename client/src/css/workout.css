@@ -1,4 +1,4 @@
-.workout-container{
+.workout-wrapper{
     margin-top: 15vh;
     margin-bottom: 15vh;
 }
@@ -6,10 +6,13 @@
 .inputSelect{
     margin: 15px
 }
+
 .myWorkout-container{
     display: flex;
     justify-content: center;
 }
+
+
 #favorites-container{
     display: flex;
     flex-direction: row;

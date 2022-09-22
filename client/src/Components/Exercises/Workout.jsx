@@ -18,6 +18,9 @@ const Workout = () => {
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
+    const [on, setOn] = useState(false)
+
+
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
@@ -44,7 +47,7 @@ const Workout = () => {
     }
 
     return (
-        <div className="workout-container">
+        <div className="workout-wrapper">
             <div>
                 <h1>Your Favorite Workouts</h1>
                 <Box>
@@ -61,7 +64,7 @@ const Workout = () => {
             </div>
 
             <div className="workout-box">
-                <h1 className='workout-title'>Choose your workout!</h1>
+                <h1 className="workout-title">Choose your workout!</h1>
                 <div className="select-container">
                     <Box className="inputSelect" width="350px">
                         <TextField
@@ -100,7 +103,7 @@ const Workout = () => {
                         </TextField>
                     </Box>
                 </div>
-                <div className='workout-btn'>
+                <div className="workout-btn">
                     <Button
                         id="get-workout-btn"
                         onClick={() => {
@@ -115,32 +118,35 @@ const Workout = () => {
             </div>
 
             <h1>Your Workout</h1>
-            <p>(Click to see workout gif)</p>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>
                     {myWorkout
                         ? myWorkout?.map((workout, index) => (
-                            <Box id = 'myWorkout-card'
-                                key={index}
-                                workoutid={workout.id || workout}
-                                title={workout.id || workout}
-                                m="0 40px"
-                            >
-                                <Button id='exercise-btn'
-                                    value={workout.gifUrl}
-                                    onClick={e => {
-                                        setWorkoutImg(e.target.value)
-                                    }}
-                                >
-                                    {workout.name}
-                                </Button>
-                                <button onClick={() => changeWorkout(index)}>
-                                    new exercise
-                                </button>
-                            </Box>
-                            ))
+                              <Box
+                                  id="myWorkout-card"
+                                  key={index}
+                                  workoutid={workout.id || workout}
+                                  title={workout.id || workout}
+                                  m="0 40px"
+                              >
+                                  <Button
+                                      id="exercise-btn"
+                                      value={workout.gifUrl}
+                                      onClick={e => {
+                                          setWorkoutImg(e.target.value)
+                                      }}
+                                  >
+                                      {workout.name}
+                                  </Button>
+                                  <button onClick={() => changeWorkout(index)}>
+                                      new exercise
+                                  </button>
+                              </Box>
+                          ))
                         : null}
                     <Button
+                        sx={{ color: 'success.main', left:  40, display: "active" }}    
+                        // make above button a ternery to have it toggle display on and off 
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
@@ -149,7 +155,7 @@ const Workout = () => {
                         Complete Workout
                     </Button>
                 </ul>
-                <img id='myWorkout-img' src={workoutImg} alt={workoutImg}></img>
+                <img id="myWorkout-img" src={workoutImg} alt={workoutImg}></img>
             </div>
             <Timer />
         </div>
