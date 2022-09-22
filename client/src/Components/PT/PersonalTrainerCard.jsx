@@ -11,7 +11,7 @@ const PersonalTrainerCard = (props) => {
         setVisibleDetails(!visibleDetails)
     }
     return (
-            <div className="cardContainer">
+            <div className="personalTrainer-cardContainer">
                 <Card
                     sx={{
                         display: 'flex',
