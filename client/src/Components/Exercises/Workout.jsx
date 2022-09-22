@@ -18,7 +18,6 @@ const Workout = () => {
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
-
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
@@ -35,6 +34,15 @@ const Workout = () => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
+        setMyWorkout(dispatch, newWorkout)
+        console.log(myWorkout)
+        setWorkoutImg('')
+        setReset(Math.random())
+    }
+
+    const removeWorkout = index => {
+        let newWorkout = myWorkout
+        newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
         console.log(myWorkout)
         setWorkoutImg('')
@@ -124,6 +132,7 @@ const Workout = () => {
                                   <button id='newExercise-btn' onClick={() => changeWorkout(index)}>
                                       Shuffle
                                   </button>
+                                  <button id="newExercise-btn" onClick={() => removeWorkout(index)}>Remove</button>
                               </Box>
                           ))
                         : null}
@@ -136,10 +145,10 @@ const Workout = () => {
                             display: 'active',
                         }}
                         style={{ display: myWorkout[0] ? 'auto' : 'none' }}
-                        // make above button a ternery to have it toggle display on and off
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
+                            setWorkoutImg('')
                         }}
                     >
                         Complete Workout
