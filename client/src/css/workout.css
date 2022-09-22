@@ -58,7 +58,7 @@ p{
 }
 #favorites-container{
     display: flex;
-    gap: 40px
+    gap: 30px
 }
 #removeFav-btn,
 #addTo-btn{

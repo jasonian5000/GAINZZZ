@@ -12,6 +12,7 @@ import {
 } from '../../actions/workoutBuilder'
 import Timer from '../Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
+import FavWorkoutScroll from './FavWorkoutScroll'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -47,18 +48,7 @@ const Workout = () => {
     return (
         <div className="workout-wrapper">
             <div>
-                <h1>Your Favorite Workouts</h1>
-                <Box>
-                    <div id="favorites-container">
-                        {favWorkouts?.map(workout => {
-                            return (
-                                <Stack key={workout.id}>
-                                    <FavoritesCard workout={workout} />
-                                </Stack>
-                            )
-                        })}
-                    </div>
-                </Box>
+            <FavWorkoutScroll/>
             </div>
 
             <div className="workout-box">
