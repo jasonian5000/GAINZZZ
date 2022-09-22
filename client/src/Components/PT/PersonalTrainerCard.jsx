@@ -24,24 +24,9 @@ const PersonalTrainerCard = props => {
                 variant="outlined"
                 className="card"
             >
-                <div
-                    className="topCard"
-                    style={{
-                        flexDirection: !visibleDetails ? 'row' : 'column',
-                    }}
-                >
+                <div className="topCard" style={{}}>
                     <div className="left-side-topCard">
-                        <h5
-                            style={{
-                                display: !visibleDetails ? 'block' : 'none',
-                            }}
-                            className="imageClickDescription"
-                        >
-                            click the image for more information about our
-                            amazing trainer!
-                        </h5>
                         <img
-                            onClick={handleClick}
                             className="trainerImg"
                             src={props?.trainer?.img}
                             alt="personal trainer"
@@ -52,20 +37,14 @@ const PersonalTrainerCard = props => {
                             {props?.trainer?.ptName}
                         </h1>
                         <div className="preCardInfo">
-                            <p
-                                style={{
-                                    display: !visibleDetails ? 'block' : 'none',
-                                }}
-                            >
-                                Specializes in {props?.trainer?.specialties}
-                            </p>
-                            <p
-                                style={{
-                                    display: !visibleDetails ? 'block' : 'none',
-                                }}
-                            >
-                                Trainer Rates: {props?.trainer?.rates}
-                            </p>
+                            <p>Specializes in {props?.trainer?.specialties}</p>
+                            <p>Trainer Rates: {props?.trainer?.rates}</p>
+                            <br />
+                            <p>{props?.trainer?.description}</p>
+                            <br />
+                            <a className="clickReviews" onClick={handleClick}>
+                                Click for Client Reviews
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -66,9 +66,20 @@ color: #F9F6EE;
     gap: 23px;
     color: #F9F6EE;
     font-family: 'Lato';
+        font-size: 12px;
+
 }
 
 .trainerImg {
     border-radius: 16px;
     height: 30vh;
+}
+
+
+.clickReviews {
+    
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
 }
