@@ -20,11 +20,17 @@ const PersonalTrainerCard = props => {
                     borderRadius: '16px',
                     boxShadow: 3,
                     bgcolor: 'text.primary',
-                    }}
+                }}
                 variant="outlined"
-                className="card">
-                <div className="topCard">
-                    <div className='left-side-topCard'>
+                className="card"
+            >
+                <div
+                    className="topCard"
+                    style={{
+                        flexDirection: !visibleDetails ? 'row' : 'column',
+                    }}
+                >
+                    <div className="left-side-topCard">
                         <h5
                             style={{
                                 display: !visibleDetails ? 'block' : 'none',
@@ -41,7 +47,7 @@ const PersonalTrainerCard = props => {
                             alt="personal trainer"
                         />
                     </div>
-                    <div className='right-side-topCard'>
+                    <div className="right-side-topCard">
                         <h1 className="trainerName">
                             {props?.trainer?.ptName}
                         </h1>

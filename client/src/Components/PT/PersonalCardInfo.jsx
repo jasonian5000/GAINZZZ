@@ -1,6 +1,7 @@
 import React from 'react'
 
 const PersonalCardInfo = (props) => {
+    console.log(props)
   return (
       <div>
           <div className="content">
