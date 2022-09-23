@@ -2,7 +2,6 @@ import {
     trainerInfo,
     getAcctInfo,
     updateAcctInfo,
-    deleteAcct,
     getWeightData,
 } from './supabase_client'
 import { captureAcctInfo } from './inputs'
@@ -14,7 +13,7 @@ export const getTrainers = async dispatch => {
 
 export const setAcctInfo = async dispatch => {
     const personalInfo = await getAcctInfo()
-    await dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+    dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
 }
 
 export const sendAcctInfo = async (e, info) => {
@@ -23,14 +22,6 @@ export const sendAcctInfo = async (e, info) => {
     await updateAcctInfo(updatedInfo)
     window.alert('Information added Succesfully')
 }
-
-export const confirmDeleteAccount = () => {
-    let password = prompt('Please enter your password to delete your account')
-    if (password) {
-        deleteAcct(password)
-    }
-}
-
 export const setWeightData = async dispatch => {
     const weightData = await getWeightData()
     await dispatch({ type: "SET_WEIGHT_DATA", payload: weightData})
