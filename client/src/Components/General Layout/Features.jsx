@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../css/homePage.css'
+import '../../css/homepage.css'
 
 const Features = (props) => {
   console.log(props)
