@@ -61,7 +61,6 @@ const ExerciseDetails = () => {
                 onClose={() => {
                     setOpen(false)
                 }}
-                severity="success"
             />
         </div>
     )
