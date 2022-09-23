@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
-import { Box, TextField, MenuItem, Button, Stack } from '@mui/material'
+import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import FavoritesCard from './FavoritesCard'
 import {
     setFavWorkouts,
     randomWorkout,
@@ -19,13 +18,9 @@ const Workout = () => {
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
-
     const [reset, setReset] = useState(1)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
-    const favWorkouts = useSelector(
-        state => state.favoriteWorkouts.favoriteWorkouts
-    )
 
     useEffect(
         () => {
@@ -39,6 +34,15 @@ const Workout = () => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
+        setMyWorkout(dispatch, newWorkout)
+        console.log(myWorkout)
+        setWorkoutImg('')
+        setReset(Math.random())
+    }
+
+    const removeWorkout = index => {
+        let newWorkout = myWorkout
+        newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
         console.log(myWorkout)
         setWorkoutImg('')
@@ -104,7 +108,6 @@ const Workout = () => {
                     </Button>
                 </div>
             </div>
-
             <h1>Your Workout</h1>
             <div className="myWorkout-container">
                 <ul className="exercises" key={reset}>
@@ -129,6 +132,7 @@ const Workout = () => {
                                   <button id='newExercise-btn' onClick={() => changeWorkout(index)}>
                                       Shuffle
                                   </button>
+                                  <button id="newExercise-btn" onClick={() => removeWorkout(index)}>Remove</button>
                               </Box>
                           ))
                         : null}
@@ -141,10 +145,10 @@ const Workout = () => {
                             display: 'active',
                         }}
                         style={{ display: myWorkout[0] ? 'auto' : 'none' }}
-                        // make above button a ternery to have it toggle display on and off
                         onClick={() => {
                             addWorkoutsCompleted()
                             setMyWorkout(dispatch, [])
+                            setWorkoutImg('')
                         }}
                     >
                         Complete Workout

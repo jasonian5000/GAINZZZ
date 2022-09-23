@@ -1,9 +1,88 @@
 .signUpForm {
     display: flex;
     flex-direction: column;
-    margin-top: 170px;
-    background-image: url(../assets/gymBackground.jpg);
     height: 100vh;
-    background-size: 100vw;
+    background: url('../assets/workoutLady3.2.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(247, 247, 247, 0.753);
+    border-radius: 15px;
+    height: max-content;
+}
+
+
+.firstNameContainer,
+.lastNameContainer,
+.usernameContainer,
+.emailContainer,
+.passwordContainer,
+.buttonContainer
+{
+    margin:10px;
+    display: flex;
+    border: 1px solid red;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 0 0 #131414;
+    transition: .5s;
+    width: 500px;
+}
+.firstNameInput{
+    padding: 10px;
+}
+
+.lastNameInput{
+    padding: 10px;
+}
+
+.usernameInput{
+    padding: 10px;
+
+}
+
+.emailInput{
+    padding: 10px;
+}
+
+
+.passwordInput{
+    padding: 10px;
+}
+
+
+
+.iconList{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media(max-width: 1190px){
+    .login-Container{
+        background-image: url(../assets/workoutLady2.jpg);
+    }
+    .form-container{
+        width:60%
+    }
+}
+@media(max-width: 720px){
+
+    .form-container{
+        width:81%
+    }
+}
+@media(max-width: 376px){
+    .login-Container{
+        height: 130vh;
+    }
 }

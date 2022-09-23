@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
 import '../../css/hideScrollBar.css'

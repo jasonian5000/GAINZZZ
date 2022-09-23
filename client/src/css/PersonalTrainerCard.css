@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
 
 
-.personalTrainer-cardContainer { 
+.personalTrainercardContainer { 
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,15 +18,45 @@
     margin: 20px;
 }
 
-.trainerName{
-color: #F9F6EE;
 
+
+.topCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.testCard{
-border: 1px solid red;
-display: flex;
-flex-direction: row;
+.left-side-topCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-topCard {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.preCardInfo {
+    color: #F9F6EE;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.trainerName{
+color: #F9F6EE;
+}
+
+.imageClickDescription {
+    color: #F9F6EE;
+    position: relative;
+    font-size: x-small
 }
 
 
@@ -36,16 +66,20 @@ flex-direction: row;
     gap: 23px;
     color: #F9F6EE;
     font-family: 'Lato';
+        font-size: 12px;
+
 }
 
 .trainerImg {
     border-radius: 16px;
-    height: 50vh;
+    height: 30vh;
 }
 
-.topCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+.clickReviews {
+    
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
 }

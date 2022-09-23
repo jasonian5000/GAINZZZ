@@ -37,11 +37,6 @@ export default function UpdateAccountForm() {
         // eslint-disable-next-line
         []
     )
-        console.log({ heightValue })
-        console.log({ weightValue })
-    console.log({ ageValue })
-    console.log(genderValue)
-    console.log(trainerValue)
     return (
         
         <div className="acctUpdateForm">
@@ -152,10 +147,7 @@ export default function UpdateAccountForm() {
                     <div className="buttons">
                         <button
                             className="updateButton"
-                            onClick={e => { sendAcctInfo(e, info); console.log(
-                                'IAM THE CONSOLE LOGGGG',
-                                e.target.form[8].value
-                            ) }}
+                            onClick={e => { sendAcctInfo(e, info)}}
                         >
                             Update
                         </button>
