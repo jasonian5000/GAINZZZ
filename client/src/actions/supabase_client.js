@@ -157,7 +157,6 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-        window.alert('added to favorites')
     } catch (error) {
         console.log(error)
     }
