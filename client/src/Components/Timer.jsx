@@ -37,7 +37,7 @@ const Timer = () => {
     return (
         <div className="app">
             <div className="time">
-                <h4>Time your Intervals/Workout</h4>
+                <h5>Time your Intervals/Workout</h5>
                 {minutes < 10 ? '0' + minutes : minutes}m:
                 {seconds < 10 ? '0' + seconds : seconds}s
             </div>

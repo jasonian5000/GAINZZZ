@@ -10,6 +10,7 @@ const UserAccountInformation = props => {
     const dispatch = useDispatch()
     return (
         <div className='favCard'>
+            <img id='fav-img'src={props?.workout?.gifUrl} alt="" loading="lazy" />
             <Typography
                 ml="21px"
                 color="black"
@@ -20,7 +21,6 @@ const UserAccountInformation = props => {
             >
                 {props?.workout?.name}
             </Typography>
-            <img id='fav-img'src={props?.workout?.gifUrl} alt="" loading="lazy" />
             <button id='removeFav-btn'onClick={() => {removeFavorite(props?.workout?.id); setFavWorkouts(dispatch)}}>
                 Remove from Favorites
             </button>

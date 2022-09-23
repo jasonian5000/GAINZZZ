@@ -8,6 +8,11 @@ const ExerciseCard = prop => {
         <div className="cardContainer">
             {prop.current?.map((exercise, index) => (
                 <div key={index} className="exerciseCard">
+                    <img
+                        src={exercise.gifUrl}
+                        alt={exercise.name}
+                        loading="lazy"
+                    />
                     <Typography
                         ml="21px"
                         color="black"
@@ -18,11 +23,6 @@ const ExerciseCard = prop => {
                     >
                         {exercise.name}
                     </Typography>
-                    <img
-                        src={exercise.gifUrl}
-                        alt={exercise.name}
-                        loading="lazy"
-                    />
                     <Stack>
                         < FavoriteButton exercise={exercise} setOpen={prop.setOpen} />
                     </Stack>

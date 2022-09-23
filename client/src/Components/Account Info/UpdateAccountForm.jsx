@@ -31,7 +31,7 @@ export default function UpdateAccountForm(props) {
     const [genderValue, setGenderValue] = useState('')
     const [ageValue, setAgeValue] = useState('')
     const [trainerValue, setTrainerValue] = useState('')
-
+    
     useEffect(
         () => {
             getTrainers(dispatch)
