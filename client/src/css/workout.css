@@ -1,15 +1,27 @@
 .workout-wrapper{
-    margin-top: 15vh;
-    margin-bottom: 15vh;
+    background: url('../assets/grayGym.jpg');
+    background-size: cover;
+}
+
+.workout-container{
+    padding-top: 12vh;
+    padding-bottom: 1vh;
 }
 
 .inputSelect{
     margin: 15px
 }
 
+.myWorkout-wrapper{
+    padding:3vh;
+    min-height: 80vh;
+}
+
 .myWorkout-container{
     display: flex;
     justify-content: center;
+    width: 100%;
+    margin: 4vh 0
 }
 
 
@@ -22,7 +34,12 @@
     width: 150px;
 }
 .workout-box{
-    margin: 4rem 0;
+    font-size: 1.25em;
+    padding: 2vh 4vh;
+    background-color: aliceblue;
+    border-radius: 16px;
+    opacity: 0.9;
+    margin: 5vh 5vw;
 }
 .select-container{
     display: flex;

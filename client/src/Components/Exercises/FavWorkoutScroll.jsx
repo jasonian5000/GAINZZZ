@@ -6,6 +6,7 @@ import '../../css/hideScrollBar.css'
 // import RightArrowIcon from '../../assets/right-arrow.png'
 // import LeftArrowIcon from '../../assets/left-arrow.png'
 import FavoritesCard from './FavoritesCard'
+import { Box } from '@mui/system'
 
 // const LeftArrow = () => {
 //     const { scrollPrev } = useContext(VisibilityContext)
@@ -32,18 +33,21 @@ const FavWorkoutScroll = () => {
             state => state.favoriteWorkouts.favoriteWorkouts
         )
     return (
-        <ScrollMenu >
-            <div id="favorites-container">
-                {favWorkouts?.map((workout, index) => {
-                    return (
-                        <Stack key={index}
-                            >
-                            <FavoritesCard workout={workout} />
-                        </Stack>
-                    )
-                })}
-            </div>
-        </ScrollMenu>
+        <div className='scroll-container'>
+            <Box sx={{ width: '75%' }}>
+                <ScrollMenu>
+                    <div id="favorites-container">
+                        {favWorkouts?.map((workout, index) => {
+                            return (
+                                <Stack key={index}>
+                                    <FavoritesCard workout={workout} />
+                                </Stack>
+                            )
+                        })}
+                    </div>
+                </ScrollMenu>
+            </Box>
+        </div>
     )
 }
 
