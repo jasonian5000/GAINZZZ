@@ -7,6 +7,7 @@ import {
     getTrainers,
     sendAcctInfo,
 } from '../../actions/accountInformation'
+
 import '../../css/accountInformation.css'
 
 export default function UpdateAccountForm() {
