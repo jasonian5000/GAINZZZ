@@ -7,10 +7,11 @@ import ExerciseCard from './ExerciseCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../actions/pageAction'
 import Snackbar from '@mui/material/Snackbar'
+import { useState } from 'react'
 
 const ExerciseDetails = () => {
     const dispatch = useDispatch()
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
     const currentPage = useSelector(state => state.LoadedPage.Page)
     const perPage = 8
     const searchResults = useSelector(state => state.search?.searchResults)

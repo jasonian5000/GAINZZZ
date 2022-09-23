@@ -16,8 +16,7 @@ export const LoginPage = () => {
     await userSignIn(data.email, data.password);
     let token = checkToken();
     if (token) {
-      window.alert("Signed in. Welcome to GAINZZZ!")
-      navigate("/")
+      navigate("/", { state: {pass: true}})
     } else {
       window.alert("Invalid Credentials")
       navigate('/login_page')
@@ -71,7 +70,10 @@ export const LoginPage = () => {
                               <TwitterIcon id="icon" />
                           </li>
                       </ul>
-                      <p className="bottom-form">Terms of Service | <img src={logo} alt="logo" className='form-logo'/></p>
+                      <p className="bottom-form">
+                          Terms of Service |{' '}
+                          <img src={logo} alt="logo" className="form-logo" />
+                      </p>
                   </form>
               </div>
           </div>
