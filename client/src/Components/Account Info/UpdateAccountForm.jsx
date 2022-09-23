@@ -17,6 +17,13 @@ export default function UpdateAccountForm() {
             value: String(start + index),
         }))
     }
+    const inchesToFeet = (value) => {
+        value = Number(value)
+        let feet = Math.floor(value/12)
+        let inches = value % 12
+        return `${feet}' ${inches}"`
+    }
+
     const heightList = makeNumberArray(36, 91)
     const weightList = makeNumberArray(50, 500)
     const ageList = makeNumberArray(16, 100)
@@ -60,7 +67,7 @@ export default function UpdateAccountForm() {
                                             key={height.value}
                                             value={height.value}
                                         >
-                                            {height?.value}
+                                            {inchesToFeet(height?.value)}
                                         </MenuItem>
                                     ))}
                                 </TextField>
@@ -170,6 +177,9 @@ export default function UpdateAccountForm() {
                             >
                                 Delete Account
                             </button>
+                            <div>
+                                
+                            </div>
                         </div>
                     </form>
                 </div>

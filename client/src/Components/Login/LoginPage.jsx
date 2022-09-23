@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/loginPage.css";
 import { userSignIn } from "../../actions/supabase_client";
 import { setSignIn } from "../../actions/inputs";
@@ -8,19 +8,19 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import logo from '../../assets/GAINZZZ.png'
+import { Snackbar } from "@mui/material";
 
 export const LoginPage = () => {
   const navigate = useNavigate()
+  const [fail, setFail] = useState(false)
   const signIn = async (e, navigate) => {
     let data =  setSignIn(e);
     await userSignIn(data.email, data.password);
     let token = checkToken();
     if (token) {
-      window.alert("Signed in. Welcome to GAINZZZ!")
-      navigate("/")
+      navigate("/", { state: {pass: true}})
     } else {
-      window.alert("Invalid Credentials")
-      navigate('/login_page')
+      setFail(true)
     }
   };
   return (
@@ -71,10 +71,24 @@ export const LoginPage = () => {
                               <TwitterIcon id="icon" />
                           </li>
                       </ul>
-                      <p className="bottom-form">Terms of Service | <img src={logo} alt="logo" className='form-logo'/></p>
+                      <p className="bottom-form">
+                          Terms of Service |{' '}
+                          <img src={logo} alt="logo" className="form-logo" />
+                      </p>
                   </form>
               </div>
           </div>
+          <Snackbar
+              sx={{
+                  '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
+              }}
+              message="Login Failed. Check your email and password."
+              open={fail}
+              autoHideDuration={6000}
+              onClose={() => {
+                  setFail(false)
+              }}
+          />
       </>
   )
 };
