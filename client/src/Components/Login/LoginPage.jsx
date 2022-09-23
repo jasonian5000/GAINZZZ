@@ -53,10 +53,9 @@ export const LoginPage = () => {
                           Sign In
                       </button>
                       <h3>
-                          Dont have an account?{' '}
+                          Dont have an account?
                           <span>
-                              {' '}
-                              <Link to="/sign_up">Register</Link>{' '}
+                              <Link to="/sign_up">Register</Link>
                           </span>
                       </h3>
                       <h1>OR</h1>
@@ -72,7 +71,7 @@ export const LoginPage = () => {
                           </li>
                       </ul>
                       <p className="bottom-form">
-                          Terms of Service |{' '}
+                          Terms of Service |
                           <img src={logo} alt="logo" className="form-logo" />
                       </p>
                   </form>
