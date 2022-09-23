@@ -3,11 +3,10 @@ import { Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'
 import FavoriteButton from './FavoriteButton'
 
-const ExerciseCard = props => {
-    
+const ExerciseCard = prop => {
     return (
         <div className="cardContainer">
-            {props.current?.map((exercise, index) => (
+            {prop.current?.map((exercise, index) => (
                 <div key={index} className="exerciseCard">
                     <Typography
                         ml="21px"
@@ -25,7 +24,7 @@ const ExerciseCard = props => {
                         loading="lazy"
                     />
                     <Stack>
-                        < FavoriteButton exercise={exercise} />
+                        < FavoriteButton exercise={exercise} setOpen={prop.setOpen} />
                     </Stack>
                 </div>
             ))}

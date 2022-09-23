@@ -31,14 +31,21 @@ const HorizontalScrollBar = () => {
   
   const bodyPartList = useSelector((state)=> state.search?.bodyPartList)
   return (
-    <ScrollMenu LeftArrow = {LeftArrow} RightArrow={RightArrow}>
-      {bodyPartList?.map((bodyPart) => (
-        <Box key={bodyPart.id || bodyPart} bodypartid={bodyPart.id || bodyPart} title={bodyPart.id || bodyPart} m="0 40px">
-          <BodyPartCard bodyPart={bodyPart} />
-        </Box>
-      ))}
-    </ScrollMenu>
-  );
+    <div className="scroll-container">
+      <Box sx={{width:'75%'}}>
+          <ScrollMenu
+              LeftArrow={LeftArrow}
+              RightArrow={RightArrow}
+          >
+              {bodyPartList?.map(bodyPart => (
+                  <Box key={bodyPart.id} m="0 40px">
+                      <BodyPartCard bodyPart={bodyPart} />
+                  </Box>
+              ))}
+          </ScrollMenu>
+      </Box>
+      </div>
+  )
 };
 
 export default HorizontalScrollBar;

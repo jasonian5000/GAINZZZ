@@ -4,10 +4,10 @@ import Title from './Title'
 
 const Home = () => {
   return (
-    <div className='home'>
-      <Title />
-      <Feature />
-    </div>
+      <div className="home">
+          <Title />
+          <Feature />
+      </div>
   )
 }
 

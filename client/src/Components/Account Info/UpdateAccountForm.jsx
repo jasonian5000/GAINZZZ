@@ -2,18 +2,24 @@ import { Box, MenuItem, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {confirmDeleteAccount,getTrainers,sendAcctInfo} from '../../actions/accountInformation'
-
+import { getTrainers, sendAcctInfo } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 
-export default function UpdateAccountForm() {
-
+export default function UpdateAccountForm(props) {
+    const setUpdated = props.setUpdated
     const makeNumberArray = (start, finish) => {
         let state = Array(finish - start).fill({})
         return state.map((part, index) => ({
             value: String(start + index),
         }))
     }
+    const inchesToFeet = value => {
+        value = Number(value)
+        let feet = Math.floor(value / 12)
+        let inches = value % 12
+        return `${feet}' ${inches}"`
+    }
+
     const heightList = makeNumberArray(36, 91)
     const weightList = makeNumberArray(50, 500)
     const ageList = makeNumberArray(16, 100)
@@ -25,6 +31,7 @@ export default function UpdateAccountForm() {
     const [genderValue, setGenderValue] = useState('')
     const [ageValue, setAgeValue] = useState('')
     const [trainerValue, setTrainerValue] = useState('')
+
     useEffect(
         () => {
             getTrainers(dispatch)
@@ -50,8 +57,9 @@ export default function UpdateAccountForm() {
                                 {heightList.map(height => (
                                     <MenuItem
                                         key={height.value}
-                                        value={height.value}>
-                                        {height?.value}
+                                        value={height.value}
+                                    >
+                                        {inchesToFeet(height?.value)}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -135,12 +143,17 @@ export default function UpdateAccountForm() {
                     <div className="buttons">
                         <button
                             className="updateButton"
-                            onClick={e => { sendAcctInfo(e, info)}}>
+                            onClick={e => {
+                                sendAcctInfo(e, info)
+                                setUpdated(true)
+                            }}
+                        >
                             Update
                         </button>
                         <button
                             className="deleteButton"
-                            onClick={() => confirmDeleteAccount()}>
+                            onClick={() => console.log("why you reset?")}
+                        >
                             Delete Account
                         </button>
                     </div>
