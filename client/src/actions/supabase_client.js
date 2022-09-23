@@ -145,7 +145,7 @@ export const getUserFavorites = async () => {
     }
 }
 
-export const addToFavorites = async workoutID => {
+export const addToFavorites = async (workoutID, setOpen) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
@@ -157,6 +157,7 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
+        setOpen(true)
     } catch (error) {
         console.log(error)
     }

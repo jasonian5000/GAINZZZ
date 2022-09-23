@@ -53,6 +53,7 @@ const ExerciseDetails = () => {
                 </Box>
             </div>
             <Snackbar
+            sx={{"& .MuiSnackbarContent-root": { backgroundColor: "green" }}}
                 message="Added to Favorites"
                 open={open}
                 autoHideDuration={3000}

@@ -8,11 +8,10 @@ import { useEffect } from 'react'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { Button } from '@mui/material'
 
-
 export default function FavoriteButton(prop) {
     const setOpen = prop.setOpen
     const dispatch = useDispatch()
-    const favorites = useSelector(
+    let favorites = useSelector(
         state => state.favoriteWorkouts.favoriteWorkouts
     )
     const [favList, setFavList] = useState(favorites)
@@ -25,27 +24,20 @@ export default function FavoriteButton(prop) {
         // eslint-disable-next-line
         []
     )
-    useEffect(
-        () => {
-            setFavList(favorites)
-            setFavCheck(isFav)
-        },
-        // eslint-disable-next-line
-        [favorites, favCheck]
-    )
+    useEffect(() => {
+        setFavList(favorites)
+        setFavCheck(isFav)
+    }, [favorites, isFav])
     return (
         <>
             <Button
-                key={isFav}
                 className="exerciseCardButton"
                 variant="outlined"
                 size="small"
                 disabled={Boolean(favCheck)}
                 onClick={() => {
-                    addToFavorites(prop?.exercise?.id)
-                    setOpen(true)
+                    addToFavorites(prop.exercise.id, setOpen)
                     setFavWorkouts(dispatch)
-                    setFavCheck(isFav)
                 }}
             >
                 {favCheck === true ? (
