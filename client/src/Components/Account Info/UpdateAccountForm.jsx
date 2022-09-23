@@ -30,12 +30,7 @@ export default function UpdateAccountForm() {
     const [genderValue, setGenderValue] = useState('')
     const [ageValue, setAgeValue] = useState('')
     const [trainerValue, setTrainerValue] = useState('')
-    const [freedomHeight, setFreedomHeight] = useState('')
-    const toFeetandInch = (inches) => {
-     return parseInt(inches / 12) + ' ' + Math.round(inches % 12, 1) + "'"
-    }
     
-    console.log(toFeetandInch(70))
     useEffect(
         () => {
             getTrainers(dispatch)
