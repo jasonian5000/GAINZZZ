@@ -17,8 +17,9 @@ export const LoginPage = () => {
     let data =  setSignIn(e);
     await userSignIn(data.email, data.password);
     let token = checkToken();
+    console.log("token", token)
     if (token) {
-      navigate("/", { state: {pass: true}})
+      navigate("/account_information", { state: {pass: true}})
     } else {
       setFail(true)
     }
@@ -88,6 +89,7 @@ export const LoginPage = () => {
               onClose={() => {
                   setFail(false)
               }}
+              anchorOrigin={{vertical: 'top', horizontal: 'right'}}
           />
       </>
   )

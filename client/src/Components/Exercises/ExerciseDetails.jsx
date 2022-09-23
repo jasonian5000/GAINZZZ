@@ -54,13 +54,16 @@ const ExerciseDetails = () => {
                 </Box>
             </div>
             <Snackbar
-            sx={{"& .MuiSnackbarContent-root": { backgroundColor: "green" }}}
+                sx={{
+                    '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
+                }}
                 message="Added to Favorites"
                 open={open}
                 autoHideDuration={3000}
                 onClose={() => {
                     setOpen(false)
                 }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             />
         </div>
     )

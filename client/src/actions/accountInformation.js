@@ -18,9 +18,7 @@ export const setAcctInfo = async dispatch => {
 
 export const sendAcctInfo = async (e, info) => {
     const updatedInfo = captureAcctInfo(e, info)
-    window.location.reload()
     await updateAcctInfo(updatedInfo)
-    window.alert('Information added Succesfully')
 }
 export const setWeightData = async dispatch => {
     const weightData = await getWeightData()

@@ -63,10 +63,11 @@ export const userSignIn = async (email, password) => {
     }
 }
 
-export const userSignOut = () => {
+export const userSignOut = (navigate) => {
     try {
         localStorage.removeItem('supabase.auth.token')
         console.log('You have been signed out!')
+        navigate("/")
     } catch (error) {
         console.log(error)
     }

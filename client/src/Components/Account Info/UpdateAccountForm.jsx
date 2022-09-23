@@ -2,14 +2,11 @@ import { Box, MenuItem, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    getTrainers,
-    sendAcctInfo,
-} from '../../actions/accountInformation'
-import { deleteAcct } from '../../actions/supabase_client'
+import { getTrainers, sendAcctInfo } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 
-export default function UpdateAccountForm() {
+export default function UpdateAccountForm(props) {
+    const setUpdated = props.setUpdated
     const makeNumberArray = (start, finish) => {
         let state = Array(finish - start).fill({})
         return state.map((part, index) => ({
@@ -22,7 +19,7 @@ export default function UpdateAccountForm() {
         let inches = value % 12
         return `${feet}' ${inches}"`
     }
-    let passwordInput = React.createRef()
+
     const heightList = makeNumberArray(36, 91)
     const weightList = makeNumberArray(50, 500)
     const ageList = makeNumberArray(16, 100)
@@ -36,7 +33,6 @@ export default function UpdateAccountForm() {
     const [genderValue, setGenderValue] = useState('')
     const [ageValue, setAgeValue] = useState('')
     const [trainerValue, setTrainerValue] = useState('')
-    const [confirmDelete, setConfirmDelete] = useState()
 
     useEffect(
         () => {
@@ -156,45 +152,19 @@ export default function UpdateAccountForm() {
                             className="updateButton"
                             onClick={e => {
                                 sendAcctInfo(e, info)
+                                setUpdated(true)
                             }}
                         >
                             Update
                         </button>
                         <button
                             className="deleteButton"
-                            onClick={() => setConfirmDelete(!confirmDelete)}
+                            onClick={() => console.log("why you reset?")}
                         >
                             Delete Account
                         </button>
                     </div>
                 </form>
-            </div>
-            <div
-                style={
-                    confirmDelete ? { display: 'flex' } : { display: 'none' }
-                }
-                className="confirmDeleteBox"
-            >
-                <br />
-                <p className="warningMessage">
-                    Warning! You are about to delete all your account
-                    information. This action cannot be undone. Enter your
-                    password to continue.
-                </p>
-                <div className="confirmDeleteInput">
-                    <input
-                        className="passwordInput"
-                        type="password"
-                        placeholder="password"
-                        ref={passwordInput}
-                    />
-                    <button
-                        className="confirmButton"
-                        onClick={() => deleteAcct(passwordInput.current.value)}
-                    >
-                        Confirm
-                    </button>
-                </div>
             </div>
         </div>
     )
