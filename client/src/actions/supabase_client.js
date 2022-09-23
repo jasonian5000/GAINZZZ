@@ -1,6 +1,6 @@
 import { refineDate } from './accountInformation'
-// export const serverURL = 'http://localhost:3001'
-export const serverURL = 'https://gainzzzz.herokuapp.com'
+export const serverURL = 'http://localhost:3001'
+// export const serverURL = 'https://gainzzzz.herokuapp.com'
 
 export const getUserId = async () => {
     let local = localStorage.getItem('supabase.auth.token')
@@ -145,7 +145,7 @@ export const getUserFavorites = async () => {
     }
 }
 
-export const addToFavorites = async workoutID => {
+export const addToFavorites = async (workoutID, setOpen) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
@@ -157,7 +157,7 @@ export const addToFavorites = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-        window.alert('added to favorites')
+        setOpen(true)
     } catch (error) {
         console.log(error)
     }

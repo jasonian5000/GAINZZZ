@@ -8,14 +8,15 @@ import { useEffect } from 'react'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { Button } from '@mui/material'
 
-export default function FavoriteButton( props ) {
+export default function FavoriteButton(prop) {
+    const setOpen = prop.setOpen
     const dispatch = useDispatch()
-    const favorites = useSelector(
+    let favorites = useSelector(
         state => state.favoriteWorkouts.favoriteWorkouts
     )
     const [favList, setFavList] = useState(favorites)
-    const isFav = markFavorites(favList, props?.exercise?.id)
-    const [favCheck, setFavCheck] = useState(isFav)
+    const isFav = markFavorites(favList, prop?.exercise?.id)
+    const [favCheck, setFavCheck] = useState(false)
     useEffect(
         () => {
             setFavWorkouts(dispatch)
@@ -23,30 +24,28 @@ export default function FavoriteButton( props ) {
         // eslint-disable-next-line
         []
     )
-    useEffect(
-        () => {
-            setFavList(favorites)
-            setFavCheck(isFav)
-        },
-        // eslint-disable-next-line
-        [favorites, isFav]
+    useEffect(() => {
+        setFavList(favorites)
+        setFavCheck(isFav)
+    }, [favorites, isFav])
+    return (
+        <>
+            <Button
+                className="exerciseCardButton"
+                variant="outlined"
+                size="small"
+                disabled={Boolean(favCheck)}
+                onClick={() => {
+                    addToFavorites(prop.exercise.id, setOpen)
+                    setFavWorkouts(dispatch)
+                }}
+            >
+                {favCheck === true ? (
+                    <FavoriteSharpIcon />
+                ) : (
+                    <FavoriteTwoToneIcon />
+                )}
+            </Button>
+        </>
     )
-  return (
-      <Button
-          className="exerciseCardButton"
-          variant="outlined"
-          size="small"
-          disabled={favCheck}
-          onClick={() => {
-              addToFavorites(props?.exercise?.id);
-              setFavWorkouts(dispatch)
-          }}
-      >
-          { favCheck === true ? (
-              <FavoriteSharpIcon  />
-          ) : (
-              <FavoriteTwoToneIcon  />
-          )}
-      </Button>
-  )
 }

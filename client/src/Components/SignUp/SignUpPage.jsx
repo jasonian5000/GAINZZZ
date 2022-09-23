@@ -4,7 +4,6 @@ import "../../css/signUpForm.css"
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
-import logo from '../../assets/GAINZZZ.png'
 
 const SignUpPage = () => {
   return (
