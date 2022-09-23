@@ -31,8 +31,8 @@ export default function FavoriteButton(prop) {
     return (
         <>
             <Button
+                sx={{color:'red'}}
                 className="exerciseCardButton"
-                variant="outlined"
                 size="small"
                 disabled={Boolean(favCheck)}
                 onClick={() => {
