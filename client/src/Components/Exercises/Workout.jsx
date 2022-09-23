@@ -130,7 +130,7 @@ const Workout = () => {
             </div>
 
             <div className="myWorkout-wrapper">
-                <h1>Your Workout</h1>
+                <h1>Your Workout for... {mytarget}</h1>
                 <div className="myWorkout-container">
                     <ul className="exercises" key={reset}>
                         {myWorkout
