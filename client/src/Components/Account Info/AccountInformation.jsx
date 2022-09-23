@@ -14,9 +14,7 @@ const AccountInformation = () => {
     useEffect(
         () => {
             setWeightData(dispatch)
-        },
-        // eslint-disable-next-line
-        []
+        },[]
     )
     return (
         <div className="acctInfoPageWrapper">
