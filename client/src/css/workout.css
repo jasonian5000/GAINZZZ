@@ -7,7 +7,7 @@
 }
 
 .workout-container{
-    padding-top: 12vh;
+    padding-top: 15vh;
     padding-bottom: 1vh;
 }
 
@@ -94,8 +94,8 @@ p{
     background: #FF1414;
     border-radius: 5px;
     width: 70%;
-    margin: 10px;
-    padding: 10px;
+    margin: 20px;
+    padding: 15px;
     align-self: center;
 }
 #newExercise-btn{
@@ -115,8 +115,6 @@ p{
     background: white;
     margin: 10px;
     display: flex;
-    height: 7vh;
-    max-width: 550px;
     align-items: center;
 }
 #myWorkout-card:hover{
@@ -131,7 +129,7 @@ p{
 .rightSide,
 .leftSide{
     gap: 20px;
-    width: 550px;
+    min-width: 550px;
     display: flex;
     flex-direction: column;
 }
@@ -154,6 +152,7 @@ p{
 
 .list-Wrapper{
     padding: 25px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 60vh;
@@ -181,9 +180,9 @@ p{
     .leftSide{
     display: flex;
     justify-content: center;
-    width: 90%;
+    min-width: 90%;
 }
     .list-Wrapper{
-        width: 70%;
+        justify-content: center;
     }
 }

@@ -211,7 +211,7 @@ const Workout = () => {
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}
-                                alt={workoutImg}
+                                alt=''
                             ></img>
                         </div>
                         <Timer />
