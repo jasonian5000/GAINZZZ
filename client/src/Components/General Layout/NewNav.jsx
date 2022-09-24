@@ -25,9 +25,9 @@ const NewNav = () => {
     }, [tokenState])
     return (
         <nav key={String(loggedIn)} id="navbar" className={nav ? 'nav active' : 'nav'}>
-            <Link to="/" className="logo">
+            <div className="logo">
                 <img src={logo} alt="" />
-            </Link>
+            </div>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn">
                 <span className="nav-icon"></span>
@@ -36,15 +36,6 @@ const NewNav = () => {
                 className="menu"
                 style={{ display: loggedIn ? 'none' : 'auto' }}
             >
-                <li>
-                    <Link
-                        to="/"
-                        style={{ textDecoration: 'none', color: '#ffff' }}
-                    >
-                        Home
-                    </Link>
-                </li>
-
                 <li>
                     <Link
                         to="/sign_up"
@@ -66,14 +57,6 @@ const NewNav = () => {
                 className="menu"
                 style={{ display: loggedIn ? 'auto' : 'none' }}
             >
-                <li>
-                    <Link
-                        to="/"
-                        style={{ textDecoration: 'none', color: '#ffff' }}
-                    >
-                        Home
-                    </Link>
-                </li>
                 <li>
                     <Link
                         to="/exercise_details"
