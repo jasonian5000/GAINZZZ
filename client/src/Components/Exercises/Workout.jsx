@@ -35,7 +35,6 @@ const Workout = () => {
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
         setMyWorkout(dispatch, newWorkout)
-        console.log(myWorkout)
         setWorkoutImg('')
         setReset(Math.random())
     }
@@ -44,7 +43,6 @@ const Workout = () => {
         let newWorkout = myWorkout
         newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
-        console.log(myWorkout)
         setWorkoutImg('')
         setReset(Math.random())
     }
