@@ -1,7 +1,7 @@
 .signUpForm {
     display: flex;
     flex-direction: column;
-    background: url('../assets/workoutLady3.2.jpg');
+    background: url('../assets/dusty_dude_bw.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -31,7 +31,7 @@
     letter-spacing: 1px;
     box-shadow: inset 0 0 0 0 #131414;
     transition: .5s;
-    width: 700px;
+    width: 80%;
 }
 
 .firstNameInput{
