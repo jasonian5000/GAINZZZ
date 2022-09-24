@@ -207,6 +207,7 @@ const Workout = () => {
                     </div>
                     <div className="rightSide">
                         <div className='img-wrapper'>
+                            <p className='seePic'>(Click on exercise to see gif)</p>
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}

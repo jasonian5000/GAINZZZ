@@ -24,7 +24,9 @@
 
 .myWorkout-container{
     display: flex;
-    justify-content: space-evenly;
+    gap: 80px;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin: 4vh 0
 }
@@ -109,11 +111,13 @@ p{
     color: black;
 }
 #myWorkout-card{
+    padding: 10px;
     background: white;
     margin: 10px;
     display: flex;
     height: 7vh;
     max-width: 550px;
+    align-items: center;
 }
 #myWorkout-card:hover{
     transform: scale(1.05, 1.05);
@@ -121,30 +125,37 @@ p{
 
 #myWorkout-img{
     margin: 10px 50px;
+    width: 70%;
+    height: 80%;
 }
-.rightSide{
+.rightSide,
+.leftSide{
+    gap: 20px;
+    width: 550px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 .exercises{
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    align-self: center;
+    width: 100%;
 }
 .img-wrapper{
-    margin-bottom: 10px;
+    padding: 5px;
     min-height: 30vh;
     background-color: whitesmoke;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .list-Wrapper{
     padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     height: 60vh;
     background: rgba(0, 0, 0, 0.562);
     border: 1px solid black;
@@ -156,14 +167,23 @@ p{
 .list-Wrapper::-webkit-scrollbar {
   display: none;
 }
+.seePic{
+    text-align: center;
+}
+
 
 
 @media(max-width:1190px){
     .myWorkout-container{
         flex-direction: column;
     }
+    .rightSide,
     .leftSide{
     display: flex;
     justify-content: center;
+    width: 90%;
 }
+    .list-Wrapper{
+        width: 70%;
+    }
 }
