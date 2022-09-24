@@ -5,39 +5,35 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone'
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { Button } from '@mui/material'
 
-export default function FavoriteButton(prop) {
-    const setOpen = prop.setOpen
+export default function FavoriteButton(props) {
     const dispatch = useDispatch()
     let favorites = useSelector(
         state => state.favoriteWorkouts.favoriteWorkouts
     )
     const [favList, setFavList] = useState(favorites)
-    const isFav = markFavorites(favList, prop?.exercise?.id)
-    const [favCheck, setFavCheck] = useState(false)
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    const isFav = markFavorites(favList, props?.exercise?.id)
+    const [favCheck, setFavCheck] = useState(isFav)
+    const [disableToggle, setDisableToggle] = useState(favCheck)
     useEffect(() => {
         setFavList(favorites)
         setFavCheck(isFav)
-    }, [favorites, isFav])
+        setDisableToggle(favCheck)
+    }, [favorites, isFav, favCheck])
     return (
         <>
             <Button
-                sx={{color:'red'}}
+                sx={{ color: 'red' }}
                 className="exerciseCardButton"
                 size="small"
-                disabled={Boolean(favCheck)}
+                disabled={Boolean(disableToggle)}
                 onClick={() => {
-                    addToFavorites(prop.exercise.id, setOpen)
-                    setFavWorkouts(dispatch)
+                    addToFavorites(
+                        props.exercise.id,
+                        props.toasts.setAddedFavToast,
+                        dispatch
+                    )
                 }}
             >
                 {favCheck === true ? (

@@ -1,25 +1,28 @@
-import { Stack} from '@mui/material'
+import React from 'react'
+
 import { useSelector } from 'react-redux'
-import { ScrollMenu} from 'react-horizontal-scrolling-menu'
+import { ScrollMenu } from 'react-horizontal-scrolling-menu'
 import '../../css/hideScrollBar.css'
 import FavoritesCard from './FavoritesCard'
 import { Box } from '@mui/system'
 
-
 const FavWorkoutScroll = () => {
-        const favWorkouts = useSelector(
-            state => state.favoriteWorkouts.favoriteWorkouts
-        )
+    let favWorkouts = useSelector(
+        state => state.favoriteWorkouts.favoriteWorkouts
+    )
+
     return (
-        <div className='scroll-container'>
+        <div className="scroll-container">
             <Box sx={{ width: '75%' }}>
                 <ScrollMenu>
                     <div id="favorites-container">
                         {favWorkouts?.map((workout, index) => {
                             return (
-                                <Stack key={index}>
-                                    <FavoritesCard workout={workout} />
-                                </Stack>
+                                <FavoritesCard
+                                    key={workout.id + index}
+                                    workout={workout}
+                                    favWorkouts={favWorkouts}
+                                />
                             )
                         })}
                     </div>

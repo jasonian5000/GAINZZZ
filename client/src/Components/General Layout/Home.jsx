@@ -3,6 +3,7 @@ import Feature from './Feature'
 import Title from './Title'
 
 const Home = () => {
+  
   return (
       <div className="home">
           <Title />

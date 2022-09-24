@@ -25,9 +25,9 @@ const NewNav = () => {
     }, [tokenState])
     return (
         <nav key={String(loggedIn)} id="navbar" className={nav ? 'nav active' : 'nav'}>
-            <Link to="/" className="logo">
+            <div className="logo">
                 <img src={logo} alt="" />
-            </Link>
+            </div>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn">
                 <span className="nav-icon"></span>
@@ -36,15 +36,6 @@ const NewNav = () => {
                 className="menu"
                 style={{ display: loggedIn ? 'none' : 'auto' }}
             >
-                <li>
-                    <Link
-                        to="/"
-                        style={{ textDecoration: 'none', color: '#ffff' }}
-                    >
-                        Home
-                    </Link>
-                </li>
-
                 <li>
                     <Link
                         to="/sign_up"
@@ -68,18 +59,10 @@ const NewNav = () => {
             >
                 <li>
                     <Link
-                        to="/"
-                        style={{ textDecoration: 'none', color: '#ffff' }}
-                    >
-                        Home
-                    </Link>
-                </li>
-                <li>
-                    <Link
                         to="/exercise_details"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Exercises
+                        Search Exercises
                     </Link>
                 </li>
                 <li>
@@ -95,7 +78,7 @@ const NewNav = () => {
                         to="/account_information"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Account
+                        My Account
                     </Link>
                 </li>
                 <li>
@@ -103,7 +86,7 @@ const NewNav = () => {
                         to="/personal_trainers"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Trainers
+                        Personal Trainers
                     </Link>
                 </li>
                 <li>

@@ -28,7 +28,6 @@ const RightArrow = () => {
 };
 
 const HorizontalScrollBar = () => {
-  
   const bodyPartList = useSelector((state)=> state.search?.bodyPartList)
   return (
     <div className="scroll-container">
@@ -38,7 +37,7 @@ const HorizontalScrollBar = () => {
               RightArrow={RightArrow}
           >
               {bodyPartList?.map(bodyPart => (
-                  <Box key={bodyPart.id} m="0 40px">
+                  <Box key={bodyPart} m="0 40px">
                       <BodyPartCard bodyPart={bodyPart} />
                   </Box>
               ))}

@@ -3,11 +3,11 @@ import { Stack, Typography } from '@mui/material'
 import '../../css/exerciseCard.css'
 import FavoriteButton from './FavoriteButton'
 
-const ExerciseCard = prop => {
+const ExerciseCard = props => {
     return (
         <div className="cardContainer">
-            {prop.current?.map((exercise, index) => (
-                <div key={index} className="exerciseCard">
+            {props.current?.map((exercise, index) => (
+                <div key={exercise.id + index} className="exerciseCard">
                     <img
                         src={exercise.gifUrl}
                         alt={exercise.name}
@@ -19,12 +19,16 @@ const ExerciseCard = prop => {
                         fontWeight="bold"
                         mt="11px"
                         pb="10px"
+                        s
                         textTransform="capitalize"
                     >
                         {exercise.name}
                     </Typography>
                     <Stack>
-                        < FavoriteButton exercise={exercise} setOpen={prop.setOpen} />
+                        <FavoriteButton
+                            exercise={exercise}
+                            toasts={props.toasts}
+                        />
                     </Stack>
                 </div>
             ))}

@@ -1,4 +1,5 @@
 .PersonalTrainerContainer {
+    background: url('../assets/steel.jpg');
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -6,23 +7,16 @@
     flex-wrap: wrap;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width:400px) {
-.PersonalTrainerContainer {
-    display: grid;
-    grid-template-columns: repeat(1, 70%);
-    justify-content: center;
-    align-items: center;
-}
+.css-1iphicz {
+    margin-top: 90px !important;
 }
 
+@media (max-width: 500px) {
+    .PersonalTrainerContainer {
+        width: 100vw;
+    }
+
+    .css-1iphicz {
+        width: 100vw !important;
+    }
+}

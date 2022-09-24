@@ -17,7 +17,6 @@ export const LoginPage = () => {
         let data = setSignIn(e)
         await userSignIn(data.email, data.password)
         let token = checkToken()
-        console.log('token', token)
         if (token) {
             navigate('/account_information', { state: { pass: true } })
         } else {
