@@ -17,7 +17,7 @@ const FavWorkoutScroll = () => {
                     <div id="favorites-container">
                         {favWorkouts?.map((workout, index) => {
                             return (
-                                <Stack key={index}>
+                                <Stack key={index + workout.id}>
                                     <FavoritesCard workout={workout} />
                                 </Stack>
                             )

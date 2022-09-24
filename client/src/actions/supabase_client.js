@@ -176,6 +176,7 @@ export const removeFavorite = async workoutID => {
             body: JSON.stringify(body),
         })
         console.log('remove favorite request sent')
+        return true
     } catch (error) {
         console.log(error)
     }
