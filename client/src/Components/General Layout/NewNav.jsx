@@ -62,7 +62,7 @@ const NewNav = () => {
                         to="/exercise_details"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Exercises
+                        Search Exercises
                     </Link>
                 </li>
                 <li>
@@ -78,7 +78,7 @@ const NewNav = () => {
                         to="/account_information"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Account
+                        My Account
                     </Link>
                 </li>
                 <li>
@@ -86,7 +86,7 @@ const NewNav = () => {
                         to="/personal_trainers"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
-                        Trainers
+                        Personal Trainers
                     </Link>
                 </li>
                 <li>
