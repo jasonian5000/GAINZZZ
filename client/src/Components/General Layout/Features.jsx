@@ -6,7 +6,7 @@ const Features = (props) => {
   return (
       <div className="a-box">
           <div className="a-b-img">
-              <img src={props.info.img1} />
+              <img src={props.info.img1} alt="" />
               <img src={props.info.img2} alt="" />
               <img src={props.info.img3} alt="" />
               <img src={props.info.img4} alt="" />
