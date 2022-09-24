@@ -24,9 +24,7 @@ export default function UpdateAccountForm(props) {
     const weightList = makeNumberArray(50, 500)
     const ageList = makeNumberArray(16, 100)
     const dispatch = useDispatch()
-    const trainerDropDownList = useSelector(
-        state => state.trainers.trainerDropDownList
-    )
+    const trainerDropDownList = useSelector(state => state.trainers.trainerDropDownList)
     const info = useSelector(state => state.personalInfo.accountInfo)
     const [heightValue, setHeightValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
@@ -75,13 +73,11 @@ export default function UpdateAccountForm(props) {
                                 select
                                 value={weightValue}
                                 onChange={e => setWeightValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {weightList.map(weight => (
                                     <MenuItem
                                         key={weight.value}
-                                        value={weight.value}
-                                    >
+                                        value={weight.value}>
                                         {weight?.value}
                                     </MenuItem>
                                 ))}
@@ -96,8 +92,7 @@ export default function UpdateAccountForm(props) {
                                 select
                                 value={ageValue}
                                 onChange={e => setAgeValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {ageList.map(age => (
                                     <MenuItem key={age.value} value={age.value}>
                                         {age?.value}
@@ -114,8 +109,7 @@ export default function UpdateAccountForm(props) {
                                 select
                                 value={genderValue}
                                 onChange={e => setGenderValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 <MenuItem value="male">male </MenuItem>
                                 <MenuItem value="female">female </MenuItem>
                                 <MenuItem value="prefer not to answer">
@@ -134,8 +128,7 @@ export default function UpdateAccountForm(props) {
                                 select
                                 value={trainerValue}
                                 onChange={e => setTrainerValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {trainerDropDownList.map(trainer => (
                                     <MenuItem
                                         key={trainer.id}
