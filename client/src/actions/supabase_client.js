@@ -185,7 +185,7 @@ export const removeFavorite = async (workoutID, setRemoveFavToast, dispatch) => 
     }
 }
 
-export const deleteAcct = async password => {
+export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
@@ -197,9 +197,8 @@ export const deleteAcct = async password => {
             },
             body: JSON.stringify(body),
         })
-        console.log('work you bastard')
+        userSignOut(navigate)
     } catch (error) {
-        console.log('wtf you pos')
         console.log(error)
     }
 }
