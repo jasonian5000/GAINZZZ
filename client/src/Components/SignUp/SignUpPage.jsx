@@ -45,11 +45,12 @@ const SignUpPage = () => {
                     </div>
                     <div className="passwordContainer">
                         <input
-                            className="passwordInput"
+                            id="passwordInput"
                             name="password"
                             type="password"
                             placeholder="Must contain 6+ characters"
                         />
+                    </div>
                         <div className="buttonContainer">
                             <button 
                             className='registerButton'
@@ -57,7 +58,6 @@ const SignUpPage = () => {
                                 Register
                             </button>
                         </div>
-                    </div>
                     <div className="iconList">
                         <FacebookIcon id="icon" />
                         <InstagramIcon id="icon" />
