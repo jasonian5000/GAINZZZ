@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getTrainers, sendAcctInfo } from '../../actions/accountInformation'
-import { deleteAcct, userSignOut } from '../../actions/supabase_client'
+import { deleteAcct } from '../../actions/supabase_client'
 import '../../css/accountInformation.css'
 
 export default function UpdateAccountForm(props) {
@@ -202,7 +202,6 @@ export default function UpdateAccountForm(props) {
                                 className="confirmButton"
                                 onClick={() => {
                                     deleteAcct(password, navigate)
-                                    // userSignOut(navigate)
                                 } }
                             >
                                 Confirm Delete
