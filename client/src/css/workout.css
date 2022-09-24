@@ -1,6 +1,9 @@
 .workout-wrapper{
-    background: url('../assets/grayGym.jpg');
+    background: url('../assets/steel.jpg');
     background-size: cover;
+}
+.workoutWrapper-overlay{
+    background-color: rgba(0, 0, 0, 0.411);
 }
 
 .workout-container{
@@ -13,13 +16,15 @@
 }
 
 .myWorkout-wrapper{
+    background: url('../assets/grayGym.jpg');
+    background-size: cover;
     padding:3vh;
     min-height: 80vh;
 }
 
 .myWorkout-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
     margin: 4vh 0
 }
@@ -77,6 +82,9 @@ p{
     display: flex;
     gap: 30px
 }
+.workoutBtn-container{
+    display: flex;
+}
 #removeFav-btn,
 #addTo-btn,
 #complete-btn{
@@ -86,12 +94,12 @@ p{
     width: 70%;
     margin: 10px;
     padding: 10px;
+    align-self: center;
 }
 #newExercise-btn{
         color:#ffffff;
     background: black;
     border-radius: 5px;
-    width: 30%;
     margin: 8px;
     padding: 10px;
 }
@@ -103,14 +111,59 @@ p{
 #myWorkout-card{
     background: white;
     margin: 10px;
-    width: 100%
+    display: flex;
+    height: 7vh;
+    max-width: 550px;
 }
+#myWorkout-card:hover{
+    transform: scale(1.05, 1.05);
+}
+
 #myWorkout-img{
     margin: 10px 50px;
 }
+.rightSide{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.exercises{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.img-wrapper{
+    margin-bottom: 10px;
+    min-height: 30vh;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+.list-Wrapper{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #FF1414;
+}
+.list-Wrapper {overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;}
+
+.list-Wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 
 @media(max-width:1190px){
     .myWorkout-container{
         flex-direction: column;
     }
+    .leftSide{
+    display: flex;
+    justify-content: center;
+}
 }
