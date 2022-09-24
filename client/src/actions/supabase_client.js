@@ -64,11 +64,11 @@ export const userSignIn = async (email, password) => {
     }
 }
 
-export const userSignOut = (navigate) => {
+export const userSignOut = navigate => {
     try {
         localStorage.removeItem('supabase.auth.token')
         console.log('You have been signed out!')
-        navigate("/")
+        navigate('/')
     } catch (error) {
         console.log(error)
     }
@@ -165,7 +165,7 @@ export const addToFavorites = async (workoutID, setAddedFavToast, dispatch) => {
     }
 }
 
-export const removeFavorite = async workoutID => {
+export const removeFavorite = async (workoutID, setRemoveFavToast, dispatch) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
@@ -177,15 +177,15 @@ export const removeFavorite = async workoutID => {
             },
             body: JSON.stringify(body),
         })
-        console.log('remove favorite request sent')
-        return true
+        await setFavWorkouts(dispatch)
+        setRemoveFavToast(true)
     } catch (error) {
         console.log(error)
         return false
     }
 }
 
-export const deleteAcct = async (password) => {
+export const deleteAcct = async password => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }

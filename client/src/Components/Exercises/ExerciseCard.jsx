@@ -19,12 +19,16 @@ const ExerciseCard = props => {
                         fontWeight="bold"
                         mt="11px"
                         pb="10px"
+                        s
                         textTransform="capitalize"
                     >
                         {exercise.name}
                     </Typography>
                     <Stack>
-                        < FavoriteButton exercise={exercise} toasts={props.toasts} />
+                        <FavoriteButton
+                            exercise={exercise}
+                            toasts={props.toasts}
+                        />
                     </Stack>
                 </div>
             ))}

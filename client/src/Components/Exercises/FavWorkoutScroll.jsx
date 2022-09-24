@@ -7,7 +7,7 @@ import FavoritesCard from './FavoritesCard'
 import { Box } from '@mui/system'
 
 const FavWorkoutScroll = () => {
-    const favWorkouts = useSelector(
+    let favWorkouts = useSelector(
         state => state.favoriteWorkouts.favoriteWorkouts
     )
     return (
@@ -18,7 +18,7 @@ const FavWorkoutScroll = () => {
                         {favWorkouts?.map((workout, index) => {
                             return (
                                 <Stack key={index + workout.id}>
-                                    <FavoritesCard workout={workout} />
+                                    <FavoritesCard workout={workout} favWorkouts={favWorkouts} />
                                 </Stack>
                             )
                         })}

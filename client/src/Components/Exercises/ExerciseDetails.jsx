@@ -44,7 +44,7 @@ const ExerciseDetails = () => {
                     </Box>
                     <div>
                         <Stack>
-                            <ExerciseCard current={current} toasts={toasts}/>
+                            <ExerciseCard current={current} toasts={toasts} />
                         </Stack>
                     </div>
                     <Stack mb="0" mt="100px" alignItems="center">

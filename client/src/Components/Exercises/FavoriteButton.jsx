@@ -29,7 +29,11 @@ export default function FavoriteButton(props) {
                 size="small"
                 disabled={Boolean(disableToggle)}
                 onClick={() => {
-                    addToFavorites(props.exercise.id, props.toasts.setAddedFavToast, dispatch)
+                    addToFavorites(
+                        props.exercise.id,
+                        props.toasts.setAddedFavToast,
+                        dispatch
+                    )
                 }}
             >
                 {favCheck === true ? (

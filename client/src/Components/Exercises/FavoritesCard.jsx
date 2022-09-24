@@ -2,7 +2,6 @@ import React from 'react'
 import { Typography } from '@mui/material'
 import { removeFavorite } from '../../actions/supabase_client'
 import { useDispatch } from 'react-redux'
-import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
 import '../../css/favCard.css'
 import Toasts from '../Toasts'
@@ -12,7 +11,7 @@ const UserAccountInformation = props => {
     const dispatch = useDispatch()
     const [removeFavToast, setRemoveFavToast] = useState(false)
     const [show, setShow] = useState(true)
-    let toasts = { removeFavToast, setRemoveFavToast}
+    let toasts = { removeFavToast, setRemoveFavToast }
     return (
         <>
             {show && (
@@ -36,10 +35,11 @@ const UserAccountInformation = props => {
                     <button
                         id="removeFav-btn"
                         onClick={() => {
-                            setRemoveFavToast(
-                                removeFavorite(props?.workout?.id)
+                            removeFavorite(
+                                props?.workout?.id,
+                                setRemoveFavToast,
+                                dispatch
                             )
-                            setFavWorkouts(dispatch)
                             setShow(false)
                         }}
                     >
