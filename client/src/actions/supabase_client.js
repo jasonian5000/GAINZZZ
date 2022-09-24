@@ -1,4 +1,5 @@
 import { refineDate } from './accountInformation'
+import { setFavWorkouts } from './workoutBuilder'
 export const serverURL = 'http://localhost:3001'
 // export const serverURL = 'https://gainzzzz.herokuapp.com'
 
@@ -145,7 +146,7 @@ export const getUserFavorites = async () => {
     }
 }
 
-export const addToFavorites = async (workoutID, setOpen) => {
+export const addToFavorites = async (workoutID, setAddedFavToast, dispatch) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
@@ -157,7 +158,8 @@ export const addToFavorites = async (workoutID, setOpen) => {
             },
             body: JSON.stringify(body),
         })
-        setOpen(true)
+        await setFavWorkouts(dispatch)
+        setAddedFavToast(true)
     } catch (error) {
         console.log(error)
     }
@@ -179,6 +181,7 @@ export const removeFavorite = async workoutID => {
         return true
     } catch (error) {
         console.log(error)
+        return false
     }
 }
 
