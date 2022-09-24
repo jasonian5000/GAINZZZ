@@ -20,6 +20,18 @@ export default function Toasts(props) {
               sx={{
                   '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
               }}
+              message="Added to Workout"
+              open={Boolean(props.toasts.addWorkoutToast)}
+              autoHideDuration={6000}
+              onClose={() => {
+                  props.toasts.setAddWorkoutToast(false)
+              }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          />
+          <Snackbar
+              sx={{
+                  '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
+              }}
               message="Added to Favorites"
               open={props.toasts.addedFavToast}
               autoHideDuration={3000}

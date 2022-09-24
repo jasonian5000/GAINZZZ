@@ -10,8 +10,9 @@ import { useState } from 'react'
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
     const [removeFavToast, setRemoveFavToast] = useState(false)
+    const [addWorkoutToast, setAddWorkoutToast] = useState(false)
     const [show, setShow] = useState(true)
-    let toasts = { removeFavToast, setRemoveFavToast }
+    let toasts = { removeFavToast, setRemoveFavToast, addWorkoutToast, setAddWorkoutToast }
     return (
         <>
             {show && (
@@ -49,6 +50,7 @@ const UserAccountInformation = props => {
                         id="addTo-btn"
                         onClick={() => {
                             addExerciseToWorkout(dispatch, props.workout)
+                            setAddWorkoutToast(true)
                         }}
                     >
                         Add to workout
