@@ -6,16 +6,22 @@ import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
 import '../../css/favCard.css'
 import Toasts from '../Toasts'
 import { useState } from 'react'
+import { Slide } from '@mui/material'
 
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
     const [removeFavToast, setRemoveFavToast] = useState(false)
     const [addWorkoutToast, setAddWorkoutToast] = useState(false)
-    const [show, setShow] = useState(true)
-    let toasts = { removeFavToast, setRemoveFavToast, addWorkoutToast, setAddWorkoutToast }
+    const [slideIn, setSlideIn] = useState(true)
+    let toasts = {
+        removeFavToast,
+        setRemoveFavToast,
+        addWorkoutToast,
+        setAddWorkoutToast,
+    }
     return (
         <>
-            {show && (
+            <Slide direction="left" in={slideIn} mountOnEnter unmountOnExit>
                 <div className="favCard">
                     <img
                         id="fav-img"
@@ -41,7 +47,7 @@ const UserAccountInformation = props => {
                                 setRemoveFavToast,
                                 dispatch
                             )
-                            setShow(false)
+                            setSlideIn(false)
                         }}
                     >
                         Remove from Favorites
@@ -56,7 +62,7 @@ const UserAccountInformation = props => {
                         Add to workout
                     </button>
                 </div>
-            )}
+            </Slide>
             <Toasts toasts={toasts} />
         </>
     )
