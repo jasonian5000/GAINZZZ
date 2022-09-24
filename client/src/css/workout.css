@@ -141,13 +141,13 @@ p{
 }
 
 .list-Wrapper{
-    padding: 5px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 600px;
-    height: 500px;
-    border: 1px solid #FF1414;
+    height: 60vh;
+    background: rgba(0, 0, 0, 0.562);
+    border: 1px solid black;
 }
 .list-Wrapper {overflow: scroll;
   -ms-overflow-style: none;
