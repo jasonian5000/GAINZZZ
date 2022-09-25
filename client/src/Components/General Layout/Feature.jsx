@@ -24,7 +24,7 @@ const Feature = () => {
         },
         {
             feature_four:
-                'Speak with our personal trainers. Each trainer having specialties to match your fitness needs',
+                'Connect with our personal trainers! Each trainer has specialties to match your fitness needs!',
             img4: img4,
         },
     ]

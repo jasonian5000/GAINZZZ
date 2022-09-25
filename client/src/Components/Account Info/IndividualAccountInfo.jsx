@@ -38,7 +38,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Height: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.weight ? (
@@ -49,7 +49,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Weight: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {bmi > 0 ? (
@@ -60,7 +60,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>BMI: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.age ? (
@@ -71,7 +71,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Age: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.gender ? (
@@ -82,7 +82,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Gender: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.ptTable?.ptName ? (
@@ -93,7 +93,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Personal Trainer: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
         </div>

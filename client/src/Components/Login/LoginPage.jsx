@@ -8,11 +8,12 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import logo from '../../assets/GAINZZZ.png'
-import { Snackbar } from '@mui/material'
+import Toasts from '../Toasts'
 
 export const LoginPage = () => {
     const navigate = useNavigate()
     const [fail, setFail] = useState(false)
+    const toasts = {fail, setFail}
     const signIn = async (e, navigate) => {
         let data = setSignIn(e)
         await userSignIn(data.email, data.password)
@@ -53,10 +54,9 @@ export const LoginPage = () => {
                             Sign In
                         </button>
                         <h3>
-                            Dont have an account?{' '}
+                            Dont have an account?
                             <span>
-                                {' '}
-                                <Link to="/sign_up">Register</Link>{' '}
+                                <Link to="/sign_up">Register</Link>
                             </span>
                         </h3>
                         <h1>OR</h1>
@@ -72,24 +72,13 @@ export const LoginPage = () => {
                             </li>
                         </ul>
                         <p className="bottom-form">
-                            Terms of Service |{' '}
+                            Terms of Service |
                             <img src={logo} alt="logo" className="form-logo" />
                         </p>
                     </form>
                 </div>
             </div>
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
-                }}
-                message="Login Failed. Check your email and password."
-                open={fail}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setFail(false)
-                }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            />
+            <Toasts toasts={toasts}/>
         </>
     )
 }
