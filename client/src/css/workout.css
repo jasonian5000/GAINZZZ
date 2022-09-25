@@ -7,7 +7,7 @@
 }
 
 .workout-container{
-    padding-top: 12vh;
+    padding-top: 15vh;
     padding-bottom: 1vh;
 }
 
@@ -24,7 +24,7 @@
 
 .myWorkout-container{
     display: flex;
-    gap: 80px;
+    gap: 120px;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -47,6 +47,8 @@
     border-radius: 16px;
     opacity: 0.9;
     margin: 5vh 5vw;
+    box-shadow: inset 0 0 10px #000000;
+
 }
 .select-container{
     display: flex;
@@ -89,15 +91,32 @@ p{
 }
 #removeFav-btn,
 #addTo-btn,
-#complete-btn{
+#complete-btn
+{
     color:#ffffff;
     background: #FF1414;
     border-radius: 5px;
     width: 70%;
-    margin: 10px;
-    padding: 10px;
+    padding: 15px;
     align-self: center;
 }
+#removeFav-btn:hover,
+#addTo-btn:hover,
+#get-workout-btn:hover
+{
+    background:black;
+    transition: .5s;
+}
+
+#complete-btn{
+    margin: 20px;
+}
+#complete-btn:hover{
+    background: white;
+    color: #FF1414;
+    transition: .5s;
+}
+
 #newExercise-btn{
         color:#ffffff;
     background: black;
@@ -115,8 +134,6 @@ p{
     background: white;
     margin: 10px;
     display: flex;
-    height: 7vh;
-    max-width: 550px;
     align-items: center;
 }
 #myWorkout-card:hover{
@@ -131,7 +148,7 @@ p{
 .rightSide,
 .leftSide{
     gap: 20px;
-    width: 550px;
+    min-width: 550px;
     display: flex;
     flex-direction: column;
 }
@@ -150,14 +167,16 @@ p{
     display: flex;
     flex-direction: column;
     align-items: center;
+    opacity: 0.9;
 }
 
 .list-Wrapper{
     padding: 25px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 60vh;
-    background: rgba(0, 0, 0, 0.562);
+    background: rgba(0, 0, 0, 0.82);
     border: 1px solid black;
 }
 .list-Wrapper {overflow: scroll;
@@ -170,7 +189,9 @@ p{
 .seePic{
     text-align: center;
 }
-
+.workoutTitle{
+    color: whitesmoke;
+}
 
 
 @media(max-width:1190px){
@@ -181,9 +202,9 @@ p{
     .leftSide{
     display: flex;
     justify-content: center;
-    width: 90%;
+    min-width: 90%;
 }
     .list-Wrapper{
-        width: 70%;
+        justify-content: center;
     }
 }

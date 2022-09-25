@@ -20,7 +20,7 @@ const BodyPartCard = ({ bodyPart }) => {
       className="bodyPartCard"
       sx={{
         backgroundColor: "#fff",
-        borderBottomLeftRadius: "20px",
+        borderRadius: "20px",
         width: "220px",
         height: "200px",
         gap: "47px",

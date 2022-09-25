@@ -25,6 +25,9 @@
   font-size: .8rem;
   border-style: groove;
 }
+.button:hover{
+  transform: scale(1.05, 1.05);
+}
 
 .button:focus {
   outline-width: 0;
