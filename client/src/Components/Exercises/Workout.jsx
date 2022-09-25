@@ -138,7 +138,7 @@ const Workout = () => {
             </div>
 
             <div className="myWorkout-wrapper">
-                <h1 className='workoutTitle'>Your Workout for... {mytarget}</h1>
+                <h1 className='workoutTitle'>{mytarget.toUpperCase()} WORKOUT</h1>
                 <div className="myWorkout-container">
                     <div className="leftSide">
                         <ul className="exercises" key={reset}>
