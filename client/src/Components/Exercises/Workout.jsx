@@ -136,7 +136,7 @@ const Workout = () => {
             </div>
 
             <div className="myWorkout-wrapper">
-                <h1>Your Workout for... {mytarget}</h1>
+                <h1 className='workoutTitle'>Your Workout for... {mytarget}</h1>
                 <div className="myWorkout-container">
                     <div className="leftSide">
                         <ul className="exercises" key={reset}>

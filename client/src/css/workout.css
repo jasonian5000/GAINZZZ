@@ -24,7 +24,7 @@
 
 .myWorkout-container{
     display: flex;
-    gap: 80px;
+    gap: 120px;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -169,7 +169,9 @@ p{
 .seePic{
     text-align: center;
 }
-
+.workoutTitle{
+    color: whitesmoke;
+}
 
 
 @media(max-width:1190px){
