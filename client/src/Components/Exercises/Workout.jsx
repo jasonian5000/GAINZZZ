@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
-import { Box, TextField, MenuItem, Button, Slide } from '@mui/material'
+import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import {
@@ -13,14 +13,13 @@ import Timer from '../Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
 import placeholder from '../../assets/exercise_placeholder.png'
+import WorkoutCard from './WorkoutCard'
 
 const Workout = () => {
     const dispatch = useDispatch()
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState(placeholder)
-    const [reset, setReset] = useState(1)
-    const [slideIn, setSlideIn] = useState(true)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
 
@@ -38,7 +37,6 @@ const Workout = () => {
         newWorkout[index] = replacementWorkout
         setMyWorkout(dispatch, newWorkout)
         setWorkoutImg(placeholder)
-        setReset(Math.random())
     }
 
     const removeWorkout = index => {
@@ -46,7 +44,6 @@ const Workout = () => {
         newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
         setWorkoutImg(placeholder)
-        setReset(Math.random())
     }
 
     return (
@@ -138,66 +135,17 @@ const Workout = () => {
             </div>
 
             <div className="myWorkout-wrapper">
-                <h1 className='workoutTitle'>{mytarget.toUpperCase()} WORKOUT</h1>
+                <h1 className="workoutTitle">
+                    {mytarget.toUpperCase()} WORKOUT
+                </h1>
                 <div className="myWorkout-container">
                     <div className="leftSide">
-                        <ul className="exercises" key={reset}>
+                        <ul className="exercises" >
                             <div className="list-Wrapper">
                                 {myWorkout
                                     ? myWorkout?.map((workout, index) => (
-                                          <Slide
-                                              direction="up"
-                                              in={slideIn}
-                                              mountOnEnter
-                                              unmountOnExit
-                                          >
-                                              <div
-                                                  id="myWorkout-card"
-                                                  key={workout.id}
-                                                  workoutid={
-                                                      workout.id || workout
-                                                  }
-                                                  title={workout.id || workout}
-                                              >
-                                                  <input
-                                                      className="keepSignIn"
-                                                      type="checkbox"
-                                                  />
-                                                  <Button
-                                                      id="exercise-btn"
-                                                      value={workout.gifUrl}
-                                                      onClick={e => {
-                                                          setWorkoutImg(
-                                                              e.target.value
-                                                          )
-                                                      }}
-                                                  >
-                                                      {workout.name}
-                                                  </Button>
-                                                  <div className="workoutBtn-container">
-                                                      <button
-                                                          id="newExercise-btn"
-                                                          onClick={() =>
-                                                              changeWorkout(
-                                                                  index
-                                                              )
-                                                          }
-                                                      >
-                                                          Shuffle
-                                                      </button>
-                                                      <button
-                                                          id="newExercise-btn"
-                                                          onClick={() =>
-                                                              removeWorkout(
-                                                                  index
-                                                              )
-                                                          }
-                                                      >
-                                                          Remove
-                                                      </button>
-                                                  </div>
-                                              </div>
-                                          </Slide>
+                                          <WorkoutCard key={workout.id} workout={workout} index={index} setWorkoutImg={setWorkoutImg} changeWorkout={changeWorkout}
+                                          removeWorkout={removeWorkout}/>
                                       ))
                                     : null}
                             </div>
@@ -227,7 +175,7 @@ const Workout = () => {
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}
-                                alt=''
+                                alt=""
                             ></img>
                         </div>
                         <Timer />
