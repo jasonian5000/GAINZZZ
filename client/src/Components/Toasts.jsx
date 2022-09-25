@@ -40,6 +40,42 @@ export default function Toasts(props) {
               }}
               anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           />
+          <Snackbar
+              sx={{
+                  '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
+              }}
+              message="Please confirm your email to sign in"
+              open={props.toasts.confirmEmailToast}
+              autoHideDuration={3000}
+              onClose={() => {
+                  props.toasts.setConfirmEmailToast(false)
+              }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          />
+          <Snackbar
+              sx={{
+                  '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
+              }}
+              message="Please fill out all fields to register"
+              open={props.toasts.needMoreToast}
+              autoHideDuration={3000}
+              onClose={() => {
+                  props.toasts.setNeedMoreToast(false)
+              }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          />
+          <Snackbar
+              sx={{
+                  '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
+              }}
+              message="Login Failed. Check your email and password."
+              open={props.toasts.fail}
+              autoHideDuration={6000}
+              onClose={() => {
+                  props.toasts.setFail(false)
+              }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          />
       </>
   )
 }

@@ -34,7 +34,6 @@ export const userSignUp = async (
             body: JSON.stringify(body),
         })
         console.log('user created')
-        alert('please confirm you email address to sign in')
     } catch (error) {
         console.log(error)
     }

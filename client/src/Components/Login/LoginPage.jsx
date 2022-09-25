@@ -8,11 +8,12 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import logo from '../../assets/GAINZZZ.png'
-import { Snackbar } from '@mui/material'
+import Toasts from '../Toasts'
 
 export const LoginPage = () => {
     const navigate = useNavigate()
     const [fail, setFail] = useState(false)
+    const toasts = {fail, setFail}
     const signIn = async (e, navigate) => {
         let data = setSignIn(e)
         await userSignIn(data.email, data.password)
@@ -77,17 +78,7 @@ export const LoginPage = () => {
                     </form>
                 </div>
             </div>
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
-                }}
-                message="Login Failed. Check your email and password."
-                open={fail}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setFail(false)
-                }}
-            />
+            <Toasts toasts={toasts}/>
         </>
     )
 }
