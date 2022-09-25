@@ -2,34 +2,36 @@ import { Box, MenuItem, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    confirmDeleteAccount,
-    getTrainers,
-    sendAcctInfo,
-} from '../../actions/accountInformation'
+import { getTrainers, sendAcctInfo } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 
-export default function UpdateAccountForm() {
-
+export default function UpdateAccountForm(props) {
+    const setUpdated = props.setUpdated
     const makeNumberArray = (start, finish) => {
         let state = Array(finish - start).fill({})
         return state.map((part, index) => ({
             value: String(start + index),
         }))
     }
+    const inchesToFeet = value => {
+        value = Number(value)
+        let feet = Math.floor(value / 12)
+        let inches = value % 12
+        return `${feet}' ${inches}"`
+    }
+
     const heightList = makeNumberArray(36, 91)
     const weightList = makeNumberArray(50, 500)
     const ageList = makeNumberArray(16, 100)
     const dispatch = useDispatch()
-    const trainerDropDownList = useSelector(
-        state => state.trainers.trainerDropDownList
-    )
+    const trainerDropDownList = useSelector(state => state.trainers.trainerDropDownList)
     const info = useSelector(state => state.personalInfo.accountInfo)
     const [heightValue, setHeightValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [genderValue, setGenderValue] = useState('')
     const [ageValue, setAgeValue] = useState('')
     const [trainerValue, setTrainerValue] = useState('')
+    
     useEffect(
         () => {
             getTrainers(dispatch)
@@ -38,7 +40,6 @@ export default function UpdateAccountForm() {
         []
     )
     return (
-        
         <div className="acctUpdateForm">
             <div className="updateFormWrapper">
                 <h1>Update Account</h1>
@@ -58,7 +59,7 @@ export default function UpdateAccountForm() {
                                         key={height.value}
                                         value={height.value}
                                     >
-                                        {height?.value}
+                                        {inchesToFeet(height?.value)}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -72,13 +73,11 @@ export default function UpdateAccountForm() {
                                 select
                                 value={weightValue}
                                 onChange={e => setWeightValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {weightList.map(weight => (
                                     <MenuItem
                                         key={weight.value}
-                                        value={weight.value}
-                                    >
+                                        value={weight.value}>
                                         {weight?.value}
                                     </MenuItem>
                                 ))}
@@ -93,8 +92,7 @@ export default function UpdateAccountForm() {
                                 select
                                 value={ageValue}
                                 onChange={e => setAgeValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {ageList.map(age => (
                                     <MenuItem key={age.value} value={age.value}>
                                         {age?.value}
@@ -111,8 +109,7 @@ export default function UpdateAccountForm() {
                                 select
                                 value={genderValue}
                                 onChange={e => setGenderValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 <MenuItem value="male">male </MenuItem>
                                 <MenuItem value="female">female </MenuItem>
                                 <MenuItem value="prefer not to answer">
@@ -131,8 +128,7 @@ export default function UpdateAccountForm() {
                                 select
                                 value={trainerValue}
                                 onChange={e => setTrainerValue(e.target.value)}
-                                fullWidth
-                            >
+                                fullWidth>
                                 {trainerDropDownList.map(trainer => (
                                     <MenuItem
                                         key={trainer.id}
@@ -147,17 +143,19 @@ export default function UpdateAccountForm() {
                     <div className="buttons">
                         <button
                             className="updateButton"
-                            onClick={e => { sendAcctInfo(e, info)}}
+                            onClick={e => {
+                                sendAcctInfo(e, info)
+                                setUpdated(true)
+                            }}
                         >
                             Update
                         </button>
                         <button
                             className="deleteButton"
-                            onClick={() => confirmDeleteAccount()}
+                            onClick={() => console.log("why you reset?")}
                         >
                             Delete Account
                         </button>
-                        
                     </div>
                 </form>
             </div>

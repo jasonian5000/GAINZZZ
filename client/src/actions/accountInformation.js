@@ -2,7 +2,6 @@ import {
     trainerInfo,
     getAcctInfo,
     updateAcctInfo,
-    deleteAcct,
     getWeightData,
 } from './supabase_client'
 import { captureAcctInfo } from './inputs'
@@ -14,23 +13,13 @@ export const getTrainers = async dispatch => {
 
 export const setAcctInfo = async dispatch => {
     const personalInfo = await getAcctInfo()
-    await dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
+    dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
 }
 
 export const sendAcctInfo = async (e, info) => {
     const updatedInfo = captureAcctInfo(e, info)
-    window.location.reload()
     await updateAcctInfo(updatedInfo)
-    window.alert('Information added Succesfully')
 }
-
-export const confirmDeleteAccount = () => {
-    let password = prompt('Please enter your password to delete your account')
-    if (password) {
-        deleteAcct(password)
-    }
-}
-
 export const setWeightData = async dispatch => {
     const weightData = await getWeightData()
     await dispatch({ type: "SET_WEIGHT_DATA", payload: weightData})
@@ -61,6 +50,20 @@ export const refineDate = (json) => {
         entry.created_at = formatDate(entry.created_at)
     });
     return json
+}
+
+export const setWeightRange = (weightData) => {
+    let high = 0
+    let low = weightData[0]?.weight
+    for (let index = 0; index < weightData?.length; index++) {
+        if (weightData[index]?.weight > high) {
+            high = weightData[index]?.weight
+        }
+        if (weightData[index]?.weight < low) {
+            low = weightData[index]?.weight
+        }
+    }
+    return ({low: low - 20, high: high + 20})
 }
 
 export const bmiCalc = (height, weight) => {

@@ -18,7 +18,7 @@
 .infoDisplay {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
     width: 100%;
     padding: 5px;
     margin-bottom: 5px;
@@ -48,7 +48,7 @@
 }
 
 .updateButton,
-.deleteButton {
+.deleteButton, .confirmButton {
     color: white;
     background-color: black;
     border-radius: 5px;
@@ -63,8 +63,33 @@
     width: 100%;
 }
 
-.deleteButton {
+.confirmDeleteBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.warningMessage {
+    color: red;
+    font-size: .8em;
+}
+
+.deleteButton, .confirmButton {
     background-color: #ff1414;
+}
+
+.confirmDeleteInput {
+    display: flex;
+    justify-content: space-around;
+}
+
+.passwordInput {
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 20px;
+    letter-spacing: 1px;
+    background-color: aliceblue;
+    border: thin solid #ff1414;
 }
 
 .dropDownMenu {

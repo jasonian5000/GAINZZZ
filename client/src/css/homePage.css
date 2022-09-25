@@ -25,24 +25,22 @@
     justify-content: center;
     align-content: center;
     margin-top: 40px;
+    text-align: center;
 }
 .a-box{
     width:250px;
     height: 400px;
     margin: 20px;
     border-radius: 10px;
-    overflow: hidden;
     transition: 0.4s ease-in-out;
     position: relative;
 }
-.a-b-img{
-    width: 100%;
-    height: 60%;
 
-}
-.a-b-img img{
+.a-b-img {
+    justify-content: center;
+    align-items: center;
+    display: flex;
     padding: 5px;
-    margin-top: 40px;
     width:100%;
     height: 50%;
 
@@ -57,7 +55,6 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     flex-direction: column;
 }
 .a-b-text h2{
@@ -71,13 +68,12 @@
     display: block;
     display: -webkit-box;
     max-width: 80%;
-    margin-top: 5px;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 10px;
 }
+
 .a-b-text p:hover{
     color:#ffffff;
 }

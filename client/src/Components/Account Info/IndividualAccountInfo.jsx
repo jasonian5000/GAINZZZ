@@ -10,6 +10,12 @@ const IndividualAccountInfo = () => {
     const info = useSelector(state => state.personalInfo.accountInfo)
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
+    const inchesToFeet = value => {
+        value = Number(value)
+        let feet = Math.floor(value / 12)
+        let inches = value % 12
+        return `${feet}' ${inches}"`
+    }
     useEffect(
         () => {
             setAcctInfo(dispatch)
@@ -27,12 +33,12 @@ const IndividualAccountInfo = () => {
             {currentInfo?.height ? (
                 <div className="infoDisplay">
                     <p>Height: </p>
-                    <p>{currentInfo?.height} inches</p>
+                    <p>{inchesToFeet(currentInfo?.height)}</p>
                 </div>
             ) : (
                 <div className="infoDisplay">
-                    <p>Height(in inches): </p>
-                    <p>Please Update Height</p>
+                    <p>Height: </p>
+                    <p>update</p>
                 </div>
             )}
             {currentInfo?.weight ? (
@@ -43,7 +49,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Weight: </p>
-                    <p>Please Update Weight</p>
+                    <p>update</p>
                 </div>
             )}
             {bmi > 0 ? (
@@ -54,7 +60,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>BMI: </p>
-                    <p>Please Update Height/Weight</p>
+                    <p>update</p>
                 </div>
             )}
             {currentInfo?.age ? (
@@ -65,7 +71,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Age: </p>
-                    <p>Please Update Age</p>
+                    <p>update</p>
                 </div>
             )}
             {currentInfo?.gender ? (
@@ -76,7 +82,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Gender: </p>
-                    <p>Please Update Gender</p>
+                    <p>update</p>
                 </div>
             )}
             {currentInfo?.ptTable?.ptName ? (
@@ -87,7 +93,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Personal Trainer: </p>
-                    <p>Please Update Personal Trainer</p>
+                    <p>update</p>
                 </div>
             )}
         </div>

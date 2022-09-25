@@ -11,9 +11,13 @@ const PersonalTrainers = () => {
     const trainers = useSelector(state => state.trainers.trainers)
     console.log("this is trainers" ,trainers)
 
-    useEffect(() => {
-        getPersonalTrainers(dispatch)
-    }, [dispatch])
+    useEffect(
+        () => {
+            getPersonalTrainers(dispatch)
+        },
+        // eslint-disable-next-line
+        []
+    )
     return (
         <div className="PersonalTrainerContainer">
             <Box sx={{ display: 'grid', flexDirection: 'row',}} mt="50px" p="20px">

@@ -5,48 +5,43 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone'
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { Button } from '@mui/material'
 
-export default function FavoriteButton( props ) {
+export default function FavoriteButton(props) {
     const dispatch = useDispatch()
-    const favorites = useSelector(
+    let favorites = useSelector(
         state => state.favoriteWorkouts.favoriteWorkouts
     )
     const [favList, setFavList] = useState(favorites)
     const isFav = markFavorites(favList, props?.exercise?.id)
     const [favCheck, setFavCheck] = useState(isFav)
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
+    const [disableToggle, setDisableToggle] = useState(favCheck)
+    useEffect(() => {
+        setFavList(favorites)
+        setFavCheck(isFav)
+        setDisableToggle(favCheck)
+    }, [favorites, isFav, favCheck])
+    return (
+        <>
+            <Button
+                sx={{ color: 'red' }}
+                className="exerciseCardButton"
+                size="small"
+                disabled={Boolean(disableToggle)}
+                onClick={() => {
+                    addToFavorites(
+                        props.exercise.id,
+                        props.toasts.setAddedFavToast,
+                        dispatch
+                    )
+                }}
+            >
+                {favCheck === true ? (
+                    <FavoriteSharpIcon />
+                ) : (
+                    <FavoriteTwoToneIcon />
+                )}
+            </Button>
+        </>
     )
-    useEffect(
-        () => {
-            setFavList(favorites)
-            setFavCheck(isFav)
-        },
-        // eslint-disable-next-line
-        [favorites, isFav]
-    )
-  return (
-      <Button
-          className="exerciseCardButton"
-          variant="outlined"
-          size="small"
-          disabled={favCheck}
-          onClick={() => {
-              addToFavorites(props?.exercise?.id);
-              setFavWorkouts(dispatch)
-          }}
-      >
-          { favCheck === true ? (
-              <FavoriteSharpIcon  />
-          ) : (
-              <FavoriteTwoToneIcon  />
-          )}
-      </Button>
-  )
 }

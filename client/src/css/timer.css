@@ -1,6 +1,6 @@
 .app {
   text-align: center;
-  background: url('../assets/red_black_background.jpg');
+  /* background: url('../assets/red_black_background.jpg'); */
   background-color: #221f1f;
   min-height: 30vh;
   display: flex;
