@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
-import { Box, TextField, MenuItem, Button } from '@mui/material'
+import { Box, TextField, MenuItem, Button, Slide } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
 import {
@@ -19,6 +19,7 @@ const Workout = () => {
     const [mytarget, setMyTarget] = useState('')
     const [workoutImg, setWorkoutImg] = useState('')
     const [reset, setReset] = useState(1)
+    const [slideIn, setSlideIn] = useState(true)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
 
@@ -140,50 +141,65 @@ const Workout = () => {
                 <div className="myWorkout-container">
                     <div className="leftSide">
                         <ul className="exercises" key={reset}>
-                        <div className='list-Wrapper'>
-                            {myWorkout
-                                ? myWorkout?.map((workout, index) => (
-                                      <div
-                                          id="myWorkout-card"
-                                          key={workout.id}
-                                          workoutid={workout.id || workout}
-                                          title={workout.id || workout}
-                                      >
-                                          <input
-                                              className="keepSignIn"
-                                              type="checkbox"
-                                          />
-                                          <Button
-                                              id="exercise-btn"
-                                              value={workout.gifUrl}
-                                              onClick={e => {
-                                                  setWorkoutImg(e.target.value)
-                                              }}
+                            <div className="list-Wrapper">
+                                {myWorkout
+                                    ? myWorkout?.map((workout, index) => (
+                                          <Slide
+                                              direction="up"
+                                              in={slideIn}
+                                              mountOnEnter
+                                              unmountOnExit
                                           >
-                                              {workout.name}
-                                          </Button>
-                                          <div className="workoutBtn-container">
-                                              <button
-                                                  id="newExercise-btn"
-                                                  onClick={() =>
-                                                      changeWorkout(index)
+                                              <div
+                                                  id="myWorkout-card"
+                                                  key={workout.id}
+                                                  workoutid={
+                                                      workout.id || workout
                                                   }
+                                                  title={workout.id || workout}
                                               >
-                                                  Shuffle
-                                              </button>
-                                              <button
-                                                  id="newExercise-btn"
-                                                  onClick={() =>
-                                                      removeWorkout(index)
-                                                  }
-                                              >
-                                                  Remove
-                                              </button>
-                                          </div>
-                                      </div>
-                                  ))
+                                                  <input
+                                                      className="keepSignIn"
+                                                      type="checkbox"
+                                                  />
+                                                  <Button
+                                                      id="exercise-btn"
+                                                      value={workout.gifUrl}
+                                                      onClick={e => {
+                                                          setWorkoutImg(
+                                                              e.target.value
+                                                          )
+                                                      }}
+                                                  >
+                                                      {workout.name}
+                                                  </Button>
+                                                  <div className="workoutBtn-container">
+                                                      <button
+                                                          id="newExercise-btn"
+                                                          onClick={() =>
+                                                              changeWorkout(
+                                                                  index
+                                                              )
+                                                          }
+                                                      >
+                                                          Shuffle
+                                                      </button>
+                                                      <button
+                                                          id="newExercise-btn"
+                                                          onClick={() =>
+                                                              removeWorkout(
+                                                                  index
+                                                              )
+                                                          }
+                                                      >
+                                                          Remove
+                                                      </button>
+                                                  </div>
+                                              </div>
+                                          </Slide>
+                                      ))
                                     : null}
-                                </div>
+                            </div>
                             <button
                                 id="complete-btn"
                                 key={myWorkout}
@@ -206,8 +222,10 @@ const Workout = () => {
                         </ul>
                     </div>
                     <div className="rightSide">
-                        <div className='img-wrapper'>
-                            <p className='seePic'>(Click on exercise to see gif)</p>
+                        <div className="img-wrapper">
+                            <p className="seePic">
+                                (Click on exercise to see gif)
+                            </p>
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}
