@@ -37,7 +37,7 @@ const Workout = () => {
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
         setMyWorkout(dispatch, newWorkout)
-        setWorkoutImg('')
+        setWorkoutImg(placeholder)
         setReset(Math.random())
     }
 
@@ -45,7 +45,7 @@ const Workout = () => {
         let newWorkout = myWorkout
         newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
-        setWorkoutImg('')
+        setWorkoutImg(placeholder)
         setReset(Math.random())
     }
 
@@ -126,7 +126,7 @@ const Workout = () => {
                                             myLevel
                                         )
                                         setMyWorkout(dispatch, random)
-                                        setWorkoutImg('')
+                                        setWorkoutImg(placeholder)
                                     }}
                                 >
                                     Get Workout
@@ -215,7 +215,7 @@ const Workout = () => {
                                 onClick={() => {
                                     addWorkoutsCompleted()
                                     setMyWorkout(dispatch, [])
-                                    setWorkoutImg('')
+                                    setWorkoutImg(placeholder)
                                 }}
                             >
                                 Complete Workout
