@@ -168,7 +168,7 @@ export default function UpdateAccountForm(props) {
                             <button
                                 className="updateButton"
                                 onClick={e => {
-                                    sendAcctInfo(e, info)
+                                    sendAcctInfo(e, info, dispatch)
                                     setUpdated(true)
                                 }}
                             >

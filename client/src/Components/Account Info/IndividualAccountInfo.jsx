@@ -7,7 +7,7 @@ import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
-    let info = useSelector(state => state.personalInfo.accountInfo)
+    const info = useSelector(state => state.personalInfo.accountInfo)
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     const inchesToFeet = value => {
@@ -23,6 +23,7 @@ const IndividualAccountInfo = () => {
         // eslint-disable-next-line
         []
     )
+
     useEffect(() => {
         setCurrentInfo(info[0])
     }, [info])

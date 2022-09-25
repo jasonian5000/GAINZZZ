@@ -16,9 +16,10 @@ export const setAcctInfo = async dispatch => {
     dispatch({ type: 'SET_PERSONAL_INFORMATION', payload: personalInfo })
 }
 
-export const sendAcctInfo = async (e, info) => {
+export const sendAcctInfo = async (e, info, dispatch) => {
     const updatedInfo = captureAcctInfo(e, info)
     await updateAcctInfo(updatedInfo)
+    await setAcctInfo(dispatch)
 }
 export const setWeightData = async dispatch => {
     const weightData = await getWeightData()
