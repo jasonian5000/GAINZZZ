@@ -7,7 +7,7 @@ import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
-    const info = useSelector(state => state.personalInfo.accountInfo)
+    let info = useSelector(state => state.personalInfo.accountInfo)
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     const inchesToFeet = value => {
@@ -23,7 +23,6 @@ const IndividualAccountInfo = () => {
         // eslint-disable-next-line
         []
     )
-
     useEffect(() => {
         setCurrentInfo(info[0])
     }, [info])
@@ -38,7 +37,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Height: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.weight ? (
@@ -49,7 +48,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Weight: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {bmi > 0 ? (
@@ -60,7 +59,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>BMI: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.age ? (
@@ -71,7 +70,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Age: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.gender ? (
@@ -82,7 +81,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Gender: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.ptTable?.ptName ? (
@@ -93,7 +92,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Personal Trainer: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
         </div>

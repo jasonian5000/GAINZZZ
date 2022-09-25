@@ -14,11 +14,12 @@ import {
 } from 'recharts'
 import UpdateAccountForm from './UpdateAccountForm'
 import { useLocation } from 'react-router-dom'
-import { Snackbar } from '@mui/material'
+import Toasts from '../Toasts'
 
 const AccountInformation = () => {
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
+    const toasts = { pass, setPass, updated, setUpdated }
     const location = useLocation()
     const dispatch = useDispatch()
     const weightData = useSelector(state => state.personalInfo.weightData)
@@ -32,11 +33,12 @@ const AccountInformation = () => {
         // eslint-disable-next-line
         []
     )
+
     return (
         <div className="acctInfoPageWrapper">
             <div className="acctInfoPageContainer">
                 <IndividualAccountInfo />
-                <UpdateAccountForm setUpdated={setUpdated}/>
+                <UpdateAccountForm setUpdated={setUpdated} />
             </div>
             <div className="weightTrackerWrapper">
                 <h1>Weight Tracker</h1>
@@ -70,31 +72,7 @@ const AccountInformation = () => {
                     </ResponsiveContainer>
                 </div>
             </div>
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
-                }}
-                message="Login Successful! Welcome to Gainzzz!"
-                open={pass}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setPass(false)
-                }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            />
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
-                }}
-                message="Account information was updated"
-                open={updated}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setUpdated(false)
-                    window.history.replaceState({}, document.title)
-                }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            />
+            <Toasts toasts={toasts} />
         </div>
     )
 }

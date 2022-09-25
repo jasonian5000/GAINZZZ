@@ -164,26 +164,25 @@ export default function UpdateAccountForm(props) {
                                 </TextField>
                             </Box>
                         </div>
+                        <div className="buttons">
+                            <button
+                                className="updateButton"
+                                onClick={e => {
+                                    sendAcctInfo(e, info)
+                                    setUpdated(true)
+                                }}
+                            >
+                                Update
+                            </button>
+                        </div>
                     </form>
                 </div>
-                <div className="buttons">
-                    <button
-                        className="updateButton"
-                        onClick={e => {
-                            sendAcctInfo(e, info)
-                            setUpdated(true)
-                        }}
-                    >
-                        Update
-                    </button>
-                    <button
-                        className="deleteButton"
-                        onClick={() => setConfirmDelete(!confirmDelete)}
-                    >
-                        Delete Account
-                    </button>
-                </div>
-
+                <button
+                    className="deleteButton"
+                    onClick={() => setConfirmDelete(!confirmDelete)}
+                >
+                    Delete Account
+                </button>
                 {confirmDelete && (
                     <div className="confirmDeleteBox">
                         <p className="warningMessage">
