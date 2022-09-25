@@ -12,12 +12,13 @@ import {
 import Timer from '../Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
+import placeholder from '../../assets/exercise_placeholder.png'
 
 const Workout = () => {
     const dispatch = useDispatch()
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
-    const [workoutImg, setWorkoutImg] = useState('')
+    const [workoutImg, setWorkoutImg] = useState(placeholder)
     const [reset, setReset] = useState(1)
     const [slideIn, setSlideIn] = useState(true)
     const searchResults = useSelector(state => state.search?.searchResults)
@@ -223,9 +224,6 @@ const Workout = () => {
                     </div>
                     <div className="rightSide">
                         <div className="img-wrapper">
-                            <p className="seePic">
-                                (Click on exercise to see gif)
-                            </p>
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}
