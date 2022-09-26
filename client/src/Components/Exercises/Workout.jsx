@@ -9,7 +9,7 @@ import {
     randomWorkout,
     addWorkoutsCompleted,
 } from '../../actions/workoutBuilder'
-import Timer from '../Timer'
+import Timer from './Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
 import placeholder from '../../assets/exercise_placeholder.png'

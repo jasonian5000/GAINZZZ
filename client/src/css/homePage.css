@@ -4,6 +4,7 @@
 #features{
     width:100%;
     min-height:90vh;
+    gap: 50px;
     box-sizing: border-box;
     font-family:'Lato';
     display: flex;
@@ -20,14 +21,15 @@
     margin-top: 20px;
     text-align: center;
 }
-.a-container{
+.feature-container{
     display: flex;
     justify-content: center;
     align-content: center;
     margin-top: 40px;
+    gap: 50px;
     text-align: center;
 }
-.a-box{
+.feature-box{
     width:250px;
     height: 400px;
     margin: 20px;
@@ -36,7 +38,7 @@
     position: relative;
 }
 
-.a-b-img {
+.feature-img {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -45,11 +47,11 @@
     height: 50%;
 
 }
-.a-box:hover{
+.feature-box:hover{
     border: 1px solid #FF1414;
     box-shadow: 2px 2px 12px rgba(184, 0, 0, 0.445);
 }
-.a-b-text{
+.feature-text{
     width: 100%;
     height: 40%;
     display:flex;
@@ -57,10 +59,10 @@
     align-items: center;
     flex-direction: column;
 }
-.a-b-text h2{
+.feature-text h2{
     color: #fff;
 }
-.a-b-text p{
+.feature-text p{
     margin: 0px;
     color:#ffffffa6;
     font-size: 1.1rem;
@@ -74,10 +76,10 @@
     text-overflow: ellipsis;
 }
 
-.a-b-text p:hover{
+.feature-text p:hover{
     color:#ffffff;
 }
-.a-b-text a{
+.feature-text a{
     margin-top:15px ;
 }
 
@@ -87,13 +89,13 @@
     #features{
 		height:auto;
     }
-    .a-container{
+    .feature-container{
 		flex-wrap: wrap;
 	}
-    .a-box{
+    .feature-box{
 		flex-grow: 1;
 	}
-    .a-b-img img{
+    .feature-img img{
 		object-fit:contain;
     }
     
@@ -109,7 +111,7 @@
 }
 
         @media(max-width:400px){
-            .a-box{
+            .feature-box{
                 width: 100%;
                 height:400px;
             }

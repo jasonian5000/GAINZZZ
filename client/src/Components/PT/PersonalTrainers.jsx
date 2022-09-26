@@ -14,17 +14,19 @@ const PersonalTrainers = () => {
     }, [])
     return (
         <div className="PersonalTrainerContainer">
-            <Box
-                sx={{ display: 'grid', flexDirection: 'row' }}
-                mt="50px"
-                p="20px"
-            >
-                {trainers.map(trainer => (
-                    <Stack key={trainer.id}>
-                        <PersonalTrainerCard trainer={trainer} />
-                    </Stack>
-                ))}
-            </Box>
+                <div className='pt-wrapper'>
+                <Box
+                    sx={{ display: 'grid', flexDirection: 'row' }}
+                    mt="50px"
+                    p="20px"
+                >
+                    {trainers.map(trainer => (
+                        <Stack key={trainer.id}>
+                            <PersonalTrainerCard trainer={trainer} />
+                        </Stack>
+                    ))}
+                </Box>
+            </div>
         </div>
     )
 }
