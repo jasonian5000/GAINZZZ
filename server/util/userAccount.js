@@ -1,9 +1,13 @@
 import fetch from 'node-fetch'
 import * as dotenv from 'dotenv'
 dotenv.config()
-import { supabaseSecretKey, supabaseKey, supabaseUrl, supabase } from './supabase_auth.js'
+import {
+    supabaseSecretKey,
+    supabaseKey,
+    supabaseUrl,
+    supabase,
+} from './supabase_auth.js'
 
-// supabase
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({
         email: email,
@@ -12,7 +16,6 @@ export const userSignIn = async (email, password) => {
     return sessionData
 }
 
-// secret
 const createAccount = async (
     userID,
     firstName,
@@ -42,7 +45,6 @@ const createAccount = async (
     })
 }
 
-// supabase
 export const userSignUp = async (
     firstName,
     lastName,
@@ -58,17 +60,6 @@ export const userSignUp = async (
     await createAccount(userID, firstName, lastName, email, password, username)
 }
 
-// supabase
-export const getTrainerInfo = async () => {
-    let { data: ptTable, error } = await supabase
-        .from('ptTable')
-        .select(
-            'id,ptName,specialties,description,rates,testimonials,test2,test3,img'
-        )
-    return ptTable
-}
-
-
 export const getAcctInfo = async (userID, access_token) => {
     let data = await fetch(
         `${supabaseUrl}/rest/v1/userTable?select=height,weight,gender,age,ptTable(ptName)&userID=eq.${userID}`,
@@ -82,8 +73,6 @@ export const getAcctInfo = async (userID, access_token) => {
     let accountInfo = await data.json()
     return accountInfo
 }
-
-
 
 export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     const { height, weight, gender, age, personalTrainer } = updatedInfo
@@ -129,7 +118,3 @@ const trackWeight = async (userID, access_token, weight) => {
         }),
     })
 }
-
-
-
-

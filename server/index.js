@@ -3,11 +3,10 @@ import cors from 'cors'
 const app = express()
 import {
     userSignUp,
-    getTrainerInfo,
     userSignIn,
     getAcctInfo,
     updateAcctInfo,
-} from './util/supabase_server.js'
+} from './util/userAccount.js'
 import {
     getUserFavorites,
     addToFavorites,
@@ -20,6 +19,7 @@ import {
     getWorkoutsCompleted,
     updateWorkoutsCompleted,
 } from './util/workoutsCompleted.js'
+import { getTrainerInfo } from './util/getTrainers.js'
 
 const PORT = process.env.PORT || 3001
 
