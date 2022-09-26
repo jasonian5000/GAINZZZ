@@ -5,8 +5,10 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Toasts from '../Toasts'
+import { scrollToTop } from '../../actions/scrollToTop'
 
 const SignUpPage = () => {
+    scrollToTop()
     const [confirmEmailToast, setConfirmEmailToast] = useState(false)
     const [needMoreToast, setNeedMoreToast] = useState(false)
     const toasts = {confirmEmailToast, setConfirmEmailToast, needMoreToast, setNeedMoreToast}

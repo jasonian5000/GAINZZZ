@@ -31,16 +31,13 @@ const IndividualAccountInfo = () => {
         <div className="acctInfoContainer">
             <h1>Account Information</h1>
             {currentInfo?.height ? (
-                <div className="infoDisplay">
+            <div className="infoDisplay">
                     <p>Height: </p>
                     <p>{inchesToFeet(currentInfo?.height)}</p>
                 </div>
-            ) : (
-                <div className="infoDisplay">
-                    <p>Height: </p>
-                    <p> needs update</p>
-                </div>
-            )}
+                ) : (
+                <div className="infoDisplay"><p>Height: </p><p> needs update</p></div>
+                )}
             {currentInfo?.weight ? (
                 <div className="infoDisplay">
                     <p>Weight: </p>

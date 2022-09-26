@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPersonalTrainers } from '../../actions/personalTrainersInformation'
 import PersonalTrainerCard from './PersonalTrainerCard'
 import '../../css/PersonalTrainers.css'
+import { scrollToTop } from '../../actions/scrollToTop'
 
 const PersonalTrainers = () => {
+    scrollToTop()
     const dispatch = useDispatch()
     const trainers = useSelector(state => state.trainers.trainers)
     useEffect(() => {

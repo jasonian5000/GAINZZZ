@@ -16,8 +16,10 @@ import UpdateAccountForm from './UpdateAccountForm'
 import { useLocation } from 'react-router-dom'
 import Toasts from '../Toasts'
 import { motion } from 'framer-motion'
+import {scrollToTop} from "../../actions/scrollToTop"
 
 const AccountInformation = () => {
+    scrollToTop()
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
     const toasts = { pass, setPass, updated, setUpdated }
