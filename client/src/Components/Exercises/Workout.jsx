@@ -16,7 +16,6 @@ import placeholder from '../../assets/exercise_placeholder.png'
 import WorkoutCard from './WorkoutCard'
 import { motion } from 'framer-motion'
 
-
 const Workout = () => {
     const dispatch = useDispatch()
     const [myLevel, setMyLevel] = useState('')
@@ -26,13 +25,9 @@ const Workout = () => {
     const myWorkout = useSelector(state => state.workout?.myWorkout)
     const [reset, setReset] = useState(true)
 
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setFavWorkouts(dispatch)
+    }, [])
 
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
@@ -51,16 +46,13 @@ const Workout = () => {
 
     return (
         <motion.div
-            intial={{ width: 0}}
-            animate={{ width:'100%' }}
-            exit={{ x: window.innerWidth, transition:{ duration: 0.2}}}>
+            intial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+        >
             <div className="workout-wrapper">
                 <div className="workoutWrapper-overlay">
                     <div className="workout-container">
-                        <div className="fav-scroll">
-                            <FavWorkoutScroll />
-                        </div>
-
                         <div className="workout-box">
                             <h1 className="workout-title">
                                 Choose your workout!
@@ -146,12 +138,20 @@ const Workout = () => {
                 </h1>
                 <div className="myWorkout-container">
                     <div className="leftSide">
-                        <ul className="exercises" >
+                        <ul className="exercises">
                             <div key={reset} className="list-Wrapper">
                                 {myWorkout
                                     ? myWorkout?.map((workout, index) => (
-                                          <WorkoutCard key={workout.id} workout={workout} index={index} setWorkoutImg={setWorkoutImg} changeWorkout={changeWorkout}
-                                          removeWorkout={removeWorkout} reset={reset}setReset={setReset}/>
+                                          <WorkoutCard
+                                              key={workout.id}
+                                              workout={workout}
+                                              index={index}
+                                              setWorkoutImg={setWorkoutImg}
+                                              changeWorkout={changeWorkout}
+                                              removeWorkout={removeWorkout}
+                                              reset={reset}
+                                              setReset={setReset}
+                                          />
                                       ))
                                     : null}
                             </div>
@@ -186,6 +186,9 @@ const Workout = () => {
                         </div>
                         <Timer />
                     </div>
+                </div>
+                <div className="fav-scroll">
+                    <FavWorkoutScroll />
                 </div>
             </div>
         </motion.div>

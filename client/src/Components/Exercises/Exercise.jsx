@@ -26,13 +26,9 @@ const Exercise = () => {
         setPage(dispatch, value)
         window.scrollTo({ top: 500, behavior: 'smooth' })
     }
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setFavWorkouts(dispatch)
+    }, [])
     return (
         <motion.div
             className="ED-Wrapper"

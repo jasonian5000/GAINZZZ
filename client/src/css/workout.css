@@ -105,6 +105,7 @@ p {
 
 #complete-btn {
     margin: 20px;
+    margin-bottom: 0px;
 }
 #complete-btn:hover {
     background: white;

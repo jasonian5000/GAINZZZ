@@ -16,13 +16,9 @@ const IndividualAccountInfo = () => {
         let inches = value % 12
         return `${feet}' ${inches}"`
     }
-    useEffect(
-        () => {
-            setAcctInfo(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setAcctInfo(dispatch)
+    }, [])
 
     useEffect(() => {
         setCurrentInfo(info[0])
