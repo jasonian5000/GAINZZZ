@@ -8,6 +8,7 @@ import AccountInformation from '../Account Info/AccountInformation'
 import PersonalTrainers from '../PT/PersonalTrainers'
 import Workout from '../Exercises/Workout'
 import {AnimatePresence, motion} from 'framer-motion'
+import ErrorPage from './ErrorPage'
 
 
 const AnimatedRoutes = () => {
@@ -28,6 +29,7 @@ const AnimatedRoutes = () => {
                     element={<PersonalTrainers />}
                 />
                 <Route path="/workout" element={<Workout />} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AnimatePresence>
     )
