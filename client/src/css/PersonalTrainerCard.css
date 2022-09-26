@@ -13,6 +13,7 @@
     font-family: 'Lato';
     padding: 30px;
     margin: 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
 
 .topCard {
@@ -20,6 +21,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+.card:hover{
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 0 15px rgba(184, 0, 0, 0.445);
 }
 
 .left-side-topCard {
