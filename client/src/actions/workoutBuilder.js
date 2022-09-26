@@ -16,9 +16,6 @@ export const randomWorkout = (arr, num) => {
 
 export const addWorkoutsCompleted = async () => {
     const fetchData = await fetchWorkoutsCompleted()
-    console.log(fetchData)
-    const completed = (await Number(fetchData[0].workoutsCompleted)) + 1
-    console.log(completed)
-
+    const completed = Number(fetchData[0].workoutsCompleted) + 1
     await sendWorkoutsCompleted(completed)
 }

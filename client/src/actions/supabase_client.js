@@ -25,18 +25,13 @@ export const userSignUp = async (
     password
 ) => {
     const body = { firstName, lastName, username, email, password }
-    try {
-        await fetch(`${serverURL}/sign_up`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        console.log('user created')
-    } catch (error) {
-        console.log(error)
-    }
+    await fetch(`${serverURL}/sign_up`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
 }
 
 export const userSignIn = async (email, password) => {
@@ -44,64 +39,47 @@ export const userSignIn = async (email, password) => {
         email,
         password,
     }
-    try {
-        const sessionData = await fetch(`${serverURL}/sign_in`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        const json = await sessionData.json()
-        const sendSession = {
-            currentSession: json.session,
-            expiresAt: json.session.expires_at,
-        }
-        localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
-    } catch (error) {
-        console.log(error)
+    const sessionData = await fetch(`${serverURL}/sign_in`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const json = await sessionData.json()
+    const sendSession = {
+        currentSession: json.session,
+        expiresAt: json.session.expires_at,
     }
+    localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
 }
 
 export const userSignOut = navigate => {
-    try {
-        localStorage.removeItem('supabase.auth.token')
-        console.log('You have been signed out!')
-        navigate('/')
-    } catch (error) {
-        console.log(error)
-    }
+    localStorage.removeItem('supabase.auth.token')
+    navigate('/')
 }
 
 export const trainerInfo = async () => {
-    try {
-        const trainers = await fetch(`${serverURL}/trainer_info`, {
-            method: 'GET',
-        })
-        const ptTable = trainers.json()
-        return ptTable
-    } catch (error) {
-        console.log(error)
-    }
+    const trainers = await fetch(`${serverURL}/trainer_info`, {
+        method: 'GET',
+    })
+    const ptTable = trainers.json()
+    return ptTable
 }
 
 export const getAcctInfo = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token }
-    try {
-        const personalInfo = await fetch(`${serverURL}/acct_info`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        const AcctInfo = await personalInfo.json()
-        return AcctInfo
-    } catch (error) {
-        console.log(error)
-    }
+    const personalInfo = await fetch(`${serverURL}/acct_info`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const AcctInfo = await personalInfo.json()
+    return AcctInfo
 }
 
 export const updateAcctInfo = async updatedInfo => {
@@ -112,134 +90,107 @@ export const updateAcctInfo = async updatedInfo => {
         userID,
         access_token,
     }
-    try {
-        await fetch(`${serverURL}/update_acct_info`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        console.log('user updated')
-    } catch (error) {
-        console.log(error)
-    }
+    await fetch(`${serverURL}/update_acct_info`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
 }
 
 export const getUserFavorites = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token }
-    try {
-        const response = await fetch(`${serverURL}/get_favorites`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        const favoritesIdList = await response.json()
-        return favoritesIdList
-    } catch (error) {
-        console.log(error)
-    }
+    const response = await fetch(`${serverURL}/get_favorites`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const favoritesIdList = await response.json()
+    return favoritesIdList
 }
 
 export const addToFavorites = async (workoutID, setAddedFavToast, dispatch) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
-    try {
-        await fetch(`${serverURL}/add_favorite`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        await setFavWorkouts(dispatch)
-        setAddedFavToast(true)
-    } catch (error) {
-        console.log(error)
-    }
+    await fetch(`${serverURL}/add_favorite`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    await setFavWorkouts(dispatch)
+    setAddedFavToast(true)
 }
 
-export const removeFavorite = async (workoutID, setRemoveFavToast, dispatch) => {
+export const removeFavorite = async (
+    workoutID,
+    setRemoveFavToast,
+    dispatch
+) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, workoutID, access_token }
-    try {
-        await fetch(`${serverURL}/remove_favorite`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        await setFavWorkouts(dispatch)
-        setRemoveFavToast(true)
-    } catch (error) {
-        console.log(error)
-        return false
-    }
+    await fetch(`${serverURL}/remove_favorite`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    await setFavWorkouts(dispatch)
+    setRemoveFavToast(true)
 }
 
 export const deleteAcct = async (password, navigate) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token, password }
-    try {
-        await fetch(`${serverURL}/delete_acct`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        userSignOut(navigate)
-    } catch (error) {
-        console.log(error)
-    }
+    await fetch(`${serverURL}/delete_acct`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    userSignOut(navigate)
 }
 
 export const getWeightData = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token }
-    try {
-        let weightData = await fetch(`${serverURL}/get_tracked_weight`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        let json = await weightData.json()
-        let formatted = refineDate(json)
-        return formatted
-    } catch (error) {
-        console.log(error)
-    }
+    let weightData = await fetch(`${serverURL}/get_tracked_weight`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    let json = await weightData.json()
+    let formatted = refineDate(json)
+    return formatted
 }
 
 export const fetchWorkoutsCompleted = async () => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token }
-    try {
-        const data = await fetch(`${serverURL}/get_workouts_completed`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        const completed = await data.json()
-        console.log(completed)
-        return completed
-    } catch (error) {
-        console.log(error)
-    }
+    const data = await fetch(`${serverURL}/get_workouts_completed`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    const completed = await data.json()
+    return completed
 }
 
 export const sendWorkoutsCompleted = async workoutsCompleted => {
@@ -250,16 +201,11 @@ export const sendWorkoutsCompleted = async workoutsCompleted => {
         userID,
         access_token,
     }
-    try {
-        await fetch(`${serverURL}/update_workouts_completed`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
-        console.log('workouts completed updated')
-    } catch (error) {
-        console.log(error)
-    }
+    await fetch(`${serverURL}/update_workouts_completed`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
 }

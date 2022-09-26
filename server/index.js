@@ -28,7 +28,6 @@ app.post('/search', async (req, res) => {
         let searchResults = searchExercises(searchInput)
         res.status(200).send(searchResults)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -39,7 +38,6 @@ app.post('/sign_up', async (req, res) => {
         await userSignUp(firstName, lastName, username, email, password)
         res.send('account created')
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -59,7 +57,6 @@ app.get('/trainer_info', async (req, res) => {
         let ptTable = await getTrainerInfo()
         res.status(200).send(ptTable)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -70,7 +67,6 @@ app.post('/acct_info', async (req, res) => {
         let accountInfo = await getAcctInfo(userID, access_token)
         res.status(200).send(accountInfo)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -80,7 +76,6 @@ app.post('/update_acct_info', async (req, res) => {
     try {
         await updateAcctInfo(updatedInfo, userID, access_token)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -89,10 +84,8 @@ app.post('/delete_acct', async (req, res) => {
     const { userID, access_token, password } = req.body
     try {
         await destroyAllUserData(userID, access_token, password)
-        console.log("delete account route successful")
-        res.status(200).send("delete account successful")
+        res.status(200).send('delete account successful')
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -103,7 +96,6 @@ app.post('/get_favorites', async (req, res) => {
         const favoritesIdList = await getUserFavorites(userID, access_token)
         res.status(200).send(favoritesIdList)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -114,7 +106,6 @@ app.post('/add_favorite', async (req, res) => {
         await addToFavorites(userID, workoutID, access_token)
         res.status(200).send('added to favorites')
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -124,7 +115,6 @@ app.post('/remove_favorite', async (req, res) => {
     try {
         await removeFavorite(userID, workoutID, access_token)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -135,7 +125,6 @@ app.post('/get_tracked_weight', async (req, res) => {
         let weightData = await getTrackedWeight(userID, access_token)
         res.status(200).send(weightData)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
@@ -144,21 +133,17 @@ app.post('/get_workouts_completed', async (req, res) => {
     const { userID, access_token } = req.body
     try {
         let completed = await getWorkoutsCompleted(userID, access_token)
-        console.log(completed)
         res.status(200).send(completed)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
 
 app.post('/update_workouts_completed', async (req, res) => {
     const { workoutsCompleted, userID, access_token } = req.body
-    console.log(workoutsCompleted)
     try {
         await updateWorkoutsCompleted(workoutsCompleted, userID, access_token)
     } catch (error) {
-        console.log(error)
         res.status(400).send(error)
     }
 })
