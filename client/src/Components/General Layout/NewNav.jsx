@@ -30,7 +30,12 @@ const NewNav = () => {
             className={nav ? 'nav active' : 'nav'}
         >
             <div className="logo">
-                <img src={logo} alt="" />
+                <Link to="/ " style={{ display: loggedIn ? 'none' : 'auto' }}>
+                    <img src={logo} alt="" />
+                </Link>
+                <Link to="/account_information" style={{ display: loggedIn ? 'auto' : 'none' }}>
+                    <img src={logo} alt="" />
+                </Link>
             </div>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn">
@@ -41,12 +46,7 @@ const NewNav = () => {
                 style={{ display: loggedIn ? 'none' : 'auto' }}
             >
                 <li>
-                    <Link
-                        to="/"
-                        style={{ display: loggedIn ? 'none' : 'auto'}}
-                    >
-                        Home
-                    </Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
                     <Link
