@@ -39,13 +39,9 @@ export default function UpdateAccountForm(props) {
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [password, setPassword] = useState('')
 
-    useEffect(
-        () => {
-            getTrainers(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        getTrainers(dispatch)
+    }, [])
     return (
         <>
             <div className="acctUpdateForm">
@@ -201,7 +197,7 @@ export default function UpdateAccountForm(props) {
                                 className="confirmButton"
                                 onClick={() => {
                                     deleteAcct(password, navigate)
-                                } }
+                                }}
                             >
                                 Confirm Delete
                             </button>

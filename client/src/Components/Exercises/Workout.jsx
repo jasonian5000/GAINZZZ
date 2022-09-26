@@ -25,13 +25,9 @@ const Workout = () => {
     const myWorkout = useSelector(state => state.workout?.myWorkout)
     const [reset, setReset] = useState(true)
 
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setFavWorkouts(dispatch)
+    }, [])
 
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]

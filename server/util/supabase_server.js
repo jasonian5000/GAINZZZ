@@ -1,12 +1,9 @@
 import fetch from 'node-fetch'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
-import { getFavoriteExercises } from './searchExercises_server.js'
+import { getFavoriteExercises } from './searchExercises.js'
 dotenv.config()
-const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY
-const supabaseKey = process.env.SUPABASE_KEY
-const supabaseUrl = process.env.SUPABASE_URL
-let supabase = createClient(supabaseUrl, supabaseKey)
+import { supabaseSecretKey, supabaseKey, supabaseUrl, supabase } from './supabase_auth.js'
 
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({
@@ -57,10 +54,6 @@ export const userSignUp = async (
         password: password,
     })
     const userID = user.id
-    if (error) {
-        console.log(error)
-        return error
-    }
     await createAccount(userID, firstName, lastName, email, password, username)
 }
 
@@ -70,11 +63,7 @@ export const getTrainerInfo = async () => {
         .select(
             'id,ptName,specialties,description,rates,testimonials,test2,test3,img'
         )
-    if (ptTable) {
-        return ptTable
-    } else {
-        console.log(error)
-    }
+    return ptTable
 }
 
 export const getAcctInfo = async (userID, access_token) => {
@@ -110,8 +99,43 @@ export const updateWorkoutsCompleted = async (
     userID,
     access_token
 ) => {
-    try {
-        await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+    await fetch(`${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`, {
+        method: 'PATCH',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+            updated_at: new Date(),
+            workoutsCompleted: workoutsCompleted,
+        }),
+    })
+}
+
+const trackWeight = async (userID, access_token, weight) => {
+    await fetch(`${supabaseUrl}/rest/v1/weightTracker`, {
+        method: 'POST',
+        headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+            created_at: new Date(),
+            weight: weight,
+            userID: userID,
+        }),
+    })
+}
+
+export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
+    const { height, weight, gender, age, personalTrainer } = updatedInfo
+    let data = await fetch(
+        `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
+        {
             method: 'PATCH',
             headers: {
                 apikey: supabaseKey,
@@ -121,67 +145,17 @@ export const updateWorkoutsCompleted = async (
             },
             body: JSON.stringify({
                 updated_at: new Date(),
-                workoutsCompleted: workoutsCompleted,
-            }),
-        })
-        console.log("workouts completed updated")
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const trackWeight = async (userID, access_token, weight) => {
-    try {
-        await fetch(`${supabaseUrl}/rest/v1/weightTracker`, {
-            method: 'POST',
-            headers: {
-                apikey: supabaseKey,
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'application/json',
-                Prefer: 'return=representation',
-            },
-            body: JSON.stringify({
-                created_at: new Date(),
+                height: height,
+                gender: gender,
                 weight: weight,
-                userID: userID,
+                age: age,
+                personalTrainer: personalTrainer,
             }),
-        })
-        console.log('weight tracked')
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
-    const { height, weight, gender, age, personalTrainer } = updatedInfo
-    try {
-        let data = await fetch(
-            `${supabaseUrl}/rest/v1/userTable?userID=eq.${userID}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    apikey: supabaseKey,
-                    Authorization: `Bearer ${access_token}`,
-                    'Content-Type': 'application/json',
-                    Prefer: 'return=representation',
-                },
-                body: JSON.stringify({
-                    updated_at: new Date(),
-                    height: height,
-                    gender: gender,
-                    weight: weight,
-                    age: age,
-                    personalTrainer: personalTrainer,
-                }),
-            }
-        )
-        await data.json()
-        console.log('account update successful')
-        if (Number(weight) > 0) {
-            trackWeight(userID, access_token, weight)
         }
-    } catch (error) {
-        console.log(error)
+    )
+    await data.json()
+    if (Number(weight) > 0) {
+        trackWeight(userID, access_token, weight)
     }
 }
 
@@ -196,7 +170,6 @@ const getFavoritesIds = async (userID, access_token) => {
         }
     )
     let json = await data.json()
-    console.log(json)
     return json
 }
 
@@ -237,7 +210,6 @@ export const removeFavorite = async (userID, workoutID, access_token) => {
             },
         }
     )
-    console.log('Work out removed from favorites')
 }
 
 const passwordCheck = async (userID, access_token, password) => {
@@ -251,7 +223,6 @@ const passwordCheck = async (userID, access_token, password) => {
         }
     )
     let passwordData = await data.json()
-    console.log('password checked')
     return passwordData[0].password === password
 }
 
@@ -265,7 +236,6 @@ const deleteUserData = async (userID, access_token) => {
             Prefer: 'return=representation',
         },
     })
-    console.log('user personal info deleted')
 }
 
 const deleteAllFavorites = async (userID, access_token) => {
@@ -278,13 +248,11 @@ const deleteAllFavorites = async (userID, access_token) => {
             Prefer: 'return=representation',
         },
     })
-    console.log('all favorite workouts removed')
 }
 
 const deleteUserAcct = async userID => {
     let supabase = createClient(supabaseUrl, supabaseSecretKey)
-    const { data: user, error } = await supabase.auth.api.deleteUser(userID)
-    console.log('User auth deleted')
+    await supabase.auth.api.deleteUser(userID)
 }
 
 const deleteTrackedWeight = async (userID, access_token) => {
@@ -297,7 +265,6 @@ const deleteTrackedWeight = async (userID, access_token) => {
             Prefer: 'return=representation',
         },
     })
-    console.log('all tracked weight removed')
 }
 
 export const destroyAllUserData = async (userID, access_token, password) => {
@@ -307,9 +274,6 @@ export const destroyAllUserData = async (userID, access_token, password) => {
         await deleteAllFavorites(userID, access_token)
         await deleteTrackedWeight(userID, access_token)
         await deleteUserAcct(userID)
-        console.log('all user data destroyed')
-    } else {
-        console.log('invalid password')
     }
 }
 

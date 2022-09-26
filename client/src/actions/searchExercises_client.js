@@ -10,7 +10,6 @@ export const searchExercises = async (searchInput, dispatch) => {
         body: JSON.stringify(body),
     })
     let results = await search.json()
-    console.log(results)
     await dispatch({ type: 'SET_SEARCH_RESULTS', payload: results })
 }
 
