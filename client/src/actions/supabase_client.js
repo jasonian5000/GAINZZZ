@@ -8,6 +8,7 @@ export const getUserId = async () => {
     const parsed = JSON.parse(local)
     const userID = await parsed.currentSession.user.id
     return await userID
+    
 }
 
 export const getAccessToken = async () => {
