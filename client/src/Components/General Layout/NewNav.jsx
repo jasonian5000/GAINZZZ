@@ -24,7 +24,11 @@ const NewNav = () => {
         setLoggedIn(tokenState)
     }, [tokenState])
     return (
-        <nav key={String(loggedIn)} id="navbar" className={nav ? 'nav active' : 'nav'}>
+        <nav
+            key={String(loggedIn)}
+            id="navbar"
+            className={nav ? 'nav active' : 'nav'}
+        >
             <div className="logo">
                 <img src={logo} alt="" />
             </div>
@@ -38,11 +42,19 @@ const NewNav = () => {
             >
                 <li>
                     <Link
+                        to="/"
+                        style={{ display: loggedIn ? 'none' : 'auto'}}
+                    >
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         to="/sign_up"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
                         sign up
-                    </Link>{' '}
+                    </Link>
                 </li>
                 <li>
                     <Link
@@ -90,7 +102,10 @@ const NewNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <button className='logout' onClick={() => userSignOut(navigate)}>
+                    <button
+                        className="logout"
+                        onClick={() => userSignOut(navigate)}
+                    >
                         Sign Out
                     </button>
                 </li>

@@ -15,6 +15,8 @@ import {
 import UpdateAccountForm from './UpdateAccountForm'
 import { useLocation } from 'react-router-dom'
 import Toasts from '../Toasts'
+import { motion } from 'framer-motion'
+
 
 const AccountInformation = () => {
     const [pass, setPass] = useState(false)
@@ -35,7 +37,12 @@ const AccountInformation = () => {
     )
 
     return (
-        <div className="acctInfoPageWrapper">
+        <motion.div
+            className="acctInfoPageWrapper"
+            intial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+        >
             <div className="acctInfoPageContainer">
                 <IndividualAccountInfo />
                 <UpdateAccountForm setUpdated={setUpdated} />
@@ -73,7 +80,7 @@ const AccountInformation = () => {
                 </div>
             </div>
             <Toasts toasts={toasts} />
-        </div>
+        </motion.div>
     )
 }
 

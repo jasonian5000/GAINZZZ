@@ -10,6 +10,8 @@ import Toasts from '../Toasts'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
+import { motion } from 'framer-motion'
+
 
 const ExerciseDetails = () => {
     const dispatch = useDispatch()
@@ -33,7 +35,12 @@ const ExerciseDetails = () => {
         []
     )
     return (
-        <div className="ED-Wrapper">
+        <motion.div
+            className="ED-Wrapper"
+            intial={{ width: 0}}
+            animate={{ width:'100%' }}
+            exit={{ x: window.innerWidth, transition:{ duration: 0.2}}}
+        >
             <div className="ED-Container">
                 <Box>
                     <Box
@@ -64,7 +71,7 @@ const ExerciseDetails = () => {
                 </Box>
             </div>
             <Toasts toasts={toasts} />
-        </div>
+        </motion.div>
     )
 }
 

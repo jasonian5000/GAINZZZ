@@ -14,6 +14,8 @@ import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
 import placeholder from '../../assets/exercise_placeholder.png'
 import WorkoutCard from './WorkoutCard'
+import { motion } from 'framer-motion'
+
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -48,7 +50,10 @@ const Workout = () => {
     }
 
     return (
-        <>
+        <motion.div
+            intial={{ width: 0}}
+            animate={{ width:'100%' }}
+            exit={{ x: window.innerWidth, transition:{ duration: 0.2}}}>
             <div className="workout-wrapper">
                 <div className="workoutWrapper-overlay">
                     <div className="workout-container">
@@ -183,7 +188,7 @@ const Workout = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </motion.div>
     )
 }
 

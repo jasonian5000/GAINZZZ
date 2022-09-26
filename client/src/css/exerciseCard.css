@@ -17,14 +17,13 @@
   justify-content: space-between;
   flex-direction: column;
   padding-bottom: 10px;
-  transform: scale(1, 1);
   transition: 0.3s all ease-in-out;
   box-shadow: inset 0 0 10px #000000;
 
 }
 
 .exerciseCard:hover{
-  transform: scale(1.1, 1.1);
+  transform: scale(1.05, 1.05);
 }
 
 .exerciseCard img {
