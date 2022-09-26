@@ -43,7 +43,7 @@ const PersonalTrainerCard = props => {
                             {/* <p>{props?.trainer?.description}</p> */}
                             <br />
                             <p className="clickReviews" onClick={handleClick}>
-                                Description
+                                Click to see Bio & Contact
                             </p>
                         </div>
                     </div>
