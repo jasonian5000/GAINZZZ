@@ -1,24 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 const app = express()
-import {
-    userSignUp,
-    userSignIn,
-    getAcctInfo,
-    updateAcctInfo,
-} from './util/userAccount.js'
-import {
-    getUserFavorites,
-    addToFavorites,
-    removeFavorite,
-} from './util/favorites.js'
+import {userSignUp,userSignIn,getAcctInfo,updateAcctInfo,} from './util/userAccount.js'
+import {getUserFavorites,addToFavorites,removeFavorite,} from './util/favorites.js'
 import { searchExercises } from './util/searchExercises.js'
 import { destroyAllUserData } from './util/destroyUser.js'
 import { getTrackedWeight } from './util/trackedWeight.js'
-import {
-    getWorkoutsCompleted,
-    updateWorkoutsCompleted,
-} from './util/workoutsCompleted.js'
+import {getWorkoutsCompleted,updateWorkoutsCompleted,} from './util/workoutsCompleted.js'
 import { getTrainerInfo } from './util/getTrainers.js'
 
 const PORT = process.env.PORT || 3001
