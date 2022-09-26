@@ -1,10 +1,10 @@
 import fetch from 'node-fetch'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
-import { getFavoriteExercises } from './searchExercises.js'
 dotenv.config()
 import { supabaseSecretKey, supabaseKey, supabaseUrl, supabase } from './supabase_auth.js'
 
+// supabase
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({
         email: email,
@@ -13,6 +13,7 @@ export const userSignIn = async (email, password) => {
     return sessionData
 }
 
+// secret
 const createAccount = async (
     userID,
     firstName,
@@ -42,6 +43,7 @@ const createAccount = async (
     })
 }
 
+// supabase
 export const userSignUp = async (
     firstName,
     lastName,
@@ -57,6 +59,7 @@ export const userSignUp = async (
     await createAccount(userID, firstName, lastName, email, password, username)
 }
 
+// supabase
 export const getTrainerInfo = async () => {
     let { data: ptTable, error } = await supabase
         .from('ptTable')
@@ -65,6 +68,7 @@ export const getTrainerInfo = async () => {
         )
     return ptTable
 }
+
 
 export const getAcctInfo = async (userID, access_token) => {
     let data = await fetch(
@@ -159,58 +163,7 @@ export const updateAcctInfo = async (updatedInfo, userID, access_token) => {
     }
 }
 
-const getFavoritesIds = async (userID, access_token) => {
-    let data = await fetch(
-        `${supabaseUrl}/rest/v1/favoriteWorkouts?select=workoutID&userID=eq.${userID}`,
-        {
-            headers: {
-                apikey: supabaseKey,
-                Authorization: `Bearer ${access_token}`,
-            },
-        }
-    )
-    let json = await data.json()
-    return json
-}
 
-export const getUserFavorites = async (userID, access_token) => {
-    const tableData = await getFavoritesIds(userID, access_token)
-    const favoriteExercises = getFavoriteExercises(tableData)
-    return favoriteExercises
-}
-
-export const addToFavorites = async (userID, workoutID, access_token) => {
-    await fetch(`${supabaseUrl}/rest/v1/favoriteWorkouts`, {
-        method: 'POST',
-        headers: {
-            apikey: supabaseKey,
-            Authorization: `Bearer ${access_token}`,
-            'Content-Type': 'application/json',
-            Prefer: 'return=representation',
-        },
-        body: JSON.stringify({
-            created_at: new Date(),
-            updated_at: new Date(),
-            workoutID: workoutID,
-            userID: userID,
-        }),
-    })
-}
-
-export const removeFavorite = async (userID, workoutID, access_token) => {
-    await fetch(
-        `${supabaseUrl}/rest/v1/favoriteWorkouts?userID=eq.${userID}&workoutID=eq.${workoutID}`,
-        {
-            method: 'DELETE',
-            headers: {
-                apikey: supabaseKey,
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'application/json',
-                Prefer: 'return=representation',
-            },
-        }
-    )
-}
 
 const passwordCheck = async (userID, access_token, password) => {
     const data = await fetch(

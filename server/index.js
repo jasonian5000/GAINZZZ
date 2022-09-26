@@ -5,16 +5,14 @@ import {
     userSignUp,
     getTrainerInfo,
     userSignIn,
-    getUserFavorites,
-    addToFavorites,
     getAcctInfo,
     updateAcctInfo,
-    removeFavorite,
     destroyAllUserData,
     getTrackedWeight,
     getWorkoutsCompleted,
     updateWorkoutsCompleted,
 } from './util/supabase_server.js'
+import { getUserFavorites, addToFavorites, removeFavorite } from './util/favorites.js'
 import { searchExercises } from './util/searchExercises.js'
 
 const PORT = process.env.PORT || 3001
