@@ -3,11 +3,14 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
+import { setCount } from '../../actions/countAction'
+import { fetchWorkoutsCompleted } from '../../actions/supabase_client'
 import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
     const info = useSelector(state => state.personalInfo.accountInfo)
+    const count = useSelector(state=> state.count.workoutCount )
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     const inchesToFeet = value => {
@@ -18,6 +21,7 @@ const IndividualAccountInfo = () => {
     }
     useEffect(() => {
         setAcctInfo(dispatch)
+        setCount(dispatch)
     }, [])
 
     useEffect(() => {
@@ -90,6 +94,17 @@ const IndividualAccountInfo = () => {
                 <div className="infoDisplay">
                     <p>Personal Trainer: </p>
                     <p> needs update</p>
+                </div>
+            )}
+            {count[0]?.workoutsCompleted ? (
+                <div className="infoDisplay">
+                    <p>Workouts Completed: </p>
+                    <p>{count[0]?.workoutsCompleted}</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Workout Completed: </p>
+                    <p> 0</p>
                 </div>
             )}
         </div>
