@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function WorkoutCard(props) {
-    let {workout, index, setWorkoutImg, changeWorkout, removeWorkout} = props
+    let {workout, index, setWorkoutImg, changeWorkout, removeWorkout, setReset, reset} = props
     const [slideIn, setSlideIn] = useState(true)
 
     
@@ -23,7 +23,8 @@ export default function WorkoutCard(props) {
                 <div className="workoutBtn-container">
                     <button
                         id="newExercise-btn"
-                        onClick={() => changeWorkout(index)}
+                        onClick={() => {changeWorkout(index)
+                        setReset(!reset)}}
                     >
                         Shuffle
                     </button>

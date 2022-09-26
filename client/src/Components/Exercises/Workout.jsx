@@ -22,6 +22,7 @@ const Workout = () => {
     const [workoutImg, setWorkoutImg] = useState(placeholder)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
+    const [reset, setReset] = useState(true)
 
     useEffect(
         () => {
@@ -141,11 +142,11 @@ const Workout = () => {
                 <div className="myWorkout-container">
                     <div className="leftSide">
                         <ul className="exercises" >
-                            <div className="list-Wrapper">
+                            <div key={reset} className="list-Wrapper">
                                 {myWorkout
                                     ? myWorkout?.map((workout, index) => (
                                           <WorkoutCard key={workout.id} workout={workout} index={index} setWorkoutImg={setWorkoutImg} changeWorkout={changeWorkout}
-                                          removeWorkout={removeWorkout}/>
+                                          removeWorkout={removeWorkout} reset={reset}setReset={setReset}/>
                                       ))
                                     : null}
                             </div>
