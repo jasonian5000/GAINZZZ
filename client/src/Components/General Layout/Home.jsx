@@ -2,9 +2,8 @@ import React from 'react'
 import Feature from './Feature'
 import Title from './Title'
 import {motion } from 'framer-motion'
-import { scrollToTop } from '../../actions/scrollToTop'
+
 const Home = () => {
-  scrollToTop()
   return (
     <motion.div
       intial={{opacity: 0} }

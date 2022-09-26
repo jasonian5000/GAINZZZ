@@ -4,11 +4,6 @@ import '../../css/exerciseCard.css'
 import FavoriteButton from './FavoriteButton'
 
 const ExerciseCard = props => {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        })
     return (
         <div className="cardContainer">
             {props.current?.map((exercise, index) => (
