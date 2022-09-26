@@ -6,6 +6,7 @@ import '../../css/navbar.css'
 import { checkToken } from '../../actions/checkToken'
 import { userSignOut } from '../../actions/supabase_client'
 import { useEffect } from 'react'
+import { scrollToTop } from '../../actions/scrollToTop'
 
 const NewNav = () => {
     const navigate = useNavigate()
@@ -30,10 +31,18 @@ const NewNav = () => {
             className={nav ? 'nav active' : 'nav'}
         >
             <div className="logo">
-                <Link to="/ " style={{ display: loggedIn ? 'none' : 'auto' }}>
+                <Link
+                    to="/ "
+                    style={{ display: loggedIn ? 'none' : 'auto' }}
+                    onClick={scrollToTop}
+                >
                     <img src={logo} alt="" />
                 </Link>
-                <Link to="/account_information" style={{ display: loggedIn ? 'auto' : 'none' }}>
+                <Link
+                    to="/account_information"
+                    style={{ display: loggedIn ? 'auto' : 'none' }}
+                    onClick={scrollToTop}
+                >
                     <img src={logo} alt="" />
                 </Link>
             </div>
@@ -46,12 +55,15 @@ const NewNav = () => {
                 style={{ display: loggedIn ? 'none' : 'auto' }}
             >
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/" onClick={scrollToTop}>
+                        Home
+                    </Link>
                 </li>
                 <li>
                     <Link
                         to="/sign_up"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         sign up
                     </Link>
@@ -60,6 +72,7 @@ const NewNav = () => {
                     <Link
                         to="/login_page"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Login
                     </Link>
@@ -73,6 +86,7 @@ const NewNav = () => {
                     <Link
                         to="/exercise"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Search Exercises
                     </Link>
@@ -81,6 +95,7 @@ const NewNav = () => {
                     <Link
                         to="/workout"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Create Workout
                     </Link>
@@ -89,6 +104,7 @@ const NewNav = () => {
                     <Link
                         to="/account_information"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         My Account
                     </Link>
@@ -97,6 +113,7 @@ const NewNav = () => {
                     <Link
                         to="/personal_trainers"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Personal Trainers
                     </Link>
@@ -104,7 +121,10 @@ const NewNav = () => {
                 <li>
                     <button
                         className="logout"
-                        onClick={() => userSignOut(navigate)}
+                        onClick={() => {
+                            userSignOut(navigate)
+                            scrollToTop()
+                        }}
                     >
                         Sign Out
                     </button>
