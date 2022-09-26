@@ -31,7 +31,7 @@ const Feature = () => {
     return (
         <div id="features">
             <h1>Why Choose Gainzzz?</h1>
-            <div className="a-container">
+            <div className="feature-container">
                 {features_text.map(info => {
                     return (
                         <>

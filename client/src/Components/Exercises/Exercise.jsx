@@ -1,7 +1,7 @@
 import { Box, Pagination, Stack } from '@mui/material'
 import React from 'react'
 import HorizontalScrollBar from './HorizontalScrollBar'
-import '../../css/exerciseDetail.css'
+import '../../css/exercise.css'
 import SearchBar from './SearchBar'
 import ExerciseCard from './ExerciseCard'
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,8 +12,7 @@ import { useEffect } from 'react'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { motion } from 'framer-motion'
 
-
-const ExerciseDetails = () => {
+const Exercise = () => {
     const dispatch = useDispatch()
     const [addedFavToast, setAddedFavToast] = useState(false)
     let toasts = { addedFavToast, setAddedFavToast }
@@ -37,9 +36,9 @@ const ExerciseDetails = () => {
     return (
         <motion.div
             className="ED-Wrapper"
-            intial={{ width: 0}}
-            animate={{ width:'100%' }}
-            exit={{ x: window.innerWidth, transition:{ duration: 0.2}}}
+            intial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
         >
             <div className="ED-Container">
                 <Box>
@@ -75,4 +74,4 @@ const ExerciseDetails = () => {
     )
 }
 
-export default ExerciseDetails
+export default Exercise

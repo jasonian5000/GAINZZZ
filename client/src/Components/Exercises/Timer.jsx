@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import '../css/timer.css'
+import '../../css/timer.css'
 
 const Timer = () => {
     const [minutes, setMinutes] = useState(0)

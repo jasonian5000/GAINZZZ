@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './Home'
-import ExerciseDetails from '../Exercises/ExerciseDetails'
 import { LoginPage } from '../Login/LoginPage'
 import SignUpPage from '../SignUp/SignUpPage'
 import AccountInformation from '../Account Info/AccountInformation'
 import PersonalTrainers from '../PT/PersonalTrainers'
 import Workout from '../Exercises/Workout'
 import {AnimatePresence, motion} from 'framer-motion'
+import Exercise from '../Exercises/Exercise'
 
 
 const AnimatedRoutes = () => {
@@ -16,7 +16,7 @@ const AnimatedRoutes = () => {
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home />} />
-                <Route path="/exercise_details" element={<ExerciseDetails />} />
+                <Route path="/exercise" element={<Exercise />} />
                 <Route path="/login_page" element={<LoginPage />} />
                 <Route path="/sign_up" element={<SignUpPage />} />
                 <Route

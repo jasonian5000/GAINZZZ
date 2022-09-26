@@ -28,7 +28,7 @@ const BodyPartCard = ({ bodyPart }) => {
     >
       <img
         src={require("../../assets/gym.webp")}
-        style={{ width: "50px", height: "50" }}
+        style={{ width: "50px", height: "50px" }}
         alt={bodyPart}
       />
       <Typography fontSize="24px" fontWeight="bold" textTransform="capitalize">

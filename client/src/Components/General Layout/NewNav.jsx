@@ -71,7 +71,7 @@ const NewNav = () => {
             >
                 <li>
                     <Link
-                        to="/exercise_details"
+                        to="/exercise"
                         style={{ textDecoration: 'none', color: '#ffff' }}
                     >
                         Search Exercises
