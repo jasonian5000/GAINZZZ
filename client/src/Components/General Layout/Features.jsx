@@ -2,7 +2,6 @@ import React from 'react'
 import '../../css/homepage.css'
 
 const Features = (props) => {
-  console.log(props)
   return (
       <div className="feature-box">
           <div className="feature-img">
