@@ -96,12 +96,7 @@ nav ul{
 nav ul {
     display: flex;
 }
-.active {
-    background-color: #ff1414;
-    color: #ffffff;
-    box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411);
-    transition: all ease 0.2s;
-}
+
 .active:hover {
     background-color: #000000;
     color: #ffffff;
@@ -331,5 +326,6 @@ nav .menu-btn,
     }
     nav .menu-btn:checked ~ .menu {
         display: block;
+        margin-top: 22px;
     }
 }
