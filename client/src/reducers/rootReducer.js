@@ -1,5 +1,6 @@
 import { combineReducers } from "redux"
 import accountInformationReducer from "./accountInfoReducer";
+import countReducer from "./countReducer";
 import favoriteWorkoutsReducer from "./favoriteWorkoutsReducer";
 import myWorkoutReducer from "./myWorkoutReducer";
 import pageReducer from "./pageReducer";
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     personalInfo: accountInformationReducer,
     favoriteWorkouts: favoriteWorkoutsReducer,
     workout: myWorkoutReducer,
-    LoadedPage: pageReducer
+    LoadedPage: pageReducer,
+    count:countReducer
 });
 
 export default rootReducer
