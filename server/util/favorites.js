@@ -1,5 +1,6 @@
 import { supabaseKey, supabaseUrl } from "./supabase_auth.js"
 import { getFavoriteExercises } from './searchExercises.js'
+import fetch from 'node-fetch'
 
 const getFavoritesIds = async (userID, access_token) => {
     let data = await fetch(
