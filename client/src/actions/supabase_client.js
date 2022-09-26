@@ -191,7 +191,6 @@ export const fetchWorkoutsCompleted = async () => {
         body: JSON.stringify(body),
     })
     const completed = await data.json()
-    console.log(completed[0].workoutsCompleted)
     return completed
 }
 
