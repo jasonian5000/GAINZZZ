@@ -43,7 +43,7 @@ const Workout = () => {
         setMyWorkout(dispatch, newWorkout)
         setWorkoutImg(placeholder)
     }
-
+    
     return (
         <motion.div
             intial={{ width: 0 }}
