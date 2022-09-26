@@ -3,17 +3,23 @@ import cors from 'cors'
 const app = express()
 import {
     userSignUp,
-    getTrainerInfo,
     userSignIn,
     getAcctInfo,
     updateAcctInfo,
-    destroyAllUserData,
-    getTrackedWeight,
+} from './util/userAccount.js'
+import {
+    getUserFavorites,
+    addToFavorites,
+    removeFavorite,
+} from './util/favorites.js'
+import { searchExercises } from './util/searchExercises.js'
+import { destroyAllUserData } from './util/destroyUser.js'
+import { getTrackedWeight } from './util/trackedWeight.js'
+import {
     getWorkoutsCompleted,
     updateWorkoutsCompleted,
-} from './util/supabase_server.js'
-import { getUserFavorites, addToFavorites, removeFavorite } from './util/favorites.js'
-import { searchExercises } from './util/searchExercises.js'
+} from './util/workoutsCompleted.js'
+import { getTrainerInfo } from './util/getTrainers.js'
 
 const PORT = process.env.PORT || 3001
 
