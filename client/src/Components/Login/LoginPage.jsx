@@ -9,8 +9,10 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import logo from '../../assets/GAINZZZ.png'
 import Toasts from '../Toasts'
+import { scrollToTop } from '../../actions/scrollToTop'
 
 export const LoginPage = () => {
+    scrollToTop()
     const navigate = useNavigate()
     const [fail, setFail] = useState(false)
     const toasts = {fail, setFail}
