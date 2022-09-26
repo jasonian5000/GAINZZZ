@@ -1,12 +1,9 @@
 import fetch from 'node-fetch'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
-import { getFavoriteExercises } from './searchExercises_server.js'
+import { getFavoriteExercises } from './searchExercises.js'
 dotenv.config()
-const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY
-const supabaseKey = process.env.SUPABASE_KEY
-const supabaseUrl = process.env.SUPABASE_URL
-let supabase = createClient(supabaseUrl, supabaseKey)
+import { supabaseSecretKey, supabaseKey, supabaseUrl, supabase } from './supabase_auth.js'
 
 export const userSignIn = async (email, password) => {
     const sessionData = await supabase.auth.signIn({

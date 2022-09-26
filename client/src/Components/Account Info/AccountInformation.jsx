@@ -17,7 +17,6 @@ import { useLocation } from 'react-router-dom'
 import Toasts from '../Toasts'
 import { motion } from 'framer-motion'
 
-
 const AccountInformation = () => {
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
@@ -26,15 +25,11 @@ const AccountInformation = () => {
     const dispatch = useDispatch()
     const weightData = useSelector(state => state.personalInfo.weightData)
     const weightRange = setWeightRange(weightData)
-    useEffect(
-        () => {
-            setWeightData(dispatch)
-            setWeightRange(weightData)
-            setPass(location?.state?.pass)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setWeightData(dispatch)
+        setWeightRange(weightData)
+        setPass(location?.state?.pass)
+    }, [])
 
     return (
         <motion.div

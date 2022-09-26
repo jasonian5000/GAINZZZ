@@ -14,8 +14,8 @@ import {
     getTrackedWeight,
     getWorkoutsCompleted,
     updateWorkoutsCompleted,
-} from './supabase_server.js'
-import { searchExercises } from './searchExercises_server.js'
+} from './util/supabase_server.js'
+import { searchExercises } from './util/searchExercises.js'
 
 const PORT = process.env.PORT || 3001
 

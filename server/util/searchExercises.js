@@ -1,4 +1,4 @@
-import { exercisesList } from './exercisesList.js'
+import { exercisesList } from '../exercisesList.js'
 
 export const searchExercises = SearchInput => {
     let bodyPart = exercisesList.filter(result =>
