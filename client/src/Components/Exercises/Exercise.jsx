@@ -11,10 +11,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { motion } from 'framer-motion'
-import { scrollToTop } from '../../actions/scrollToTop'
 
 const Exercise = () => {
-    scrollToTop()
     const dispatch = useDispatch()
     const [addedFavToast, setAddedFavToast] = useState(false)
     let toasts = { addedFavToast, setAddedFavToast }
