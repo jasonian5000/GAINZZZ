@@ -9,53 +9,50 @@ import {
     randomWorkout,
     addWorkoutsCompleted,
 } from '../../actions/workoutBuilder'
-import Timer from '../Timer'
+import Timer from './Timer'
 import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
+import placeholder from '../../assets/exercise_placeholder.png'
+import WorkoutCard from './WorkoutCard'
+import { motion } from 'framer-motion'
 
 const Workout = () => {
     const dispatch = useDispatch()
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
-    const [workoutImg, setWorkoutImg] = useState('')
-    const [reset, setReset] = useState(1)
+    const [workoutImg, setWorkoutImg] = useState(placeholder)
     const searchResults = useSelector(state => state.search?.searchResults)
     const myWorkout = useSelector(state => state.workout?.myWorkout)
+    const [reset, setReset] = useState(true)
 
-    useEffect(
-        () => {
-            setFavWorkouts(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setFavWorkouts(dispatch)
+    }, [])
 
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
         setMyWorkout(dispatch, newWorkout)
-        setWorkoutImg('')
-        setReset(Math.random())
+        setWorkoutImg(placeholder)
     }
 
     const removeWorkout = index => {
         let newWorkout = myWorkout
         newWorkout.splice(index, 1)
         setMyWorkout(dispatch, newWorkout)
-        setWorkoutImg('')
-        setReset(Math.random())
+        setWorkoutImg(placeholder)
     }
-
+    
     return (
-        <>
+        <motion.div
+            intial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+        >
             <div className="workout-wrapper">
                 <div className="workoutWrapper-overlay">
                     <div className="workout-container">
-                        <div className="fav-scroll">
-                            <FavWorkoutScroll />
-                        </div>
-
                         <div className="workout-box">
                             <h1 className="workout-title">
                                 Choose your workout!
@@ -124,7 +121,7 @@ const Workout = () => {
                                             myLevel
                                         )
                                         setMyWorkout(dispatch, random)
-                                        setWorkoutImg('')
+                                        setWorkoutImg(placeholder)
                                     }}
                                 >
                                     Get Workout
@@ -136,54 +133,28 @@ const Workout = () => {
             </div>
 
             <div className="myWorkout-wrapper">
-                <h1>Your Workout for... {mytarget}</h1>
+                <h1 className="workoutTitle">
+                    {mytarget.toUpperCase()} WORKOUT
+                </h1>
                 <div className="myWorkout-container">
                     <div className="leftSide">
-                        <ul className="exercises" key={reset}>
-                        <div className='list-Wrapper'>
-                            {myWorkout
-                                ? myWorkout?.map((workout, index) => (
-                                      <div
-                                          id="myWorkout-card"
-                                          key={workout.id}
-                                          workoutid={workout.id || workout}
-                                          title={workout.id || workout}
-                                      >
-                                          <input
-                                              className="keepSignIn"
-                                              type="checkbox"
+                        <ul className="exercises">
+                            <div key={reset} className="list-Wrapper">
+                                {myWorkout
+                                    ? myWorkout?.map((workout, index) => (
+                                          <WorkoutCard
+                                              key={workout.id}
+                                              workout={workout}
+                                              index={index}
+                                              setWorkoutImg={setWorkoutImg}
+                                              changeWorkout={changeWorkout}
+                                              removeWorkout={removeWorkout}
+                                              reset={reset}
+                                              setReset={setReset}
                                           />
-                                          <Button
-                                              id="exercise-btn"
-                                              value={workout.gifUrl}
-                                              onClick={e => {
-                                                  setWorkoutImg(e.target.value)
-                                              }}
-                                          >
-                                              {workout.name}
-                                          </Button>
-                                          <div className="workoutBtn-container">
-                                              <button
-                                                  id="newExercise-btn"
-                                                  onClick={() =>
-                                                      changeWorkout(index)
-                                                  }
-                                              >
-                                                  Shuffle
-                                              </button>
-                                              <button
-                                                  id="newExercise-btn"
-                                                  onClick={() =>
-                                                      removeWorkout(index)
-                                                  }
-                                              >
-                                                  Remove
-                                              </button>
-                                          </div>
-                                      </div>
-                                  ))
+                                      ))
                                     : null}
-                                </div>
+                            </div>
                             <button
                                 id="complete-btn"
                                 key={myWorkout}
@@ -198,7 +169,7 @@ const Workout = () => {
                                 onClick={() => {
                                     addWorkoutsCompleted()
                                     setMyWorkout(dispatch, [])
-                                    setWorkoutImg('')
+                                    setWorkoutImg(placeholder)
                                 }}
                             >
                                 Complete Workout
@@ -206,18 +177,21 @@ const Workout = () => {
                         </ul>
                     </div>
                     <div className="rightSide">
-                        <div className='img-wrapper'>
+                        <div className="img-wrapper">
                             <img
                                 id="myWorkout-img"
                                 src={workoutImg}
-                                alt={workoutImg}
+                                alt=""
                             ></img>
                         </div>
                         <Timer />
                     </div>
                 </div>
+                <div className="fav-scroll">
+                    <FavWorkoutScroll />
+                </div>
             </div>
-        </>
+        </motion.div>
     )
 }
 

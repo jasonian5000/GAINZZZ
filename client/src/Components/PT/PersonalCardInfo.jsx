@@ -1,15 +1,11 @@
 import React from 'react'
 
 const PersonalCardInfo = props => {
-    console.log(props)
     return (
         <div>
             <div className="content">
                 <br />
-                <p>{props?.props?.trainer?.testimonials}</p>
-                <p>{props?.props?.trainer?.test2}</p>
-                <p>{props?.props?.trainer?.test3}</p>
-                {/* Need to figure out why the above isnt working */}
+                <p>{props?.props.trainer?.description}</p>
             </div>
         </div>
     )

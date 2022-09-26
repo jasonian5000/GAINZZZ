@@ -14,7 +14,6 @@ const ExerciseCard = props => {
                         loading="lazy"
                     />
                     <Typography
-                        ml="21px"
                         color="black"
                         fontWeight="bold"
                         mt="11px"

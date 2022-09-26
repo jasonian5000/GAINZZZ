@@ -36,6 +36,9 @@
     border-radius: 16px;
     opacity: 0.7;
     margin: 25vh 5vw;
+    width: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+
 }
 
 .buttons {
@@ -48,7 +51,8 @@
 }
 
 .updateButton,
-.deleteButton, .confirmButton {
+.deleteButton,
+.confirmButton {
     color: white;
     background-color: black;
     border-radius: 5px;
@@ -56,11 +60,17 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 45px;
-    margin-top: 20px;
-    max-width: 160px;
     text-decoration: none;
     text-transform: uppercase;
-    width: 100%;
+}
+
+.updateButton {
+    flex: 1;
+    min-width: 100%;
+}
+
+.deleteButton {
+    margin-top: 20px;
 }
 
 .confirmDeleteBox {
@@ -70,21 +80,44 @@
 
 .warningMessage {
     color: red;
-    font-size: .8em;
+    font-size: 0.8em;
 }
 
-.deleteButton, .confirmButton {
+.deleteButton,
+.confirmButton {
     background-color: #ff1414;
+    min-width: 90%;
+}
+
+.confirmInputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    align-items: center;
 }
 
 .confirmDeleteInput {
-    display: flex;
-    justify-content: space-around;
+    margin: 15px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 20px;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    border: thin solid rgba(59, 58, 58, 0.562);
+    min-width: 100%;
 }
 
-.passwordInput {
+.confirmDeleteInput:focus {
+    border: thin solid #ff1414;
+}
+
+.confirmDeleteInput::placeholder {
+    color: #ff1414;
+}
+
+.confirmDeleteBox {
     margin-top: 20px;
-    height: 50px;
     border-radius: 5px;
     padding: 20px;
     letter-spacing: 1px;
@@ -111,8 +144,10 @@
 }
 
 @media (max-width: 1190px) {
-    .buttons {
+    .buttons,
+    .confirmInputWrapper {
         flex-direction: column;
+        gap: 20px;
     }
 }
 
@@ -124,9 +159,11 @@
     .acctInfoContainer,
     .acctUpdateForm {
         margin: 5vh 5vw;
+        width: auto;
     }
 
-    .updateFormWrapper, .updateFormContainer {
+    .updateFormWrapper,
+    .updateFormContainer {
         width: 70vw;
         display: flex;
         flex-direction: column;

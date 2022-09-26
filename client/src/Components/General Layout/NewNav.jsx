@@ -6,6 +6,7 @@ import '../../css/navbar.css'
 import { checkToken } from '../../actions/checkToken'
 import { userSignOut } from '../../actions/supabase_client'
 import { useEffect } from 'react'
+import { scrollToTop } from '../../actions/scrollToTop'
 
 const NewNav = () => {
     const navigate = useNavigate()
@@ -24,9 +25,26 @@ const NewNav = () => {
         setLoggedIn(tokenState)
     }, [tokenState])
     return (
-        <nav key={String(loggedIn)} id="navbar" className={nav ? 'nav active' : 'nav'}>
+        <nav
+            key={String(loggedIn)}
+            id="navbar"
+            className={nav ? 'nav active' : 'nav'}
+        >
             <div className="logo">
-                <img src={logo} alt="" />
+                <Link
+                    to="/ "
+                    style={{ display: loggedIn ? 'none' : 'auto' }}
+                    onClick={scrollToTop}
+                >
+                    <img src={logo} alt="" />
+                </Link>
+                <Link
+                    to="/account_information"
+                    style={{ display: loggedIn ? 'auto' : 'none' }}
+                    onClick={scrollToTop}
+                >
+                    <img src={logo} alt="" />
+                </Link>
             </div>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn">
@@ -37,17 +55,24 @@ const NewNav = () => {
                 style={{ display: loggedIn ? 'none' : 'auto' }}
             >
                 <li>
+                    <Link to="/" onClick={scrollToTop}>
+                        Home
+                    </Link>
+                </li>
+                <li>
                     <Link
                         to="/sign_up"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         sign up
-                    </Link>{' '}
+                    </Link>
                 </li>
                 <li>
                     <Link
                         to="/login_page"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Login
                     </Link>
@@ -59,8 +84,9 @@ const NewNav = () => {
             >
                 <li>
                     <Link
-                        to="/exercise_details"
+                        to="/exercise"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Search Exercises
                     </Link>
@@ -69,6 +95,7 @@ const NewNav = () => {
                     <Link
                         to="/workout"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Create Workout
                     </Link>
@@ -77,6 +104,7 @@ const NewNav = () => {
                     <Link
                         to="/account_information"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         My Account
                     </Link>
@@ -85,12 +113,19 @@ const NewNav = () => {
                     <Link
                         to="/personal_trainers"
                         style={{ textDecoration: 'none', color: '#ffff' }}
+                        onClick={scrollToTop}
                     >
                         Personal Trainers
                     </Link>
                 </li>
                 <li>
-                    <button className='logout' onClick={() => userSignOut(navigate)}>
+                    <button
+                        className="logout"
+                        onClick={() => {
+                            userSignOut(navigate)
+                            scrollToTop()
+                        }}
+                    >
                         Sign Out
                     </button>
                 </li>

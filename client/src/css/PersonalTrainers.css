@@ -1,5 +1,6 @@
 .PersonalTrainerContainer {
-    background: url('../assets/steel.jpg');
+    background: url('../assets/ptBackgorund.jpg');
+    background-size: cover;
     display: flex;
     flex-direction: row;
     justify-content: center;

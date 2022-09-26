@@ -3,11 +3,14 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
+import { setCount } from '../../actions/countAction'
+import { fetchWorkoutsCompleted } from '../../actions/supabase_client'
 import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     const dispatch = useDispatch()
     const info = useSelector(state => state.personalInfo.accountInfo)
+    const count = useSelector(state=> state.count.workoutCount )
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     const inchesToFeet = value => {
@@ -16,13 +19,10 @@ const IndividualAccountInfo = () => {
         let inches = value % 12
         return `${feet}' ${inches}"`
     }
-    useEffect(
-        () => {
-            setAcctInfo(dispatch)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setAcctInfo(dispatch)
+        setCount(dispatch)
+    }, [])
 
     useEffect(() => {
         setCurrentInfo(info[0])
@@ -31,16 +31,13 @@ const IndividualAccountInfo = () => {
         <div className="acctInfoContainer">
             <h1>Account Information</h1>
             {currentInfo?.height ? (
-                <div className="infoDisplay">
+            <div className="infoDisplay">
                     <p>Height: </p>
                     <p>{inchesToFeet(currentInfo?.height)}</p>
                 </div>
-            ) : (
-                <div className="infoDisplay">
-                    <p>Height: </p>
-                    <p>update</p>
-                </div>
-            )}
+                ) : (
+                <div className="infoDisplay"><p>Height: </p><p> needs update</p></div>
+                )}
             {currentInfo?.weight ? (
                 <div className="infoDisplay">
                     <p>Weight: </p>
@@ -49,7 +46,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Weight: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {bmi > 0 ? (
@@ -60,7 +57,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>BMI: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.age ? (
@@ -71,7 +68,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Age: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.gender ? (
@@ -82,7 +79,7 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Gender: </p>
-                    <p>update</p>
+                    <p> needs update</p>
                 </div>
             )}
             {currentInfo?.ptTable?.ptName ? (
@@ -93,7 +90,18 @@ const IndividualAccountInfo = () => {
             ) : (
                 <div className="infoDisplay">
                     <p>Personal Trainer: </p>
-                    <p>update</p>
+                    <p> needs update</p>
+                </div>
+            )}
+            {count[0]?.workoutsCompleted ? (
+                <div className="infoDisplay">
+                    <p>Workouts Completed: </p>
+                    <p>{count[0]?.workoutsCompleted}</p>
+                </div>
+            ) : (
+                <div className="infoDisplay">
+                    <p>Workout Completed: </p>
+                    <p> 0</p>
                 </div>
             )}
         </div>

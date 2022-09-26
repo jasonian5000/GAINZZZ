@@ -14,29 +14,33 @@ import {
 } from 'recharts'
 import UpdateAccountForm from './UpdateAccountForm'
 import { useLocation } from 'react-router-dom'
-import { Snackbar } from '@mui/material'
+import Toasts from '../Toasts'
+import { motion } from 'framer-motion'
 
 const AccountInformation = () => {
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
+    const toasts = { pass, setPass, updated, setUpdated }
     const location = useLocation()
     const dispatch = useDispatch()
     const weightData = useSelector(state => state.personalInfo.weightData)
     const weightRange = setWeightRange(weightData)
-    useEffect(
-        () => {
-            setWeightData(dispatch)
-            setWeightRange(weightData)
-            setPass(location?.state?.pass)
-        },
-        // eslint-disable-next-line
-        []
-    )
+    useEffect(() => {
+        setWeightData(dispatch)
+        setWeightRange(weightData)
+        setPass(location?.state?.pass)
+    }, [])
+
     return (
-        <div className="acctInfoPageWrapper">
+        <motion.div
+            className="acctInfoPageWrapper"
+            intial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+        >
             <div className="acctInfoPageContainer">
                 <IndividualAccountInfo />
-                <UpdateAccountForm setUpdated={setUpdated}/>
+                <UpdateAccountForm setUpdated={setUpdated} />
             </div>
             <div className="weightTrackerWrapper">
                 <h1>Weight Tracker</h1>
@@ -70,32 +74,8 @@ const AccountInformation = () => {
                     </ResponsiveContainer>
                 </div>
             </div>
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
-                }}
-                message="Login Successful! Welcome to Gainzzz!"
-                open={pass}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setPass(false)
-                }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            />
-            <Snackbar
-                sx={{
-                    '& .MuiSnackbarContent-root': { backgroundColor: 'green' },
-                }}
-                message="Account information was updated"
-                open={updated}
-                autoHideDuration={6000}
-                onClose={() => {
-                    setUpdated(false)
-                    window.history.replaceState({}, document.title)
-                }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            />
-        </div>
+            <Toasts toasts={toasts} />
+        </motion.div>
     )
 }
 

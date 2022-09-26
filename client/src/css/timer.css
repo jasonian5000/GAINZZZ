@@ -1,7 +1,7 @@
 .app {
   text-align: center;
-  /* background: url('../assets/red_black_background.jpg'); */
-  background-color: #221f1f;
+  background: url('../assets/red_black_background.jpg');
+  max-height: 700px;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  flex: 1;
 }
 
 .time {
@@ -24,6 +25,9 @@
   font-weight: 600;
   font-size: .8rem;
   border-style: groove;
+}
+.button:hover{
+  transform: scale(1.05, 1.05);
 }
 
 .button:focus {

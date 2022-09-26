@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import sendSignUp from '../../actions/signUp'
 import '../../css/signUpForm.css'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
+import Toasts from '../Toasts'
 
 const SignUpPage = () => {
+    const [confirmEmailToast, setConfirmEmailToast] = useState(false)
+    const [needMoreToast, setNeedMoreToast] = useState(false)
+    const toasts = {confirmEmailToast, setConfirmEmailToast, needMoreToast, setNeedMoreToast}
     return (
         <>
             <form className="signUpForm">
@@ -54,7 +58,9 @@ const SignUpPage = () => {
                         <div className="buttonContainer">
                             <button 
                             className='registerButton'
-                            onClick={e => sendSignUp(e)}>
+                            onClick={e => {sendSignUp(e, setNeedMoreToast)
+                            setConfirmEmailToast(true)
+                            }}>
                                 Register
                             </button>
                         </div>
@@ -65,6 +71,7 @@ const SignUpPage = () => {
                     </div>
                 </div>
             </form>
+            <Toasts toasts={toasts}/>
         </>
     )
 }
