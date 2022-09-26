@@ -19,8 +19,8 @@ const PersonalTrainers = () => {
         []
     )
     return (
-        <div className='pt-wrapper'>
-            <div className="PersonalTrainerContainer">
+        <div className="PersonalTrainerContainer">
+                <div className='pt-wrapper'>
                 <Box
                     sx={{ display: 'grid', flexDirection: 'row' }}
                     mt="50px"
