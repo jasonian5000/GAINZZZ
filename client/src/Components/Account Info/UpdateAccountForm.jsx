@@ -166,6 +166,7 @@ export default function UpdateAccountForm(props) {
                                 onClick={e => {
                                     sendAcctInfo(e, info, dispatch)
                                     setUpdated(true)
+                                    window.location.reload()
                                 }}
                             >
                                 Update
