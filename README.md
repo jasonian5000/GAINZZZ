@@ -134,6 +134,11 @@ Users can
 - shuffle between workouts
 - remove workouts
 
+## Database
+
+- PostgreSQL database
+- utilized Supabase, a pre-hosted PostgreSQL data center
+[Database Schema](./client/src/assets/databaseSchema.PNG)
 
 
 ## Roadmap
