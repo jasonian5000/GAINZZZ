@@ -1,7 +1,7 @@
 Welcome to [GAINZZ](https://gainzzz-le8liei9e-1shoukr.vercel.app/)
 
 
-[Demo](https://www.youtube.com/watch?v=jgOdi9Fryrs) | [Article]()
+[Demo](https://www.youtube.com/watch?v=jgOdi9Fryrs) | [Article](https://medium.com/@rahminshoukoohi/gym-bro-ed48a4258024)
 
 # Table of Contents
 1. [About the Project](#about-the-project)
