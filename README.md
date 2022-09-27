@@ -164,9 +164,6 @@ This project could not have been made without the team. They have been amazing, 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9p0eyzwvv776lyky9vfu.jpg)
 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hq2lyklh7ydfa5iyo7fj.jpg)
-
-
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sf3n8euo8prgf2hl0bib.jpg)
 
 
