@@ -120,7 +120,7 @@ Users can
 [Login Page Screenshot](/client/src/assets/loginPageScreenshot.PNG)
 - Search for and add workouts to their workout plan
 
-[Search Page Screenshot](/client/src/assets/searchpage.PNG)
+[Workout Page Screenshot](/client/src/assets/workoutPage2.png)
 - Account page where user can track their personal records
 
 [Account Page Screenshot](/client//src/assets/account.PNG)
