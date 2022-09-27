@@ -117,16 +117,16 @@ The purpose of GAINZZZ is to be the catalyst that any beginner needs to kickstar
 Users can
 - Create an account and be authenticated within out database
 
-[Login Page Screenshot](client\src\assets\loginPageScreenshot.PNG)
+[Login Page Screenshot](/client/src/assets/loginPageScreenshot.PNG)
 - Search for and add workouts to their workout plan
 
-[Search Page Screenshot](client\src\assets\searchpage.PNG)
+[Search Page Screenshot](/client/src/assets/searchpage.PNG)
 - Account page where user can track their personal records
 
-[Account Page Screenshot](client\src\assets\account.PNG)
+[Account Page Screenshot](/client//src/assets/account.PNG)
 - Live-updating weight tracker for user to keep track of weight
 
-[Weight Tracker Screenshot](client\src\assets\weightTracker.PNG)
+[Weight Tracker Screenshot](/client/src/assets/weightTracker.PNG)
 - Workout page for users to search for a curated workout 
 - search through their favorite workouts 
 - start a timer
