@@ -153,5 +153,21 @@ Users can
 This project could not have been made without the team. They have been amazing, and an incredible help to this project. With countless hours spent over days and days, this project was created by: 
 
 - Project Manager/Dev: Rahmin Shoukoohi [LinkedIn](https://www.linkedin.com/in/rahmin-shoukoohi-155855235/)
-- Dev: Jason Blunk [LinkedIn](https://www.linkedin.com/in/jasonblunck/)
+- Dev: Jason Blunck [LinkedIn](https://www.linkedin.com/in/jasonblunck/)
 - Dev: Ethan Gula [LinkedIn](https://www.linkedin.com/in/ethan-gula-222718177/)
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sl7mgc8e528r63pm5tt7.jpg)
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lea5ik9yo6lv7bdcrzhj.jpg)
+
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9p0eyzwvv776lyky9vfu.jpg)
+
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hq2lyklh7ydfa5iyo7fj.jpg)
+
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sf3n8euo8prgf2hl0bib.jpg)
+
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/thfuor4v2qth0r5vfzdi.jpg)
