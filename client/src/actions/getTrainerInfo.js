@@ -1,11 +1,11 @@
 import serverURL from "./serverURL"
 
-const getTrainerInfo = async () => {
+const getTrainerInfo = async (dispatch) => {
     const trainers = await fetch(`${serverURL}/trainer_info`, {
         method: 'GET',
     })
-    const ptTable = trainers.json()
-    return ptTable
+    const trainerInfo = await trainers.json()
+    dispatch({ type: 'SET_TRAINER_INFO', payload: trainerInfo })
 }
 
 export default getTrainerInfo

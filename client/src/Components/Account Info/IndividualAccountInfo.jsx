@@ -4,11 +4,10 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
 import { setCount } from '../../actions/countAction'
-import { fetchWorkoutsCompleted } from '../../actions/supabase_client'
 import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
-    const dispatch = useDispatch()
+    let dispatch = useDispatch()
     const info = useSelector(state => state.personalInfo.accountInfo)
     const count = useSelector(state=> state.count.workoutCount )
     const [currentInfo, setCurrentInfo] = useState(info[0])
@@ -22,6 +21,7 @@ const IndividualAccountInfo = () => {
     useEffect(() => {
         setAcctInfo(dispatch)
         setCount(dispatch)
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {

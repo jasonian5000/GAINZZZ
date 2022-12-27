@@ -2,15 +2,16 @@ import { Box, Stack } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPersonalTrainers } from '../../actions/personalTrainersInformation'
 import PersonalTrainerCard from './PersonalTrainerCard'
 import '../../css/PersonalTrainers.css'
+import getTrainerInfo from '../../actions/getTrainerInfo'
 
 const PersonalTrainers = () => {
     const dispatch = useDispatch()
     const trainers = useSelector(state => state.trainers.trainers)
     useEffect(() => {
-        getPersonalTrainers(dispatch)
+        getTrainerInfo(dispatch)
+        // eslint-disable-next-line
     }, [])
     return (
         <div className="PersonalTrainerContainer">

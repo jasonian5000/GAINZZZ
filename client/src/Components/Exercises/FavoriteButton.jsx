@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import addUserFavs from '../../actions/addUserFavs'
+import updateUserFavs from '../../actions/updateUserFavs'
 import { markFavorites } from '../../actions/searchExercises_client'
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone'
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp'
@@ -29,7 +29,7 @@ export default function FavoriteButton(props) {
                 size="small"
                 disabled={Boolean(disableToggle)}
                 onClick={() => {
-                    addUserFavs(
+                    updateUserFavs(
                         props.exercise.id,
                         props.toasts.setAddedFavToast,
                         dispatch

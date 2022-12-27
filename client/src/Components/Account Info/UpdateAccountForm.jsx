@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getTrainers, sendAcctInfo } from '../../actions/accountInformation'
-import { deleteAcct } from '../../actions/supabase_client'
+import { sendAcctInfo } from '../../actions/accountInformation'
+import deleteUserAcct from '../../actions/deleteUserAcct'
+import getTrainerInfo from '../../actions/getTrainerInfo'
 import '../../css/accountInformation.css'
 
 export default function UpdateAccountForm(props) {
@@ -28,7 +29,7 @@ export default function UpdateAccountForm(props) {
     const ageList = makeNumberArray(16, 100)
     const dispatch = useDispatch()
     const trainerDropDownList = useSelector(
-        state => state.trainers.trainerDropDownList
+        state => state.trainers.trainers
     )
     const info = useSelector(state => state.personalInfo.accountInfo)
     const [heightValue, setHeightValue] = useState('')
@@ -40,7 +41,8 @@ export default function UpdateAccountForm(props) {
     const [password, setPassword] = useState('')
 
     useEffect(() => {
-        getTrainers(dispatch)
+        getTrainerInfo(dispatch)
+        // eslint-disable-next-line
     }, [])
     return (
         <>
@@ -149,7 +151,7 @@ export default function UpdateAccountForm(props) {
                                     }
                                     fullWidth
                                 >
-                                    {trainerDropDownList.map(trainer => (
+                                    {trainerDropDownList?.map(trainer => (
                                         <MenuItem
                                             key={trainer.id}
                                             value={trainer.id}
@@ -197,7 +199,7 @@ export default function UpdateAccountForm(props) {
                             <button
                                 className="confirmButton"
                                 onClick={() => {
-                                    deleteAcct(password, navigate)
+                                    deleteUserAcct(password, navigate)
                                 }}
                             >
                                 Confirm Delete

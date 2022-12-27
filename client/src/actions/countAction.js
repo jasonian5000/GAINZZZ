@@ -1,6 +1,6 @@
-import { fetchWorkoutsCompleted } from "./supabase_client"
+import getCompletedWorkouts from "./getCompletedWorkouts"
 
 export const setCount =  async (dispatch) => {
-    const count = await fetchWorkoutsCompleted()
+    const count = await getCompletedWorkouts()
     dispatch({ type: 'SET_COUNT', payload: count })
 }

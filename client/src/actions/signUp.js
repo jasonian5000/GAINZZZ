@@ -1,5 +1,6 @@
+import createUserAcct from "./createUserAcct";
 import { captureUserSignUp } from "./inputs";
-import createNewUser from "./createNewUser";
+
 
 const sendSignUp = async (e, setNeedMoreToast) => {
   const regex =
@@ -20,7 +21,7 @@ const sendSignUp = async (e, setNeedMoreToast) => {
   } else if (input.password.length < 6) {
     setNeedMoreToast(true)
   } else {
-    await createNewUser(
+    await createUserAcct(
       input.firstName,
       input.lastName,
       input.username,

@@ -1,6 +1,6 @@
 import serverURL from "./serverURL"
 
-const createNewUser = async (
+const createUserAcct = async (
     firstName,
     lastName,
     username,
@@ -17,4 +17,4 @@ const createNewUser = async (
     })
 }
 
-export default createNewUser
+export default createUserAcct

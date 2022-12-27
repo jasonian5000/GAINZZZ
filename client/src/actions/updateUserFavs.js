@@ -3,7 +3,7 @@ import getAccessToken from './getAccessToken'
 import serverURL from './serverURL'
 import { setFavWorkouts } from './workoutBuilder'
 
-const addUserFavs = async (workoutID, setAddedFavToast, dispatch) => {
+const updateUserFavs = async (workoutID, setAddedFavToast, dispatch) => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { workoutID, userID, access_token }
@@ -18,4 +18,4 @@ const addUserFavs = async (workoutID, setAddedFavToast, dispatch) => {
     setAddedFavToast(true)
 }
 
-export default addUserFavs
+export default updateUserFavs

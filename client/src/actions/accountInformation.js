@@ -1,15 +1,7 @@
-import {
-    getWeightData
-} from './supabase_client'
-import getTrainerInfo from './getTrainerInfo'
 import getAcctInfo from './getAcctInfo'
 import updateAcctInfo from './updateAcctInfo'
 import { captureAcctInfo } from './inputs'
-
-export const getTrainers = async dispatch => {
-    const trainerList = await getTrainerInfo()
-    dispatch({ type: 'SET_TRAINER_DROP_DOWN_LIST', payload: trainerList })
-}
+import getWeightData from './getWeightData'
 
 export const setAcctInfo = async dispatch => {
     const personalInfo = await getAcctInfo()

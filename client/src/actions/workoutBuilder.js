@@ -1,8 +1,6 @@
-import {
-    fetchWorkoutsCompleted,
-    sendWorkoutsCompleted,
-} from './supabase_client'
+import getCompletedWorkouts from './getCompletedWorkouts'
 import getUserFavs from './getUserFavs'
+import updateCompletedWorkouts from './updateCompletedWorkouts'
 
 export const setFavWorkouts = async dispatch => {
     const favWorkouts = await getUserFavs()
@@ -15,7 +13,7 @@ export const randomWorkout = (arr, num) => {
 }
 
 export const addWorkoutsCompleted = async () => {
-    const fetchData = await fetchWorkoutsCompleted()
+    const fetchData = await getCompletedWorkouts()
     const completed = Number(fetchData[0].workoutsCompleted) + 1
-    await sendWorkoutsCompleted(completed)
+    await updateCompletedWorkouts(completed)
 }
