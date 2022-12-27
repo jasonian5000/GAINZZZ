@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../css/loginPage.css'
-import { userSignIn } from '../../actions/supabase_client'
+import userSignIn from '../../actions/userSignIn'
 import { setSignIn } from '../../actions/inputs'
 import { checkToken } from '../../actions/checkToken'
 import { Link, useNavigate } from 'react-router-dom'

@@ -1,11 +1,11 @@
 import {
-    getUserFavorites,
     fetchWorkoutsCompleted,
     sendWorkoutsCompleted,
 } from './supabase_client'
+import getUserFavs from './getUserFavs'
 
 export const setFavWorkouts = async dispatch => {
-    const favWorkouts = await getUserFavorites()
+    const favWorkouts = await getUserFavs()
     dispatch({ type: 'SET_FAVORITE_WORKOUTS', payload: favWorkouts })
 }
 

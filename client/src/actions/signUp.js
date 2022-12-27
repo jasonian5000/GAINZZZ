@@ -1,5 +1,5 @@
 import { captureUserSignUp } from "./inputs";
-import { userSignUp } from "./supabase_client";
+import createNewUser from "./createNewUser";
 
 const sendSignUp = async (e, setNeedMoreToast) => {
   const regex =
@@ -20,7 +20,7 @@ const sendSignUp = async (e, setNeedMoreToast) => {
   } else if (input.password.length < 6) {
     setNeedMoreToast(true)
   } else {
-    await userSignUp(
+    await createNewUser(
       input.firstName,
       input.lastName,
       input.username,

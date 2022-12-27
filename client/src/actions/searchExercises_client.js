@@ -1,4 +1,4 @@
-import { serverURL } from './supabase_client'
+import serverURL from "./serverURL"
 
 export const searchExercises = async (searchInput, dispatch) => {
     let body = { searchInput: searchInput }

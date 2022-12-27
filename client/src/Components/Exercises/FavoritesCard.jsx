@@ -1,12 +1,12 @@
 import React from 'react'
 import { Typography } from '@mui/material'
-import { removeFavorite } from '../../actions/supabase_client'
 import { useDispatch } from 'react-redux'
 import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
 import '../../css/favCard.css'
 import Toasts from '../Toasts'
 import { useState } from 'react'
 import { Slide } from '@mui/material'
+import removeUserFav from '../../actions/removeUserFav'
 
 const UserAccountInformation = props => {
     const dispatch = useDispatch()
@@ -42,7 +42,7 @@ const UserAccountInformation = props => {
                     <button
                         id="removeFav-btn"
                         onClick={() => {
-                            removeFavorite(
+                            removeUserFav(
                                 props?.workout?.id,
                                 setRemoveFavToast,
                                 dispatch

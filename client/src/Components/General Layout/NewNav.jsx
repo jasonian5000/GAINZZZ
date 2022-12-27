@@ -4,7 +4,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../../css/navbar.css'
 import { checkToken } from '../../actions/checkToken'
-import { userSignOut } from '../../actions/supabase_client'
+import userSignOut from '../../actions/userSignOut'
 import { useEffect } from 'react'
 import { scrollToTop } from '../../actions/scrollToTop'
 
