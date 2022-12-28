@@ -1,7 +1,6 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { addExerciseToWorkout } from '../../actions/myWorkout.Actions'
 import '../../css/favCard.css'
 import Toasts from '../Toasts'
 import { useState } from 'react'
@@ -55,7 +54,7 @@ const UserAccountInformation = props => {
                     <button
                         id="addTo-btn"
                         onClick={() => {
-                            addExerciseToWorkout(dispatch, props.workout)
+                            dispatch({type: 'ADD_EXERCISE',payload: props.workout})
                             setAddWorkoutToast(true)
                         }}
                     >

@@ -144,9 +144,9 @@ app.post('/get_workouts_completed', async (req, res) => {
 })
 
 app.post('/update_workouts_completed', async (req, res) => {
-    const { workoutsCompleted, userID, access_token } = req.body
+    const { newCompleted, userID, access_token } = req.body
     try {
-        await updateWorkoutsCompleted(workoutsCompleted, userID, access_token)
+        await updateWorkoutsCompleted(newCompleted, userID, access_token)
     } catch (error) {
         res.status(400).send(error)
     }

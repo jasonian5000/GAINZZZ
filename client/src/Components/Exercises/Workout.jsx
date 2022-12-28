@@ -4,17 +4,13 @@ import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import { searchExercises } from '../../actions/searchExercises_client'
-import {
-    setFavWorkouts,
-    randomWorkout,
-    addWorkoutsCompleted,
-} from '../../actions/workoutBuilder'
+import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
 import Timer from './Timer'
-import { setMyWorkout } from '../../actions/myWorkout.Actions'
 import FavWorkoutScroll from './FavWorkoutScroll'
 import placeholder from '../../assets/exercise_placeholder.png'
 import WorkoutCard from './WorkoutCard'
 import { motion } from 'framer-motion'
+import updateCompletedWorkouts from '../../actions/updateCompletedWorkouts'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -27,23 +23,28 @@ const Workout = () => {
 
     useEffect(() => {
         setFavWorkouts(dispatch)
+        // eslint-disable-next-line
     }, [])
+
+    const setMyWorkout = workout => {
+        dispatch({ type: 'ADD_WORKOUT', payload: workout })
+    }
 
     const changeWorkout = index => {
         let replacementWorkout = randomWorkout(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
-        setMyWorkout(dispatch, newWorkout)
+        setMyWorkout(newWorkout)
         setWorkoutImg(placeholder)
     }
 
     const removeWorkout = index => {
         let newWorkout = myWorkout
         newWorkout.splice(index, 1)
-        setMyWorkout(dispatch, newWorkout)
+        setMyWorkout(newWorkout)
         setWorkoutImg(placeholder)
     }
-    
+
     return (
         <motion.div
             intial={{ width: 0 }}
@@ -120,7 +121,7 @@ const Workout = () => {
                                             searchResults,
                                             myLevel
                                         )
-                                        setMyWorkout(dispatch, random)
+                                        setMyWorkout(random)
                                         setWorkoutImg(placeholder)
                                     }}
                                 >
@@ -167,8 +168,8 @@ const Workout = () => {
                                     display: myWorkout[0] ? 'auto' : 'none',
                                 }}
                                 onClick={() => {
-                                    addWorkoutsCompleted()
-                                    setMyWorkout(dispatch, [])
+                                    updateCompletedWorkouts(dispatch)
+                                    setMyWorkout([])
                                     setWorkoutImg(placeholder)
                                 }}
                             >
