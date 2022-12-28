@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../../css/workout.css'
 import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
-import { searchExercises } from '../../actions/searchExercises_client'
-import { setFavWorkouts, randomWorkout } from '../../actions/workoutBuilder'
 import Timer from './Timer'
 import FavWorkoutScroll from './FavWorkoutScroll'
 import placeholder from '../../assets/exercise_placeholder.png'
 import WorkoutCard from './WorkoutCard'
 import { motion } from 'framer-motion'
 import updateCompletedWorkouts from '../../actions/updateCompletedWorkouts'
+import searchExercises from '../../actions/searchExercises'
+import getUserFavs from '../../actions/getUserFavs'
+import randomExercise from '../../actions/randomExercise'
 
 const Workout = () => {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const Workout = () => {
     const [reset, setReset] = useState(true)
 
     useEffect(() => {
-        setFavWorkouts(dispatch)
+        getUserFavs(dispatch)
         // eslint-disable-next-line
     }, [])
 
@@ -31,7 +32,7 @@ const Workout = () => {
     }
 
     const changeWorkout = index => {
-        let replacementWorkout = randomWorkout(searchResults, 1)[0]
+        let replacementWorkout = randomExercise(searchResults, 1)[0]
         let newWorkout = myWorkout
         newWorkout[index] = replacementWorkout
         setMyWorkout(newWorkout)
@@ -117,7 +118,7 @@ const Workout = () => {
                                 <Button
                                     id="get-workout-btn"
                                     onClick={() => {
-                                        const random = randomWorkout(
+                                        const random = randomExercise(
                                             searchResults,
                                             myLevel
                                         )

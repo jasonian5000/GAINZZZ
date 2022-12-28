@@ -2,7 +2,7 @@ import getUserId from './getUserId'
 import getAccessToken from './getAccessToken'
 import serverURL from './serverURL'
 
-const getUserFavs = async () => {
+const getUserFavs = async dispatch => {
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = { userID, access_token }
@@ -13,8 +13,8 @@ const getUserFavs = async () => {
         },
         body: JSON.stringify(body),
     })
-    const favoritesIdList = await response.json()
-    return favoritesIdList
+    const favsIdList = await response.json()
+    dispatch({ type: 'SET_FAVORITE_WORKOUTS', payload: favsIdList })
 }
 
 export default getUserFavs

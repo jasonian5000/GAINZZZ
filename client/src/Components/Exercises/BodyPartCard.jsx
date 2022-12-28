@@ -2,8 +2,7 @@ import React from 'react'
 import { Stack, Typography } from '@mui/material'
 import '../../css/bodyPartCard.css'
 import { useDispatch} from 'react-redux';
-import { searchExercises } from '../../actions/searchExercises_client';
-import { resetPages } from '../../actions/pageAction';
+import searchExercises from '../../actions/searchExercises';
 
 const BodyPartCard = ({ bodyPart }) => {
   const dispatch = useDispatch()
@@ -12,7 +11,7 @@ const BodyPartCard = ({ bodyPart }) => {
       type="button"
       onClick={() => {
         searchExercises(bodyPart, dispatch);
-        resetPages(dispatch)
+        dispatch({ type: 'RESET_PAGES', payload: 1 })
       }
       }
       alignItems="center"

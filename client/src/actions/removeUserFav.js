@@ -1,7 +1,7 @@
 import getUserId from './getUserId'
 import getAccessToken from './getAccessToken'
 import serverURL from './serverURL'
-import { setFavWorkouts } from './workoutBuilder'
+import getUserFavs from './getUserFavs'
 
 const removeUserFav = async (workoutID, setRemoveFavToast, dispatch) => {
     const userID = await getUserId()
@@ -14,7 +14,7 @@ const removeUserFav = async (workoutID, setRemoveFavToast, dispatch) => {
         },
         body: JSON.stringify(body),
     })
-    await setFavWorkouts(dispatch)
+    await getUserFavs(dispatch)
     setRemoveFavToast(true)
 }
 

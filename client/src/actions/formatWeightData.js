@@ -1,4 +1,4 @@
-const formatData = json => {
+const formatWeightData = json => {
     const formatDate = created_at => {
         let months = {
             '01': 'Jan',
@@ -24,4 +24,4 @@ const formatData = json => {
     return json
 }
 
-export default formatData
+export default formatWeightData

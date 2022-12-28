@@ -1,7 +1,7 @@
+import formatWeightData from "./formatWeightData"
 import getAccessToken from "./getAccessToken"
 import getUserId from "./getUserId"
 import serverURL from "./serverURL"
-import formatData from "./formatDate"
 
 const getWeightData = async dispatch => {
     const userID = await getUserId()
@@ -15,7 +15,7 @@ const getWeightData = async dispatch => {
         body: JSON.stringify(body),
     })
     let json = await data.json()
-    let weightData = formatData(json)
+    let weightData = formatWeightData(json)
     dispatch({ type: 'SET_WEIGHT_DATA', payload: weightData })
 }
 

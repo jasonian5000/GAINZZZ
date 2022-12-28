@@ -5,12 +5,11 @@ import '../../css/exercise.css'
 import SearchBar from './SearchBar'
 import ExerciseCard from './ExerciseCard'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPage } from '../../actions/pageAction'
 import Toasts from '../Toasts'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { setFavWorkouts } from '../../actions/workoutBuilder'
 import { motion } from 'framer-motion'
+import getUserFavs from '../../actions/getUserFavs'
 
 const Exercise = () => {
     const dispatch = useDispatch()
@@ -23,11 +22,11 @@ const Exercise = () => {
     const indexOfFirst = indexOfLast - perPage
     const current = searchResults.slice(indexOfFirst, indexOfLast)
     const paginate = (e, value) => {
-        setPage(dispatch, value)
+        dispatch({ type: 'SET_PAGE', payload: value })
         window.scrollTo({ top: 500, behavior: 'smooth' })
     }
     useEffect(() => {
-        setFavWorkouts(dispatch)
+        getUserFavs(dispatch)
         // eslint-disable-next-line
     }, [])
     return (
