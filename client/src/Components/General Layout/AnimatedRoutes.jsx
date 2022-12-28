@@ -6,7 +6,7 @@ import SignUpPage from '../SignUp/SignUpPage'
 import AccountInformation from '../Account Info/AccountInformation'
 import PersonalTrainers from '../PT/PersonalTrainers'
 import Workout from '../Exercises/Workout'
-import {AnimatePresence, motion} from 'framer-motion'
+import {AnimatePresence} from 'framer-motion'
 import Exercise from '../Exercises/Exercise'
 import ErrorPage from './ErrorPage'
 

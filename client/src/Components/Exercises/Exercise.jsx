@@ -28,6 +28,7 @@ const Exercise = () => {
     }
     useEffect(() => {
         setFavWorkouts(dispatch)
+        // eslint-disable-next-line
     }, [])
     return (
         <motion.div
