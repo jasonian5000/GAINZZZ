@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import logo from '../../assets/GAINZZZ.png'
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../../css/navbar.css'
 import checkToken from '../../actions/checkToken'
@@ -10,15 +9,15 @@ import { scrollToTop } from '../../actions/scrollToTop'
 
 const NewNav = () => {
     const navigate = useNavigate()
-    const [nav, setNav] = useState(false)
-    const changeBackground = () => {
+    const [navTransparent, setNavTransparent] = useState(false)
+    const toggleNavTransparent = () => {
         if (window.scrollY >= 50) {
-            setNav(true)
+            setNavTransparent(true)
         } else {
-            setNav(false)
+            setNavTransparent(false)
         }
     }
-    window.addEventListener('scroll', changeBackground)
+    window.addEventListener('scroll', toggleNavTransparent)
     const tokenState = checkToken()
     const [loggedIn, setLoggedIn] = useState(tokenState)
     useEffect(() => {
@@ -28,7 +27,7 @@ const NewNav = () => {
         <nav
             key={String(loggedIn)}
             id="navbar"
-            className={nav ? 'nav active' : 'nav'}
+            className={navTransparent ? 'nav active' : 'nav'}
         >
             <div className="logo">
                 <Link

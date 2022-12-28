@@ -6,15 +6,13 @@ import SignUpPage from '../SignUp/SignUpPage'
 import AccountInformation from '../Account Info/AccountInformation'
 import PersonalTrainers from '../PT/PersonalTrainers'
 import Workout from '../Exercises/Workout'
-import {AnimatePresence} from 'framer-motion'
 import Exercise from '../Exercises/Exercise'
 import ErrorPage from './ErrorPage'
 
 
-const AnimatedRoutes = () => {
+const PageRoutes = () => {
     const location = useLocation()
     return (
-        <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home />} />
                 <Route path="/exercise" element={<Exercise />} />
@@ -31,8 +29,7 @@ const AnimatedRoutes = () => {
                 <Route path="/workout" element={<Workout />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
-        </AnimatePresence>
     )
 }
 
-export default AnimatedRoutes
+export default PageRoutes

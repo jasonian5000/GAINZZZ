@@ -24,7 +24,7 @@ const AccountInformation = () => {
     const toasts = { pass, setPass, updated, setUpdated }
     const location = useLocation()
     const dispatch = useDispatch()
-    const weightData = useSelector(state => state.personalInfo.weightData)
+    const weightData = useSelector(state => state.acctInfo.weightData)
     const weightRange = setWeightRange(weightData)
     useEffect(() => {
         getWeightData(dispatch)

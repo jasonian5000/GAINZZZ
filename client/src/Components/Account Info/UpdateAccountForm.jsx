@@ -32,7 +32,7 @@ export default function UpdateAccountForm(props) {
     const trainerDropDownList = useSelector(
         state => state.trainers.trainers
     )
-    const info = useSelector(state => state.personalInfo.acctInfo)
+    const info = useSelector(state => state.acctInfo.acctInfo)
     const [heightValue, setHeightValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [genderValue, setGenderValue] = useState('')

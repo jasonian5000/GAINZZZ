@@ -3,7 +3,7 @@ const initialState = {
     weightData: []
 }
 
-const accountInformationReducer = (state = initialState, action) =>{
+const acctInfoReducer = (state = initialState, action) =>{
     switch (action.type) {
         case 'SET_ACCT_INFO':
             return {
@@ -20,4 +20,4 @@ const accountInformationReducer = (state = initialState, action) =>{
     }
 }
 
-export default accountInformationReducer
+export default acctInfoReducer

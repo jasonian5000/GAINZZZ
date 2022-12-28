@@ -94,10 +94,10 @@ export default function Toasts(props) {
                     '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
                 }}
                 message="Login Failed. Check your email and password."
-                open={props.toasts.fail}
+                open={props.toasts.loginFail}
                 autoHideDuration={6000}
                 onClose={() => {
-                    props.toasts.setFail(false)
+                    props.toasts.setLoginFail(false)
                 }}
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             />

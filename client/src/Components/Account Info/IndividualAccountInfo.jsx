@@ -8,7 +8,7 @@ import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     let dispatch = useDispatch()
-    const info = useSelector(state => state.personalInfo.acctInfo)
+    const info = useSelector(state => state.acctInfo.acctInfo)
     const count = useSelector(state => state.count.workoutCount)
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
