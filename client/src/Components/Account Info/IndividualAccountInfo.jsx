@@ -2,15 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
-import { setCount } from '../../actions/countAction'
-import { fetchWorkoutsCompleted } from '../../actions/supabase_client'
+import bmiCalc from '../../actions/bmiCalc'
+import getAcctInfo from '../../actions/getAcctInfo'
 import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
-    const dispatch = useDispatch()
-    const info = useSelector(state => state.personalInfo.accountInfo)
-    const count = useSelector(state=> state.count.workoutCount )
+    let dispatch = useDispatch()
+    const info = useSelector(state => state.personalInfo.acctInfo)
+    const count = useSelector(state => state.count.workoutCount)
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
     const inchesToFeet = value => {
@@ -20,8 +19,8 @@ const IndividualAccountInfo = () => {
         return `${feet}' ${inches}"`
     }
     useEffect(() => {
-        setAcctInfo(dispatch)
-        setCount(dispatch)
+        getAcctInfo(dispatch)
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -31,13 +30,16 @@ const IndividualAccountInfo = () => {
         <div className="acctInfoContainer">
             <h1>Account Information</h1>
             {currentInfo?.height ? (
-            <div className="infoDisplay">
+                <div className="infoDisplay">
                     <p>Height: </p>
                     <p>{inchesToFeet(currentInfo?.height)}</p>
                 </div>
-                ) : (
-                <div className="infoDisplay"><p>Height: </p><p> needs update</p></div>
-                )}
+            ) : (
+                <div className="infoDisplay">
+                    <p>Height: </p>
+                    <p> needs update</p>
+                </div>
+            )}
             {currentInfo?.weight ? (
                 <div className="infoDisplay">
                     <p>Weight: </p>
@@ -93,10 +95,10 @@ const IndividualAccountInfo = () => {
                     <p> needs update</p>
                 </div>
             )}
-            {count[0]?.workoutsCompleted ? (
+            {count ? (
                 <div className="infoDisplay">
                     <p>Workouts Completed: </p>
-                    <p>{count[0]?.workoutsCompleted}</p>
+                    <p>{count}</p>
                 </div>
             ) : (
                 <div className="infoDisplay">

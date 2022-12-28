@@ -1,7 +1,6 @@
 const initialState = {
-    workoutCount:[]
+    workoutCount: 0
 }
-
 
 const countReducer = (state = initialState, action) => {
     switch (action.type) {
