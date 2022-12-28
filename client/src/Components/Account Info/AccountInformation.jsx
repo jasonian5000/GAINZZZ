@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setWeightData, setWeightRange } from '../../actions/accountInformation'
 import '../../css/accountInformation.css'
 import IndividualAccountInfo from './IndividualAccountInfo'
 import {
@@ -16,6 +15,8 @@ import UpdateAccountForm from './UpdateAccountForm'
 import { useLocation } from 'react-router-dom'
 import Toasts from '../Toasts'
 import { motion } from 'framer-motion'
+import getWeightData from '../../actions/getWeightData'
+import setWeightRange from '../../actions/setWeightRange'
 
 const AccountInformation = () => {
     const [pass, setPass] = useState(false)
@@ -26,9 +27,10 @@ const AccountInformation = () => {
     const weightData = useSelector(state => state.personalInfo.weightData)
     const weightRange = setWeightRange(weightData)
     useEffect(() => {
-        setWeightData(dispatch)
+        getWeightData(dispatch)
         setWeightRange(weightData)
         setPass(location?.state?.pass)
+        // eslint-disable-next-line
     }, [])
 
     return (

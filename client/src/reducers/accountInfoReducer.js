@@ -1,14 +1,14 @@
 const initialState = {
-    accountInfo: [],
+    acctInfo: [],
     weightData: []
 }
 
 const accountInformationReducer = (state = initialState, action) =>{
     switch (action.type) {
-        case 'SET_PERSONAL_INFORMATION':
+        case 'SET_ACCT_INFO':
             return {
                 ...state,
-                accountInfo: action.payload,
+                acctInfo: action.payload,
             }
         case 'SET_WEIGHT_DATA':
             return {

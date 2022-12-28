@@ -2,13 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { bmiCalc, setAcctInfo } from '../../actions/accountInformation'
+import bmiCalc from '../../actions/bmiCalc'
 import { setCount } from '../../actions/countAction'
+import getAcctInfo from '../../actions/getAcctInfo'
 import '../../css/accountInformation.css'
 
 const IndividualAccountInfo = () => {
     let dispatch = useDispatch()
-    const info = useSelector(state => state.personalInfo.accountInfo)
+    const info = useSelector(state => state.personalInfo.acctInfo)
     const count = useSelector(state=> state.count.workoutCount )
     const [currentInfo, setCurrentInfo] = useState(info[0])
     const bmi = bmiCalc(currentInfo?.height, currentInfo?.weight)
@@ -19,7 +20,7 @@ const IndividualAccountInfo = () => {
         return `${feet}' ${inches}"`
     }
     useEffect(() => {
-        setAcctInfo(dispatch)
+        getAcctInfo(dispatch)
         setCount(dispatch)
         // eslint-disable-next-line
     }, [])

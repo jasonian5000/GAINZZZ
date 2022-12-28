@@ -6,4 +6,4 @@ const checkToken = () => {
   return false;
 };
 
-export { checkToken };
+export default checkToken;

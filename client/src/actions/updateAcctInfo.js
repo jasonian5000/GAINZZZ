@@ -1,8 +1,12 @@
 import getUserId from "./getUserId"
 import getAccessToken from "./getAccessToken"
 import serverURL from "./serverURL"
+import { captureAcctInfo } from "./inputs"
+import getAcctInfo from "./getAcctInfo"
 
-const updateAcctInfo = async updatedInfo => {
+const updateAcctInfo = async (e, info, dispatch) => {
+    const updatedInfo = captureAcctInfo(e, info)
+    
     const userID = await getUserId()
     const access_token = await getAccessToken()
     const body = {
@@ -17,6 +21,7 @@ const updateAcctInfo = async updatedInfo => {
         },
         body: JSON.stringify(body),
     })
+    await getAcctInfo(dispatch)
 }
 
 export default updateAcctInfo

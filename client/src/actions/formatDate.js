@@ -1,4 +1,4 @@
-const refineDate = json => {
+const formatData = json => {
     const formatDate = created_at => {
         let months = {
             '01': 'Jan',
@@ -24,4 +24,4 @@ const refineDate = json => {
     return json
 }
 
-export default refineDate
+export default formatData
