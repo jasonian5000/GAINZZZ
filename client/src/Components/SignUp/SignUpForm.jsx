@@ -5,7 +5,6 @@ import '../../css/signUpForm.css'
 const SignUpForm = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const handleSubmit = async e => {
         e.preventDefault()
         if (password.length < 6) {

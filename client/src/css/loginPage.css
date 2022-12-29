@@ -1,114 +1,65 @@
-
-.login-Container{
+.loginPageWrapper {
     display: flex;
     height: 100vh;
-    background: url('../assets/workoutLady3.2.jpg');
+    background: url('../assets/sign_in_background_1920.jpg');
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 0;
 }
-.form-container{
+.loginFormContainer {
     margin-top: 20vh;
-    width: 40%;
-    height: 70%;
+    width: 40vw;
+    height: 60vh;
     display: flex;
-    margin-left: 3rem;
+    margin-left: 10vw;
     background: rgba(247, 247, 247, 0.753);
     border-radius: 15px;
     margin-bottom: 10px;
 }
-.login-form{
+.loginForm {
     display: flex;
     flex-direction: column;
     padding: 30px 10px 10px;
     width: 100%;
 }
 
-.emailLoginInput,
-.passwordLoginInput,
-#submit-btn
-{
-    margin:15px;
+.loginForm input,
+button {
+    margin: 15px;
     height: 50px;
     border-radius: 30px;
     padding: 20px;
     letter-spacing: 1px;
     box-shadow: inset 0 0 0 0 #131414;
-    transition: .5s;
+    transition: 0.5s;
 }
-.emailLoginInput:hover,
-.passwordLoginInput:hover{
+.loginForm input:hover,
+button:hover {
     transform: scale(1.05, 1.05);
 }
-h1{
-    text-align: center;
+
+.loginForm button {
+    background-color: #ff1414;
 }
-.underPassword{
-    margin: 0px 15px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.stayContainer{
-    display: flex;
-}
-.keepSignIn{
-    margin-left: 7px;
-    accent-color:#000000
-}
-#submit-btn{
-    background-color: #FF1414;
-}
-h3{
-    text-align: center;
-}
-span{
-    text-decoration: underline;
-}
-#submit-btn:hover{
-    color: #E5DADA;
+.loginForm button:hover {
+    color: #e5dada;
     box-shadow: inset 650px 0 0 0 #000000;
     cursor: pointer;
     transition: 0.5s;
 }
-.iconList{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-#icon{
-    height: 40px;
-    width: 40px;
-    margin: 5px;
-}
-.form-logo{
+
+.form-logo {
     height: 40px;
     margin: -8px 0 0 3px;
-
 }
-.bottom-form{
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-@media(max-width: 1190px){
-    .login-Container{
-        background-image: url(../assets/workoutLady2.jpg);
-    }
-    .form-container{
-        width:60%
+@media (max-width: 1200px) {
+    .loginPageWrapper {
+        background: url('../assets/sign_in_background_1200.jpg');
     }
 }
-@media(max-width: 720px){
-
-    .form-container{
-        width:81%
-    }
-}
-@media(max-width: 376px){
-    .login-Container{
-        height: 130vh;
+@media (max-width: 800px) {
+    .loginPageWrapper {
+        background: url('../assets/sign_in_background_800.jpg');
     }
 }
