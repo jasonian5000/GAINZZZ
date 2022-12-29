@@ -81,7 +81,7 @@ export default function Toasts(props) {
                 sx={{
                     '& .MuiSnackbarContent-root': { backgroundColor: 'red' },
                 }}
-                message="Please fill out all fields to register"
+                message="Please fill out all fields correctly to register"
                 open={props.toasts.needMoreToast}
                 autoHideDuration={3000}
                 onClose={() => {
