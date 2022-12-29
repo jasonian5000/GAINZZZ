@@ -1,18 +1,5 @@
-export const captureUserSignUp = e => {
+const captureAcctInfo = (e, info) => {
     e.preventDefault()
-    let input = {
-        firstName: e.target.form[0].value,
-        lastName: e.target.form[1].value,
-        username: e.target.form[2].value,
-        email: e.target.form[3].value,
-        password: e.target.form[4].value,
-    }
-    return input
-}
-
-export const captureAcctInfo = (e, info) => {
-    e.preventDefault()
-
     let height =
         e.target.form[0].value === '' ? info[0].height : e.target.form[0].value
     let weight =
@@ -35,3 +22,5 @@ export const captureAcctInfo = (e, info) => {
     }
     return input
 }
+
+export default captureAcctInfo

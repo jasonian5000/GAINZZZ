@@ -1,7 +1,7 @@
 import getUserId from "./getUserId"
 import getAccessToken from "./getAccessToken"
 import serverURL from "./serverURL"
-import { captureAcctInfo } from "./inputs"
+import captureAcctInfo from "./captureAcctInfo"
 import getAcctInfo from "./getAcctInfo"
 
 const updateAcctInfo = async (e, info, dispatch) => {
