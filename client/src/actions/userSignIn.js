@@ -13,11 +13,14 @@ const userSignIn = async (email, password) => {
         body: JSON.stringify(body),
     })
     const json = await sessionData.json()
+    console.log("json", json)
     const sendSession = {
         currentSession: json.session,
-        expiresAt: json.session.expires_at,
+        expiresAt: json.session?.expires_at,
     }
-    localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))
+    console.log("sendSession", sendSession)
+    if ( sendSession.expiresAt) {
+    localStorage.setItem('supabase.auth.token', JSON.stringify(sendSession))}
 }
 
 export default userSignIn

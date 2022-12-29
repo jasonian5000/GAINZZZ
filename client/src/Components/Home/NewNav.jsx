@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import logo from '../../assets/GAINZZZ.png'
 import { Link, useNavigate } from 'react-router-dom'
 import '../../css/navbar.css'
 import checkToken from '../../actions/checkToken'
@@ -29,22 +28,6 @@ const NewNav = () => {
             id="navbar"
             className={navTransparent ? 'nav active' : 'nav'}
         >
-            <div className="logo">
-                <Link
-                    to="/ "
-                    style={{ display: loggedIn ? 'none' : 'auto' }}
-                    onClick={scrollToTop}
-                >
-                    <img src={logo} alt="" />
-                </Link>
-                <Link
-                    to="/account_information"
-                    style={{ display: loggedIn ? 'auto' : 'none' }}
-                    onClick={scrollToTop}
-                >
-                    <img src={logo} alt="" />
-                </Link>
-            </div>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn">
                 <span className="nav-icon"></span>

@@ -35,12 +35,3 @@ export const captureAcctInfo = (e, info) => {
     }
     return input
 }
-
-export const setSignIn = e => {
-    e.preventDefault()
-    let data = {
-        email: e.target.form[0].value,
-        password: e.target.form[1].value,
-    }
-    return data
-}

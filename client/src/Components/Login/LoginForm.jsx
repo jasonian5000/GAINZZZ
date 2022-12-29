@@ -2,22 +2,22 @@ import React, { useState } from 'react'
 import '../../css/loginPage.css'
 import { useNavigate } from 'react-router-dom'
 import checkToken from '../../actions/checkToken'
-import { setSignIn } from '../../actions/inputs'
 import userSignIn from '../../actions/userSignIn'
 import Toasts from '../Toasts'
 
 export default function LoginForm() {
     const navigate = useNavigate()
-    const [loginFail, setLoginFail] = useState(false)
-    const toasts = { loginFail, setLoginFail }
-    const signIn = async (e, navigate) => {
-        let data = setSignIn(e)
-        await userSignIn(data.email, data.password)
+    const [loginFailToast, setLoginFailToast] = useState(false)
+    const toasts = { loginFailToast, setLoginFailToast }
+    const signIn = async e => {
+        e.preventDefault()
+        await userSignIn(e.target.form[0].value, e.target.form[1].value)
         let token = checkToken()
+        console.log("token", token)
         if (token) {
             navigate('/account_information', { state: { pass: true } })
         } else {
-            setLoginFail(true)
+            setLoginFailToast(true)
         }
     }
     return (
@@ -34,14 +34,7 @@ export default function LoginForm() {
                     placeholder="Password"
                     type="password"
                 ></input>
-                <div className="underPassword">
-                    <div className="stayContainer">
-                        <p>Stay Signed in?</p>
-                        <input className="keepSignIn" type="checkbox" />
-                    </div>
-                    <a href="www.google.com">Forget Password?</a>
-                </div>
-                <button id="submit-btn" onClick={e => signIn(e, navigate)}>
+                <button id="submit-btn" onClick={e => signIn(e)}>
                     Sign In
                 </button>
             </form>
