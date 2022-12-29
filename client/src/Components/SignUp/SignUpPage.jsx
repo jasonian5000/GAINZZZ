@@ -17,17 +17,15 @@ const SignUpPage = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        console.log(email, password)
         if (password.length < 6) {
             setNeedMoreToast(true)
             return
         }
-        let { data, error } = await supabase.auth.signUp({
+        let { error } = await supabase.auth.signUp({
             email: email,
             password: password,
         })
         if (error) {
-            console.log(error)
             setNeedMoreToast(true)
             return
         }
