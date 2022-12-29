@@ -1,4 +1,3 @@
-import './App.css'
 import { Box } from '@mui/material'
 import { Footer } from './Components/Home'
 import NewNav from './Components/Home/NewNav'
