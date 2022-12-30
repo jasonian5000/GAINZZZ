@@ -1,5 +1,7 @@
-const userSignOut = navigate => {
-    localStorage.removeItem('supabase.auth.token')
+import supabase from './supabaseClient'
+
+const userSignOut = async navigate => {
+    const { error } = await supabase.auth.signOut()
     navigate('/')
 }
 

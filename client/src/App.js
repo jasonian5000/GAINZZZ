@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
-import { Footer } from './Components/Home'
-import NewNav from './Components/Home/NewNav'
-import PageRoutes from './Components/Home/PageRoutes'
+import { Footer } from './Components/Main'
+import NavBar from './Components/NavBar/NavBar'
+import PageRoutes from './Components/Main/PageRoutes'
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
             m="auto"
             className="mainBox"
         >
-            <NewNav />
+            <NavBar />
             <PageRoutes />
             <Footer />
         </Box>

@@ -14,12 +14,10 @@ export default function LoginForm(props) {
             password: password,
         })
         if (error) {
-            console.log(error)
             props.toasts.setLoginFailToast(true)
             return
         }
         if (data) {
-            console.log(data)
             navigate('/account_information')
         }
     }

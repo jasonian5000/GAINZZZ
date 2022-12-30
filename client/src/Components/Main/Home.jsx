@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/navbar.css'
 
-const Title = () => {
+const Home = () => {
     return (
         <div id="main">
             <div className="name">
@@ -23,4 +23,4 @@ const Title = () => {
     )
 }
 
-export default Title
+export default Home
