@@ -6,6 +6,9 @@ import PersonalTrainers from "./PT/PersonalTrainers";
 import Workout from "./Exercises/Workout";
 import Exercise from "./Exercises/Exercise";
 import ErrorPage from "./Main/ErrorPage";
+import {Footer} from "./Main";
+import NavBar from "./NavBar/NavBar";
+import supabase from "../actions/supabaseClient";
 
 export {
     Home,
@@ -15,5 +18,8 @@ export {
     PersonalTrainers,
     Workout,
     Exercise,
-    ErrorPage
+    ErrorPage,
+    Footer,
+    NavBar,
+    supabase
 }
