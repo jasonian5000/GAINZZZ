@@ -24,7 +24,6 @@ function App() {
             } = await supabase.auth.getSession()
             if (session) {
                 const { user } = session
-                console.log(user)
                 setLoggedIn(user)
             }
         }

@@ -1,8 +1,8 @@
 import { Home } from "./Main";
 import LoginPage from "./Login/LoginPage";
 import SignUpPage from "./SignUp/SignUpPage";
-import { AccountInformation } from "./Account Info";
-import PersonalTrainers from "./PT/PersonalTrainers";
+import { AccountInformation } from "./Account";
+import PersonalTrainers from "./Trainers/PersonalTrainers";
 import Workout from "./Exercises/Workout";
 import Exercise from "./Exercises/Exercise";
 import ErrorPage from "./Main/ErrorPage";
