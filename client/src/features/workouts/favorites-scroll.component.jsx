@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 import { ScrollMenu } from 'react-horizontal-scrolling-menu'
-import '../../css/hideScrollBar.css'
+import './hide-scrollbar.css'
 import FavoritesCard from './favorites-card.component'
 import { Box } from '@mui/system'
 

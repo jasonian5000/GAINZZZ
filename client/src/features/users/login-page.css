@@ -1,7 +1,7 @@
 .loginPageWrapper {
     display: flex;
     height: 100vh;
-    background: url('../assets/sign_in_background_1920.jpg');
+    background: url('./sign_in_background_1920.jpg');
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -55,11 +55,11 @@ button:hover {
 }
 @media (max-width: 1200px) {
     .loginPageWrapper {
-        background: url('../assets/sign_in_background_1200.jpg');
+        background: url('./sign_in_background_1200.jpg');
     }
 }
 @media (max-width: 800px) {
     .loginPageWrapper {
-        background: url('../assets/sign_in_background_800.jpg');
+        background: url('./sign_in_background_800.jpg');
     }
 }

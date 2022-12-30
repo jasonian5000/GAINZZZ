@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import '../../css/accountInformation.css'
+import '../features/users/account-info.css'
 import IndividualAccountInfo from '../features/users/account-info.component'
 import {
     LineChart,
@@ -16,9 +16,9 @@ import { useLocation } from 'react-router-dom'
 import Toasts from '../features/ui/toasts.component'
 import { motion } from 'framer-motion'
 import getWeightData from '../features/tracking/get-weight-data'
-import setWeightRange from '../actions/setWeightRange'
+import setWeightRange from 'features/tracking/set-weight-range'
 
-const AccountInformation = () => {
+const AccountPage = () => {
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
     const toasts = { pass, setPass, updated, setUpdated }
@@ -81,4 +81,4 @@ const AccountInformation = () => {
     )
 }
 
-export default AccountInformation
+export default AccountPage

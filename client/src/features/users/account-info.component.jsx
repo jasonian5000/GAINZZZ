@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import bmiCalc from '../tracking/bmi-calc'
-import getAcctInfo from '../../actions/getAcctInfo'
-import '../../css/accountInformation.css'
+// import getAcctInfo from '../../actions/getAcctInfo'
+import './account-info.css'
 
 const IndividualAccountInfo = () => {
     let dispatch = useDispatch()
@@ -18,10 +18,10 @@ const IndividualAccountInfo = () => {
         let inches = value % 12
         return `${feet}' ${inches}"`
     }
-    useEffect(() => {
-        getAcctInfo(dispatch)
-        // eslint-disable-next-line
-    }, [])
+    // useEffect(() => {
+    //     getAcctInfo(dispatch)
+    //     // eslint-disable-next-line
+    // }, [])
 
     useEffect(() => {
         setCurrentInfo(info[0])

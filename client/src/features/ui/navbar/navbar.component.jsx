@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../../css/navbar.css'
+import './navbar.css'
 import NavBarLoggedIn from './navbar-logged-in.component'
 import NavBarLoggedOut from './navbar-logged-out.component'
 

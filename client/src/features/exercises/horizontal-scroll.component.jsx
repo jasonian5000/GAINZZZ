@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import BodyPartCard from './body-part-card.component'
 import { useSelector } from 'react-redux'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
-import '../../css/hideScrollBar.css'
+import './hide-scrollbar.css'
 import RightArrowIcon from '../../assets/right-arrow.png'
 import LeftArrowIcon from '../../assets/left-arrow.png'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import supabase from '../supabase-client'
+import supabase from '../supabase'
 import { scrollToTop } from '../scroll-to-top'
 import { Link, useNavigate } from 'react-router-dom'
 

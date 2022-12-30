@@ -1,6 +1,6 @@
 .formContainer {
     display: flex;
-    background: url('../assets/dusty_dude_bw.jpg');
+    background: url('./dusty_dude_bw.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
@@ -49,7 +49,7 @@
 
 @media (max-width: 1190px) {
     .formContainer {
-        background-image: url(../assets/workoutLady2.jpg);
+        background-image: url(./workoutLady2.jpg);
     }
     .signUpForm {
         margin: 30px;

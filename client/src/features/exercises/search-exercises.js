@@ -1,4 +1,4 @@
-import serverURL from './serverURL'
+import serverURL from "features/ui/server-url"
 
 const searchExercises = async (searchInput, dispatch) => {
     let body = { searchInput: searchInput }

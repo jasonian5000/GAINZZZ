@@ -1,5 +1,5 @@
 .workout-wrapper {
-    background: url('../assets/steel.jpg');
+    background: url('./steel.jpg');
     background-size: cover;
 }
 .workoutWrapper-overlay {
@@ -16,7 +16,7 @@
 }
 
 .myWorkout-wrapper {
-    background: url('../assets/grayGym.jpg');
+    background: url('./grayGym.jpg');
     background-size: cover;
     padding: 3vh;
     min-height: 80vh;

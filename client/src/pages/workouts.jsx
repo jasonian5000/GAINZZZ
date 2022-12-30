@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import '../../css/workout.css'
+import '../features/workouts/workout.css'
 import { Box, TextField, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import Timer from '../features/workouts/timer.component'
 import FavWorkoutScroll from '../features/workouts/favorites-scroll.component'
-import placeholder from '../../assets/exercise_placeholder.png'
+import placeholder from '../features/workouts/exercise_placeholder.png'
 import WorkoutCard from '../features/workouts/workout-card.component'
 import { motion } from 'framer-motion'
 import updateCompletedWorkouts from '../features/workouts/update-completed-workouts'
 import searchExercises from '../features/exercises/search-exercises'
 import getUserFavs from '../features/workouts/get-user-favs'
-import randomExercise from '../actions/randomExercise'
+import randomExercise from 'features/workouts/random-exercises'
 
-const Workout = () => {
+const WorkoutsPage = () => {
     const dispatch = useDispatch()
     const [myLevel, setMyLevel] = useState('')
     const [mytarget, setMyTarget] = useState('')
@@ -197,4 +197,4 @@ const Workout = () => {
     )
 }
 
-export default Workout
+export default WorkoutsPage

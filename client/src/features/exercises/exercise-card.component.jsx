@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
-import '../../css/exerciseCard.css'
+import './exercise-card.css'
 import FavoriteButton from './favorite-button.component'
 
 const ExerciseCard = props => {

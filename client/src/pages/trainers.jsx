@@ -3,10 +3,10 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PersonalTrainerCard from '../features/trainers/trainer-card.component'
-import '../../css/PersonalTrainers.css'
+import '../features/trainers/trainers.css'
 import getTrainerInfo from '../features/trainers/get-trainer-info'
 
-const PersonalTrainers = () => {
+const TrainersPage = () => {
     const dispatch = useDispatch()
     const trainers = useSelector(state => state.trainers.trainers)
     useEffect(() => {
@@ -32,4 +32,4 @@ const PersonalTrainers = () => {
     )
 }
 
-export default PersonalTrainers
+export default TrainersPage

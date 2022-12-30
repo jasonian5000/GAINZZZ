@@ -1,7 +1,6 @@
 import React from 'react'
-import '../../css/navbar.css'
 
-const Home = () => {
+const LandingPage = () => {
     return (
         <div id="main">
             <div className="name">
@@ -23,4 +22,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default LandingPage

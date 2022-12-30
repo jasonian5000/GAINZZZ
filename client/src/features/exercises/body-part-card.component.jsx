@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack, Typography } from '@mui/material'
-import '../../css/bodyPartCard.css'
+import './body-part-card.css'
 import { useDispatch } from 'react-redux'
 import searchExercises from './search-exercises'
 

@@ -1,5 +1,5 @@
 .acctInfoPageWrapper {
-    background-image: url('../assets/gym_mat2.jpg');
+    background-image: url('./gym_mat2.jpg');
     background-size: cover;
 }
 

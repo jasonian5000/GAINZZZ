@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import '../../css/favCard.css'
+import './fav-card.css'
 import Toasts from '../ui/toasts.component'
 import { useState } from 'react'
 import { Slide } from '@mui/material'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from '@mui/material'
-import '../../css/PersonalTrainerCard.css'
+import './trainer-card.css'
 import { useState } from 'react'
 import PersonalCardInfo from './trainer-info.component'
 

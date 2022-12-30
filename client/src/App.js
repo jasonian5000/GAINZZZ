@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import PrivateRoutes from './features/ui/private-routes'
-import {
-    Home,
-    LoginPage,
-    SignUpPage,
-    AccountInformation,
-    PersonalTrainers,
-    Workout,
-    Exercise,
-    ErrorPage,
-    Footer,
-    NavBar,
-    supabase,
-} from './Components/index'
+import { AccountPage, ErrorPage, ExercisesPage, LandingPage, LoginPage, SignupPage, TrainersPage, WorkoutsPage } from './pages'
+import supabase from 'features/ui/supabase'
+import NavBar from 'features/ui/navbar/navbar.component'
+import { Footer } from 'features/ui'
+
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(null)
@@ -34,14 +26,17 @@ function App() {
             <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Routes>
                 <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
-                    <Route path="/exercises" element={<Exercise />} />
-                    <Route path="/account" element={<AccountInformation />} />
-                    <Route path="/trainers" element={<PersonalTrainers />} />
-                    <Route path="/workouts" element={<Workout />} />
+                    <Route path="/account" element={<AccountPage />} />
+                    <Route path="/exercises" element={<ExercisesPage />} />
+                    <Route path="/trainers" element={<TrainersPage />} />
+                    <Route path="/workouts" element={<WorkoutsPage />} />
                 </Route>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn}/>} />
-                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route
+                    path="/login"
+                    element={<LoginPage setLoggedIn={setLoggedIn} />}
+                />
+                <Route path="/signup" element={<SignupPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />

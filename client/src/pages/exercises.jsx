@@ -1,7 +1,7 @@
 import { Box, Pagination, Stack } from '@mui/material'
 import React from 'react'
 import HorizontalScrollBar from '../features/exercises/horizontal-scroll.component'
-import '../../css/exercise.css'
+import '../features/exercises/exercise.css'
 import SearchBar from '../features/exercises/search-bar.component'
 import ExerciseCard from '../features/exercises/exercise-card.component'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import getUserFavs from '../features/workouts/get-user-favs'
 
-const Exercise = () => {
+const ExercisesPage = () => {
     const dispatch = useDispatch()
     const [addedFavToast, setAddedFavToast] = useState(false)
     let toasts = { addedFavToast, setAddedFavToast }
@@ -70,4 +70,4 @@ const Exercise = () => {
     )
 }
 
-export default Exercise
+export default ExercisesPage

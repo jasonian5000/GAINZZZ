@@ -1,5 +1,5 @@
 .ED-Wrapper{
-    background: url('../assets/gym_mat.jpg');
+    background: url('./gym_mat.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
