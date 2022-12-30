@@ -12,7 +12,7 @@ export default function NavBarLoggedOut() {
             </li>
             <li>
                 <Link
-                    to="/sign_up"
+                    to="/signup"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
@@ -21,7 +21,7 @@ export default function NavBarLoggedOut() {
             </li>
             <li>
                 <Link
-                    to="/login_page"
+                    to="/login"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >

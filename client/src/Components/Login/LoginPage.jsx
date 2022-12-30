@@ -3,7 +3,7 @@ import '../../css/loginPage.css'
 import LoginForm from './LoginForm'
 import Toasts from '../Toasts'
 
-export const LoginPage = () => {
+const LoginPage = () => {
     const [loginFailToast, setLoginFailToast] = useState(false)
     const toasts = { loginFailToast, setLoginFailToast }
     return (
@@ -17,3 +17,5 @@ export const LoginPage = () => {
         </>
     )
 }
+
+export default LoginPage

@@ -1,5 +1,11 @@
 import Footer from "./Footer";
+import Home from './Home'
+import ErrorPage from './ErrorPage'
+import Feature from './Feature'
 
 export {
-    Footer
+    Footer,
+    Home,
+    ErrorPage,
+    Feature
 }

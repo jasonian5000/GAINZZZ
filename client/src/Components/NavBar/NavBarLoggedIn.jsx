@@ -3,7 +3,7 @@ import supabase from '../../actions/supabaseClient'
 import { scrollToTop } from '../../actions/scrollToTop'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function NavBarLoggedIn() {
+export default function NavBarLoggedIn(props) {
     const navigate = useNavigate()
     const userSignOut = async () => {
         const { error } = await supabase.auth.signOut()
@@ -14,7 +14,7 @@ export default function NavBarLoggedIn() {
         <ul className="menu">
             <li>
                 <Link
-                    to="/exercise"
+                    to="/exercises"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
@@ -23,7 +23,7 @@ export default function NavBarLoggedIn() {
             </li>
             <li>
                 <Link
-                    to="/workout"
+                    to="/workouts"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
@@ -32,7 +32,7 @@ export default function NavBarLoggedIn() {
             </li>
             <li>
                 <Link
-                    to="/account_information"
+                    to="/account"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
@@ -41,7 +41,7 @@ export default function NavBarLoggedIn() {
             </li>
             <li>
                 <Link
-                    to="/personal_trainers"
+                    to="/trainers"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
@@ -53,6 +53,7 @@ export default function NavBarLoggedIn() {
                     className="logout"
                     onClick={() => {
                         userSignOut()
+                        props.setSignedIn(false)
                         scrollToTop()
                     }}
                 >
