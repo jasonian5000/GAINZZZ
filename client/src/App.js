@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import PrivateRoutes from './PrivateRoutes'
+import PrivateRoutes from './features/ui/private-routes'
 import {
     Home,
     LoginPage,
