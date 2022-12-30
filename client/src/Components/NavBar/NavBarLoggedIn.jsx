@@ -8,6 +8,7 @@ export default function NavBarLoggedIn(props) {
     const userSignOut = async () => {
         const { error } = await supabase.auth.signOut()
         console.log(error)
+        props.setLoggedIn(null)
         navigate('/')
     }
     return (
@@ -53,7 +54,6 @@ export default function NavBarLoggedIn(props) {
                     className="logout"
                     onClick={() => {
                         userSignOut()
-                        props.setSignedIn(false)
                         scrollToTop()
                     }}
                 >

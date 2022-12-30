@@ -22,14 +22,17 @@ function App() {
             const {
                 data: { session },
             } = await supabase.auth.getSession()
-            const { user } = session
-            setLoggedIn(user)
+            if (session) {
+                const { user } = session
+                console.log(user)
+                setLoggedIn(user)
+            }
         }
         updateStatus()
     }, [])
     return (
         <>
-            <NavBar />
+            <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Routes>
                 <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
                     <Route path="/exercises" element={<Exercise />} />
@@ -38,7 +41,7 @@ function App() {
                     <Route path="/workouts" element={<Workout />} />
                 </Route>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage setLoggedIn={setLoggedIn}/>} />
                 <Route path="/signup" element={<SignUpPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
