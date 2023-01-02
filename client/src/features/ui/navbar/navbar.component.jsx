@@ -5,8 +5,8 @@ import NavBarLoggedOut from './navbar-logged-out.component'
 import { useSelector } from 'react-redux'
 
 const NavBar = () => {
-    const user = useSelector(state => state.user.session)
-    const [isUser, setIsUser] = useState(user)
+    const session = useSelector(state => state.user.session)
+    const [validSession, setValidSession] = useState(session)
     const [navTransparent, setNavTransparent] = useState(false)
     const toggleNavTransparent = () => {
         if (window.scrollY >= 50) {
@@ -17,9 +17,9 @@ const NavBar = () => {
     }
     window.addEventListener('scroll', toggleNavTransparent)
     useEffect(() => {
-      setIsUser(user)
-      console.log("navbar state", user)
-    }, [user])
+      setValidSession(session)
+      console.log("navbar state", session)
+    }, [session])
     
     return (
         <nav className={navTransparent ? 'nav active' : 'nav'}>
@@ -30,7 +30,7 @@ const NavBar = () => {
                 </label>
             </div>
             <div>
-                {isUser ? (
+                {validSession ? (
                     <NavBarLoggedIn />
                 ) : (
                     <NavBarLoggedOut />

@@ -1,11 +1,17 @@
 const initialState = {
     session: undefined,
+    userData: undefined,
     weightData: [],
 }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_USER':
+        case 'SET_USER_DATA':
+            return {
+                ...state,
+                userData: action.payload,
+            }
+        case 'SET_SESSION':
             return {
                 ...state,
                 session: action.payload,

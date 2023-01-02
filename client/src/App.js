@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import PrivateRoutes from './features/ui/private-routes'
+import PrivateRoutes from './pages/private-routes.page'
 import {
     AccountPage,
     ErrorPage,
@@ -11,23 +11,25 @@ import {
     HomePage,
 } from './pages'
 import NavBar from 'features/ui/navbar/navbar.component'
+import GetStarted from 'pages/get-started.page'
+import NewUser from 'pages/new-user.page'
 
-function App() {  
+function App() {
     return (
         <>
-            <NavBar  />
+            <NavBar />
             <Routes>
                 <Route element={<PrivateRoutes />}>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/account" element={<AccountPage />} />
-                    <Route path="/exercises" element={<ExercisesPage />} />
-                    <Route path="/trainers" element={<TrainersPage />} />
-                    <Route path="/workouts" element={<WorkoutsPage />} />
+                    <Route element={<NewUser />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/account" element={<AccountPage />} />
+                        <Route path="/exercises" element={<ExercisesPage />} />
+                        <Route path="/trainers" element={<TrainersPage />} />
+                        <Route path="/workouts" element={<WorkoutsPage />} />
+                    </Route>
+                    <Route path="/get_started" element={<GetStarted />} />
                 </Route>
-                <Route
-                    path="/login"
-                    element={<LoginPage />}
-                />
+                <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
