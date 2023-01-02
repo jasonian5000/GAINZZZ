@@ -18,8 +18,9 @@ export default function LoginForm(props) {
             return
         }
         if (data) {
-            props.setLoggedIn(true)
-            navigate('/account')
+            console.log(data.user)
+            props.setUser(data.user)
+            navigate('/')
         }
     }
     return (

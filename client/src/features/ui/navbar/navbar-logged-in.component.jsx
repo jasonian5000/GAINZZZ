@@ -8,7 +8,7 @@ export default function NavBarLoggedIn(props) {
     const userSignOut = async () => {
         const { error } = await supabase.auth.signOut()
         console.log(error)
-        props.setLoggedIn(null)
+        props.setUser(null)
         navigate('/')
     }
     return (
@@ -19,7 +19,7 @@ export default function NavBarLoggedIn(props) {
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
-                    Search Exercises
+                    Exercises
                 </Link>
             </li>
             <li>
@@ -28,16 +28,7 @@ export default function NavBarLoggedIn(props) {
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
-                    Create Workout
-                </Link>
-            </li>
-            <li>
-                <Link
-                    to="/account"
-                    style={{ textDecoration: 'none', color: '#ffff' }}
-                    onClick={scrollToTop}
-                >
-                    My Account
+                    Workouts
                 </Link>
             </li>
             <li>
@@ -46,7 +37,16 @@ export default function NavBarLoggedIn(props) {
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
-                    Personal Trainers
+                    Trainers
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/account"
+                    style={{ textDecoration: 'none', color: '#ffff' }}
+                    onClick={scrollToTop}
+                >
+                    Account
                 </Link>
             </li>
             <li>

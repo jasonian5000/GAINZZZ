@@ -1,46 +1,55 @@
-import { useEffect, useState } from 'react'
+import { useState, useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { UserContext } from 'UserContext'
 import PrivateRoutes from './features/ui/private-routes'
-import { AccountPage, ErrorPage, ExercisesPage, LandingPage, LoginPage, SignupPage, TrainersPage, WorkoutsPage } from './pages'
+import {
+    AccountPage,
+    ErrorPage,
+    ExercisesPage,
+    LoginPage,
+    SignupPage,
+    TrainersPage,
+    WorkoutsPage,
+    HomePage,
+} from './pages'
 import supabase from 'features/ui/supabase'
 import NavBar from 'features/ui/navbar/navbar.component'
 import { Footer } from 'features/ui'
 
-
 function App() {
-    const [loggedIn, setLoggedIn] = useState(null)
-    useEffect(() => {
-        const updateStatus = async () => {
-            const {
-                data: { session },
-            } = await supabase.auth.getSession()
-            if (session) {
-                const { user } = session
-                setLoggedIn(user)
-            }
+    const user2 = useContext(UserContext)
+    const updateUser = async () => {
+        const {
+            data: { session },
+        } = await supabase.auth.getSession()
+        if (session) {
+            const { user } = await session
+            console.log(user)
+            return user
         }
-        updateStatus()
-    }, [])
+        return null
+    }
+    const [user, setUser] = useState(updateUser())
     return (
-        <>
-            <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <UserContext.Provider value={user2}>
+            <NavBar user={user} setUser={setUser} />
             <Routes>
-                <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
+                <Route element={<PrivateRoutes user={user} />}>
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/account" element={<AccountPage />} />
                     <Route path="/exercises" element={<ExercisesPage />} />
                     <Route path="/trainers" element={<TrainersPage />} />
                     <Route path="/workouts" element={<WorkoutsPage />} />
                 </Route>
-                <Route path="/" element={<LandingPage />} />
                 <Route
                     path="/login"
-                    element={<LoginPage setLoggedIn={setLoggedIn} />}
+                    element={<LoginPage setUser={setUser} />}
                 />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />
-        </>
+        </UserContext.Provider>
     )
 }
 

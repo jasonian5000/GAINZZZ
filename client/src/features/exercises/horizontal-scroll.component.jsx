@@ -4,8 +4,8 @@ import BodyPartCard from './body-part-card.component'
 import { useSelector } from 'react-redux'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
 import './hide-scrollbar.css'
-import RightArrowIcon from '../../assets/right-arrow.png'
-import LeftArrowIcon from '../../assets/left-arrow.png'
+import RightArrowIcon from './assets/right-arrow.png'
+import LeftArrowIcon from './assets/left-arrow.png'
 
 const LeftArrow = () => {
     const { scrollPrev } = useContext(VisibilityContext)

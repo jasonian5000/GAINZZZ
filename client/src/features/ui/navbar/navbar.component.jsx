@@ -22,8 +22,8 @@ const NavBar = (props) => {
                 </label>
             </div>
             <div>
-                {props.loggedIn ? (
-                    <NavBarLoggedIn setLoggedIn={props.setLoggedIn} />
+                {props.user ? (
+                    <NavBarLoggedIn setUser={props.setUser} />
                 ) : (
                     <NavBarLoggedOut />
                 )}
