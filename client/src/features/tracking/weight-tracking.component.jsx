@@ -22,6 +22,12 @@ export default function WeightTracking() {
     return (
         <div>
             <div className="weightTrackerWrapper">
+                <div>
+                    <form action="">
+                        <h1>Update weight</h1>
+                        <input type="text" />
+                    </form>
+                </div>
                 <h1>Weight Tracker</h1>
                 <div className="weightTrackerContainer">
                     <ResponsiveContainer width="100%" height="100%">

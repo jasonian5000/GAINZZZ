@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { UserContext } from 'UserContext'
+import { UserIDContext } from 'UserIDContext'
 import PrivateRoutes from './features/ui/private-routes'
 import {
     AccountPage,
@@ -17,7 +17,7 @@ import NavBar from 'features/ui/navbar/navbar.component'
 import { Footer } from 'features/ui'
 
 function App() {
-    const user2 = useContext(UserContext)
+    const userID = useContext(UserIDContext)
     const updateUser = async () => {
         const {
             data: { session },
@@ -31,7 +31,7 @@ function App() {
     }
     const [user, setUser] = useState(updateUser())
     return (
-        <UserContext.Provider value={user2}>
+        <UserIDContext.Provider value={userID}>
             <NavBar user={user} setUser={setUser} />
             <Routes>
                 <Route element={<PrivateRoutes user={user} />}>
@@ -49,7 +49,7 @@ function App() {
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />
-        </UserContext.Provider>
+        </UserIDContext.Provider>
     )
 }
 

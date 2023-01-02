@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './login-page.css'
+import './styles/login-page.css'
 import { useNavigate } from 'react-router-dom'
 import supabase from '../ui/supabase'
 

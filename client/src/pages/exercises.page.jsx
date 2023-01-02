@@ -1,7 +1,7 @@
 import { Box, Pagination, Stack } from '@mui/material'
 import React from 'react'
 import HorizontalScrollBar from '../features/exercises/horizontal-scroll.component'
-import '../features/exercises/exercise.css'
+import '../features/exercises/styles/exercise.css'
 import SearchBar from '../features/exercises/search-bar.component'
 import ExerciseCard from '../features/exercises/exercise-card.component'
 import { useSelector, useDispatch } from 'react-redux'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import supabase from '../ui/supabase'
-import './signup-form.css'
+import './styles/signup-page.css'
 
 const SignUpForm = props => {
     const [email, setEmail] = useState('')
