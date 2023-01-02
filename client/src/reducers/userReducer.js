@@ -1,14 +1,14 @@
 const initialState = {
-    acctInfo: [],
-    weightData: []
+    session: undefined,
+    weightData: [],
 }
 
-const acctInfoReducer = (state = initialState, action) =>{
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_ACCT_INFO':
+        case 'SET_USER':
             return {
                 ...state,
-                acctInfo: action.payload,
+                session: action.payload,
             }
         case 'SET_WEIGHT_DATA':
             return {
@@ -20,4 +20,4 @@ const acctInfoReducer = (state = initialState, action) =>{
     }
 }
 
-export default acctInfoReducer
+export default userReducer

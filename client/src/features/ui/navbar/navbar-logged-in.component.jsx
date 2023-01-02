@@ -2,14 +2,15 @@ import React from 'react'
 import supabase from '../supabase'
 import { scrollToTop } from '../scroll-to-top'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-export default function NavBarLoggedIn(props) {
+export default function NavBarLoggedIn() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const userSignOut = async () => {
-        const { error } = await supabase.auth.signOut()
-        console.log(error)
-        props.setUser(null)
-        navigate('/')
+        await supabase.auth.signOut()
+        dispatch({ type: 'SET_USER', payload: undefined })
+        navigate('/login')
     }
     return (
         <ul className="menu">

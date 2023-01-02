@@ -6,11 +6,6 @@ export default function NavBarLoggedOut() {
     return (
         <ul className="menu">
             <li>
-                <Link to="/" onClick={scrollToTop}>
-                    Home
-                </Link>
-            </li>
-            <li>
                 <Link
                     to="/signup"
                     style={{ textDecoration: 'none', color: '#ffff' }}

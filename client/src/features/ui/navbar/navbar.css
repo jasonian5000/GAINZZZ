@@ -33,7 +33,7 @@ input {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('./workout8.jpg');
+    /* background-image: url('./workout8.jpg'); */
     position: relative;
     z-index: 0;
 }

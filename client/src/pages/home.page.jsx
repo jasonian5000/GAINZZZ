@@ -4,7 +4,8 @@ import React from 'react'
 export default function HomePage() {
     return (
         <>
-            <TrackingPage />
+            {/* <TrackingPage /> */}
+            <h1>Homepage</h1>
         </>
     )
 }
