@@ -10,7 +10,7 @@ export default function GetStartedForm() {
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [height, setHeight] = useState('')
-    const [weight, setWeight] = useState('')
+    // const [weight, setWeight] = useState('')
     const [dob, setDob] = useState('')
 
     const handleSubmit = async e => {
