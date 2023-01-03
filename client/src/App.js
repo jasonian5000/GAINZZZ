@@ -8,7 +8,7 @@ import {
     SignupPage,
     TrainersPage,
     WorkoutsPage,
-    HomePage,
+    DashboardPage,
 } from './pages'
 import NavBar from 'features/ui/navbar/navbar.component'
 import GetStarted from 'pages/get-started.page'
@@ -21,7 +21,7 @@ function App() {
             <Routes>
                 <Route element={<PrivateRoutes />}>
                     <Route element={<NewUser />}>
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<DashboardPage />} />
                         <Route path="/account" element={<AccountPage />} />
                         <Route path="/exercises" element={<ExercisesPage />} />
                         <Route path="/trainers" element={<TrainersPage />} />

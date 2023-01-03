@@ -5,7 +5,7 @@ import LoginPage from './login.page'
 import SignupPage from './signup.page'
 import TrainersPage from './trainers.page'
 import WorkoutsPage from './workouts.page'
-import HomePage from './home.page'
+import DashboardPage from './dashboard.page'
 
 export {
     AccountPage,
@@ -15,5 +15,5 @@ export {
     SignupPage,
     TrainersPage,
     WorkoutsPage,
-    HomePage,
+    DashboardPage,
 }

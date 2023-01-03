@@ -1,22 +1,37 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import supabase from '../ui/supabase'
 import './styles/signup-page.css'
 
 const SignUpForm = props => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [check, setCheck] = useState('')
     const handleSubmit = async e => {
         e.preventDefault()
-        if (password.length < 6) {
+        if (password.length < 6 || password !== check) {
             props.toasts.setNeedMoreToast(true)
             return
         }
-        let { error } = await supabase.auth.signUp({
+        let { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
         })
         if (error) {
             props.toasts.setNeedMoreToast(true)
+            return
+        }
+        createUser(data.user.id, email, password)
+    }
+    const createUser = async (id, email, password) => {
+        const { data, error } = await supabase.from('userData').insert({
+            user_id: id,
+            email: email,
+            password: password,
+        })
+        if (error) {
+            console.log(error)
             return
         }
         props.toasts.setConfirmEmailToast(true)
@@ -37,7 +52,14 @@ const SignUpForm = props => {
                     type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    placeholder="Must contain 6+ characters"
+                    placeholder="Password must contain 6+ characters"
+                />
+                <input
+                    type="password"
+                    name="check"
+                    value={check}
+                    onChange={e => setCheck(e.target.value)}
+                    placeholder="Re-enter password"
                 />
                 <button className="registerButton">Register</button>
             </form>

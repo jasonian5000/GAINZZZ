@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../features/users/styles/signup-page.css'
+import '../features/users/styles/form-page.css'
 import Toasts from '../features/ui/toasts.component'
 import SignUpForm from '../features/users/signup-form.component'
 
@@ -13,12 +13,10 @@ const SignupPage = () => {
         setNeedMoreToast,
     }
     return (
-        <>
-            <div className="formContainer">
-                <SignUpForm toasts={toasts} />
-            </div>
+        <div className="pageContainer">
+            <SignUpForm toasts={toasts} />
             <Toasts toasts={toasts} />
-        </>
+        </div>
     )
 }
 

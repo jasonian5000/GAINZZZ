@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './styles/get-started.css'
+import './styles/form-page.css'
 import supabase from 'features/ui/supabase'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
