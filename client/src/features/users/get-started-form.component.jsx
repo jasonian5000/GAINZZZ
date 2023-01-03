@@ -16,7 +16,7 @@ export default function GetStartedForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         const { data, error } = await supabase
-            .from('user_data')
+            .from('userData')
             .insert({
                 user_id: user.id,
                 email: user.email,
