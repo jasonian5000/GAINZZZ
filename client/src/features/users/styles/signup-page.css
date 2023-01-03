@@ -1,0 +1,67 @@
+.formContainer {
+    display: flex;
+    background: url('../assets/signup-page-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-bottom: 10vh;
+}
+
+.signUpForm {
+    margin: 150px;
+    padding: 30px 10px 10px;
+    width: 40%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(247, 247, 247, 0.753);
+    border-radius: 15px;
+}
+
+.signUpForm input, button{
+    margin: 15px;
+    height: 50px;
+    width: 100%;
+    border-radius: 30px;
+    padding: 30px;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 0 0 #131414;
+    transition: 0.5s;
+}
+
+.signUpForm input:hover{
+    transform: scale(1.05, 1.05);
+}
+
+.signUpForm button {
+    background-color: #FF1414;
+    padding:15px 30px 30px;
+}
+
+.signUpForm button:hover {
+    color: #e5dada;
+    box-shadow: inset 650px 0 0 0 #000000;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+@media (max-width: 1190px) {
+    .signUpForm {
+        margin: 30px;
+        margin-top: 150px;
+        width: 60%;
+    }
+}
+
+@media (max-width: 720px) {
+    .signUpForm {
+        width: 81%;
+    }
+}
+@media (max-width: 376px) {
+    .login-Container {
+        height: 130vh;
+    }
+}

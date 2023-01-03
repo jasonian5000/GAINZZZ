@@ -1,21 +1,39 @@
-import './App.css'
-import { Box } from '@mui/material'
-import { Footer } from './Components/Home'
-import NewNav from './Components/Home/NewNav'
-import PageRoutes from './Components/Home/PageRoutes'
+import { Route, Routes } from 'react-router-dom'
+import PrivateRoutes from './pages/private-routes.page'
+import {
+    AccountPage,
+    ErrorPage,
+    ExercisesPage,
+    LoginPage,
+    SignupPage,
+    TrainersPage,
+    WorkoutsPage,
+    HomePage,
+} from './pages'
+import NavBar from 'features/ui/navbar/navbar.component'
+import GetStarted from 'pages/get-started.page'
+import NewUser from 'pages/new-user.page'
 
 function App() {
     return (
-        <Box
-            width="400px"
-            sx={{ width: { xl: 'auto' } }}
-            m="auto"
-            className="mainBox"
-        >
-            <NewNav />
-            <PageRoutes />
-            <Footer />
-        </Box>
+        <>
+            <NavBar />
+            <Routes>
+                <Route element={<PrivateRoutes />}>
+                    <Route element={<NewUser />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/account" element={<AccountPage />} />
+                        <Route path="/exercises" element={<ExercisesPage />} />
+                        <Route path="/trainers" element={<TrainersPage />} />
+                        <Route path="/workouts" element={<WorkoutsPage />} />
+                    </Route>
+                    <Route path="/get_started" element={<GetStarted />} />
+                </Route>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+        </>
     )
 }
 

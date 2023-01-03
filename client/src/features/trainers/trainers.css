@@ -1,0 +1,23 @@
+.PersonalTrainerContainer {
+    background: url('./ptBackgorund.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.css-1iphicz {
+    margin-top: 90px !important;
+}
+
+@media (max-width: 500px) {
+    .PersonalTrainerContainer {
+        width: 100vw;
+    }
+
+    .css-1iphicz {
+        width: 100vw !important;
+    }
+}
