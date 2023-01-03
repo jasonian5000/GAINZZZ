@@ -20,10 +20,10 @@ export default function NewUser() {
                 return
             }
             if (
-                !userData[0].first_name ||
-                !userData[0].last_name ||
-                !userData[0].height ||
-                !userData[0].dob
+                !userData[0]?.first_name ||
+                !userData[0]?.last_name ||
+                !userData[0]?.height ||
+                !userData[0]?.dob
             ) {
                 console.log("failed", userData)
                 setValidUser(false)

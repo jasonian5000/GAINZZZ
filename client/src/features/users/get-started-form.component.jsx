@@ -15,22 +15,17 @@ export default function GetStartedForm() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const { data, error } = await supabase
-            .from('userData')
-            .insert({
-                user_id: user.id,
-                email: user.email,
-                first_name: first,
-                last_name: last,
-                height: height,
-                dob: dob,
-            })
+        const { data, error } = await supabase.from('userData').insert({
+            user_id: user.id,
+            first_name: first,
+            last_name: last,
+            height: height,
+            dob: dob,
+        })
         if (error) {
             console.log(error)
         }
-        if (data) {
-            navigate('/')
-        }
+        navigate('/')
     }
     return (
         <div className="formContainer">

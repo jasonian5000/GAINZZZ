@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
 import supabase from '../ui/supabase'
 import './styles/signup-page.css'
 
 const SignUpForm = props => {
-    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [check, setCheck] = useState('')
+
     const handleSubmit = async e => {
         e.preventDefault()
         if (password.length < 6 || password !== check) {
             props.toasts.setNeedMoreToast(true)
             return
         }
-        let { data, error } = await supabase.auth.signUp({
+        let { error } = await supabase.auth.signUp({
             email: email,
             password: password,
         })
@@ -22,20 +21,8 @@ const SignUpForm = props => {
             props.toasts.setNeedMoreToast(true)
             return
         }
-        createUser(data.user.id, email, password)
     }
-    const createUser = async (id, email, password) => {
-        const { data, error } = await supabase.from('userData').insert({
-            user_id: id,
-            email: email,
-            password: password,
-        })
-        if (error) {
-            console.log(error)
-            return
-        }
-        props.toasts.setConfirmEmailToast(true)
-    }
+
     return (
         <>
             <form className="signUpForm" onSubmit={handleSubmit}>
