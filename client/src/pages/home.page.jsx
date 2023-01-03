@@ -4,7 +4,7 @@ import React from 'react'
 export default function HomePage() {
     return (
         <>
-            {/* <WeightTracking /> */}
+            <WeightTracking />
             <h1>Homepage</h1>
         </>
     )

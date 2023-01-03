@@ -1,9 +1,9 @@
-import GetStartedForm from 'features/users/get-started/get-started-form.component'
-import React from 'react'
+import GetStartedForm from 'features/users/get-started-form.component'
+import '../features/users/styles/get-started.css'
 
 export default function GetStarted() {
     return (
-        <div>
+        <div className='pageContainer'>
             <GetStartedForm />
         </div>
     )

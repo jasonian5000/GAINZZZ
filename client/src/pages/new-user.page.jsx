@@ -9,31 +9,37 @@ export default function NewUser() {
     const [validUser, setValidUser] = useState(undefined)
 
     useEffect(() => {
-        console.log('user session state', session)
-        const updateUser = async () => {
-            const {
-                data: { users },
-                error,
-            } = await supabase
-                .from('users')
-                .select(
-                    'email, first_name, last_name, dob, height, personal_trainer'
-                )
-                .eq('user_id', session.user.id)
-            if (error) {
-                console.log(error)
-                return
-            }
-            if (await users) {
-                console.log('users', users)
-                dispatch({ type: 'SET_USER_DATA', payload: users })
-                setValidUser(true)
-                return
-            }
-            console.log('users supabase', users)
-            setValidUser(false)
+        const updateUser = async session => {
+            // const {
+            //     data: user_data ,
+            //     error,
+            // } = await supabase
+            //     .from('user_data')
+            //     .select("first_name", "last_name", "height", "dob", "trainer")
+            //     .eq('user_id', session.user.id)
+            // if (error) {
+            //     console.log("error supabase",error);
+            //     setValidUser(false)
+            //     return
+            // }
+            // if (user_data.length > 0) {
+            //     console.log("valid user supabase", user_data[0])
+            //     dispatch({ type: 'SET_USER_DATA', payload: user_data[0] })
+            //     setValidUser(true)
+            //     return
+            // }
+            // console.log("no user supabase", user_data)
+            // if (
+            //     !user_data.first_name ||
+            //     !user_data.last_name ||
+            //     !user_data.height ||
+            //     !user_data.dob
+            // ) {
+                console.log(session)
+                setValidUser(false)
+            // }
         }
-        updateUser()
+        updateUser(session)
         // eslint-disable-next-line
     }, [])
     if (validUser === undefined) {

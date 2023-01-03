@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './styles/get-started.css'
 
 export default function GetStartedForm() {
     const [first, setFirst] = useState('')
@@ -11,39 +12,45 @@ export default function GetStartedForm() {
 
     }
     return (
-        <div>
+        <div className='formContainer'>
             <h1>Get Started</h1>
-            <form className="getStartedForm" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <input
                     name="first"
                     type="text"
                     value={first}
+                    placeholder="First name"
                     onChange={e => setFirst(e.target.value)}
                 />
                 <input
                     name="last"
                     type="text"
                     value={last}
+                    placeholder="Last name"
                     onChange={e => setLast(e.target.value)}
                 />
                 <input
                     name="height"
                     type="text"
                     value={height}
+                    placeholder="Height"
                     onChange={e => setHeight(e.target.value)}
                 />
                 <input
                     name="weight"
                     type="text"
                     value={weight}
+                    placeholder="Weight"
                     onChange={e => setWeight(e.target.value)}
                 />
                 <input
                     name="dob"
                     type="date"
                     value={dob}
+                    placeholder="Date of Birth"
                     onChange={e => setDob(e.target.value)}
                 />
+                <button>Submit</button>
             </form>
         </div>
     )

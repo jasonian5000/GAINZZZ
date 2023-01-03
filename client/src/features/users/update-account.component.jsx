@@ -2,9 +2,9 @@ import { Box, MenuItem, TextField } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import deleteUserAcct from './delete-acct-info'
+import deleteUserAcct from './utils/delete-acct-info'
 import getTrainerInfo from '../trainers/get-trainer-info'
-import updateAcctInfo from './update-acct-info'
+import updateAcctInfo from './utils/update-acct-info'
 import './account-info.css'
 
 export default function UpdateAccountForm(props) {

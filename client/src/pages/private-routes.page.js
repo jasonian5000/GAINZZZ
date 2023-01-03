@@ -12,11 +12,9 @@ const PrivateRoutes = () => {
             const {
                 data: { session },
             } = await supabase.auth.getSession()
-            console.log(session)
             setValidSession(session)
             if (session) {
                 dispatch({ type: 'SET_SESSION', payload: session })
-                console.log('private supabase', session)
             }
         }
         updateSession()
