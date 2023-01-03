@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import './styles/get-started.css'
+import supabase from 'features/ui/supabase'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export default function GetStartedForm() {
+    const navigate = useNavigate()
+    const user = useSelector(state => state.user.session.user)
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [height, setHeight] = useState('')
@@ -9,10 +14,26 @@ export default function GetStartedForm() {
     const [dob, setDob] = useState('')
 
     const handleSubmit = async e => {
-
+        e.preventDefault()
+        const { data, error } = await supabase
+            .from('user_data')
+            .insert({
+                user_id: user.id,
+                email: user.email,
+                first_name: first,
+                last_name: last,
+                height: height,
+                dob: dob,
+            })
+        if (error) {
+            console.log(error)
+        }
+        if (data) {
+            navigate('/')
+        }
     }
     return (
-        <div className='formContainer'>
+        <div className="formContainer">
             <h1>Get Started</h1>
             <form className="form" onSubmit={handleSubmit}>
                 <input
@@ -36,13 +57,13 @@ export default function GetStartedForm() {
                     placeholder="Height"
                     onChange={e => setHeight(e.target.value)}
                 />
-                <input
+                {/* <input
                     name="weight"
                     type="text"
                     value={weight}
                     placeholder="Weight"
                     onChange={e => setWeight(e.target.value)}
-                />
+                /> */}
                 <input
                     name="dob"
                     type="date"

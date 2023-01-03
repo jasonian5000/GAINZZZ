@@ -11,7 +11,7 @@ export default function LoginForm(props) {
     const [password, setPassword] = useState('')
     const handleSubmit = async e => {
         e.preventDefault()
-        let { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         })
