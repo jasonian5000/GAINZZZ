@@ -5,7 +5,6 @@ export default function DashboardPage() {
     return (
         <>
             <WeightTracking />
-            <h1>Homepage</h1>
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { Box, Pagination, Stack } from '@mui/material'
+import { Pagination, Stack } from '@mui/material'
 import React from 'react'
 import HorizontalScrollBar from '../features/exercises/horizontal-scroll.component'
 import '../features/exercises/styles/exercise.css'
@@ -8,8 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Toasts from '../features/ui/toasts.component'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import getUserFavs from '../features/workouts/get-user-favs'
+// import getUserFavs from '../features/workouts/get-user-favs'
 
 const ExercisesPage = () => {
     const dispatch = useDispatch()
@@ -26,24 +25,22 @@ const ExercisesPage = () => {
         window.scrollTo({ top: 500, behavior: 'smooth' })
     }
     useEffect(() => {
-        getUserFavs(dispatch)
+        // getUserFavs(dispatch)
         // eslint-disable-next-line
     }, [])
     return (
-        <motion.div
+        <div
             className="ED-Wrapper"
             intial={{ width: 0 }}
             animate={{ width: '100%' }}
             exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
         >
-            <div className="ED-Container">
-                <Box>
-                    <Box
-                        sx={{ position: 'relative', width: '100%', p: '20px' }}
-                    >
+            <div>
+                <div>
+                    <div>
                         <SearchBar />
                         <HorizontalScrollBar />
-                    </Box>
+                    </div>
                     <div>
                         <Stack>
                             <ExerciseCard current={current} toasts={toasts} />
@@ -63,10 +60,10 @@ const ExercisesPage = () => {
                             />
                         )}
                     </Stack>
-                </Box>
+                </div>
             </div>
             <Toasts toasts={toasts} />
-        </motion.div>
+        </div>
     )
 }
 

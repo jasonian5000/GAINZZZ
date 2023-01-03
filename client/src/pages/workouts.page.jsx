@@ -10,7 +10,7 @@ import WorkoutCard from '../features/workouts/workout-card.component'
 import { motion } from 'framer-motion'
 import updateCompletedWorkouts from '../features/workouts/update-completed-workouts'
 import searchExercises from '../features/exercises/search-exercises'
-import getUserFavs from '../features/workouts/get-user-favs'
+// import getUserFavs from '../features/workouts/get-user-favs'
 import randomExercise from 'features/workouts/random-exercises'
 
 const WorkoutsPage = () => {
@@ -23,7 +23,7 @@ const WorkoutsPage = () => {
     const [reset, setReset] = useState(true)
 
     useEffect(() => {
-        getUserFavs(dispatch)
+        // getUserFavs(dispatch)
         // eslint-disable-next-line
     }, [])
 
