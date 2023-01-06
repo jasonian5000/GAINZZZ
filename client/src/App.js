@@ -13,6 +13,7 @@ import {
 import NavBar from 'features/ui/navbar/navbar.component'
 import GetStarted from 'pages/get-started.page'
 import NewUser from 'pages/new-user.page'
+import Search  from 'pages/search.page'
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/" element={<DashboardPage />} />
                         <Route path="/account" element={<AccountPage />} />
                         <Route path="/exercises" element={<ExercisesPage />} />
+                        <Route path="/search" element={<Search />} />
                         <Route path="/trainers" element={<TrainersPage />} />
                         <Route path="/workouts" element={<WorkoutsPage />} />
                     </Route>
