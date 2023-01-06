@@ -23,11 +23,21 @@ export const resolvers = {
                     result.target.toLowerCase().includes(filter?.target)
                 )
                 let results = [...bodyPart, ...equipment, ...name, ...target]
-                console.log(page)
-                console.log(filter)
-                console.log(results.length)
-                return results.slice(page * 20 - 20, page * 20)
+
+                return {
+                    exercises: results.slice(page * 20 - 20, page * 20),
+                    totalResults: results.length,
+                }
             }
+        },
+
+        exercisesByIds(_, { ids }) {
+            let exercises = []
+            ids.forEach(id => {
+                let exercise = ExerciseList.filter(result => result.id === id)
+                exercises.push(exercise[0])
+            })
+            return exercises
         },
     },
 }
