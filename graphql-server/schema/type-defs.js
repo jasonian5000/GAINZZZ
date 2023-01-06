@@ -1,4 +1,3 @@
-
 export const typeDefs = `#graphql
     type Exercise {
         bodyPart: String!
@@ -10,6 +9,18 @@ export const typeDefs = `#graphql
     }
 
     type Query {
-        exercises: [Exercise!]!
+        # get a specific exercise by ID
+        exercise(id: ID!): Exercise
+        # get a list of all exercises
+        exercises(page: Int, filter: FilterExercise): [Exercise]!
+        # get a list of exercises selected by IDs
+        exercisesByIds(ids: [ID!]!): [Exercise]
+    }
+
+    input FilterExercise {
+        bodyPart: String
+        equipment: String
+        name: String
+        target: String
     }
 `
