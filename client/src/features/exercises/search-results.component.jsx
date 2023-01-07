@@ -1,5 +1,4 @@
 import React from 'react'
-import FavoriteButton from './favorite-button.component'
 
 export default function SearchResults(props) {
     return (
@@ -12,12 +11,6 @@ export default function SearchResults(props) {
                         loading="lazy"
                     />
                     <h2>{exercise.name}</h2>
-                    <div>
-                        <FavoriteButton
-                            exercise={exercise}
-                            toasts={props.toasts}
-                        />
-                    </div>
                 </div>
             ))}
         </div>

@@ -10,6 +10,7 @@ export default function NavBarLoggedIn() {
     const userSignOut = async () => {
         await supabase.auth.signOut()
         dispatch({ type: 'SET_SESSION', payload: undefined })
+        dispatch({ type: 'SET_USER_DATA', payload: undefined })
         navigate('/login')
     }
     return (

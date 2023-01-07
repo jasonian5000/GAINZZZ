@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import PrivateRoutes from './pages/private-routes.page'
+import PrivateRoutes from './features/ui/private-route'
 import {
     AccountPage,
     ErrorPage,
@@ -12,8 +12,8 @@ import {
 } from './pages'
 import NavBar from 'features/ui/navbar/navbar.component'
 import GetStarted from 'pages/get-started.page'
-import NewUser from 'pages/new-user.page'
-import Search  from 'pages/search.page'
+import NewUser from './features/ui/new-user-route'
+import Search from 'pages/search.page'
 
 function App() {
     return (
