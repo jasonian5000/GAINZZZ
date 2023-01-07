@@ -1,16 +1,17 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useUser, useUserUpdate } from '../users/userContext'
+import { useSession } from 'features/users/sessionContext'
 
 export default function UserRoute() {
-    const validUser = useUser()
-    const updateUser = useUserUpdate()
+    const { userData, getUserData } = useSession()
+
     useEffect(() => {
-        updateUser()
+        getUserData()
         // eslint-disable-next-line
     }, [])
-    if (validUser === undefined) {
+    if (userData === undefined) {
+        console.log("no user data")
         return null
     }
-    return validUser ? <Outlet /> : <Navigate to="/get_started" />
+    return userData ? <Outlet /> : <Navigate to="/get_started" />
 }

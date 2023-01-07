@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './navbar.css'
 import NavBarLoggedIn from './navbar-logged-in.component'
 import NavBarLoggedOut from './navbar-logged-out.component'
-import { useSelector } from 'react-redux'
+import { useSession } from 'features/users/sessionContext'
 
 const NavBar = () => {
-    const session = useSelector(state => state.user.session)
-    const [validSession, setValidSession] = useState(session)
+    const {session } = useSession()
     const [navTransparent, setNavTransparent] = useState(false)
     const toggleNavTransparent = () => {
         if (window.scrollY >= 50) {
@@ -16,10 +15,6 @@ const NavBar = () => {
         }
     }
     window.addEventListener('scroll', toggleNavTransparent)
-    useEffect(() => {
-      setValidSession(session)
-      console.log("navbar state", session)
-    }, [session])
     
     return (
         <nav className={navTransparent ? 'nav active' : 'nav'}>
@@ -30,7 +25,7 @@ const NavBar = () => {
                 </label>
             </div>
             <div>
-                {validSession ? (
+                {session ? (
                     <NavBarLoggedIn />
                 ) : (
                     <NavBarLoggedOut />

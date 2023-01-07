@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import supabase from '../ui/supabase'
 import './styles/signup-page.css'
 
 const SignUpForm = props => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [check, setCheck] = useState('')
@@ -21,6 +23,7 @@ const SignUpForm = props => {
             props.toasts.setNeedMoreToast(true)
             return
         }
+        navigate('/login')
     }
 
     return (

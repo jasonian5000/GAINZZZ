@@ -1,16 +1,15 @@
 import React from 'react'
-import supabase from '../supabase'
 import { scrollToTop } from '../scroll-to-top'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useSession } from 'features/users/sessionContext'
 
 export default function NavBarLoggedIn() {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const { logout, setSession, setUser } = useSession()
     const userSignOut = async () => {
-        await supabase.auth.signOut()
-        dispatch({ type: 'SET_SESSION', payload: undefined })
-        dispatch({ type: 'SET_USER_DATA', payload: undefined })
+        logout()
+        setSession(false)
+        setUser(false)
         navigate('/login')
     }
     return (
@@ -44,11 +43,11 @@ export default function NavBarLoggedIn() {
             </li>
             <li>
                 <Link
-                    to="/account"
+                    to="/"
                     style={{ textDecoration: 'none', color: '#ffff' }}
                     onClick={scrollToTop}
                 >
-                    Account
+                    Dashboard
                 </Link>
             </li>
             <li>

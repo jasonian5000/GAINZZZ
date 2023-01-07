@@ -1,18 +1,17 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useSession, useSessionUpdate } from '../users/sessionContext'
+import { useSession } from '../users/sessionContext'
 
 export default function SessionRoute() {
-    const validSession = useSession()
-    const updateSession = useSessionUpdate()
+    const {session, getSession} = useSession()
 
     useEffect(() => {
-        updateSession()
+        getSession()
         // eslint-disable-next-line
     }, [])
-    if (validSession === undefined) {
+    if (session === undefined) {
         return null
     }
-    return validSession ? <Outlet /> : <Navigate to="/login" />
+    return session ? <Outlet /> : <Navigate to="/login" />
     //
 }

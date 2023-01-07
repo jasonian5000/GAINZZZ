@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import './styles/form-page.css'
 import supabase from 'features/ui/supabase'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSession } from './sessionContext'
 
 export default function GetStartedForm() {
     const navigate = useNavigate()
-    const user = useSelector(state => state.user.session.user)
+    const {user, setUserData} = useSession()
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [height, setHeight] = useState('')
@@ -15,16 +15,21 @@ export default function GetStartedForm() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const { error } = await supabase.from('userData').insert({
+        const { data, error } = await supabase.from('userData').insert({
             user_id: user.id,
             first_name: first,
             last_name: last,
             height: height,
             dob: dob,
-        })
+            created_at: new Date(),
+            updated_at: new Date(),
+        }).select()
         if (error) {
             console.log(error)
+            return
         }
+        console.log("get started", data)
+        setUserData(data[0])
         navigate('/')
     }
     return (

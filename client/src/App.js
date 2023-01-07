@@ -14,12 +14,12 @@ import NavBar from 'features/ui/navbar/navbar.component'
 import GetStarted from 'pages/get-started.page'
 import UserRoute from './features/ui/user-route'
 import Search from 'pages/search.page'
-import { UserProvider } from 'features/users/userContext'
+import { SessionProvider } from 'features/users/sessionContext'
 
 function App() {
     return (
         <>
-            <UserProvider>
+            <SessionProvider>
                 <NavBar />
                 <Routes>
                     <Route element={<SessionRoute />}>
@@ -46,7 +46,7 @@ function App() {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
-            </UserProvider>
+            </SessionProvider>
         </>
     )
 }

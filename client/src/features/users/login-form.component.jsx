@@ -1,23 +1,24 @@
 import React, { useState } from 'react'
 import './styles/login-page.css'
 import { useNavigate } from 'react-router-dom'
-import supabase from '../ui/supabase'
+import { useSession } from './sessionContext'
 
 export default function LoginForm(props) {
+    const {login, setUser, setSession} = useSession()
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async e => {
         e.preventDefault()
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-        })
+        const { data, error } = await login(email, password)
         if (error) {
+            console.log("login error", error)
             props.toasts.setLoginFailToast(true)
             return
         }
         if (data) {
+            setSession(true)
+            setUser(data)
             console.log("login supabase", data.user)
             navigate('/')
         }
