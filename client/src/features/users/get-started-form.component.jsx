@@ -6,7 +6,7 @@ import { useSession } from './sessionContext'
 
 export default function GetStartedForm() {
     const navigate = useNavigate()
-    const {user, setUserData} = useSession()
+    const { user, setUserData } = useSession()
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [height, setHeight] = useState('')
@@ -15,20 +15,23 @@ export default function GetStartedForm() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const { data, error } = await supabase.from('userData').insert({
-            user_id: user.id,
-            first_name: first,
-            last_name: last,
-            height: height,
-            dob: dob,
-            created_at: new Date(),
-            updated_at: new Date(),
-        }).select()
+        const { data, error } = await supabase
+            .from('userData')
+            .insert({
+                user_id: user.id,
+                first_name: first,
+                last_name: last,
+                height: height,
+                dob: dob,
+                created_at: new Date(),
+                updated_at: new Date(),
+            })
+            .select()
         if (error) {
             console.log(error)
             return
         }
-        console.log("get started", data)
+        console.log('get started', data)
         setUserData(data[0])
         navigate('/')
     }

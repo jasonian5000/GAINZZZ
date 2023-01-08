@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSession } from '../users/sessionContext'
 
 export default function SessionRoute() {
-    const {session, getSession} = useSession()
+    const { session, getSession } = useSession()
 
     useEffect(() => {
         getSession()

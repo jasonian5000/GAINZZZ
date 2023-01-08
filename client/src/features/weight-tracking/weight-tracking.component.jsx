@@ -1,16 +1,13 @@
 import Toasts from 'features/ui/toasts.component'
 import React, { useState } from 'react'
 import './weight-tracking.css'
-import { useDispatch, useSelector } from 'react-redux'
 import WeightGraph from './weight-graph.component'
 
 export default function WeightTracking() {
-    const dispatch = useDispatch()
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
     const toasts = { pass, setPass, updated, setUpdated }
-    const weightData = useSelector(state => state.user.weightData)
-    const [savedWeights, setSavedWeights] = useState(weightData)
+    const [savedWeights, setSavedWeights] = useState(null)
 
     return (
         <div>

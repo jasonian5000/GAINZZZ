@@ -1,5 +1,5 @@
 import { gql, useLazyQuery } from '@apollo/client'
-import SearchResults from 'features/exercises/search-results.component'
+import SearchResults from 'features/exercises/search/search-results.component'
 import React, { useState } from 'react'
 
 const SEARCH_EXERCISES = gql`

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSession } from './sessionContext'
 
 export default function LoginForm(props) {
-    const {login, setUser, setSession} = useSession()
+    const { login, setUser, setSession } = useSession()
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -12,14 +12,14 @@ export default function LoginForm(props) {
         e.preventDefault()
         const { data, error } = await login(email, password)
         if (error) {
-            console.log("login error", error)
+            console.log('login error', error)
             props.toasts.setLoginFailToast(true)
             return
         }
         if (data) {
             setSession(true)
             setUser(data)
-            console.log("login supabase", data.user)
+            console.log('login supabase', data.user)
             navigate('/')
         }
     }
