@@ -19,7 +19,6 @@ export default function LoginForm(props) {
         if (data) {
             setSession(true)
             setUser(data)
-            console.log('login supabase', data.user)
             navigate('/')
         }
     }

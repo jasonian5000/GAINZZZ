@@ -28,10 +28,9 @@ export default function GetStartedForm() {
             })
             .select()
         if (error) {
-            console.log(error)
+            console.log("add user data error", error)
             return
         }
-        console.log('get started', data)
         setUserData(data[0])
         navigate('/')
     }

@@ -15,11 +15,8 @@ export function SessionProvider({ children }) {
             } = await supabase.auth.getSession()
             setSession(session)
             setUser(session.user)
-            console.log('session set supabase:', session)
-            console.log('user set supabase', session.user)
             return
         }
-        console.log('valid session exists in state:', session)
     }
 
     const login = async (email, password) => {
@@ -35,14 +32,13 @@ export function SessionProvider({ children }) {
     }
 
     const getUserData = async () => {
-        console.log("get user data", user, userData)
         if (user && !userData) {
             const { data: userData, error } = await supabase
                 .from('userData')
                 .select('first_name, last_name, height, dob, trainer')
                 .eq('user_id', user.id)
             if (error) {
-                console.log('error supabase', error)
+                console.log('get user data error', error)
                 setUserData(undefined)
                 return
             }
@@ -52,15 +48,12 @@ export function SessionProvider({ children }) {
                 !userData[0]?.height ||
                 !userData[0]?.dob
             ) {
-                console.log('need user update', userData)
                 setUserData(false)
                 return
             }
-            console.log('valid user supabase', userData[0])
             setUserData(userData[0])
             return
         }
-        console.log('valid user state', userData)
     }
 
     return (

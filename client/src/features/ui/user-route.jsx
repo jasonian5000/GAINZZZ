@@ -10,7 +10,6 @@ export default function UserRoute() {
         // eslint-disable-next-line
     }, [])
     if (userData === undefined) {
-        console.log("no user data")
         return null
     }
     return userData ? <Outlet /> : <Navigate to="/get_started" />

@@ -31,12 +31,11 @@ export default function SearchPage() {
     const handleSubmit = (e) => {
         e.preventDefault()
         getExercises(name)
-        console.log(data)
         return
     }
 
     if (called && error) {
-        console.log(error)
+        console.log("search exercise error", error)
         return <div>something went wrong</div>
     }
     if (loading) return <div>loading...</div>
