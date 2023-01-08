@@ -1,9 +1,11 @@
 import React from 'react'
+import { useSearchExercise } from './searchExerciseContext'
 
-export default function SearchResults(props) {
+export default function SearchResults() {
+    const { data } = useSearchExercise()
     return (
         <div className="resultsContainer">
-            {props.data?.exercises.map((exercise, index) => (
+            {data?.exercises.exercises.map((exercise, index) => (
                 <div key={exercise.id + index} className="exerciseCard">
                     <img src={exercise.gifUrl} alt={exercise.name} />
                     <h2>{exercise.name}</h2>
