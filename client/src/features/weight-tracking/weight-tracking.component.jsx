@@ -7,7 +7,7 @@ export default function WeightTracking() {
     const [pass, setPass] = useState(false)
     const [updated, setUpdated] = useState(false)
     const toasts = { pass, setPass, updated, setUpdated }
-    const [savedWeights, setSavedWeights] = useState(null)
+    const [savedWeights, setSavedWeights] = useState(1)
 
     return (
         <div>
