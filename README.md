@@ -1,5 +1,5 @@
 # Edit
-## This is a fork of the original project described. It is currently undergoing a major transformation to streamline the ux, better utilize Supabase RLS, and refactor the server. Check back for a working demo.
+## This is a fork of the original project described. After working on converting it to a different tech stack, I determined it would be cleaner to start the project over as a new project.
 
 Welcome to [GAINZZ](https://gainzzz-le8liei9e-1shoukr.vercel.app/)
 
